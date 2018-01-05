@@ -1,0 +1,355 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.atwangsi.user.dao.TbPermissionMapper">
+  <resultMap id="BaseResultMap" type="com.atwangsi.user.model.TbPermission">
+    <id column="permission_id" jdbcType="INTEGER" property="permissionId" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="permission_code" jdbcType="VARCHAR" property="permissionCode" />
+    <result column="parent_id" jdbcType="INTEGER" property="parentId" />
+    <result column="permission_path" jdbcType="VARCHAR" property="permissionPath" />
+    <result column="create_by" jdbcType="VARCHAR" property="createBy" />
+    <result column="create_date" jdbcType="DATE" property="createDate" />
+    <result column="last_updated_by" jdbcType="VARCHAR" property="lastUpdatedBy" />
+    <result column="last_update_date" jdbcType="DATE" property="lastUpdateDate" />
+    <result column="record_version" jdbcType="INTEGER" property="recordVersion" />
+    <result column="deleted_flag" jdbcType="INTEGER" property="deletedFlag" />
+    <result column="deleted_by" jdbcType="VARCHAR" property="deletedBy" />
+    <result column="deletion_date" jdbcType="DATE" property="deletionDate" />
+  </resultMap>
+  
+  <!-- List<TPermission> getUserPermissions(Integer id); -->
+	<select id="getUserPermissions" resultMap="BaseResultMap">
+		select distinct p.* from tb_permission p
+		left join tb_rolepermission rp on rp.`permission_id`=p.`permission_id`
+		left join tb_userrole ur on ur.`role_id`= rp.`role_id`
+		where ur.`user_id`=#{id}
+	</select>
+
+
+	<!-- List<TbPermission> selectRolesPermissions(Integer roleId); -->
+	<select id="selectRolesPermissions" resultMap="BaseResultMap">
+		SELECT p.* FROM tb_permission p
+		LEFT JOIN tb_rolepermission rp ON rp.permission_id = p.permission_id
+		WHERE rp.role_id = #{roleId}
+	</select>
+  
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    permission_id, name, permission_code, parent_id, permission_path, create_by, create_date, 
+    last_updated_by, last_update_date, record_version, deleted_flag, deleted_by, deletion_date
+  </sql>
+  <select id="selectByExample" parameterType="com.atwangsi.user.model.TbPermissionExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from tb_permission
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tb_permission
+    where permission_id = #{permissionId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from tb_permission
+    where permission_id = #{permissionId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.atwangsi.user.model.TbPermissionExample">
+    delete from tb_permission
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.atwangsi.user.model.TbPermission">
+    insert into tb_permission (permission_id, name, permission_code, 
+      parent_id, permission_path, create_by, 
+      create_date, last_updated_by, last_update_date, 
+      record_version, deleted_flag, deleted_by, 
+      deletion_date)
+    values (#{permissionId,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{permissionCode,jdbcType=VARCHAR}, 
+      #{parentId,jdbcType=INTEGER}, #{permissionPath,jdbcType=VARCHAR}, #{createBy,jdbcType=VARCHAR}, 
+      #{createDate,jdbcType=DATE}, #{lastUpdatedBy,jdbcType=VARCHAR}, #{lastUpdateDate,jdbcType=DATE}, 
+      #{recordVersion,jdbcType=INTEGER}, #{deletedFlag,jdbcType=INTEGER}, #{deletedBy,jdbcType=VARCHAR}, 
+      #{deletionDate,jdbcType=DATE})
+  </insert>
+  <insert id="insertSelective" parameterType="com.atwangsi.user.model.TbPermission">
+    insert into tb_permission
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="permissionId != null">
+        permission_id,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="permissionCode != null">
+        permission_code,
+      </if>
+      <if test="parentId != null">
+        parent_id,
+      </if>
+      <if test="permissionPath != null">
+        permission_path,
+      </if>
+      <if test="createBy != null">
+        create_by,
+      </if>
+      <if test="createDate != null">
+        create_date,
+      </if>
+      <if test="lastUpdatedBy != null">
+        last_updated_by,
+      </if>
+      <if test="lastUpdateDate != null">
+        last_update_date,
+      </if>
+      <if test="recordVersion != null">
+        record_version,
+      </if>
+      <if test="deletedFlag != null">
+        deleted_flag,
+      </if>
+      <if test="deletedBy != null">
+        deleted_by,
+      </if>
+      <if test="deletionDate != null">
+        deletion_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="permissionId != null">
+        #{permissionId,jdbcType=INTEGER},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="permissionCode != null">
+        #{permissionCode,jdbcType=VARCHAR},
+      </if>
+      <if test="parentId != null">
+        #{parentId,jdbcType=INTEGER},
+      </if>
+      <if test="permissionPath != null">
+        #{permissionPath,jdbcType=VARCHAR},
+      </if>
+      <if test="createBy != null">
+        #{createBy,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null">
+        #{createDate,jdbcType=DATE},
+      </if>
+      <if test="lastUpdatedBy != null">
+        #{lastUpdatedBy,jdbcType=VARCHAR},
+      </if>
+      <if test="lastUpdateDate != null">
+        #{lastUpdateDate,jdbcType=DATE},
+      </if>
+      <if test="recordVersion != null">
+        #{recordVersion,jdbcType=INTEGER},
+      </if>
+      <if test="deletedFlag != null">
+        #{deletedFlag,jdbcType=INTEGER},
+      </if>
+      <if test="deletedBy != null">
+        #{deletedBy,jdbcType=VARCHAR},
+      </if>
+      <if test="deletionDate != null">
+        #{deletionDate,jdbcType=DATE},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.atwangsi.user.model.TbPermissionExample" resultType="java.lang.Long">
+    select count(*) from tb_permission
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update tb_permission
+    <set>
+      <if test="record.permissionId != null">
+        permission_id = #{record.permissionId,jdbcType=INTEGER},
+      </if>
+      <if test="record.name != null">
+        name = #{record.name,jdbcType=VARCHAR},
+      </if>
+      <if test="record.permissionCode != null">
+        permission_code = #{record.permissionCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.parentId != null">
+        parent_id = #{record.parentId,jdbcType=INTEGER},
+      </if>
+      <if test="record.permissionPath != null">
+        permission_path = #{record.permissionPath,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createBy != null">
+        create_by = #{record.createBy,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createDate != null">
+        create_date = #{record.createDate,jdbcType=DATE},
+      </if>
+      <if test="record.lastUpdatedBy != null">
+        last_updated_by = #{record.lastUpdatedBy,jdbcType=VARCHAR},
+      </if>
+      <if test="record.lastUpdateDate != null">
+        last_update_date = #{record.lastUpdateDate,jdbcType=DATE},
+      </if>
+      <if test="record.recordVersion != null">
+        record_version = #{record.recordVersion,jdbcType=INTEGER},
+      </if>
+      <if test="record.deletedFlag != null">
+        deleted_flag = #{record.deletedFlag,jdbcType=INTEGER},
+      </if>
+      <if test="record.deletedBy != null">
+        deleted_by = #{record.deletedBy,jdbcType=VARCHAR},
+      </if>
+      <if test="record.deletionDate != null">
+        deletion_date = #{record.deletionDate,jdbcType=DATE},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update tb_permission
+    set permission_id = #{record.permissionId,jdbcType=INTEGER},
+      name = #{record.name,jdbcType=VARCHAR},
+      permission_code = #{record.permissionCode,jdbcType=VARCHAR},
+      parent_id = #{record.parentId,jdbcType=INTEGER},
+      permission_path = #{record.permissionPath,jdbcType=VARCHAR},
+      create_by = #{record.createBy,jdbcType=VARCHAR},
+      create_date = #{record.createDate,jdbcType=DATE},
+      last_updated_by = #{record.lastUpdatedBy,jdbcType=VARCHAR},
+      last_update_date = #{record.lastUpdateDate,jdbcType=DATE},
+      record_version = #{record.recordVersion,jdbcType=INTEGER},
+      deleted_flag = #{record.deletedFlag,jdbcType=INTEGER},
+      deleted_by = #{record.deletedBy,jdbcType=VARCHAR},
+      deletion_date = #{record.deletionDate,jdbcType=DATE}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.atwangsi.user.model.TbPermission">
+    update tb_permission
+    <set>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="permissionCode != null">
+        permission_code = #{permissionCode,jdbcType=VARCHAR},
+      </if>
+      <if test="parentId != null">
+        parent_id = #{parentId,jdbcType=INTEGER},
+      </if>
+      <if test="permissionPath != null">
+        permission_path = #{permissionPath,jdbcType=VARCHAR},
+      </if>
+      <if test="createBy != null">
+        create_by = #{createBy,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null">
+        create_date = #{createDate,jdbcType=DATE},
+      </if>
+      <if test="lastUpdatedBy != null">
+        last_updated_by = #{lastUpdatedBy,jdbcType=VARCHAR},
+      </if>
+      <if test="lastUpdateDate != null">
+        last_update_date = #{lastUpdateDate,jdbcType=DATE},
+      </if>
+      <if test="recordVersion != null">
+        record_version = #{recordVersion,jdbcType=INTEGER},
+      </if>
+      <if test="deletedFlag != null">
+        deleted_flag = #{deletedFlag,jdbcType=INTEGER},
+      </if>
+      <if test="deletedBy != null">
+        deleted_by = #{deletedBy,jdbcType=VARCHAR},
+      </if>
+      <if test="deletionDate != null">
+        deletion_date = #{deletionDate,jdbcType=DATE},
+      </if>
+    </set>
+    where permission_id = #{permissionId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.atwangsi.user.model.TbPermission">
+    update tb_permission
+    set name = #{name,jdbcType=VARCHAR},
+      permission_code = #{permissionCode,jdbcType=VARCHAR},
+      parent_id = #{parentId,jdbcType=INTEGER},
+      permission_path = #{permissionPath,jdbcType=VARCHAR},
+      create_by = #{createBy,jdbcType=VARCHAR},
+      create_date = #{createDate,jdbcType=DATE},
+      last_updated_by = #{lastUpdatedBy,jdbcType=VARCHAR},
+      last_update_date = #{lastUpdateDate,jdbcType=DATE},
+      record_version = #{recordVersion,jdbcType=INTEGER},
+      deleted_flag = #{deletedFlag,jdbcType=INTEGER},
+      deleted_by = #{deletedBy,jdbcType=VARCHAR},
+      deletion_date = #{deletionDate,jdbcType=DATE}
+    where permission_id = #{permissionId,jdbcType=INTEGER}
+  </update>
+</mapper>

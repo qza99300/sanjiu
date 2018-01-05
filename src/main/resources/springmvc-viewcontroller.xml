@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans      
+                        http://www.springframework.org/schema/beans/spring-beans-4.0.xsd      
+                        http://www.springframework.org/schema/context      
+                        http://www.springframework.org/schema/context/spring-context-3.1.xsd      
+                        http://www.springframework.org/schema/mvc      
+                        http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd">
+
+	<!-- 请求映射：伪静态请求 -->
+	<!-- 页面跳转 -->
+	<!-- <mvc:view-controller path="/login.html" view-name="login"/> -->
+
+	<!--客户用户管理模块 -->
+	<mvc:view-controller path="userList.html" view-name="user-module/userList" />
+	<mvc:view-controller path="orderList.html" view-name="user-module/orderList" />
+	<mvc:view-controller path="consigneeList.html" view-name="user-module/consigneeList" />
+	
+	<!-- 我的首页 -->
+	<mvc:view-controller path="index.html" view-name="index"/>
+	
+	<!--项目平台模块  -->
+	<mvc:view-controller path="collegeIntroList.html" view-name="items-module/introList"/>
+<!-- 	<mvc:view-controller path="collegeTrait.html" view-name="items-module/collegeTrait"/> -->
+	
+	<!--线上沟通模块 手机端  -->
+	<mvc:view-controller path="PMonline.html" view-name="onLine-module/PMonline"/>
+	<mvc:view-controller path="majordomoOnline.html" view-name="onLine-module/majordomoOnline"/>
+	<mvc:view-controller path="xiaoyouhuiCommunicate.html" view-name="onLine-module/xiaoyouhuiCommunicate"/>
+	
+	<!--培训活动模块  -->
+	<mvc:view-controller path="activityList.html" view-name="activity-module/activityList"/>
+	<mvc:view-controller path="onlineApply.html" view-name="activity-module/onlineApply"/>
+	
+	
+	<!--积分活动模块  -->
+	<mvc:view-controller path="integrationRule.html" view-name="integral-module/integrationRule"/>
+	<mvc:view-controller path="productManage.html" view-name="integral-module/productManage"/>
+	<mvc:view-controller path="integralDetail.html" view-name="integral-module/integralDetail"/>
+	
+	
+	<!--社区管理模块  -->
+	<mvc:view-controller path="informationManagement.html" view-name="community-module/informationManagement"/>
+<!-- 	<mvc:view-controller path="managerPublish.html" view-name="community-module/managerPublish"/> -->
+<!-- 	<mvc:view-controller path="managerInteract.html" view-name="community-module/managerInteract"/> -->
+	
+	<!--系统管理模块  -->
+	<mvc:view-controller path="updatePassword.html" view-name="system-module/updatePassword"/>
+	<mvc:view-controller path="roleList.html" view-name="system-module/roleList"/>
+<!-- 	<mvc:view-controller path="permissionList.html" view-name="system-module/permissionList"/> -->
+	<mvc:view-controller path="myUserInfo.html" view-name="system-module/myUserInfo"/>
+
+
+</beans>

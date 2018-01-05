@@ -1,0 +1,572 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.atwangsi.user.dao.TbUserMapper">
+	<resultMap id="BaseResultMap" type="com.atwangsi.user.model.TbUser">
+		<id column="user_id" jdbcType="INTEGER" property="userId" />
+		<result column="loginname" jdbcType="VARCHAR" property="loginname" />
+		<result column="password" jdbcType="VARCHAR" property="password" />
+		<result column="user_name" jdbcType="VARCHAR" property="userName" />
+		<result column="phone" jdbcType="VARCHAR" property="phone" />
+		<result column="open_id" jdbcType="VARCHAR" property="openId" />
+		<result column="wechat_name" jdbcType="VARCHAR" property="wechatName" />
+		<result column="company" jdbcType="VARCHAR" property="company" />
+		<result column="department" jdbcType="VARCHAR" property="department" />
+		<result column="duty" jdbcType="VARCHAR" property="duty" />
+		<result column="area_1" jdbcType="VARCHAR" property="area1" />
+		<result column="email" jdbcType="VARCHAR" property="email" />
+		<result column="province" jdbcType="VARCHAR" property="province" />
+		<result column="city" jdbcType="VARCHAR" property="city" />
+		<result column="area_2" jdbcType="VARCHAR" property="area2" />
+		<result column="address" jdbcType="VARCHAR" property="address" />
+		<result column="phoneremark" jdbcType="VARCHAR" property="phoneremark" />
+		<result column="create_date" jdbcType="DATE" property="createDate" />
+		<result column="integral_count" jdbcType="INTEGER" property="integralCount" />
+		<result column="create_by" jdbcType="VARCHAR" property="createBy" />
+		<result column="last_updated_by" jdbcType="VARCHAR" property="lastUpdatedBy" />
+		<result column="last_update_date" jdbcType="DATE" property="lastUpdateDate" />
+		<result column="record_version" jdbcType="INTEGER" property="recordVersion" />
+	</resultMap>
+
+	<!-- 登录 -->
+	<select id="userLogin" parameterType="com.atwangsi.user.model.TbUser"
+		resultType="com.atwangsi.user.model.TbUser">
+		SELECT * FROM tb_user WHERE loginname = #{loginname} and password=#{password};
+	</select>
+
+
+	<sql id="Example_Where_Clause">
+		<where>
+			<foreach collection="oredCriteria" item="criteria" separator="or">
+				<if test="criteria.valid">
+					<trim prefix="(" prefixOverrides="and" suffix=")">
+						<foreach collection="criteria.criteria" item="criterion">
+							<choose>
+								<when test="criterion.noValue">
+									and ${criterion.condition}
+								</when>
+								<when test="criterion.singleValue">
+									and ${criterion.condition} #{criterion.value}
+								</when>
+								<when test="criterion.betweenValue">
+									and ${criterion.condition} #{criterion.value}
+									and
+									#{criterion.secondValue}
+								</when>
+								<when test="criterion.listValue">
+									and ${criterion.condition}
+									<foreach close=")" collection="criterion.value" item="listItem"
+										open="(" separator=",">
+										#{listItem}
+									</foreach>
+								</when>
+							</choose>
+						</foreach>
+					</trim>
+				</if>
+			</foreach>
+		</where>
+	</sql>
+	<sql id="Update_By_Example_Where_Clause">
+		<where>
+			<foreach collection="example.oredCriteria" item="criteria"
+				separator="or">
+				<if test="criteria.valid">
+					<trim prefix="(" prefixOverrides="and" suffix=")">
+						<foreach collection="criteria.criteria" item="criterion">
+							<choose>
+								<when test="criterion.noValue">
+									and ${criterion.condition}
+								</when>
+								<when test="criterion.singleValue">
+									and ${criterion.condition} #{criterion.value}
+								</when>
+								<when test="criterion.betweenValue">
+									and ${criterion.condition} #{criterion.value}
+									and
+									#{criterion.secondValue}
+								</when>
+								<when test="criterion.listValue">
+									and ${criterion.condition}
+									<foreach close=")" collection="criterion.value" item="listItem"
+										open="(" separator=",">
+										#{listItem}
+									</foreach>
+								</when>
+							</choose>
+						</foreach>
+					</trim>
+				</if>
+			</foreach>
+		</where>
+	</sql>
+	<sql id="Base_Column_List">
+		user_id, loginname, password, user_name, phone, open_id,
+		wechat_name, company,
+		department,
+		duty, area_1, email, province, city,
+		area_2, address, phoneremark,
+		create_date, integral_count,
+		create_by,
+		last_updated_by, last_update_date, record_version
+	</sql>
+	<select id="selectByExample" parameterType="com.atwangsi.user.model.TbUserExample"
+		resultMap="BaseResultMap">
+		select
+		<if test="distinct">
+			distinct
+		</if>
+		<include refid="Base_Column_List" />
+		from tb_user
+		<if test="_parameter != null">
+			<include refid="Example_Where_Clause" />
+		</if>
+		<if test="orderByClause != null">
+			order by ${orderByClause}
+		</if>
+	</select>
+	<select id="selectByPrimaryKey" parameterType="java.lang.Integer"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from tb_user
+		where user_id = #{userId,jdbcType=INTEGER}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete from
+		tb_user
+		where user_id = #{userId,jdbcType=INTEGER}
+	</delete>
+	<delete id="deleteByExample" parameterType="com.atwangsi.user.model.TbUserExample">
+		delete from tb_user
+		<if test="_parameter != null">
+			<include refid="Example_Where_Clause" />
+		</if>
+	</delete>
+	<insert id="insert" parameterType="com.atwangsi.user.model.TbUser">
+		insert into tb_user (user_id,
+		loginname, password,
+		user_name, phone, open_id,
+		wechat_name, company,
+		department,
+		duty, area_1, email,
+		province, city, area_2,
+		address,
+		phoneremark, create_date,
+		integral_count, create_by, last_updated_by,
+		last_update_date, record_version)
+		values (#{userId,jdbcType=INTEGER},
+		#{loginname,jdbcType=VARCHAR},
+		#{password,jdbcType=VARCHAR},
+		#{userName,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR},
+		#{openId,jdbcType=VARCHAR},
+		#{wechatName,jdbcType=VARCHAR},
+		#{company,jdbcType=VARCHAR},
+		#{department,jdbcType=VARCHAR},
+		#{duty,jdbcType=VARCHAR}, #{area1,jdbcType=VARCHAR},
+		#{email,jdbcType=VARCHAR},
+		#{province,jdbcType=VARCHAR},
+		#{city,jdbcType=VARCHAR},
+		#{area2,jdbcType=VARCHAR},
+		#{address,jdbcType=VARCHAR}, #{phoneremark,jdbcType=VARCHAR},
+		#{createDate,jdbcType=DATE},
+		#{integralCount,jdbcType=INTEGER},
+		#{createBy,jdbcType=VARCHAR},
+		#{lastUpdatedBy,jdbcType=VARCHAR},
+		#{lastUpdateDate,jdbcType=DATE}, #{recordVersion,jdbcType=INTEGER})
+	</insert>
+	<insert id="insertSelective" parameterType="com.atwangsi.user.model.TbUser">
+		insert into tb_user
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="userId != null">
+				user_id,
+			</if>
+			<if test="loginname != null">
+				loginname,
+			</if>
+			<if test="password != null">
+				password,
+			</if>
+			<if test="userName != null">
+				user_name,
+			</if>
+			<if test="phone != null">
+				phone,
+			</if>
+			<if test="openId != null">
+				open_id,
+			</if>
+			<if test="wechatName != null">
+				wechat_name,
+			</if>
+			<if test="company != null">
+				company,
+			</if>
+			<if test="department != null">
+				department,
+			</if>
+			<if test="duty != null">
+				duty,
+			</if>
+			<if test="area1 != null">
+				area_1,
+			</if>
+			<if test="email != null">
+				email,
+			</if>
+			<if test="province != null">
+				province,
+			</if>
+			<if test="city != null">
+				city,
+			</if>
+			<if test="area2 != null">
+				area_2,
+			</if>
+			<if test="address != null">
+				address,
+			</if>
+			<if test="phoneremark != null">
+				phoneremark,
+			</if>
+			<if test="createDate != null">
+				create_date,
+			</if>
+			<if test="integralCount != null">
+				integral_count,
+			</if>
+			<if test="createBy != null">
+				create_by,
+			</if>
+			<if test="lastUpdatedBy != null">
+				last_updated_by,
+			</if>
+			<if test="lastUpdateDate != null">
+				last_update_date,
+			</if>
+			<if test="recordVersion != null">
+				record_version,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="userId != null">
+				#{userId,jdbcType=INTEGER},
+			</if>
+			<if test="loginname != null">
+				#{loginname,jdbcType=VARCHAR},
+			</if>
+			<if test="password != null">
+				#{password,jdbcType=VARCHAR},
+			</if>
+			<if test="userName != null">
+				#{userName,jdbcType=VARCHAR},
+			</if>
+			<if test="phone != null">
+				#{phone,jdbcType=VARCHAR},
+			</if>
+			<if test="openId != null">
+				#{openId,jdbcType=VARCHAR},
+			</if>
+			<if test="wechatName != null">
+				#{wechatName,jdbcType=VARCHAR},
+			</if>
+			<if test="company != null">
+				#{company,jdbcType=VARCHAR},
+			</if>
+			<if test="department != null">
+				#{department,jdbcType=VARCHAR},
+			</if>
+			<if test="duty != null">
+				#{duty,jdbcType=VARCHAR},
+			</if>
+			<if test="area1 != null">
+				#{area1,jdbcType=VARCHAR},
+			</if>
+			<if test="email != null">
+				#{email,jdbcType=VARCHAR},
+			</if>
+			<if test="province != null">
+				#{province,jdbcType=VARCHAR},
+			</if>
+			<if test="city != null">
+				#{city,jdbcType=VARCHAR},
+			</if>
+			<if test="area2 != null">
+				#{area2,jdbcType=VARCHAR},
+			</if>
+			<if test="address != null">
+				#{address,jdbcType=VARCHAR},
+			</if>
+			<if test="phoneremark != null">
+				#{phoneremark,jdbcType=VARCHAR},
+			</if>
+			<if test="createDate != null">
+				#{createDate,jdbcType=DATE},
+			</if>
+			<if test="integralCount != null">
+				#{integralCount,jdbcType=INTEGER},
+			</if>
+			<if test="createBy != null">
+				#{createBy,jdbcType=VARCHAR},
+			</if>
+			<if test="lastUpdatedBy != null">
+				#{lastUpdatedBy,jdbcType=VARCHAR},
+			</if>
+			<if test="lastUpdateDate != null">
+				#{lastUpdateDate,jdbcType=DATE},
+			</if>
+			<if test="recordVersion != null">
+				#{recordVersion,jdbcType=INTEGER},
+			</if>
+		</trim>
+	</insert>
+	<select id="countByExample" parameterType="com.atwangsi.user.model.TbUserExample"
+		resultType="java.lang.Long">
+		select count(*) from tb_user
+		<if test="_parameter != null">
+			<include refid="Example_Where_Clause" />
+		</if>
+	</select>
+	<update id="updateByExampleSelective" parameterType="map">
+		update tb_user
+		<set>
+			<if test="record.userId != null">
+				user_id = #{record.userId,jdbcType=INTEGER},
+			</if>
+			<if test="record.loginname != null">
+				loginname = #{record.loginname,jdbcType=VARCHAR},
+			</if>
+			<if test="record.password != null">
+				password = #{record.password,jdbcType=VARCHAR},
+			</if>
+			<if test="record.userName != null">
+				user_name = #{record.userName,jdbcType=VARCHAR},
+			</if>
+			<if test="record.phone != null">
+				phone = #{record.phone,jdbcType=VARCHAR},
+			</if>
+			<if test="record.openId != null">
+				open_id = #{record.openId,jdbcType=VARCHAR},
+			</if>
+			<if test="record.wechatName != null">
+				wechat_name = #{record.wechatName,jdbcType=VARCHAR},
+			</if>
+			<if test="record.company != null">
+				company = #{record.company,jdbcType=VARCHAR},
+			</if>
+			<if test="record.department != null">
+				department = #{record.department,jdbcType=VARCHAR},
+			</if>
+			<if test="record.duty != null">
+				duty = #{record.duty,jdbcType=VARCHAR},
+			</if>
+			<if test="record.area1 != null">
+				area_1 = #{record.area1,jdbcType=VARCHAR},
+			</if>
+			<if test="record.email != null">
+				email = #{record.email,jdbcType=VARCHAR},
+			</if>
+			<if test="record.province != null">
+				province = #{record.province,jdbcType=VARCHAR},
+			</if>
+			<if test="record.city != null">
+				city = #{record.city,jdbcType=VARCHAR},
+			</if>
+			<if test="record.area2 != null">
+				area_2 = #{record.area2,jdbcType=VARCHAR},
+			</if>
+			<if test="record.address != null">
+				address = #{record.address,jdbcType=VARCHAR},
+			</if>
+			<if test="record.phoneremark != null">
+				phoneremark = #{record.phoneremark,jdbcType=VARCHAR},
+			</if>
+			<if test="record.createDate != null">
+				create_date = #{record.createDate,jdbcType=DATE},
+			</if>
+			<if test="record.integralCount != null">
+				integral_count =
+				#{record.integralCount,jdbcType=INTEGER},
+			</if>
+			<if test="record.createBy != null">
+				create_by = #{record.createBy,jdbcType=VARCHAR},
+			</if>
+			<if test="record.lastUpdatedBy != null">
+				last_updated_by =
+				#{record.lastUpdatedBy,jdbcType=VARCHAR},
+			</if>
+			<if test="record.lastUpdateDate != null">
+				last_update_date =
+				#{record.lastUpdateDate,jdbcType=DATE},
+			</if>
+			<if test="record.recordVersion != null">
+				record_version =
+				#{record.recordVersion,jdbcType=INTEGER},
+			</if>
+		</set>
+		<if test="_parameter != null">
+			<include refid="Update_By_Example_Where_Clause" />
+		</if>
+	</update>
+	<update id="updateByExample" parameterType="map">
+		update tb_user
+		set user_id = #{record.userId,jdbcType=INTEGER},
+		loginname = #{record.loginname,jdbcType=VARCHAR},
+		password =
+		#{record.password,jdbcType=VARCHAR},
+		user_name =
+		#{record.userName,jdbcType=VARCHAR},
+		phone =
+		#{record.phone,jdbcType=VARCHAR},
+		open_id =
+		#{record.openId,jdbcType=VARCHAR},
+		wechat_name =
+		#{record.wechatName,jdbcType=VARCHAR},
+		company =
+		#{record.company,jdbcType=VARCHAR},
+		department =
+		#{record.department,jdbcType=VARCHAR},
+		duty =
+		#{record.duty,jdbcType=VARCHAR},
+		area_1 =
+		#{record.area1,jdbcType=VARCHAR},
+		email =
+		#{record.email,jdbcType=VARCHAR},
+		province =
+		#{record.province,jdbcType=VARCHAR},
+		city =
+		#{record.city,jdbcType=VARCHAR},
+		area_2 =
+		#{record.area2,jdbcType=VARCHAR},
+		address =
+		#{record.address,jdbcType=VARCHAR},
+		phoneremark =
+		#{record.phoneremark,jdbcType=VARCHAR},
+		create_date =
+		#{record.createDate,jdbcType=DATE},
+		integral_count =
+		#{record.integralCount,jdbcType=INTEGER},
+		create_by =
+		#{record.createBy,jdbcType=VARCHAR},
+		last_updated_by =
+		#{record.lastUpdatedBy,jdbcType=VARCHAR},
+		last_update_date =
+		#{record.lastUpdateDate,jdbcType=DATE},
+		record_version =
+		#{record.recordVersion,jdbcType=INTEGER}
+		<if test="_parameter != null">
+			<include refid="Update_By_Example_Where_Clause" />
+		</if>
+	</update>
+	<update id="updateByPrimaryKeySelective" parameterType="com.atwangsi.user.model.TbUser">
+		update tb_user
+		<set>
+			<if test="loginname != null">
+				loginname = #{loginname,jdbcType=VARCHAR},
+			</if>
+			<if test="password != null">
+				password = #{password,jdbcType=VARCHAR},
+			</if>
+			<if test="userName != null">
+				user_name = #{userName,jdbcType=VARCHAR},
+			</if>
+			<if test="phone != null">
+				phone = #{phone,jdbcType=VARCHAR},
+			</if>
+			<if test="openId != null">
+				open_id = #{openId,jdbcType=VARCHAR},
+			</if>
+			<if test="wechatName != null">
+				wechat_name = #{wechatName,jdbcType=VARCHAR},
+			</if>
+			<if test="company != null">
+				company = #{company,jdbcType=VARCHAR},
+			</if>
+			<if test="department != null">
+				department = #{department,jdbcType=VARCHAR},
+			</if>
+			<if test="duty != null">
+				duty = #{duty,jdbcType=VARCHAR},
+			</if>
+			<if test="area1 != null">
+				area_1 = #{area1,jdbcType=VARCHAR},
+			</if>
+			<if test="email != null">
+				email = #{email,jdbcType=VARCHAR},
+			</if>
+			<if test="province != null">
+				province = #{province,jdbcType=VARCHAR},
+			</if>
+			<if test="city != null">
+				city = #{city,jdbcType=VARCHAR},
+			</if>
+			<if test="area2 != null">
+				area_2 = #{area2,jdbcType=VARCHAR},
+			</if>
+			<if test="address != null">
+				address = #{address,jdbcType=VARCHAR},
+			</if>
+			<if test="phoneremark != null">
+				phoneremark = #{phoneremark,jdbcType=VARCHAR},
+			</if>
+			<if test="createDate != null">
+				create_date = #{createDate,jdbcType=DATE},
+			</if>
+			<if test="integralCount != null">
+				integral_count = #{integralCount,jdbcType=INTEGER},
+			</if>
+			<if test="createBy != null">
+				create_by = #{createBy,jdbcType=VARCHAR},
+			</if>
+			<if test="lastUpdatedBy != null">
+				last_updated_by = #{lastUpdatedBy,jdbcType=VARCHAR},
+			</if>
+			<if test="lastUpdateDate != null">
+				last_update_date = #{lastUpdateDate,jdbcType=DATE},
+			</if>
+			<if test="recordVersion != null">
+				record_version = #{recordVersion,jdbcType=INTEGER},
+			</if>
+		</set>
+		where user_id = #{userId,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.atwangsi.user.model.TbUser">
+		update tb_user
+		set
+		loginname = #{loginname,jdbcType=VARCHAR},
+		password =
+		#{password,jdbcType=VARCHAR},
+		user_name = #{userName,jdbcType=VARCHAR},
+		phone = #{phone,jdbcType=VARCHAR},
+		open_id =
+		#{openId,jdbcType=VARCHAR},
+		wechat_name =
+		#{wechatName,jdbcType=VARCHAR},
+		company = #{company,jdbcType=VARCHAR},
+		department = #{department,jdbcType=VARCHAR},
+		duty =
+		#{duty,jdbcType=VARCHAR},
+		area_1 = #{area1,jdbcType=VARCHAR},
+		email =
+		#{email,jdbcType=VARCHAR},
+		province = #{province,jdbcType=VARCHAR},
+		city = #{city,jdbcType=VARCHAR},
+		area_2 = #{area2,jdbcType=VARCHAR},
+		address = #{address,jdbcType=VARCHAR},
+		phoneremark =
+		#{phoneremark,jdbcType=VARCHAR},
+		create_date =
+		#{createDate,jdbcType=DATE},
+		integral_count =
+		#{integralCount,jdbcType=INTEGER},
+		create_by =
+		#{createBy,jdbcType=VARCHAR},
+		last_updated_by =
+		#{lastUpdatedBy,jdbcType=VARCHAR},
+		last_update_date =
+		#{lastUpdateDate,jdbcType=DATE},
+		record_version =
+		#{recordVersion,jdbcType=INTEGER}
+		where user_id =
+		#{userId,jdbcType=INTEGER}
+	</update>
+</mapper>

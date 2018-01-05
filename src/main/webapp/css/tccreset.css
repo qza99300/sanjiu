@@ -1,0 +1,389 @@
+@charset "utf-8";
+body, h1, h2, h3, h4, h5, h6, hr, p, blockquote, /* structural elements 结构元素 */ dl, dt, dd, ul, ol, li, /* list elements 列表元素 */ pre, /* text formatting elements 文本格式元素 */ fieldset, lengend, button, input, textarea, /* form elements 表单元素 */ th, td/* table elements 表格元素 */
+{
+	margin: 0;
+	padding: 0;
+}
+/* 各种字体矫正 --------- */
+body, button, input, select, textarea /* 用 ascii 字符表示，使得在任何编码下都无问题 */
+{
+	font: 12px/1 Microsoft YaHei, Tahoma, Helvetica, Arial, "\5b8b\4f53", sans-serif;
+}
+input, textarea, keygen, select, button, isindex, meter, progress
+{
+	-webkit-writing-mode: horizontal-tb;
+}
+input, textarea, keygen, select, button, isindex
+{
+	font: -webkit-small-control;
+	color: initial;
+	letter-spacing: normal;
+	word-spacing: normal;
+	text-transform: none;
+	text-indent: 0px;
+	text-shadow: none;
+	display: inline-block;
+	text-align: start;
+}
+h1, h2, h3, h4, h5, h6, b, strong
+{
+	font-weight: 800;
+}
+h1 /* 18px / 12px = 1.5 */
+{
+	font-size: 18px;
+}
+h2
+{
+	font-size: 16px;
+}
+h3
+{
+	font-size: 14px;
+}
+h4, h5, h6
+{
+	font-size: 100%;
+}
+button, input, select, textarea, label /* 使得表单元素在 ie 下能继承字体大小，且点击时去掉浏览器差异性边框 */
+{
+	font-size: 100%;
+	outline: none;
+	vertical-align: middle;
+	
+}
+textarea
+{
+	resize:none;
+}
+address, cite, dfn, em, i  /* 将斜体扶正 */
+{
+	font-style: normal;
+}
+code, kbd, pre, samp, tt /* 统一等宽字体 */
+{
+	font-family: "Courier New", Courier, monospace;
+}
+small /* 小于 12px 的中文很难阅读，让 small 正常化 */
+{
+	font-size: 12px;
+}
+/* 重置列表元素 --------- */
+ul, ol
+{
+	list-style: none;
+}
+/* 重置文本格式元素 ----- */
+a, a:hover
+{
+	text-decoration: none;
+}
+a:focus
+{
+	outline: none;
+}
+abbr[title], acronym[title]  /* 注：1.ie6 不支持 abbr; 2.这里用了属性选择符，ie6 下无效果 */
+{
+	border-bottom: 1px dotted;
+	cursor: help;
+}
+q:before, q:after
+{
+	content: '';
+}
+/* 重置表单元素 ------- */
+legend /* 针对 ie6 */
+{
+	color: #000;
+}
+fieldset, img /* img 搭车：让链接里的 img 无边框 */
+{
+	border: none;
+}
+/* 重置表格元素 ------ */
+table
+{
+	border-collapse: collapse;
+	border-spacing: 0;
+	text-align: center;
+	font-size: 12px;
+}
+/* 重置 hr --------- */
+hr
+{
+	border: none;
+	height: 1px;
+}
+.pointer
+{
+	cursor: pointer;
+}
+/* 去a虚线框 cdl clear dotted line */
+
+.cdl, a:active
+{
+	outline: none;
+}
+focus
+{
+	outline: none;
+}
+/* 浮动 */
+.fl
+{
+	float: left;
+}   
+.fr
+{
+	float: right;
+}
+/* 清除浮动1  */
+.clear
+{
+	clear: both;
+	margin: 0px;
+	padding: 0px;
+}
+/* 清除浮动2 */
+.clearfix:after
+{
+	visibility: hidden;
+	display: block;
+	font-size: 0;
+	content: " ";
+	clear: both;
+	height: 0;
+}    
+/* 文本对齐 */
+.textl
+{
+	text-align: left;
+}
+.textr
+{
+	text-align: right;
+}
+.textc
+{
+	text-align: center;
+}
+.bold
+{
+	font-weight: 800;
+}
+.overflow
+{
+	overflow: hidden;
+}
+.fn
+{
+	font-style: normal;
+	font-weight: normal;
+}
+.nowrap
+{
+	white-space: nowrap;
+}
+.indent
+{
+	text-indent: 2em;
+}
+.no-indent
+{
+	text-indent:0 !important;
+}
+.ellipsis
+{
+	-o-text-overflow: ellipsis;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	overflow: hidden;
+}
+/* 显示和定位 */
+.disb
+{
+	display: block;
+}
+.hide
+{
+	display: none;
+}
+.inlineBlock
+{
+	display: inline-block;
+}
+.absolute
+{
+	position: absolute
+}
+.relative
+{
+	position: relative;
+}
+/* 外补丁  */
+.nomp
+{
+	margin: 0px;
+	padding: 0px;
+}
+.nomar
+{
+	margin: 0px !important;
+}
+.mar10
+{
+	margin: 10px;
+}
+.mt10
+{
+	margin-top: 10px;
+}
+.mb10
+{
+	margin-bottom: 10px;
+}
+.ml10
+{
+	margin-left: 10px;
+}
+.mr10
+{
+	margin-right: 10px;
+}
+.mar20
+{
+	margin: 20px;
+}
+.mt20
+{
+	margin-top: 20px;
+}
+.mb20
+{
+	margin-bottom: 20px;
+}
+.ml20
+{
+	margin-left: 20px;
+}
+.mr20
+{
+	margin-right: 20px;
+}
+.m0a
+{
+	margin: 0 auto;
+}  
+/* 内边距  */
+.nopad
+{
+	padding: 0px;
+}
+.pad10
+{
+	padding: 10px;
+}
+.pl10
+{
+	padding-left: 10px;
+}
+.pr10
+{
+	padding-right: 10px;
+}
+.pb10
+{
+	padding-bottom: 10px;
+}
+.pt10
+{
+	padding-top: 10px;
+}
+.pad20
+{
+	padding: 20px;
+}
+.pl20
+{
+	padding-left: 20px;
+}
+.pr20
+{
+	padding-right: 20px;
+}
+.pb20
+{
+	padding-bottom: 20px;
+}
+.pt20
+{
+	padding-top: 20px;
+}
+/* 字体 */
+font
+{
+	font: 12px normal;
+}
+.nofont
+{
+	font-size: 0px;
+}
+.font12
+{
+	font-size: 12px;
+}
+.font14
+{
+	font-size: 14px;
+}
+.font16
+{
+	font-size: 16px;
+}
+.font18
+{
+	font-size: 18px;
+}
+.lh24
+{
+	line-height: 24px;
+}
+.lh18
+{
+	line-height: 18px;
+}
+/* css3.0 圆角和阴影 */
+.radius
+{
+	-moz-border-radius: 3px;
+	-khtml-border-radius: 3px;
+	-webkit-border-radius: 3px;
+	border-radius: 3px;
+}
+.shadow
+{
+	-moz-box-shadow: rgba(0,0,0,0.3) 0 4px 4px;
+	-webkit-box-shadow: rgba(0,0,0,0.3) 0 4px 4px;
+	-khtml-box-shadow: rgba(0,0,0,0.3) 0 4px 4px;
+	box-shadow: rgba(0,0,0,0.3) 0 4px 4px;
+}
+/* 隐藏文字 */
+.offScreen
+{
+	left: -9999px;
+	position: absolute;
+}
+::-webkit-input-placeholder { /* WebKit browsers */
+ color:    #999;
+}
+:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+ color:    #999;
+}
+::-moz-placeholder { /* Mozilla Firefox 19+ */
+ color:    #999;
+}
+:-ms-input-placeholder { /* Internet Explorer 10+ */
+ color:    #999;
+}
+/* reset 部分样式重置 end ======================================= */
+

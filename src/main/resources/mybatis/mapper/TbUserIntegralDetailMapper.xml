@@ -1,0 +1,323 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.atwangsi.user.dao.TbUserIntegralDetailMapper">
+  <resultMap id="BaseResultMap" type="com.atwangsi.user.model.TbUserIntegralDetail">
+    <id column="integral_id" jdbcType="INTEGER" property="integralId" />
+    <result column="user_id" jdbcType="INTEGER" property="userId" />
+    <result column="integral" jdbcType="INTEGER" property="integral" />
+    <result column="purpose" jdbcType="VARCHAR" property="purpose" />
+    <result column="create_date" jdbcType="DATE" property="createDate" />
+    <result column="create_by" jdbcType="VARCHAR" property="createBy" />
+    <result column="last_updated_by" jdbcType="VARCHAR" property="lastUpdatedBy" />
+    <result column="last_update_date" jdbcType="DATE" property="lastUpdateDate" />
+    <result column="record_version" jdbcType="INTEGER" property="recordVersion" />
+    <result column="deleted_flag" jdbcType="INTEGER" property="deletedFlag" />
+    <result column="deleted_by" jdbcType="VARCHAR" property="deletedBy" />
+    <result column="deletion_date" jdbcType="DATE" property="deletionDate" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    integral_id, user_id, integral, purpose, create_date, create_by, last_updated_by, 
+    last_update_date, record_version, deleted_flag, deleted_by, deletion_date
+  </sql>
+  <select id="selectByExample" parameterType="com.atwangsi.user.model.TbUserIntegralDetailExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from tb_user_integral_detail
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tb_user_integral_detail
+    where integral_id = #{integralId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from tb_user_integral_detail
+    where integral_id = #{integralId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.atwangsi.user.model.TbUserIntegralDetailExample">
+    delete from tb_user_integral_detail
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.atwangsi.user.model.TbUserIntegralDetail">
+    insert into tb_user_integral_detail (integral_id, user_id, integral, 
+      purpose, create_date, create_by, 
+      last_updated_by, last_update_date, record_version, 
+      deleted_flag, deleted_by, deletion_date
+      )
+    values (#{integralId,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{integral,jdbcType=INTEGER}, 
+      #{purpose,jdbcType=VARCHAR}, #{createDate,jdbcType=DATE}, #{createBy,jdbcType=VARCHAR}, 
+      #{lastUpdatedBy,jdbcType=VARCHAR}, #{lastUpdateDate,jdbcType=DATE}, #{recordVersion,jdbcType=INTEGER}, 
+      #{deletedFlag,jdbcType=INTEGER}, #{deletedBy,jdbcType=VARCHAR}, #{deletionDate,jdbcType=DATE}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.atwangsi.user.model.TbUserIntegralDetail">
+    insert into tb_user_integral_detail
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="integralId != null">
+        integral_id,
+      </if>
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="integral != null">
+        integral,
+      </if>
+      <if test="purpose != null">
+        purpose,
+      </if>
+      <if test="createDate != null">
+        create_date,
+      </if>
+      <if test="createBy != null">
+        create_by,
+      </if>
+      <if test="lastUpdatedBy != null">
+        last_updated_by,
+      </if>
+      <if test="lastUpdateDate != null">
+        last_update_date,
+      </if>
+      <if test="recordVersion != null">
+        record_version,
+      </if>
+      <if test="deletedFlag != null">
+        deleted_flag,
+      </if>
+      <if test="deletedBy != null">
+        deleted_by,
+      </if>
+      <if test="deletionDate != null">
+        deletion_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="integralId != null">
+        #{integralId,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="integral != null">
+        #{integral,jdbcType=INTEGER},
+      </if>
+      <if test="purpose != null">
+        #{purpose,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null">
+        #{createDate,jdbcType=DATE},
+      </if>
+      <if test="createBy != null">
+        #{createBy,jdbcType=VARCHAR},
+      </if>
+      <if test="lastUpdatedBy != null">
+        #{lastUpdatedBy,jdbcType=VARCHAR},
+      </if>
+      <if test="lastUpdateDate != null">
+        #{lastUpdateDate,jdbcType=DATE},
+      </if>
+      <if test="recordVersion != null">
+        #{recordVersion,jdbcType=INTEGER},
+      </if>
+      <if test="deletedFlag != null">
+        #{deletedFlag,jdbcType=INTEGER},
+      </if>
+      <if test="deletedBy != null">
+        #{deletedBy,jdbcType=VARCHAR},
+      </if>
+      <if test="deletionDate != null">
+        #{deletionDate,jdbcType=DATE},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.atwangsi.user.model.TbUserIntegralDetailExample" resultType="java.lang.Long">
+    select count(*) from tb_user_integral_detail
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update tb_user_integral_detail
+    <set>
+      <if test="record.integralId != null">
+        integral_id = #{record.integralId,jdbcType=INTEGER},
+      </if>
+      <if test="record.userId != null">
+        user_id = #{record.userId,jdbcType=INTEGER},
+      </if>
+      <if test="record.integral != null">
+        integral = #{record.integral,jdbcType=INTEGER},
+      </if>
+      <if test="record.purpose != null">
+        purpose = #{record.purpose,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createDate != null">
+        create_date = #{record.createDate,jdbcType=DATE},
+      </if>
+      <if test="record.createBy != null">
+        create_by = #{record.createBy,jdbcType=VARCHAR},
+      </if>
+      <if test="record.lastUpdatedBy != null">
+        last_updated_by = #{record.lastUpdatedBy,jdbcType=VARCHAR},
+      </if>
+      <if test="record.lastUpdateDate != null">
+        last_update_date = #{record.lastUpdateDate,jdbcType=DATE},
+      </if>
+      <if test="record.recordVersion != null">
+        record_version = #{record.recordVersion,jdbcType=INTEGER},
+      </if>
+      <if test="record.deletedFlag != null">
+        deleted_flag = #{record.deletedFlag,jdbcType=INTEGER},
+      </if>
+      <if test="record.deletedBy != null">
+        deleted_by = #{record.deletedBy,jdbcType=VARCHAR},
+      </if>
+      <if test="record.deletionDate != null">
+        deletion_date = #{record.deletionDate,jdbcType=DATE},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update tb_user_integral_detail
+    set integral_id = #{record.integralId,jdbcType=INTEGER},
+      user_id = #{record.userId,jdbcType=INTEGER},
+      integral = #{record.integral,jdbcType=INTEGER},
+      purpose = #{record.purpose,jdbcType=VARCHAR},
+      create_date = #{record.createDate,jdbcType=DATE},
+      create_by = #{record.createBy,jdbcType=VARCHAR},
+      last_updated_by = #{record.lastUpdatedBy,jdbcType=VARCHAR},
+      last_update_date = #{record.lastUpdateDate,jdbcType=DATE},
+      record_version = #{record.recordVersion,jdbcType=INTEGER},
+      deleted_flag = #{record.deletedFlag,jdbcType=INTEGER},
+      deleted_by = #{record.deletedBy,jdbcType=VARCHAR},
+      deletion_date = #{record.deletionDate,jdbcType=DATE}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.atwangsi.user.model.TbUserIntegralDetail">
+    update tb_user_integral_detail
+    <set>
+      <if test="userId != null">
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="integral != null">
+        integral = #{integral,jdbcType=INTEGER},
+      </if>
+      <if test="purpose != null">
+        purpose = #{purpose,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null">
+        create_date = #{createDate,jdbcType=DATE},
+      </if>
+      <if test="createBy != null">
+        create_by = #{createBy,jdbcType=VARCHAR},
+      </if>
+      <if test="lastUpdatedBy != null">
+        last_updated_by = #{lastUpdatedBy,jdbcType=VARCHAR},
+      </if>
+      <if test="lastUpdateDate != null">
+        last_update_date = #{lastUpdateDate,jdbcType=DATE},
+      </if>
+      <if test="recordVersion != null">
+        record_version = #{recordVersion,jdbcType=INTEGER},
+      </if>
+      <if test="deletedFlag != null">
+        deleted_flag = #{deletedFlag,jdbcType=INTEGER},
+      </if>
+      <if test="deletedBy != null">
+        deleted_by = #{deletedBy,jdbcType=VARCHAR},
+      </if>
+      <if test="deletionDate != null">
+        deletion_date = #{deletionDate,jdbcType=DATE},
+      </if>
+    </set>
+    where integral_id = #{integralId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.atwangsi.user.model.TbUserIntegralDetail">
+    update tb_user_integral_detail
+    set user_id = #{userId,jdbcType=INTEGER},
+      integral = #{integral,jdbcType=INTEGER},
+      purpose = #{purpose,jdbcType=VARCHAR},
+      create_date = #{createDate,jdbcType=DATE},
+      create_by = #{createBy,jdbcType=VARCHAR},
+      last_updated_by = #{lastUpdatedBy,jdbcType=VARCHAR},
+      last_update_date = #{lastUpdateDate,jdbcType=DATE},
+      record_version = #{recordVersion,jdbcType=INTEGER},
+      deleted_flag = #{deletedFlag,jdbcType=INTEGER},
+      deleted_by = #{deletedBy,jdbcType=VARCHAR},
+      deletion_date = #{deletionDate,jdbcType=DATE}
+    where integral_id = #{integralId,jdbcType=INTEGER}
+  </update>
+</mapper>

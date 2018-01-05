@@ -1,0 +1,481 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.atwangsi.user.dao.TbExchangeRecordMapper">
+  <resultMap id="BaseResultMap" type="com.atwangsi.user.model.TbExchangeRecord">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="convert_id" jdbcType="INTEGER" property="convertId" />
+    <result column="convert_name" jdbcType="VARCHAR" property="convertName" />
+    <result column="convert_phone" jdbcType="VARCHAR" property="convertPhone" />
+    <result column="product_id" jdbcType="INTEGER" property="productId" />
+    <result column="product_name" jdbcType="VARCHAR" property="productName" />
+    <result column="product_integral" jdbcType="INTEGER" property="productIntegral" />
+    <result column="convert_status" jdbcType="VARCHAR" property="convertStatus" />
+    <result column="courierinteger" jdbcType="VARCHAR" property="courierinteger" />
+    <result column="logistics_status" jdbcType="VARCHAR" property="logisticsStatus" />
+    <result column="consignee_path" jdbcType="VARCHAR" property="consigneePath" />
+    <result column="manage_id" jdbcType="INTEGER" property="manageId" />
+    <result column="dispose_date" jdbcType="DATE" property="disposeDate" />
+    <result column="convert_date" jdbcType="DATE" property="convertDate" />
+    <result column="create_date" jdbcType="DATE" property="createDate" />
+    <result column="create_by" jdbcType="VARCHAR" property="createBy" />
+    <result column="last_updated_by" jdbcType="VARCHAR" property="lastUpdatedBy" />
+    <result column="last_update_date" jdbcType="DATE" property="lastUpdateDate" />
+    <result column="record_version" jdbcType="INTEGER" property="recordVersion" />
+    <result column="deleted_flag" jdbcType="INTEGER" property="deletedFlag" />
+    <result column="deleted_by" jdbcType="VARCHAR" property="deletedBy" />
+    <result column="deletion_date" jdbcType="DATE" property="deletionDate" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, convert_id, convert_name, convert_phone, product_id, product_name, product_integral, 
+    convert_status, courierinteger, logistics_status, consignee_path, manage_id, dispose_date, 
+    convert_date, create_date, create_by, last_updated_by, last_update_date, record_version, 
+    deleted_flag, deleted_by, deletion_date
+  </sql>
+  <select id="selectByExample" parameterType="com.atwangsi.user.model.TbExchangeRecordExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from tb_exchange_record
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tb_exchange_record
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from tb_exchange_record
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.atwangsi.user.model.TbExchangeRecordExample">
+    delete from tb_exchange_record
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.atwangsi.user.model.TbExchangeRecord">
+    insert into tb_exchange_record (id, convert_id, convert_name, 
+      convert_phone, product_id, product_name, 
+      product_integral, convert_status, courierinteger, 
+      logistics_status, consignee_path, manage_id, 
+      dispose_date, convert_date, create_date, 
+      create_by, last_updated_by, last_update_date, 
+      record_version, deleted_flag, deleted_by, 
+      deletion_date)
+    values (#{id,jdbcType=INTEGER}, #{convertId,jdbcType=INTEGER}, #{convertName,jdbcType=VARCHAR}, 
+      #{convertPhone,jdbcType=VARCHAR}, #{productId,jdbcType=INTEGER}, #{productName,jdbcType=VARCHAR}, 
+      #{productIntegral,jdbcType=INTEGER}, #{convertStatus,jdbcType=VARCHAR}, #{courierinteger,jdbcType=VARCHAR}, 
+      #{logisticsStatus,jdbcType=VARCHAR}, #{consigneePath,jdbcType=VARCHAR}, #{manageId,jdbcType=INTEGER}, 
+      #{disposeDate,jdbcType=DATE}, #{convertDate,jdbcType=DATE}, #{createDate,jdbcType=DATE}, 
+      #{createBy,jdbcType=VARCHAR}, #{lastUpdatedBy,jdbcType=VARCHAR}, #{lastUpdateDate,jdbcType=DATE}, 
+      #{recordVersion,jdbcType=INTEGER}, #{deletedFlag,jdbcType=INTEGER}, #{deletedBy,jdbcType=VARCHAR}, 
+      #{deletionDate,jdbcType=DATE})
+  </insert>
+  <insert id="insertSelective" parameterType="com.atwangsi.user.model.TbExchangeRecord">
+    insert into tb_exchange_record
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="convertId != null">
+        convert_id,
+      </if>
+      <if test="convertName != null">
+        convert_name,
+      </if>
+      <if test="convertPhone != null">
+        convert_phone,
+      </if>
+      <if test="productId != null">
+        product_id,
+      </if>
+      <if test="productName != null">
+        product_name,
+      </if>
+      <if test="productIntegral != null">
+        product_integral,
+      </if>
+      <if test="convertStatus != null">
+        convert_status,
+      </if>
+      <if test="courierinteger != null">
+        courierinteger,
+      </if>
+      <if test="logisticsStatus != null">
+        logistics_status,
+      </if>
+      <if test="consigneePath != null">
+        consignee_path,
+      </if>
+      <if test="manageId != null">
+        manage_id,
+      </if>
+      <if test="disposeDate != null">
+        dispose_date,
+      </if>
+      <if test="convertDate != null">
+        convert_date,
+      </if>
+      <if test="createDate != null">
+        create_date,
+      </if>
+      <if test="createBy != null">
+        create_by,
+      </if>
+      <if test="lastUpdatedBy != null">
+        last_updated_by,
+      </if>
+      <if test="lastUpdateDate != null">
+        last_update_date,
+      </if>
+      <if test="recordVersion != null">
+        record_version,
+      </if>
+      <if test="deletedFlag != null">
+        deleted_flag,
+      </if>
+      <if test="deletedBy != null">
+        deleted_by,
+      </if>
+      <if test="deletionDate != null">
+        deletion_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="convertId != null">
+        #{convertId,jdbcType=INTEGER},
+      </if>
+      <if test="convertName != null">
+        #{convertName,jdbcType=VARCHAR},
+      </if>
+      <if test="convertPhone != null">
+        #{convertPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="productId != null">
+        #{productId,jdbcType=INTEGER},
+      </if>
+      <if test="productName != null">
+        #{productName,jdbcType=VARCHAR},
+      </if>
+      <if test="productIntegral != null">
+        #{productIntegral,jdbcType=INTEGER},
+      </if>
+      <if test="convertStatus != null">
+        #{convertStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="courierinteger != null">
+        #{courierinteger,jdbcType=VARCHAR},
+      </if>
+      <if test="logisticsStatus != null">
+        #{logisticsStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="consigneePath != null">
+        #{consigneePath,jdbcType=VARCHAR},
+      </if>
+      <if test="manageId != null">
+        #{manageId,jdbcType=INTEGER},
+      </if>
+      <if test="disposeDate != null">
+        #{disposeDate,jdbcType=DATE},
+      </if>
+      <if test="convertDate != null">
+        #{convertDate,jdbcType=DATE},
+      </if>
+      <if test="createDate != null">
+        #{createDate,jdbcType=DATE},
+      </if>
+      <if test="createBy != null">
+        #{createBy,jdbcType=VARCHAR},
+      </if>
+      <if test="lastUpdatedBy != null">
+        #{lastUpdatedBy,jdbcType=VARCHAR},
+      </if>
+      <if test="lastUpdateDate != null">
+        #{lastUpdateDate,jdbcType=DATE},
+      </if>
+      <if test="recordVersion != null">
+        #{recordVersion,jdbcType=INTEGER},
+      </if>
+      <if test="deletedFlag != null">
+        #{deletedFlag,jdbcType=INTEGER},
+      </if>
+      <if test="deletedBy != null">
+        #{deletedBy,jdbcType=VARCHAR},
+      </if>
+      <if test="deletionDate != null">
+        #{deletionDate,jdbcType=DATE},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.atwangsi.user.model.TbExchangeRecordExample" resultType="java.lang.Long">
+    select count(*) from tb_exchange_record
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update tb_exchange_record
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.convertId != null">
+        convert_id = #{record.convertId,jdbcType=INTEGER},
+      </if>
+      <if test="record.convertName != null">
+        convert_name = #{record.convertName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.convertPhone != null">
+        convert_phone = #{record.convertPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.productId != null">
+        product_id = #{record.productId,jdbcType=INTEGER},
+      </if>
+      <if test="record.productName != null">
+        product_name = #{record.productName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.productIntegral != null">
+        product_integral = #{record.productIntegral,jdbcType=INTEGER},
+      </if>
+      <if test="record.convertStatus != null">
+        convert_status = #{record.convertStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="record.courierinteger != null">
+        courierinteger = #{record.courierinteger,jdbcType=VARCHAR},
+      </if>
+      <if test="record.logisticsStatus != null">
+        logistics_status = #{record.logisticsStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="record.consigneePath != null">
+        consignee_path = #{record.consigneePath,jdbcType=VARCHAR},
+      </if>
+      <if test="record.manageId != null">
+        manage_id = #{record.manageId,jdbcType=INTEGER},
+      </if>
+      <if test="record.disposeDate != null">
+        dispose_date = #{record.disposeDate,jdbcType=DATE},
+      </if>
+      <if test="record.convertDate != null">
+        convert_date = #{record.convertDate,jdbcType=DATE},
+      </if>
+      <if test="record.createDate != null">
+        create_date = #{record.createDate,jdbcType=DATE},
+      </if>
+      <if test="record.createBy != null">
+        create_by = #{record.createBy,jdbcType=VARCHAR},
+      </if>
+      <if test="record.lastUpdatedBy != null">
+        last_updated_by = #{record.lastUpdatedBy,jdbcType=VARCHAR},
+      </if>
+      <if test="record.lastUpdateDate != null">
+        last_update_date = #{record.lastUpdateDate,jdbcType=DATE},
+      </if>
+      <if test="record.recordVersion != null">
+        record_version = #{record.recordVersion,jdbcType=INTEGER},
+      </if>
+      <if test="record.deletedFlag != null">
+        deleted_flag = #{record.deletedFlag,jdbcType=INTEGER},
+      </if>
+      <if test="record.deletedBy != null">
+        deleted_by = #{record.deletedBy,jdbcType=VARCHAR},
+      </if>
+      <if test="record.deletionDate != null">
+        deletion_date = #{record.deletionDate,jdbcType=DATE},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update tb_exchange_record
+    set id = #{record.id,jdbcType=INTEGER},
+      convert_id = #{record.convertId,jdbcType=INTEGER},
+      convert_name = #{record.convertName,jdbcType=VARCHAR},
+      convert_phone = #{record.convertPhone,jdbcType=VARCHAR},
+      product_id = #{record.productId,jdbcType=INTEGER},
+      product_name = #{record.productName,jdbcType=VARCHAR},
+      product_integral = #{record.productIntegral,jdbcType=INTEGER},
+      convert_status = #{record.convertStatus,jdbcType=VARCHAR},
+      courierinteger = #{record.courierinteger,jdbcType=VARCHAR},
+      logistics_status = #{record.logisticsStatus,jdbcType=VARCHAR},
+      consignee_path = #{record.consigneePath,jdbcType=VARCHAR},
+      manage_id = #{record.manageId,jdbcType=INTEGER},
+      dispose_date = #{record.disposeDate,jdbcType=DATE},
+      convert_date = #{record.convertDate,jdbcType=DATE},
+      create_date = #{record.createDate,jdbcType=DATE},
+      create_by = #{record.createBy,jdbcType=VARCHAR},
+      last_updated_by = #{record.lastUpdatedBy,jdbcType=VARCHAR},
+      last_update_date = #{record.lastUpdateDate,jdbcType=DATE},
+      record_version = #{record.recordVersion,jdbcType=INTEGER},
+      deleted_flag = #{record.deletedFlag,jdbcType=INTEGER},
+      deleted_by = #{record.deletedBy,jdbcType=VARCHAR},
+      deletion_date = #{record.deletionDate,jdbcType=DATE}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.atwangsi.user.model.TbExchangeRecord">
+    update tb_exchange_record
+    <set>
+      <if test="convertId != null">
+        convert_id = #{convertId,jdbcType=INTEGER},
+      </if>
+      <if test="convertName != null">
+        convert_name = #{convertName,jdbcType=VARCHAR},
+      </if>
+      <if test="convertPhone != null">
+        convert_phone = #{convertPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="productId != null">
+        product_id = #{productId,jdbcType=INTEGER},
+      </if>
+      <if test="productName != null">
+        product_name = #{productName,jdbcType=VARCHAR},
+      </if>
+      <if test="productIntegral != null">
+        product_integral = #{productIntegral,jdbcType=INTEGER},
+      </if>
+      <if test="convertStatus != null">
+        convert_status = #{convertStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="courierinteger != null">
+        courierinteger = #{courierinteger,jdbcType=VARCHAR},
+      </if>
+      <if test="logisticsStatus != null">
+        logistics_status = #{logisticsStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="consigneePath != null">
+        consignee_path = #{consigneePath,jdbcType=VARCHAR},
+      </if>
+      <if test="manageId != null">
+        manage_id = #{manageId,jdbcType=INTEGER},
+      </if>
+      <if test="disposeDate != null">
+        dispose_date = #{disposeDate,jdbcType=DATE},
+      </if>
+      <if test="convertDate != null">
+        convert_date = #{convertDate,jdbcType=DATE},
+      </if>
+      <if test="createDate != null">
+        create_date = #{createDate,jdbcType=DATE},
+      </if>
+      <if test="createBy != null">
+        create_by = #{createBy,jdbcType=VARCHAR},
+      </if>
+      <if test="lastUpdatedBy != null">
+        last_updated_by = #{lastUpdatedBy,jdbcType=VARCHAR},
+      </if>
+      <if test="lastUpdateDate != null">
+        last_update_date = #{lastUpdateDate,jdbcType=DATE},
+      </if>
+      <if test="recordVersion != null">
+        record_version = #{recordVersion,jdbcType=INTEGER},
+      </if>
+      <if test="deletedFlag != null">
+        deleted_flag = #{deletedFlag,jdbcType=INTEGER},
+      </if>
+      <if test="deletedBy != null">
+        deleted_by = #{deletedBy,jdbcType=VARCHAR},
+      </if>
+      <if test="deletionDate != null">
+        deletion_date = #{deletionDate,jdbcType=DATE},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.atwangsi.user.model.TbExchangeRecord">
+    update tb_exchange_record
+    set convert_id = #{convertId,jdbcType=INTEGER},
+      convert_name = #{convertName,jdbcType=VARCHAR},
+      convert_phone = #{convertPhone,jdbcType=VARCHAR},
+      product_id = #{productId,jdbcType=INTEGER},
+      product_name = #{productName,jdbcType=VARCHAR},
+      product_integral = #{productIntegral,jdbcType=INTEGER},
+      convert_status = #{convertStatus,jdbcType=VARCHAR},
+      courierinteger = #{courierinteger,jdbcType=VARCHAR},
+      logistics_status = #{logisticsStatus,jdbcType=VARCHAR},
+      consignee_path = #{consigneePath,jdbcType=VARCHAR},
+      manage_id = #{manageId,jdbcType=INTEGER},
+      dispose_date = #{disposeDate,jdbcType=DATE},
+      convert_date = #{convertDate,jdbcType=DATE},
+      create_date = #{createDate,jdbcType=DATE},
+      create_by = #{createBy,jdbcType=VARCHAR},
+      last_updated_by = #{lastUpdatedBy,jdbcType=VARCHAR},
+      last_update_date = #{lastUpdateDate,jdbcType=DATE},
+      record_version = #{recordVersion,jdbcType=INTEGER},
+      deleted_flag = #{deletedFlag,jdbcType=INTEGER},
+      deleted_by = #{deletedBy,jdbcType=VARCHAR},
+      deletion_date = #{deletionDate,jdbcType=DATE}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
