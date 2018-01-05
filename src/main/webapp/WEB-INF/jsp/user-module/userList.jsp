@@ -296,7 +296,7 @@
 		$("body").on("click", ".updateMyUserBtn", function() {
 
 			param.userId = $(this).attr("userId");
-			alert(param.userId);
+// 			alert(param.userId);
 
 			location.href = "${ctp }/user/querryUser?userId=" + param.userId;
 

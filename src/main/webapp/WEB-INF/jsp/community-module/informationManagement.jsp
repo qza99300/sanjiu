@@ -15,7 +15,7 @@
 <!--社区管理--信息管理页面  -->
 
 <!--第二个汤出层css开始-->
-<!--<link rel="stylesheet" href="../css/reveal.css" />-->
+<!-- <link rel="stylesheet" href="../css/reveal.css" />-->
 <style>
 select {
 	padding: 7px 8px;
@@ -50,7 +50,7 @@ select {
 	<div class="row">
 		<div class="col-sm-9">
 			<section>
-				<button id="addTopicBtn" type="button" class="btn  btn-info" style="margin-left: 5%;">
+				<button data-toggle="modal" data-target="#newTopicModalBtn" type="button" class="btn  btn-info" style="margin-left: 5%;">
 					<i class="fa fa-level-up"> </i> 新增话题
 				</button>
 			</section>
@@ -83,10 +83,10 @@ select {
 				<th width="30"><input id="allCheckBox" type="checkbox">全选</th>
 				<th>话题序号</th>
 				<th>用户ID</th>
-				<th>内容</th>
+				<th>用户名</th>
 				<th>点赞量</th>
-				<th>用户</th>
 				<th>发布日期</th>
+				<th>话题内容</th>
 				<th>操作</th>
 			</tr>
 		</thead>
@@ -108,6 +108,215 @@ select {
 	</section> 
 </section> 
 	<!--弹出层开始-->
+	<!-- 新增话题开始 -->
+	<div class="modal fade" id="newTopicModalBtn" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	    <div class="modal-dialog">
+	        <div  class="modal-content">
+	            <div class="modal-header">
+	                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+	                <h4 class="modal-title" id="myModalLabel">创建订单</h4>
+	            </div>
+	            <div class="modal-body">
+				<!-- 内容开始 -->
+					<form class="layui-form" action="" id="addtopicForm" style="width: 100%; margin: 10 auto;">
+						<table>
+							<tr>
+								<div class="layui-form-item2">
+									<div class="layui-inline"><label class="layui-form-label2"><a
+											style="color: red;">*</a>用户id</label>
+										<div class="layui-input-block">
+											<input type="text" value="" name="userId" class="layui-input">
+										</div>
+									</div>
+								</div>
+							</tr>
+							<tr>
+								<div class="layui-form-item2">
+									<div class="layui-inline"><label class="layui-form-label2"><a
+											style="color: red;">*</a>用户名</label>
+										<div class="layui-input-block">
+											<input type="text" value="" name="userName" class="layui-input">
+										</div>
+									</div>
+								</div>
+							</tr>
+							<tr>
+								<div class="layui-form-item2">
+									<div class="layui-inline"><label class="layui-form-label2"><a
+											style="color: red;">*</a>点赞量</label>
+										<div class="layui-input-block">
+											<input type="text" value="" name="likeCount" class="layui-input">
+										</div>
+									</div>
+								</div>
+							</tr>
+							<tr>
+								<div class="layui-form-item2">
+										<div class="layui-inline">
+										<label class="layui-form-label2"><a
+											style="color: red;">*</a>话题内容</label>
+										<div class="layui-input-block">
+											<input type="text" value="" name="topicMatter" class="layui-input">
+										</div>
+									</div>
+								</div>
+							</tr>
+						</table>
+					</form>
+				<!-- 内容结束 -->
+			    </div>
+	            <div class="modal-footer">
+	                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+	                <button id="createTopicBtn" type="button" class="btn btn-primary">创建</button>
+	            </div>
+	        </div><!-- /.modal-content -->
+	    </div><!-- /.modal -->
+	</div>	
+	<!-- 新增话题结束 -->
+	
+	
+	<!-- 修改话题开始 -->
+	<div class="modal fade" id="updatetopicBtn" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	    <div class="modal-dialog">
+	        <div  class="modal-content">
+	            <div class="modal-header">
+	                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+	                <h4 class="modal-title" id="myModalLabel">修改话题</h4>
+	            </div>
+	            <div class="modal-body">
+				<!-- 内容开始 -->
+					<form class="layui-form" action="" id="updatetopicForm" style="width: 100%; margin: 10 auto;">
+						<table>
+							<tr>
+								<div class="layui-form-item2">
+									<div class="layui-inline"><label class="layui-form-label2"><a
+											style="color: red;">*</a>话题id</label>
+										<div class="layui-input-block">
+											<input id="topicIdKey" disabled="disabled" type="text" name="topicId" class="layui-input">
+											<input id="htopicIdKey" type="hidden" name="topicId" class="layui-input">
+										</div>
+									</div>
+									<div class="layui-inline"><label class="layui-form-label2"><a
+											style="color: red;">*</a>用户id</label>
+										<div class="layui-input-block">
+											<input id="userIdKey" disabled="disabled" type="text" name="userId" class="layui-input">
+											<input id="huserIdKey" type="hidden" name="userId" class="layui-input">
+										</div>
+									</div>
+								</div>
+							</tr>
+							<tr>
+								<div class="layui-form-item2">
+									<div class="layui-inline"><label class="layui-form-label2"><a
+											style="color: red;">*</a>用户名</label>
+										<div class="layui-input-block">
+											<input type="text" id="userNameKey" name="userName" class="layui-input">
+										</div>
+									</div>
+									<div class="layui-inline"><label class="layui-form-label2"><a
+											style="color: red;">*</a>点赞量</label>
+										<div class="layui-input-block">
+											<input type="text" id="likeCountKey" name="likeCount" class="layui-input">
+										</div>
+									</div>
+								</div>
+							</tr>
+							<tr>
+								<div class="layui-form-item2">
+									<div class="layui-inline"><label class="layui-form-label2">话题内容</label>
+										<div class="layui-input-block">
+											<textarea wrap id="topicMatterKey" name="topicMatter" class="layui-input" style="width:435px;height: 90px  " ></textarea>
+<!-- 											<input type="text" id="topicMatterKey" name="topicMatter" class="layui-input"> -->
+										</div>
+									</div>
+<!-- 									<div class="layui-inline"> -->
+<!-- 										<label class="layui-form-label2">创建时间</label> -->
+<!-- 										<div class="layui-input-block"> -->
+<!-- 											<input  type="text" id="createDateKey" disabled="disabled" name="createDatex"  class="layui-input"> -->
+<!-- 										</div> -->
+<!-- 									</div> -->
+								</div>
+							</tr>
+						</table>
+					</form>
+				<!-- 内容结束 -->
+			    </div>
+	            <div class="modal-footer">
+	                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+	                <button id="updateSubTopicBtn" type="button" class="btn btn-primary">修改</button>
+	            </div>
+	        </div><!-- /.modal-content -->
+	    </div><!-- /.modal -->
+	</div>
+	<!-- 修改话题结束 -->
+	
+	
+	<!-- 查看话题开始 -->
+	<div class="modal fade" id="querryModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	    <div class="modal-dialog">
+	        <div  class="modal-content">
+	            <div class="modal-header">
+	                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+	                <h4 class="modal-title" id="myModalLabel">修改话题</h4>
+	            </div>
+	            <div class="modal-body">
+				<!-- 内容开始 -->
+					<form class="layui-form" action="" id="updatetopicForm" style="width: 100%; margin: 10 auto;">
+						<table>
+							<tr>
+								<div class="layui-form-item2">
+									<div class="layui-inline"><label class="layui-form-label2">话题id</label>
+										<div class="layui-input-block">
+											<input id="1topicIdKey" disabled="disabled" type="text" name="topicId" class="layui-input">
+										</div>
+									</div>
+									<div class="layui-inline"><label class="layui-form-label2">用户id</label>
+										<div class="layui-input-block">
+											<input id="1userIdKey" disabled="disabled" type="text" name="userId" class="layui-input">
+										</div>
+									</div>
+								</div>
+							</tr>
+							<tr>
+								<div class="layui-form-item2">
+									<div class="layui-inline"><label class="layui-form-label2">用户名</label>
+										<div class="layui-input-block">
+											<input type="text" id="1userNameKey" disabled="disabled" name="userName" class="layui-input">
+										</div>
+									</div>
+									<div class="layui-inline"><label class="layui-form-label2">点赞量</label>
+										<div class="layui-input-block">
+											<input type="text" id="1likeCountKey" disabled="disabled" name="likeCount" class="layui-input">
+										</div>
+									</div>
+								</div>
+							</tr>
+							<tr>
+								<div class="layui-form-item2">
+									<div class="layui-inline"><label class="layui-form-label2">话题内容</label>
+										<div class="layui-input-block">
+											<input type="text" id="1topicMatterKey" disabled="disabled" name="topicMatter" class="layui-input">
+										</div>
+									</div>
+									<div class="layui-inline">
+										<label class="layui-form-label2">创建时间</label>
+										<div class="layui-input-block">
+											<input  type="text" id="1createDateKey" disabled="disabled" name="createDatex"  class="layui-input">
+										</div>
+									</div>
+								</div>
+							</tr>
+						</table>
+					</form>
+				<!-- 内容结束 -->
+			    </div>
+	            <div class="modal-footer">
+	                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+	            </div>
+	        </div><!-- /.modal-content -->
+	    </div><!-- /.modal -->
+	</div>
+	<!-- 查看话题结束 -->
 
 	</section>
 
@@ -143,7 +352,7 @@ select {
 		}
 		
 		function showTopics(data) {
-			alert(data.size);
+// 			alert(data.size);
 			// 1.清空数据
 			$("ul.pagination").empty();
 			$("#topicTable tbody").empty();
@@ -167,16 +376,16 @@ select {
 				//操作列
 	
 				btnTd.append('<button topicId = "' + this.topicId + '" type = "button" class = "topicModelShowBtn btn btn-sm btn-success" title="查看信息" ><i class="fa fa-qrcode"></i></button>')
-					 .append('&nbsp;<button topicId = "' + this.topicId + '" type = "button" class = "updatetopicModelBtn btn btn-sm btn-info" title="修改地址" ><i class="fa fa-pencil"></i></button>')
-					 .append('&nbsp;<button topicId = "' + this.topicId + '" type = "button" class = "deletetopicBtn btn btn-sm btn-danger" title="删除地址" id="removeUserBtn"><i class="fa fa-trash"></i></button>');
+					 .append('&nbsp;<button topicId = "' + this.topicId + '" type = "button" class = "updatetopicModelBtn btn btn-sm btn-info" title="修改信息" ><i class="fa fa-pencil"></i></button>')
+					 .append('&nbsp;<button topicId = "' + this.topicId + '" type = "button" class = "deletetopicBtn btn btn-sm btn-danger" title="删除话题" id="removeUserBtn"><i class="fa fa-trash"></i></button>');
 	
 				tr.append("<td><input type='checkbox' topicId="+ this.topicId +" class='itemCheckBox'></td>")
 				  .append("<td>" + this.topicId + "</td>")
 				  .append("<td>" + this.userId + "</td>")
-				  .append("<td>" + this.topicMatter + "</td>")
-				  .append("<td>" + this.likeCount + "</td>")
 				  .append("<td>" + this.userName + "</td>")
+				  .append("<td>" + this.likeCount + "</td>")
 				  .append("<td>" + this.createDate + "</td>")
+				  .append("<td>" + this.topicMatter + "</td>")
 				  .append(btnTd).appendTo($("#topicTable"));
 			});
 		}
@@ -248,18 +457,18 @@ select {
 		//---------------------------------------------------------------------------------------------
 		
 		//----------------------------------新增地址----------------------------------------
-		$("#addtopicBtn").click(function() {
+		$("#createTopicBtn").click(function() {
 			//获取表单数据
 			var data = $("#addtopicForm").serialize();
 
-			artDialog.confirm("question", "提示", "确定是否添加地址？", function(){
+			artDialog.confirm("question", "提示", "确定是否添加话题？", function(){
 				$.post("${ctp }/topic/add", data, function(data) {
 					//后台返回的内容显示提示
 					layer.msg(data.msg);
 					//关闭模态框
-					$("#newtopicBtn").modal('hide');
+					$("#newTopicModalBtn").modal('hide');
 					//后台清空模态框里面的内容
-					$("#newtopicBtn input").val("");
+					$("#newTopicModalBtn input").val("");
 					//来到最后一页；
 					page.pn = page.lastPage + 10;
 					getTopics();
@@ -268,9 +477,9 @@ select {
 				}).fail(function() {
 					layer.msg(data.msg);
 					//关闭模态框
-					$("#newtopicBtn").modal('hide');
+					$("#newTopicModalBtn").modal('hide');
 					//后台清空模态框里面的内容
-					$("#newtopicBtn input").val("");
+					$("#newTopicModalBtn input").val("");
 					//来到最后一页；
 					page.pn = page.lastPage + 10;
 					getTopics();
@@ -283,9 +492,9 @@ select {
 		//删除一个
 		$("body").on("click", ".deletetopicBtn", function() {
 
-			param.topicIds = $(this).attr("topicId");
+			param.topicId = $(this).attr("topicId");
 			//alert(param.topicIds);
-			layer.confirm("确认删除【" + param.topicIds + "】号员工吗？", {
+			layer.confirm("确认删除【" + param.topicId + "】号员工吗？", {
 				btn : [ '确定删除', '取消删除' ]
 			}, function() {
 				$.get("${ctp}/topic/delete", param, function(data) {
@@ -350,7 +559,7 @@ select {
 			});
 			
 			//显示模态框
-			$("#selecttopicDiv").modal({
+			$("#querryModal").modal({
 	   			backdrop : 'static',
 	   			show : true
 	   		});
@@ -362,6 +571,7 @@ select {
 		$("body").on("click",".updatetopicModelBtn", function(){
 			
 			param.topicId = $(this).attr("topicId");
+// 			alert(param.topicId);
 
 			$.ajax({
 				url : "${ctp}/topic/querry",
@@ -387,30 +597,35 @@ select {
 		function showReturnMsg(data){
 			
 			var conData = data.list[0];
-// 			alert(conData.topicName);
+// 			alert(conData.userName);
+// 			alert(conData.topicMatter);
+// 			alert(conData.createDate);
 			//input值
-			$("#conIdKey").attr("value",conData.topicId);
-			$("#userIdKey").attr("value",conData.userId);
+			$("#htopicIdKey").attr("value",conData.topicId);
+			$("#huserIdKey").attr("value",conData.userId);
 			//回显操作
-			document.getElementById("selIdKey").value = conData.topicId;
-			document.getElementById("user1IdKey").value = conData.userId;
-			document.getElementById("selUserIdKey").value = conData.userId;
-			document.getElementById("nameIdKey").value = conData.topicName;
-			document.getElementById("selNameKey").value = conData.topicName;
-			document.getElementById("pathIdKey").value = conData.topicPath;
-			document.getElementById("selPathKey").value = conData.topicPath;
-			document.getElementById("areaIdKey").value = conData.area;
-			document.getElementById("selAreaKey").value = conData.area;
-			document.getElementById("selTimeKey").value = conData.createDate;
+			document.getElementById("topicIdKey").value = conData.topicId;
+			document.getElementById("userIdKey").value = conData.userId;
+			document.getElementById("userNameKey").value = conData.userName;
+			document.getElementById("likeCountKey").value = conData.likeCount;
+// 			document.getElementById("createDateKey").value = conData.createDate;
+			document.getElementById("topicMatterKey").value = conData.topicMatter;
+			
+			document.getElementById("1topicIdKey").value = conData.topicId;
+			document.getElementById("1userIdKey").value = conData.userId;
+			document.getElementById("1userNameKey").value = conData.userName;
+			document.getElementById("1likeCountKey").value = conData.likeCount;
+			document.getElementById("1createDateKey").value = conData.createDate;
+			document.getElementById("1topicMatterKey").value = conData.topicMatter;
 			
 		}
 		
-		//提交表单信息
-		$("#updateConBtn").click(function(){
+		//提交修改表单信息
+		$("#updateSubTopicBtn").click(function(){
 			//获取表单信息
 			var data = $("#updatetopicForm").serialize();
 
-			artDialog.confirm("question", "提示", "确定是否修改地址？", function(){
+			artDialog.confirm("question", "提示", "确定是否修改话题信息？", function(){
 				$.post("${ctp }/topic/update", data, function(data) {
 					//后台返回的内容显示提示
 					layer.msg(data.msg);
@@ -435,6 +650,8 @@ select {
 			});
 			
 		});
+//-------------------------------------------------------------------
+		
 		
 		</script>
 

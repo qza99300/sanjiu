@@ -1,6 +1,7 @@
 package com.atwangsi.user.controller;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -101,7 +102,7 @@ public class CollegeController {
 	@RequestMapping(value="addIntro")
 	@ResponseBody
 	public ResultVO<Object> saveCollegeIntro(TbCollegeSynopsis college){
-		
+		college.setCreateDate(new Date());
 		Boolean bool = this.collegeService.saveCollegeIntro(college);
 		
 		if (bool) {

@@ -144,8 +144,8 @@ select {
 	
 	<!-- 模态框部分开始 -->
 	<!-- 新建简介模态框（Modal） -->
-<div class="modal fade" id="addIntroBtn" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
+<div class="modal fade" id="addIntroBtn" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" align="center" aria-hidden="true">
+    <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
@@ -153,7 +153,7 @@ select {
             </div>
             <div class="modal-body">
 				<!-- 内容开始 -->
-					<form lass="layui-form" action="" id="addIntroForm" style="width: 100%; margin: 10 auto;">
+					<form  lass="layui-form" action="" id="addIntroForm" style="width: 100%; margin: 10 auto;">
 						<table>
 							<tr>
 								<div class="layui-form-item2" id="updateOrderDiv">
@@ -195,12 +195,85 @@ select {
 		    </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                <button type="button" class="btn btn-primary">提交更改</button>
+                <button id="submitIntroBtn" type="button" class="btn btn-primary">提交更改</button>
             </div>
         </div><!-- /.modal-content -->
     </div><!-- /.modal -->
 </div>
 	
+	<!-- 查看简介模态框（Modal） -->
+<div class="modal fade" id="querryIntroModalBtn" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" align="center" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel">查看简介窗口</h4>
+            </div>
+            <div class="modal-body">
+				<!-- 内容开始 -->
+					<form  lass="layui-form" action="" id="addIntroForm" style="width: 100%; margin: 10 auto;">
+						<table>
+							<tr>
+								<div class="layui-form-item2" id="updateOrderDiv">
+									<div class="layui-inline">
+										<label class="layui-form-label2">简介Id</label>
+										<div class="layui-input-block">
+											<input type="text" id="collegeIdKey" disabled="disabled" name="collegeId"  class="layui-input">
+										</div>
+									</div>
+								</div>
+							</tr>
+							<tr>
+								<div class="layui-form-item2" id="updateOrderDiv">
+									<div class="layui-inline">
+										<label class="layui-form-label2">用户id</label>
+										<div class="layui-input-block">
+											<input type="text" id="userIdKey" disabled="disabled" name="userId"  class="layui-input">
+										</div>
+									</div>
+								</div>
+							</tr>
+							
+							<tr>
+								<div class="layui-form-item2" id="updateOrderDiv">
+									<div class="layui-inline">
+										<label class="layui-form-label2">简介标题</label>
+										<div class="layui-input-block">
+											<input  type="text" id="titleCollegeKey" disabled="disabled" name="titleCollege"  class="layui-input">
+										</div>
+									</div>
+								</div>
+							</tr>
+							<tr>
+								<div class="layui-form-item2" id="updateOrderDiv">
+									<div class="layui-inline">
+										<label class="layui-form-label2">简介内容</label>
+										<div class="layui-input-block">
+											<input  type="text" id="titleMasterKey" disabled="disabled" name="titleMaster"  class="layui-input">
+										</div>
+									</div>
+								</div>
+							</tr>
+							<tr>
+								<div class="layui-form-item2" id="updateOrderDiv">
+									<div class="layui-inline">
+										<label class="layui-form-label2">创建时间</label>
+										<div class="layui-input-block">
+											<input  type="text" id="createDatexKey" disabled="disabled" name="createDatex"  class="layui-input">
+										</div>
+									</div>
+								</div>
+							</tr>
+						</table>
+					</form>
+				<!-- 内容结束 -->
+		    </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal -->
+</div>
 	<!-- 模态框部分结束 -->
 	
 	<!-- 公共的js样式 -->
@@ -274,8 +347,8 @@ select {
 				var btnTd = $("<td></td>")
 				//操作列
 	
-				btnTd.append('<button collegeId = "' + this.collegeId + '" type = "button" class = "userModelShowBtn btn btn-sm btn-success" title="查看简介" ><i class="fa fa-qrcode"></i></button>')
-						.append( '&nbsp;<button collegeId = "' + this.collegeId + '" type = "button" class = "deleteCollegeBtn btn btn-sm btn-danger" title="删除简介" id="removeUserBtn"><i class="fa fa-trash"></i></button>');
+				btnTd.append('<button collegeId = "' + this.collegeId + '" type = "button" class = "introModelShowBtn btn btn-sm btn-success" title="查看简介" ><i class="fa fa-qrcode"></i></button>')
+					 .append( '&nbsp;<button collegeId = "' + this.collegeId + '" type = "button" class = "deleteCollegeBtn btn btn-sm btn-danger" title="删除简介" id="removeUserBtn"><i class="fa fa-trash"></i></button>');
 	
 				tr.append("<td><input type='checkbox' collegeId="+ this.collegeId +" class='itemCheckBox'></td>")
 				  .append("<td>" + this.collegeId + "</td>")
@@ -372,15 +445,89 @@ select {
 			if (dataVal != null) {
 				getCollegeOne(data);
 				
-				
 			}else{
 				getColleges();
 			}
 			
 		});
 		
+	//--------------------------------------------
+	 //新增提交按钮      
+	 $("#submitIntroBtn").click(function(){
+		 
+		 var data = $("#addIntroForm").serialize();
+		 
+		 artDialog.confirm("question", "提示", "确定是否添加简介？", function(){
+			$.post("${ctp }/college/addIntro", data, function(data) {
+				//后台返回的内容显示提示
+				layer.msg(data.msg);
+				//关闭模态框
+				$("#addIntroBtn").modal('hide');
+				//后台清空模态框里面的内容
+				$("#addIntroBtn input").val("");
+				//来到最后一页；
+				page.pn = page.lastPage + 10;
+				getColleges();
+
+				//失败返回的msg
+			}).fail(function() {
+				layer.msg(data.msg);
+				//关闭模态框
+				$("#addIntroBtn").modal('hide');
+				//后台清空模态框里面的内容
+				$("#addIntroBtn input").val("");
+				//来到最后一页；
+				page.pn = page.lastPage + 10;
+				getColleges();
+				
+			});
+		});
+	 });
 		
+	//-----------------------------------------------
+	
+	$("body").on("click",".introModelShowBtn",function(){
 		
+		param.collegeId = $(this).attr("collegeId");
+		
+		$.ajax({
+			url : "${ctp}/college/querry",
+			data : {
+				collegeId : param.collegeId
+			},
+			dataType: 'json',
+			success : function(data) {
+				
+				showReturnMsg(data);
+				
+			}
+		});
+		
+		//显示模态框
+		$("#querryIntroModalBtn").modal({
+   			backdrop : 'static',
+   			show : true
+   		});
+	});
+	
+	
+	//回显信息
+	function showReturnMsg(data){
+		
+		var conData = data.list[0];
+// 		alert(conData.collegeId);
+		//input值
+		$("#conIdKey").attr("value",conData.consigneeId);
+		$("#userIdKey").attr("value",conData.userId);
+		//回显操作
+		document.getElementById("collegeIdKey").value = conData.collegeId;
+		document.getElementById("userIdKey").value = conData.userId;
+		document.getElementById("titleCollegeKey").value = conData.titleCollege;
+		document.getElementById("titleMasterKey").value = conData.titleMaster;
+		document.getElementById("createDateKey").value = conData.createDate;
+		
+	}
+	
 	</script>
 
 </body>

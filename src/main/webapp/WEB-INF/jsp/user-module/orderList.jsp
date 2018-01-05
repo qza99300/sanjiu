@@ -40,7 +40,7 @@
 
 			<section> <!-- 按钮触发模态框 -->
 			<button class="btn btn-info btn-primary" style="margin-left: 5%;"
-				data-toggle="modal" data-target="#newOrderBtn">新增用户</button>
+				data-toggle="modal" data-target="#newOrderBtn">新增订单</button>
 			</button>
 			</section>
 		</div>
@@ -105,9 +105,8 @@
 	<!--编辑   弹出层开始--> 
 	<!-- 查看信息模态框开始 -->
 	<div class="modal fade" id="selectOrderDiv" tabindex="-1"
-		role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"
-		align="center">
-		<div class="modal-dialog modal-lg ">
+		role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog ">
 			<div class="modal-content">
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal"
@@ -123,18 +122,15 @@
 									<label class="layui-form-label2"><a
 										style="color: red;">*</a>订单序号:</label>
 									<div class="layui-input-block">
-										<input type="text" name="id" disabled="disabled"
-											value="${sessionScope.order.id }" class="layui-input">
-										<input type="hidden" name="id"
-											value="${sessionScope.order.id }" />
+										<input type="text" id="idKey" name="id" disabled="disabled"
+											 class="layui-input">
 									</div>
 								</div>
 								<div class="layui-inline">
 									<label class="layui-form-label2"><a
 										style="color: red;">*</a>用户id</label>
 									<div class="layui-input-block">
-										<input type="text" name="userId"
-											value=" userId ? '未设置': sessionScope.order.userId }"
+										<input type="text" id="userIdKey" name="userId" disabled="disabled"
 											class="layui-input">
 									</div>
 								</div>
@@ -146,16 +142,14 @@
 								<div class="layui-inline">
 									<label class="layui-form-label2">商品id</label>
 									<div class="layui-input-block">
-										<input type="text" name="productId"
-											value=" productId ? '未设置': sessionScope.order.productId}"
+										<input type="text" name="productId" id="productIdKey" disabled="disabled"
 											class="layui-input">
 									</div>
 								</div>
 								<div class="layui-inline">
 									<label class="layui-form-label2">商品名称</label>
 									<div class="layui-input-block">
-										<input type="text" name="productName"
-											value=" productName ? '未设置': sessionScope.order.productName}"
+										<input type="text" name="productName" id="productNameKey" disabled="disabled"
 											class="layui-input">
 									</div>
 								</div>
@@ -167,16 +161,14 @@
 								<div class="layui-inline">
 									<label class="layui-form-label2">微信昵称</label>
 									<div class="layui-input-block">
-										<input type="text" name="wechatName"
-											value=" wechatName ? '未设置': sessionScope.order.wechatName}"
+										<input type="text" name="wechatName" id="wechatNameKey" disabled="disabled"
 											class="layui-input">
 									</div>
 								</div>
 								<div class="layui-inline">
 									<label class="layui-form-label2">收货人名称</label>
 									<div class="layui-input-block">
-										<input type="text" name="consigneeName"
-											value=" consigneeName ? '未设置': sessionScope.order.consigneeName}"
+										<input type="text" name="consigneeName" id="consigneeNameKey" disabled="disabled"
 											class="layui-input">
 									</div>
 								</div>
@@ -189,8 +181,7 @@
 									<label class="layui-form-label2"><a
 										style="color: red;">*</a>联系方式</label>
 									<div class="layui-input-block">
-										<input type="text" name="phone"
-											value=" phone ? '未设置': sessionScope.order.phone}"
+										<input type="text" name="phone" id="phoneKey" disabled="disabled"
 											class="layui-input">
 									</div>
 								</div>
@@ -198,8 +189,7 @@
 									<label class="layui-form-label2"><a
 										style="color: red;">*</a>收货地址</label>
 									<div class="layui-input-block">
-										<input type="text" name="consigneePath"
-											value=" consigneePath ? '未设置': sessionScope.order.consigneePath}"
+										<input type="text" name="consigneePath" id="consigneePathKey" disabled="disabled"
 											class="layui-input">
 									</div>
 								</div>
@@ -210,8 +200,7 @@
 								<div class="layui-inline">
 									<label class="layui-form-label2">所在区域</label>
 									<div class="layui-input-block">
-										<input type="text" name="area"
-											value=" area ? '未设置': sessionScope.order.area}"
+										<input type="text" name="area" id="areaKey" disabled="disabled"
 											class="layui-input">
 									</div>
 								</div>
@@ -219,8 +208,20 @@
 									<label class="layui-form-label2"><a
 										style="color: red;">*</a>发放状态</label>
 									<div class="layui-input-block">
-										<input type="text" name="status"
-											value=" status ? '未设置': sessionScope.order.status}"
+										<input type="text" name="status" id="statusKey" disabled="disabled"
+											class="layui-input">
+									</div>
+								</div>
+								
+							</div>
+						</tr>
+						<tr>
+							<div class="layui-form-item2">
+								<div class="layui-inline">
+									<label class="layui-form-label2"><a
+										style="color: red;">*</a>创建时间</label>
+									<div class="layui-input-block">
+										<input type="text" name=createDate id="TimeKey" disabled="disabled"
 											class="layui-input">
 									</div>
 								</div>
@@ -348,34 +349,9 @@
 	<!-- 新增订单结束 -->
 	
 	
-	<!-- JS --> 
-	<script type="text/javascript" src="${ctp }/js/jquery-2.1.1.min.js"></script>
-		
-	<!-- BASIC JQUERY 1.8.3 LIB. JS -->
-	<script type="text/javascript" src="${ctp }/js/bootstrap.min.js"></script>
-	
-	<!-- BOOTSTRAP JS --> 
-	<script type="text/javascript" src="${ctp }/js/jquery.dcjqaccordion.2.7.js"></script> 
-	
-	<!-- 左测点击拉下去 JS -->
-	<script type="text/javascript" src="${ctp }/js/jquery.nicescroll.js"></script>
-	
-	<!-- 滚动条 JS --> 
-	<script type="text/javascript" src="${ctp }/js/common-scripts.js"></script> 
-	
-	<!-- 公用的 JS --> 
-	<!--<script type="text/javascript" src="${ctp }/js/jquery.min.js" ></script>-->
+	<!-- 公共的js样式 -->
+	<%@include file="/commons/common-js.jsp"%>
 
-	<script type="text/javascript" src="${ctp }/js/placeholder-IE789.js"></script>
-	<script type="text/javascript" src="${ctp }/js/layer/layer.js"></script>
-
-	<!--全选js--> 
-	<script type="text/javascript" src="${ctp }/js/tableCheckbox.js"></script> 
-	
-	<!--弹出层js引用--> 
-	<script type="text/javascript" src="${ctp }/js/jquery.artDialog.source.js"></script>
-	<script type="text/javascript" src="${ctp }/js/iframeTools.source.js"></script>
-	<script type="text/javascript" src="${ctp }/js/msgbox.js"></script> 
 	<script type="text/javascript">
 		//要提交的param；临时存储用户id和角色id
 		var param = {};
@@ -414,17 +390,33 @@
 		
 		//----------------------------------------------------------		
 
-		//根据查询id查询订单信息  未写完
-		$("#querryOneOrderBtn").click(function() {
-			
+		//根据查询id查询订单详细信息 
+		$("body").on("click","#querryOneOrderBtn",function(){
+// 		$("#querryOneOrderBtn").click(function() {
 			param.id = $(this).attr("oid");
-			
 			alert(param.id);
 
-			//发起请求
-			$.post("${ctp}/order/querryOne/" + param.id, function(data) {
-				showOrders(data);
+			$.ajax({
+				url : "${ctp}/order/querryById",
+				data : {
+					id : param.id,
+					pn : page.pn,
+					ps : page.ps
+				},
+				dataType: 'json',
+				success : function(data) {
+
+					alert(a);
+					showReturnMsg(data);
+					
+				}
 			});
+			
+			//显示模态框
+			$("#selectOrderDiv").modal({
+	   			backdrop : 'static',
+	   			show : true
+	   		});
 
 		});
 
@@ -546,7 +538,7 @@
 				//创建td
 				var btnTd = $("<td></td>")
 				//操作列
-				btnTd.append('<button id="querryOneOrderBtn" oid = "'+ this.id+ '" type = "button" data-toggle="modal" data-target="#selectOrderDiv" class = "orderModelShowBtn btn btn-sm btn-success" title="查看订单" ><i class="fa fa-qrcode"></i></button>')
+				btnTd.append('<button id="querryOneOrderBtn" oid = "'+ this.id+ '" type = "button"  class = "orderModelShowBtn btn btn-sm btn-success" title="查看订单" ><i class="fa fa-qrcode"></i></button>')
 					 .append('&nbsp;<button oid = "'+ this.id+ '" type = "button" class = "updateOrderBtn btn btn-sm btn-info" title="修改订单" ><i class="fa fa-pencil"></i></button>')
 					 .append('&nbsp;<button oid = "'+ this.id+ '" type = "button" class = "deleteOrderBtn btn btn-sm btn-danger" title="删除订单" id="removeUserBtn"><i class="fa fa-trash"></i></button>');
 
@@ -613,23 +605,26 @@
 		function showReturnMsg(data){
 			
 			var conData = data.list[0];
-			alert(conData.consigneeName);
+// 			alert(conData.consigneeName);
 			//input值
 			$("#conIdKey").attr("value",conData.consigneeId);
 			$("#userIdKey").attr("value",conData.userId);
 			//回显操作
-			document.getElementById("selIdKey").value = conData.consigneeId;
-			document.getElementById("user1IdKey").value = conData.userId;
-			document.getElementById("selUserIdKey").value = conData.userId;
-			document.getElementById("nameIdKey").value = conData.consigneeName;
-			document.getElementById("selNameKey").value = conData.consigneeName;
-			document.getElementById("pathIdKey").value = conData.consigneePath;
-			document.getElementById("selPathKey").value = conData.consigneePath;
-			document.getElementById("areaIdKey").value = conData.area;
-			document.getElementById("selAreaKey").value = conData.area;
-			document.getElementById("selTimeKey").value = conData.createDate;
+			document.getElementById("idKey").value = conData.id;
+			document.getElementById("userIdKey").value = conData.userId;
+			document.getElementById("productNameKey").value = conData.productName;
+			document.getElementById("wechatNameKey").value = conData.wechatName;
+			document.getElementById("consigneeNameKey").value = conData.consigneeName;
+			document.getElementById("phoneKey").value = conData.phone;
+			document.getElementById("consigneePathKey").value = conData.consigneePath;
+			document.getElementById("areaKey").value = conData.area;
+			document.getElementById("statusKey").value = conData.status;
+			document.getElementById("TimeKey").value = conData.createDate;
+			document.getElementById("productIdKey").value = conData.productId;
 			
 		}
+		
+		
 		
 	//-----------------------------------------------
 		//根据用户id查询订单
@@ -637,9 +632,9 @@
 			
 			//获取表单数据
 			var params = $("#querryForm").serialize();
-			alert(params);
+// 			alert(params);
 			var dataVal = document.getElementById("inputId").value;
-			alert(dataVal);
+// 			alert(dataVal);
 			page.pn = 1;//第一页数据
 			
 			if (dataVal) {

@@ -1,5 +1,7 @@
 package com.atwangsi.user.controller;
 
+import java.util.Date;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -9,7 +11,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.alibaba.fastjson.JSONObject;
 import com.atwangsi.base.model.ResultVO;
 import com.atwangsi.user.model.TbActivityApply;
-import com.atwangsi.user.model.TbActivityManage;
 import com.atwangsi.user.service.ApplyService;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
@@ -21,23 +22,6 @@ public class ApplyController {
 	@Autowired
 	private ApplyService applyService;
 
-	/**
-	 * 查询所有报名信息
-	 * @param pageNum
-	 * @param pageSize
-	 * @return
-	 */
-//	@RequestMapping("querryAll")
-//	@ResponseBody
-//	public PageInfo<TbActivityApply> querryAll(
-//			@RequestParam(value = "pn", defaultValue = "1") Integer pageNum,
-//			@RequestParam(value = "ps", defaultValue = "7") Integer pageSize){
-//		
-//		PageHelper.startPage(pageNum, pageSize);
-//		
-//		return new PageInfo<>(this.applyService.querryAll());
-//	}
-	
 	/**
 	 * 根据用户id查询所有的报名信息
 	 * @param pageNum
@@ -78,10 +62,11 @@ public class ApplyController {
 	}
 	
 	/**
+	 * applyId 如果为空，那么查询所有报名信息
 	 * 根据报名id查询报名信息
 	 * @param pageNum
 	 * @param pageSize
-	 * @param applyId 如果为空，那么查询所有
+	 * @param applyId 
 	 * @return
 	 */
 	@RequestMapping("querry")
@@ -108,6 +93,8 @@ public class ApplyController {
 	@RequestMapping("add")
 	@ResponseBody
 	public ResultVO<Object> addApply(TbActivityApply activityApply){
+		
+		activityApply.setCreateDate(new Date());
 		
 		Boolean bool = this.applyService.addApply(activityApply);
 		

@@ -234,6 +234,80 @@
         </div><!-- /.modal-content -->
     </div><!-- /.modal -->
 </div>
+
+<!-- 查看报名信息模态框 -->
+<div class="modal fade" id="userModelShowBtn" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel">查看报名信息</h4>
+            </div>
+            <div class="modal-body">
+			<!-- 内容开始 -->
+					<form class="layui-form" action="" id="UpdateModelForm"
+						style="width: 100%; margin: 10 auto;">
+						<input type="hidden" name="applyId" id="applyId">
+						<div class="layui-form-item2" id="updateOrderDiv">
+							<div class="layui-inline">
+								<label class="layui-form-label2"><a style="color: red;">*</a>用户序号</label>
+								<div class="layui-input-block">
+									<input type="text" disabled="disabled" name="userId" id="userId1" class="layui-input">
+								</div>
+							</div>
+							<div class="layui-inline">
+								<label class="layui-form-label2"><a style="color: red;">*</a>创建人</label>
+								<div class="layui-input-block">
+									<input type="text" name="createBy" disabled="disabled" id="createBy1" class="layui-input">
+								</div>
+							</div>
+						</div>
+						<div class="layui-form-item2" id="updateOrderDiv">
+							<div class="layui-inline">
+								<label class="layui-form-label2"><a style="color: red;">*</a>活动id</label>
+								<div class="layui-input-block">
+									<input type="text" name="activityId" disabled="disabled" id="activityId1" class="layui-input">
+								</div>
+							</div>
+							<div class="layui-inline">
+								<label class="layui-form-label2"><a style="color: red;">*</a>活动标题</label>
+								<div class="layui-input-block">
+									<input type="text" name="activityTitle" disabled="disabled" id="activityTitle1" class="layui-input">
+								</div>
+							</div>
+
+						</div>
+						<div class="layui-form-item2" id="updateOrderDiv">
+							<div class="layui-inline">
+								<label class="layui-form-label2">所属部门</label>
+								<div class="layui-input-block">
+									<input type="text" name="department" disabled="disabled" id="department1" class="layui-input">
+								</div>
+							</div>
+							<div class="layui-inline">
+								<label class="layui-form-label2">所属区域</label>
+								<div class="layui-input-block">
+									<input type="text" name="area" disabled="disabled" id="area1" class="layui-input">
+								</div>
+							</div>
+						</div>
+						<div class="layui-form-item2" id="updateOrderDiv">
+							<div class="layui-inline">
+								<label class="layui-form-label2">创建时间</label>
+								<div class="layui-input-block">
+									<input type="text" name="createDate" disabled="disabled" id="createDate1" class="layui-input">
+								</div>
+							</div>
+						</div>
+					</form>
+					<!-- 内容结束 -->
+	    </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal -->
+</div>
 	
 	
 	
@@ -301,7 +375,7 @@
 				var btnTd = $("<td></td>")
 				//操作列
 
-				btnTd.append('<button applyId = "'+ this.applyId + '" type = "button" data-toggle="modal" data-target="#userModelShowBtn" class = " btn btn-sm btn-success" title="查看活动" ><i class="fa fa-qrcode"></i></button>')
+				btnTd.append('<button applyId = "'+ this.applyId + '" type = "button" onclick="show1('+this.applyId+')" data-toggle="modal" data-target="#userModelShowBtn" class = " btn btn-sm btn-success" title="查看活动" ><i class="fa fa-qrcode"></i></button>')
 					 .append('&nbsp;<button applyId = "' + this.applyId + '" type = "button" onclick="show('+this.applyId+')" data-toggle="modal" data-target="#updateModelDiv" class = "updateModelBtn btn btn-sm btn-info" title="修改活动" ><i class="fa fa-pencil"></i></button>')
 					 .append('&nbsp;<button applyId = "' + this.applyId + '" type = "button" class = "deleteApplyBtn btn btn-sm btn-danger" title="删除活动" id="removeUserBtn"><i class="fa fa-trash"></i></button>');
 
@@ -384,7 +458,7 @@
 
 			param.applyId	 = $(this).attr("applyId");
 // 			alert(param.applyIds);
-			layer.confirm("确认删除【" + param.applyId + "】号员工吗？", {
+			layer.confirm("确认删除【" + param.applyId + "】号报名信息吗？", {
 				btn : [ '确定删除', '取消删除' ]
 			}, function() {
 				$.get("${ctp}/apply/delete", param, function(data) {
@@ -474,12 +548,31 @@
 	            	$("#userId").val(data.userId);
 	            	$("#applyId").val(data.applyId);
 	            	$("#createBy").val(data.createBy);
+	            	$("#createDate1").val(data.createDate);
 	            	$("#activityId").val(data.activityId);
 	            	$("#activityTitle").val(data.activityTitle);
 	            	$("#department").val(data.department);
 	            	$("#area").val(data.area);
 	            }
-	        })
+	        });
+		}
+		//点击显示信息
+		function show1(i) {
+			$.ajax({
+	            url: "${ctp }/apply/displayActivity",
+	            type: "post",
+	            datatype: "json",
+	            data: { "applyId": i},
+	            success: function (data) {
+	            	$("#userId1").val(data.userId);
+	            	$("#applyId1").val(data.applyId);
+	            	$("#createBy1").val(data.createBy);
+	            	$("#activityId1").val(data.activityId);
+	            	$("#activityTitle1").val(data.activityTitle);
+	            	$("#department1").val(data.department);
+	            	$("#area1").val(data.area);
+	            }
+	        });
 		}
 		
 		//----------------------------------修改,做到回显--------------------------------------------------------------
@@ -517,7 +610,11 @@
 			
 		});
 
+	//------------------------------------------------------------------
+	//模态框id  querryModelDiv
+// 	$("body").on("click","",function(){
 		
+// 	});
 		
 		
 		

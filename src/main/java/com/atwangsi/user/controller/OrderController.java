@@ -1,6 +1,8 @@
 package com.atwangsi.user.controller;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
@@ -53,7 +55,7 @@ public class OrderController {
 	}
 	
 	/**
-	 * 根据订单id查询订单
+	 * 根据订单id跳转详细订单
 	 * @param id
 	 * @return
 	 */
@@ -72,6 +74,26 @@ public class OrderController {
 		}
 		return "user-module/orderList";
 		
+	}
+	
+	@RequestMapping("querryById")
+	@ResponseBody
+	public PageInfo<TbExchangeOrder> querryById(
+			@RequestParam(value = "pn", defaultValue = "1") Integer pageNum,
+			@RequestParam(value = "ps", defaultValue = "7") Integer pageSize,
+			@RequestParam(value = "id") Integer id ){
+		
+		PageHelper.startPage(pageNum, pageSize);
+		
+		List<TbExchangeOrder> list = new ArrayList<>();
+		
+		if (id == null) {
+			return null;
+		}
+		
+		list.add(this.orderService.querryOne(id));
+		
+		return new PageInfo<>(list, AppContant.PAGE_SIZE);
 	}
 
 	/**

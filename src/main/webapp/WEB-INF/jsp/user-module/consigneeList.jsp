@@ -39,7 +39,7 @@
 		<div class="col-sm-9">
 			<section>
 				<button class="btn btn-info btn-primary" style="margin-left: 5%;"
-					data-toggle="modal" data-target="#newConsigneeBtn">新增用户</button>
+					data-toggle="modal" data-target="#newConsigneeBtn">新增地址</button>
 				</button>
 			</section>
 		</div>
@@ -485,7 +485,7 @@
 
 			param.consigneeIds = $(this).attr("consigneeId");
 			//alert(param.consigneeIds);
-			layer.confirm("确认删除【" + param.consigneeIds + "】号员工吗？", {
+			layer.confirm("确认删除【" + param.consigneeIds + "】号地址吗？", {
 				btn : [ '确定删除', '取消删除' ]
 			}, function() {
 				$.get("${ctp}/consignee/delete", param, function(data) {
