@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.atwangsi.user.dao.TbRoleMapper;
 import com.atwangsi.user.dao.TbUserroleMapper;
+import com.atwangsi.user.model.TbIntegralRule;
 import com.atwangsi.user.model.TbRole;
 import com.atwangsi.user.model.TbRoleExample;
 import com.atwangsi.user.model.TbUserroleExample;
@@ -151,6 +152,7 @@ public class RoleServiceImpl implements RoleService {
 		
 		return this.roleMapper.updateByPrimaryKey(role) > 0;
 	}
+
 
 }
 

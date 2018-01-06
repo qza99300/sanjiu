@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.atwangsi.user.dao.TbIntegralProductMapper;
+import com.atwangsi.user.model.TbActivityManage;
 import com.atwangsi.user.model.TbIntegralProduct;
 import com.atwangsi.user.service.ProductService;
 
@@ -46,6 +47,12 @@ public class ProductServiceImpl implements ProductService {
 		List<TbIntegralProduct> list = new ArrayList<>();
 		list.add(this.productMapper.selectByPrimaryKey(productId));
 		return list;
+	}
+
+	@Override
+	public TbIntegralProduct selectByPrimaryKey(int parseInt) {
+		
+		return productMapper.selectByPrimaryKey(parseInt);
 	}
 
 }

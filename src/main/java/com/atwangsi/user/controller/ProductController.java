@@ -8,8 +8,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.alibaba.fastjson.JSONObject;
 import com.atwangsi.base.model.AppContant;
 import com.atwangsi.base.model.ResultVO;
+import com.atwangsi.user.model.TbActivityManage;
 import com.atwangsi.user.model.TbIntegralProduct;
 import com.atwangsi.user.service.ProductService;
 import com.github.pagehelper.PageHelper;
@@ -109,6 +111,24 @@ public class ProductController {
 		
 		return new PageInfo<>(this.productService.querryByProductId(productId),AppContant.PAGE_SIZE);
 
+	}
+	
+	/**
+	 * 修改显示内容
+	 * @param activityId
+	 * @return
+	 */
+	@RequestMapping(value="displayActivity", produces = { "application/json; charset=utf-8" })
+	@ResponseBody
+	public String displayActivity(String productId) {
+		TbIntegralProduct tp=productService.selectByPrimaryKey(Integer.parseInt(productId));
+		JSONObject jo = new JSONObject();
+		jo.put("productName", tp.getProductName());
+		jo.put("productId", tp.getProductId());
+		jo.put("productIntegral", tp.getProductIntegral());
+		jo.put("productCount", tp.getProductCount());
+		jo.put("productPresentation", tp.getProductPresentation());
+		return jo.toJSONString();
 	}
 	
 }

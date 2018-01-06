@@ -15,5 +15,8 @@ public interface IntegralService {
 	Boolean updateRule(TbIntegralRule rule);
 
 	Boolean addRule(TbIntegralRule rule);
+	
+	//修改显示
+	List<TbIntegralRule> selectwhole();
 
 }

@@ -195,4 +195,5 @@
 		state = #{state,jdbcType=VARCHAR}
 		where role_id = #{roleId,jdbcType=INTEGER}
 	</update>
+	
 </mapper>

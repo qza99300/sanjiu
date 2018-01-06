@@ -48,4 +48,11 @@ public class IntegralServiceImpl implements IntegralService {
 		return this.ruleMapper.insertSelective(rule) > 0;
 	}
 
+	//修改显示
+	@Override
+	public List<TbIntegralRule> selectwhole() {
+		
+		return this.ruleMapper.selectwhole();
+	}
+
 }

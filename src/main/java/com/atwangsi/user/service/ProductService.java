@@ -2,6 +2,7 @@ package com.atwangsi.user.service;
 
 import java.util.List;
 
+import com.atwangsi.user.model.TbActivityManage;
 import com.atwangsi.user.model.TbIntegralProduct;
 
 public interface ProductService {
@@ -15,5 +16,7 @@ public interface ProductService {
 	List<TbIntegralProduct> queryAll();
 
 	List<TbIntegralProduct> querryByProductId(Integer productId);
+
+	TbIntegralProduct selectByPrimaryKey(int parseInt);
 
 }

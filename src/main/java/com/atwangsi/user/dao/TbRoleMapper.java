@@ -1,5 +1,6 @@
 package com.atwangsi.user.dao;
 
+import com.atwangsi.user.model.TbIntegralRule;
 import com.atwangsi.user.model.TbRole;
 import com.atwangsi.user.model.TbRoleExample;
 import java.util.List;
@@ -29,4 +30,5 @@ public interface TbRoleMapper {
     int updateByPrimaryKey(TbRole record);
 
 	List<TbRole> getUserRoles(Integer userId);
+	
 }

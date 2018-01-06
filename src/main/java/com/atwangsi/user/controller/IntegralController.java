@@ -1,6 +1,9 @@
 package com.atwangsi.user.controller;
 
 import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -8,6 +11,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
 import com.atwangsi.base.model.AppContant;
 import com.atwangsi.base.model.ResultVO;
 import com.atwangsi.user.model.TbIntegralRule;
@@ -95,6 +101,33 @@ public class IntegralController {
 	}
 	
 	/**
+	 * 修改积分规则
+	 * @param json
+	 * @return
+	 */
+	@RequestMapping(value="updates", produces = { "application/json; charset=utf-8" })
+	@ResponseBody
+	public String updates(String json) {
+		Map<String, String> lists = new HashMap<String, String>();// 存放结果
+		
+		List<HashMap> list = JSON.parseArray(json, HashMap.class);
+		Boolean bool=false;
+		for (int i = 0; i < list.size(); i++) {
+			TbIntegralRule tr=new TbIntegralRule();
+			tr.setRuleId(Integer.valueOf(list.get(i).get("ruleId").toString()));
+			tr.setRuleNum(Integer.valueOf(list.get(i).get("ruleNum").toString()));
+			bool = this.integralService.updateRule(tr);
+			
+		}
+		if(bool) {
+			lists.put("msg", "修改成功!");
+		}else {
+			lists.put("msg", "修改失败!");
+		}
+		return JSONArray.toJSONString(lists);// 转换为json格式
+	}
+	
+	/**
 	 * 添加
 	 * @param rule
 	 * @return
@@ -111,6 +144,31 @@ public class IntegralController {
 
 		return ResultVO.fail("添加失败，请重新添加！", null, null);
 		
+	}
+	
+	
+	/**
+	 * 查询所有积分规则
+	 * @return
+	 */
+	@RequestMapping(value="updateshow",produces = { "application/json; charset=utf-8" })
+	@ResponseBody
+	public String updateshow() {
+		JSONArray jsonData = new JSONArray();
+		JSONObject jo = null;
+		
+		List<TbIntegralRule> tbIntegralRule=integralService.selectwhole();
+		for (TbIntegralRule tr : tbIntegralRule) {
+			jo = new JSONObject();
+			jo.put("ruleId", tr.getRuleId());
+			jo.put("ruleName", tr.getRuleName());
+			jo.put("ruleNum", tr.getRuleNum());
+			jsonData.add(jo);
+		}
+		JSONObject jsonObject = new JSONObject();
+		jsonObject.put("rows", jsonData);// 记录
+		System.out.println(jsonObject.toJSONString());
+		return jsonObject.toJSONString();
 	}
 
 }

@@ -584,7 +584,7 @@
 			artDialog.confirm("question", "提示", "确定是否修改？", function() {
 				$.post("${ctp }/apply/update", params, function(data) {
 					//后台返回的内容显示提示
-					alert(data.msg);
+// 					alert(data.msg);
 					layer.msg(data.msg);
 					//关闭模态框
 					$("#updateModelDiv").modal('hide');
