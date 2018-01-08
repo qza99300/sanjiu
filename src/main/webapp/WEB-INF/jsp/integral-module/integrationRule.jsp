@@ -249,7 +249,6 @@ select {
 				});
 			}
 			function showApplys(data) {
-				//alert(data.size);
 				// 1.清空数据
 				$("ul.pagination").empty();
 				$("#activityApplyTable tbody").empty();
@@ -266,7 +265,6 @@ select {
 				var activityData = data.list;
 				
 				
-				//alert(activityData);
 				$.each(activityData,function() {
 					
 					var dateVal = function (date){
@@ -366,7 +364,6 @@ select {
 			$("body").on("click", ".deleteApplyBtn", function() {
 	
 				param.applyId	 = $(this).attr("applyId");
-	// 			alert(param.applyIds);
 				layer.confirm("确认删除【" + param.applyId + "】号员工吗？", {
 					btn : [ '确定删除', '取消删除' ]
 				}, function() {
@@ -392,12 +389,10 @@ select {
 				//获取表单数据
 				var params = $("#addApplyForm").serialize();
 				
-			//	alert(params);
 	
 				artDialog.confirm("question", "提示", "确定是否添加积分规则？", function(){
 					$.post("${ctp }/integral/add", params, function(data) {
 						//后台返回的内容显示提示
-						//alert(data.msg);
 						layer.msg(data.msg);
 						//关闭模态框
 						$("#newApplyModelBtn").modal('hide');
@@ -439,7 +434,6 @@ select {
 			});
 			
 			function getApplyOne(data){
-	// 			alert(data);
 				$.post("${ctp}/integral/querry",data,function(data){
 					showApplys(data);
 				});
@@ -519,7 +513,6 @@ select {
 				artDialog.confirm("question", "提示", "确定是否修改？", function() {
 					$.post("${ctp }/apply/update", params, function(data) {
 						//后台返回的内容显示提示
-						alert(data.msg);
 						layer.msg(data.msg);
 						//关闭模态框
 						$("#updateModelDiv").modal('hide');
@@ -550,7 +543,6 @@ select {
 		$("body").on("click", ".deleteRuleBtn", function() {
 
 			param.ruleId = $(this).attr("ruleId");
-			//alert(param.consigneeIds);
 			layer.confirm("确认删除【" + param.ruleId + "】号规则么吗？", {
 				btn : [ '确定删除', '取消删除' ]
 			}, function() {

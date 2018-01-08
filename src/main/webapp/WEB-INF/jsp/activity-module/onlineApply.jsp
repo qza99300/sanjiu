@@ -341,7 +341,6 @@
 			});
 		}
 		function showApplys(data) {
-			//alert(data.size);
 			// 1.清空数据
 			$("ul.pagination").empty();
 			$("#activityApplyTable tbody").empty();
@@ -357,7 +356,6 @@
 			var activityData = data.list;
 			
 			
-			//alert(activityData);
 			$.each(activityData,function() {
 				
 				var dateVal = function (date){
@@ -457,7 +455,6 @@
 		$("body").on("click", ".deleteApplyBtn", function() {
 
 			param.applyId	 = $(this).attr("applyId");
-// 			alert(param.applyIds);
 			layer.confirm("确认删除【" + param.applyId + "】号报名信息吗？", {
 				btn : [ '确定删除', '取消删除' ]
 			}, function() {
@@ -483,12 +480,10 @@
 			//获取表单数据
 			var params = $("#addApplyForm").serialize();
 			
-		//	alert(params);
 
 			artDialog.confirm("question", "提示", "确定是否添加报名信息？", function(){
 				$.post("${ctp }/apply/add", params, function(data) {
 					//后台返回的内容显示提示
-					//alert(data.msg);
 					layer.msg(data.msg);
 					//关闭模态框
 					$("#newApplyModelBtn").modal('hide');
@@ -530,7 +525,6 @@
 		});
 		
 		function getApplyOne(data){
-// 			alert(data);
 			$.post("${ctp}/apply/querry",data,function(data){
 				showApplys(data);
 			});
@@ -571,6 +565,7 @@
 	            	$("#activityTitle1").val(data.activityTitle);
 	            	$("#department1").val(data.department);
 	            	$("#area1").val(data.area);
+	            	$("#createDate1").val(timeFormat(data.createDate));
 	            }
 	        });
 		}
@@ -584,7 +579,6 @@
 			artDialog.confirm("question", "提示", "确定是否修改？", function() {
 				$.post("${ctp }/apply/update", params, function(data) {
 					//后台返回的内容显示提示
-// 					alert(data.msg);
 					layer.msg(data.msg);
 					//关闭模态框
 					$("#updateModelDiv").modal('hide');
@@ -611,10 +605,35 @@
 		});
 
 	//------------------------------------------------------------------
-	//模态框id  querryModelDiv
-// 	$("body").on("click","",function(){
-		
-// 	});
+	//时间格式化
+		function timeFormat(time) {
+
+			if (time == null) {
+				return null;
+			}
+			var datetime = new Date();
+			datetime.setTime(time);
+			var year = datetime.getFullYear();
+			var month = datetime.getMonth() + 1;
+			var date = datetime.getDate();
+			var hour = datetime.getHours();
+			if (hour <= 9) {
+				hour = "0" + hour;
+			}
+			var minute = datetime.getMinutes();
+			if (minute <= 9) {
+				minute = "0" + minute;
+			}
+
+			var second = datetime.getSeconds();
+			if (second <= 9) {
+
+				second = "0" + second;
+			}
+			// var mseconds = datetime.getMilliseconds();
+			//		 	      return year + "-" + month + "-" + date+" "+hour+":"+minute+":"+second;//+"."+mseconds;
+			return year + "-" + month + "-" + date;//+"."+mseconds;
+		};
 		
 		
 		

@@ -245,7 +245,6 @@
 			});
 		}
 		function showRoles(data) {
-			//alert(data.size);
 			// 1.清空数据
 			$("ul.pagination").empty();
 			$("#roleTable tbody").empty();
@@ -347,7 +346,6 @@
 		//显示权系树
 		$("body").on("click", ".permissionModelShowBtn", function() {
 			param.roleId = $(this).attr("roleId");
-// 			alert(roleId)
 			//初始化权限树
 			initPermissionTree();
 			$("#permissionModal").modal({
@@ -382,17 +380,13 @@
 			//发送请求获取所有权限并初始化权限树
 			$.post("${ctp}/per/permissions", function(data) {
 				treeObj = $.fn.zTree.init($("#permissionTree"), setting, data);
-				//alert(treeObj);//查出22个对象
 				//初始化完成后返回ztree对象
 				treeObj.expandAll(true);
 				
 				//作用，获取当前角色已有的权限  param.roleId;
 				$.get("${ctp}/per/roleperm", param, function(data) {
-// 					alert(param.roleId);
 					//perms获取不到数据
 					var perms = data.content;
-// 					alert(perms);
-// 					console.log(perms);
 					$.each(perms, function() {
 						//查到这个节点并选中
 						var node = treeObj.getNodeByParam("permissionId", this.permissionId, null);
@@ -410,7 +404,6 @@
 			var allCheckedNodes = treeObj.getCheckedNodes(true);
 			var temp = "";
 			$.each(allCheckedNodes, function() {
-				//console.log(this);
 				temp += this.permissionId + ",";
 			});
 
@@ -418,7 +411,6 @@
 			param.permissionIds = temp;
 			//发ajax请求更新
 			$.post("${ctp}/per/update", param, function(data) {
-// 				alert(data);
 				layer.msg(data.msg);
 				
 				//更新完成关闭模态框
@@ -434,8 +426,6 @@
 			var data = $("#querryRoleForm").serialize();
 			var dataVal = document.getElementById("inputId").value;
 			
-// 			alert(dataVal);
-// 			alert(data);
 			page.pn = 1;//第一页数据
 			if (dataVal) {
 				getRoleOne(data);
@@ -445,7 +435,6 @@
 		});
 		
 		function getRoleOne(data){
-			alert(data);
 			$.post("${ctp}/role/roles",data,function(data){
 				showRoles(data);
 			});
@@ -456,7 +445,6 @@
 		$("body").on("click", ".deleteRoleBtn", function() {
 
 			param.roleId = $(this).attr("roleId");
-			alert(param.roleId);
 			layer.confirm("确认删除【" + param.roleId + "】号员工吗？", {
 				btn : [ '确定删除', '取消删除' ]
 			}, function() {
@@ -477,7 +465,6 @@
 		$("#addRoleBtn").click(function() {
 			//获取表单数据
 			var data = $("#addRoleForm").serialize();
-			alert(data);
 			artDialog.confirm("question", "提示", "确定是否添加地址？", function(){
 				$.post("${ctp }/role/add", data, function(data) {
 					//后台返回的内容显示提示
@@ -539,9 +526,6 @@
 		document.getElementById("roleInputName").value = roleData.roleName; 
 		
 			
-// 			alert(roleData.roleId);
-// 			alert(roleData.roleName);
-			
 		 //显示模态框
    		$("#updateRoleModelBtn").modal({
    			backdrop : 'static',
@@ -554,7 +538,6 @@
 	$("#updateRoleBtn").click(function(){
 		//获取表单信息
 		var data = $("#updateRoleForm").serialize();
-// 		alert(data);
 
 		artDialog.confirm("question", "提示", "确定是否添加地址？", function(){
 			$.post("${ctp }/role/update", data, function(data) {

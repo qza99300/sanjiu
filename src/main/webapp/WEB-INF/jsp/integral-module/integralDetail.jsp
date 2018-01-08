@@ -425,7 +425,6 @@
 		}
 		//--------------------------------------------------------------		
 		function showrecords(data) {
-			//alert(data.size);
 			// 1.清空数据
 			$("ul.pagination").empty();
 			$("#recordTable tbody").empty();
@@ -439,7 +438,6 @@
 		//--------------------------------------------------------------
 		function buildTable(data) {
 			var recordData = data.list;
-			//alert(recordData);
 			$.each(recordData, function() {
 				//创建tr
 				var tr = $("<tr></tr>");
@@ -583,25 +581,19 @@
 		$("#querryOneBtn").click(function(){
 			
 			var data = $("#querrtByPhoneForm").serialize();
-			alert(data+"s");
 			var dataVal = document.getElementById("inputId").value;
-			alert(dataVal);
 			page.pn = 1;//第一页数据
 			
 			if (dataVal) {
-				alert("111");
 				getRecordOne(data);
 			}else{
-				alert("222");
 				getRecords();
 			}
 			
 		});
 		
 		function getRecordOne(data){
-			alert(data);
 			$.post("${ctp}/record/querryByPhone",data,function(data){
-				alert("333");
 				console.log(data);				
 				showrecords(data);
 			});	
@@ -613,7 +605,6 @@
 		$("#allLiLabel").click(function(){
 			
 			getRecords();
-// 			alert("123456");
 			return false;
 			
 		});
@@ -629,8 +620,6 @@
 					ps : page.ps
 				},
 				success : function(a) {
-// 					alert(a);
-// 					console.log(a);
 					showrecords(a);
 				}
 			});
@@ -649,8 +638,6 @@
 					ps : page.ps
 				},
 				success : function(a) {
-// 					alert(a);
-// 					console.log(a);
 					showrecords(a);
 				}
 			});
@@ -697,7 +684,6 @@
 		$("body").on("click",".recordModelShowBtn",function(){
 			
 			param.rId = $(this).attr("rId");
-			alert(param.rId);
 			
 			
 			$.ajax({
@@ -715,13 +701,11 @@
 					
 				}
 			});
-			alert("11");
 			//显示详细信息模态框
 			$("#querryIntegralRecordBtn").modal({
 				backdrop : 'static',
 				show : true
 			});
-			alert("22");
 		});
 		
 		//回显信息
@@ -729,7 +713,6 @@
 			
 			var conData = data.list[0];
 			
-			console.log(conData);
 			//input值
 // 			$("#conIdKey").attr("value",conData.consigneeId);
 // 			$("#userIdKey").attr("value",conData.userId);

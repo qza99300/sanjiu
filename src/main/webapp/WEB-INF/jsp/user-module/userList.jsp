@@ -636,8 +636,6 @@
 			var params = $("#querryForm").serialize();
 			var dataVal = document.getElementById("inputId").value;
 			
-// 			alert(params);
-// 			alert(dataVal);
 			page.pn = 1;//第一页数据
 			
 			if (dataVal = null) {
@@ -654,7 +652,6 @@
 		$(function() {
 			$("#myRoleSelect option").each(function() {
 				var delRoleId = this.value;
-				// 						alert(this.value+"aaa");
 				$("#noRoleSelect option[value=" + delRoleId + "]").remove();
 			});
 		});
@@ -662,7 +659,6 @@
 		$(function() {
 			$("#noRoleSelect option").each(function() {
 				var delRoleId = this.value;
-				// 						alert(this.value+"bbb");
 				$("#myRoleSelect option[value=" + delRoleId + "]").remove();
 			});
 		});
@@ -758,7 +754,6 @@
 
 			}).fail(function() {
 				// 				
-				// 				alert(param.userId);
 				layer.msg("网络异常！");
 			});
 
@@ -766,7 +761,6 @@
 		
 		//初始化用户，并处理添加角色功能的回显
 		function iniUser() {
-			// 			alert(param.userId);
 			var setting = {
 				check : {
 					enable : true
@@ -791,7 +785,6 @@
 		$("body").on("click", ".deleteUserBtn", function() {
 
 			param.userIds = $(this).attr("userId");
-			alert(param.userIds);
 			layer.confirm("确认删除【" + param.userIds + "】号员工吗？", {
 				btn : [ '确定删除', '取消删除' ]
 			}, function() {
@@ -819,7 +812,6 @@
 				param.userIds += $(this).attr("userId") + ",";
 			});
 
-			// 			alert(param.userIds);
 
 			layer.confirm("确认删除【" + param.userIds + "】号员工吗？", {
 				btn : [ "确定删除", "取消删除" ]
@@ -901,7 +893,6 @@
 			//获取表单数据
 			var data = $("#addUser-form").serialize();
 
-			// 			alert(data.userName);
 
 			artDialog.confirm("question", "提示", "确定是否添加用户？", function() {
 				$.post("${ctp }/user/add", data, function(data) {
@@ -946,9 +937,7 @@
 
 		//表格显示
 		function buildTable(data) {
-			// 			alert(data.list+"++++");
 			var userData = data.list;
-			// 			alert(data.list+"----");
 
 			$.each(userData,function() {
 				//创建tr
@@ -1025,7 +1014,6 @@
 		function showReturnMsg(data){
 			
 			var conData = data.list[0];
-// 			alert(conData.loginname + "1111111111");
 
 			
 			

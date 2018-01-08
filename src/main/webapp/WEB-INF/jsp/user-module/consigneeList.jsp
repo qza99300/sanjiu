@@ -367,7 +367,6 @@
 		}
 		
 		function showconsignees(data) {
-			//alert(data.size);
 			// 1.清空数据
 			$("ul.pagination").empty();
 			$("#consigneeTable tbody").empty();
@@ -381,7 +380,6 @@
 
 		function buildTable(data) {
 			var consigneeData = data.list;
-			//alert(consigneeData);
 			$.each(consigneeData, function() {
 				//创建tr
 				var tr = $("<tr></tr>");
@@ -506,7 +504,6 @@
 		$("body").on("click", ".deleteConsigneeBtn", function() {
 
 			param.consigneeIds = $(this).attr("consigneeId");
-			//alert(param.consigneeIds);
 			layer.confirm("确认删除【" + param.consigneeIds + "】号地址吗？", {
 				btn : [ '确定删除', '取消删除' ]
 			}, function() {
@@ -531,10 +528,8 @@
 			
 			//获取表单数据
 			var data = $("#Consignee-form").serialize();
-// 			alert(data);
 			var dataVal = document.getElementById("inputId").value;
 			
-// 			alert(dataVal);
 			page.pn = 1;//第一页数据
 			
 			if (dataVal != null) {
@@ -545,7 +540,6 @@
 		});
 		
 		function getConsigneeOne(data){
-			//alert("路过这里");
 
 			$.post("${ctp}/consignee/querry",data,function(data){
 				showconsignees(data);
@@ -609,7 +603,6 @@
 		function showReturnMsg(data){
 			
 			var conData = data.list[0];
-			alert(conData.consigneeName);
 			//input值
 			$("#conIdKey").attr("value",conData.consigneeId);
 			$("#userIdKey").attr("value",conData.userId);

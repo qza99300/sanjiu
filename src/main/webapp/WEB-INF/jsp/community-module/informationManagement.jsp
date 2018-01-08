@@ -351,7 +351,6 @@ select {
 		}
 		
 		function showTopics(data) {
-// 			alert(data.size);
 			// 1.清空数据
 			$("ul.pagination").empty();
 			$("#topicTable tbody").empty();
@@ -365,7 +364,6 @@ select {
 
 		function buildTable(data) {
 			var topicData = data.list;
-			//alert(topicData);
 			$.each(topicData, function() {
 				//创建tr
 				var tr = $("<tr></tr>");
@@ -373,11 +371,6 @@ select {
 	
 				var btnTd = $("<td></td>")
 				
-// 				alert(this.createDate);
-// 				alert(new Date());
-// 				alert(new Date().Format("yyyy-MM-dd"));
-// 				var date = this.createDate.Format("yyyy-MM-dd");
-// 				alert(date);
 				//操作列
 	
 				btnTd.append('<button topicId = "' + this.topicId + '" type = "button" class = "topicModelShowBtn btn btn-sm btn-success" title="查看信息" ><i class="fa fa-qrcode"></i></button>')
@@ -500,7 +493,6 @@ select {
 		$("body").on("click", ".deletetopicBtn", function() {
 
 			param.topicId = $(this).attr("topicId");
-			//alert(param.topicIds);
 			layer.confirm("确认删除【" + param.topicId + "】号员工吗？", {
 				btn : [ '确定删除', '取消删除' ]
 			}, function() {
@@ -525,10 +517,8 @@ select {
 			
 			//获取表单数据
 			var data = $("#querryByIdForm").serialize();
-// 			alert(data);
 			var dataVal = document.getElementById("inputId").value;
 			
-// 			alert(dataVal);
 			page.pn = 1;//第一页数据
 			
 			if (dataVal != null) {
@@ -539,7 +529,6 @@ select {
 		});
 		
 		function gettopicOne(data){
-			//alert("路过这里");
 
 			$.post("${ctp}/topic/querry",data,function(data){
 				showTopics(data);
@@ -578,7 +567,6 @@ select {
 		$("body").on("click",".updatetopicModelBtn", function(){
 			
 			param.topicId = $(this).attr("topicId");
-// 			alert(param.topicId);
 
 			$.ajax({
 				url : "${ctp}/topic/querry",
@@ -604,9 +592,6 @@ select {
 		function showReturnMsg(data){
 			
 			var conData = data.list[0];
-// 			alert(conData.userName);
-// 			alert(conData.topicMatter);
-// 			alert(conData.createDate);
 			//input值
 			$("#htopicIdKey").attr("value",conData.topicId);
 			$("#huserIdKey").attr("value",conData.userId);

@@ -75,9 +75,10 @@
 				<!-- 目录列表 -->
 				<tr>
 					<th height="1" width="30"><input id="allCheckBox" type="checkbox">全选</th>
-					<th>编号id</th>
+					<th>编号ID</th>
+					<th>用户ID</th>
 					<th>微信昵称</th>
-					<th>商品id</th>
+					<th>商品ID</th>
 					<th>商品名称</th>
 					<th>操作</th>
 				</tr>
@@ -251,8 +252,7 @@
 	            </div>
 	            <div class="modal-body">
 				<!-- 内容开始 -->
-					<form class="layui-form" action="${ctp }/order/add"
-			id="addOrderForm" style="width: 100%; margin: 10 auto;">
+					<form class="layui-form" action="" id="addOrderForm" style="width: 100%; margin: 10 auto;">
 			<table>
 				<tr>
 					<div class="layui-form-item2" id="updateOrderDiv">
@@ -346,8 +346,113 @@
 	        </div><!-- /.modal-content -->
 	    </div><!-- /.modal -->
 	</div>	
-	<!-- 新增订单结束 -->
+	<!-- 查看订单结束 -->
 	
+	<!-- 修改模态框（Modal） -->
+	<div class="modal fade" id="updateOrderModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	    <div class="modal-dialog">
+	        <div class="modal-content">
+	            <div class="modal-header">
+	                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+	                <h4 class="modal-title" id="myModalLabel">修改订单窗口</h4>
+	            </div>
+	            <div class="modal-body">
+				<!-- 内容开始 -->
+					<form class="layui-form" action="" id="updateOrderForm" style="width: 100%; margin: 10 auto;">
+						<table>
+							<tr>
+								<div class="layui-form-item2" id="updateOrderDiv">
+									<div class="layui-inline">
+										<label class="layui-form-label2"><a
+											style="color: red;">*</a>用户id</label>
+										<div class="layui-input-block">
+											<input id="id1Key" type="hidden" name="id" value="">
+											<input id="userId1Key" type="text" name="userId" value="" class="layui-input">
+										</div>
+									</div>
+									<div class="layui-inline">
+										<label class="layui-form-label2"><a
+											style="color: red;">*</a>商品id</label>
+										<div class="layui-input-block">
+											<input id="productId1Key" type="text" name="productId" value="" class="layui-input">
+										</div>
+									</div>
+									
+								</div>
+							</tr>
+							<tr>
+								<div class="layui-form-item2">
+									<div class="layui-inline">
+										<label class="layui-form-label2"><a
+											style="color: red;">*</a>联系方式</label>
+										<div class="layui-input-block">
+											<input id="phone1Key" type="text" name="phone" value="" class="layui-input">
+										</div>
+									</div>
+									<div class="layui-inline">
+										<label class="layui-form-label2"><a
+											style="color: red;">*</a>商品名称</label>
+										<div class="layui-input-block">
+											<input id="productName1Key" type="text" name="productName" value="" class="layui-input">
+										</div>
+									</div>
+								</div>
+							</tr>
+							<tr>
+								<div class="layui-form-item2">
+				
+									<div class="layui-inline">
+										<label class="layui-form-label2">微信昵称</label>
+										<div class="layui-input-block">
+											<input id="wechatName1Key" type="text" name="wechatName" value="" class="layui-input">
+										</div>
+									</div>
+									<div class="layui-inline">
+										<label class="layui-form-label2">收货人名称</label>
+										<div class="layui-input-block">
+											<input id="consigneeName1Key" type="text" name="consigneeName" value="" class="layui-input">
+										</div>
+									</div>
+								</div>
+							</tr>
+							<tr>
+								<div class="layui-form-item2">
+									<div class="layui-inline">
+										<label class="layui-form-label2">收货地址</label>
+										<div class="layui-input-block">
+											<input id="consigneePath1Key" type="text" name="consigneePath" value="" class="layui-input">
+										</div>
+									</div>
+									<div class="layui-inline">
+										<label class="layui-form-label2"><a
+											style="color: red;">*</a>发放状态</label>
+										<div class="layui-input-block">
+											<input id="status1Key" type="text" name="status" value="" class="layui-input">
+										</div>
+									</div>
+								</div>
+							</tr>
+							<tr>
+								<div class="layui-form-item2">
+									<div class="layui-inline">
+										<label class="layui-form-label2">所在区域</label>
+										<div class="layui-input-block">
+											<input id="area1Key" type="text" name="area" value="" class="layui-input">
+										</div>
+									</div>
+								</div>
+							</tr>
+						</table>
+					</form>
+				<!-- 内容结束 -->
+			    </div>
+	            <div class="modal-footer">
+	                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+	                <button id="subOrderBtn" type="button" class="btn btn-primary">提交更改</button>
+	            </div>
+	        </div><!-- /.modal-content -->
+	    </div><!-- /.modal -->
+	</div>
 	
 	<!-- 公共的js样式 -->
 	<%@include file="/commons/common-js.jsp"%>
@@ -379,21 +484,12 @@
 			autohidemode : false, //是否隐藏滚动条
 		});
 		
-		//-------------------------修改---------------------------------
-		$("body").on("click", ".updateOrderBtn", function() {
-			param.id = $(this).attr("oid");
-// 			alert(param.id);
-
-			location.href = "${ctp }/order/querryOne?id=" + param.id;
-
-		});
 		
 		//----------------------------------------------------------		
 
 		//根据查询id查询订单详细信息 
 		$("body").on("click","#querryOneOrderBtn",function(){
 			param.id = $(this).attr("oid");
-			alert(param.id);
 
 			$.ajax({
 				url : "${ctp}/order/querryById",
@@ -405,7 +501,6 @@
 				dataType: 'json',
 				success : function(data) {
 
-					alert(a);
 					showReturnMsg(data);
 					
 				}
@@ -429,14 +524,13 @@
 		$("body").on("click", ".deleteOrderBtn", function() {
 
 			param.ids = $(this).attr("oid");
-			alert(param.userIds);
 			layer.confirm("确认删除【" + param.ids + "】号员工吗？", {
 				btn : [ '确定删除', '取消删除' ]
 			}, function() {
 				$.get("${ctp}/order/delete", param, function(data) {
 					layer.msg(data.msg);
 				});
-				location.reload();
+// 				location.reload();
 
 				//跳转当前页
 				page.pn = page.pageNum;
@@ -481,7 +575,6 @@
 			//获取表单数据
 			var data = $("#addOrderForm").serialize();
 
-			alert(data.userId);
 
 			artDialog.confirm("question", "提示", "确定是否添加订单？", function() {
 				$.post("${ctp }/order/add", data, function(data) {
@@ -527,9 +620,7 @@
 
 		//表格显示
 		function buildTable(data) {
-			// 			alert(data.list+"++++");
 			var userData = data.list;
-			// 			alert(data.list+"----");
 
 			$.each(userData,function() {
 				//创建tr
@@ -543,6 +634,7 @@
 
 				tr.append("<td><input type='checkbox' orderId="+ this.id +" class='itemCheckBox'></td>")
 				  .append("<td>" + this.id + "</td>")
+				  .append("<td>" + this.userId + "</td>")
 				  .append("<td>" + this.wechatName+ "</td>")
 				  .append("<td>" + this.productId + "</td>")
 				  .append("<td>" + this.productName + "</td>")
@@ -604,9 +696,8 @@
 		function showReturnMsg(data){
 			
 			var conData = data.list[0];
-// 			alert(conData.consigneeName);
 			//input值
-			$("#conIdKey").attr("value",conData.consigneeId);
+			$("#id1Key").attr("value",conData.id);
 			$("#userIdKey").attr("value",conData.userId);
 			//回显操作
 			document.getElementById("idKey").value = conData.id;
@@ -621,6 +712,16 @@
 			document.getElementById("TimeKey").value = conData.createDate;
 			document.getElementById("productIdKey").value = conData.productId;
 			
+			document.getElementById("userId1Key").value = conData.userId;
+			document.getElementById("productName1Key").value = conData.productName;
+			document.getElementById("wechatName1Key").value = conData.wechatName;
+			document.getElementById("consigneeName1Key").value = conData.consigneeName;
+			document.getElementById("phone1Key").value = conData.phone;
+			document.getElementById("consigneePath1Key").value = conData.consigneePath;
+			document.getElementById("area1Key").value = conData.area;
+			document.getElementById("status1Key").value = conData.status;
+// 			document.getElementById("createDate1Key").value = conData.createDate;
+			document.getElementById("productId1Key").value = conData.productId;
 		}
 		
 		
@@ -631,9 +732,7 @@
 			
 			//获取表单数据
 			var params = $("#querryForm").serialize();
-// 			alert(params);
 			var dataVal = document.getElementById("inputId").value;
-// 			alert(dataVal);
 			page.pn = 1;//第一页数据
 			
 			if (dataVal) {
@@ -651,6 +750,66 @@
 		});
 		
 	}
+	
+	//---------------------------------------------------------------
+	$("body").on("click", ".updateOrderBtn", function() {
+		
+		param.id = $(this).attr("oid");
+		$.ajax({
+			url : "${ctp}/order/querryById",
+			data : {
+				id : param.id,
+				pn : page.pn,
+				ps : page.ps
+			},
+			dataType: 'json',
+			success : function(data) {
+
+				showReturnMsg(data);
+				
+			}
+		});
+		
+		//显示模态框
+		$("#updateOrderModal").modal({
+   			backdrop : 'static',
+   			show : true
+   		});
+		
+	});
+	
+	$("#subOrderBtn").click(function(){
+		
+		var params = $("#updateOrderForm").serialize();
+		
+		artDialog.confirm("question", "提示", "确定是否修改信息？", function() {
+			$.post("${ctp }/order/update", params, function(data) {
+				//后台返回的内容显示提示
+				layer.msg(data.msg);
+				//关闭模态框
+				$("#updateOrderModal").modal('hide');
+				//后台清空模态框里面的内容
+				$("#updateOrderModal input").val("");
+				
+				//来到当前页；
+				page.pn = pageNum;
+				getOrders();
+
+				//失败返回的msg
+			}).fail(function() {
+				layer.msg(data.msg);
+				//关闭模态框
+				$("#updateOrderModal").modal('hide');
+				//后台清空模态框里面的内容
+				$("#updateOrderModal input").val("");
+				//来到当前页；
+				page.pn = pageNum;
+				getOrders();
+			});
+		});
+		
+	});
+	
 	
 	</script>
 </body>

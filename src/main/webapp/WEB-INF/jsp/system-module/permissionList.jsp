@@ -1082,7 +1082,6 @@
 		});
 	}
 	function showPermissions(data) {
-		//alert(data.size);
 		// 1.清空数据
 		$("ul.pagination").empty();
 		$("#permissionTable").empty();
@@ -1096,7 +1095,6 @@
 	
 	function buildTable(data) {
 		var permissionData = data.list;
-		//alert(permissionData);
 		$.each(
 				permissionData,
 			function() {

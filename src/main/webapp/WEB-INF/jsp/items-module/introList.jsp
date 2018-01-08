@@ -328,7 +328,6 @@ select {
 		}
 		
 		function showcolleges(data) {
-// 			alert(data.size);
 			// 1.清空数据
 			$("ul.pagination").empty();
 			$("#collegeTable tbody").empty();
@@ -342,7 +341,6 @@ select {
 
 		function buildTable(data) {
 			var collegeData = data.list;
-			//alert(collegeData);
 			$.each(collegeData,function() {
 				//创建tr
 				var tr = $("<tr></tr>");
@@ -420,7 +418,6 @@ select {
 		$("body").on("click", ".deleteCollegeBtn", function() {
 
 			param.collegeIds = $(this).attr("collegeId");
-// 			alert(param.collegeIds);
 			layer.confirm("确认删除【" + param.collegeIds + "】号员工吗？", {
 				btn : [ '确定删除', '取消删除' ]
 			}, function() {
@@ -494,7 +491,6 @@ select {
 	$("body").on("click",".introModelShowBtn",function(){
 		
 		param.collegeId = $(this).attr("collegeId");
-		alert(param.collegeId);
 		$.ajax({
 			url : "${ctp}/college/querry",
 			data : {
@@ -520,7 +516,6 @@ select {
 	function showReturnMsg(data){
 		
 		var conData = data.list[0];
-// 		alert(conData.collegeId);
 		//input值
 		$("#conIdKey").attr("value",conData.consigneeId);
 		$("#userIdKey").attr("value",conData.userId);

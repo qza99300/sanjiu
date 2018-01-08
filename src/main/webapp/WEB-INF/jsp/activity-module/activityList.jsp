@@ -112,7 +112,7 @@
 	            </div>
 	            <div class="modal-body">
 				<!-- 内容开始 -->
-					<form class="layui-form" action="${ctp }/consignee/add"
+					<form class="layui-form" action=""
 					id="addConsigneeForm" style="width: 100%; margin: 10 auto;">
 					<table>
 						<tr>
@@ -252,12 +252,6 @@
 							<input type="text" name="activityNum" id="activityNum"  class="layui-input">
 						</div>
 					</div>
-					<div class="layui-inline">
-						<label class="layui-form-label2">创建年度</label>
-						<div class="layui-input-block">
-							<input type="text" name="createYear" id="createYear"  class="layui-input">
-						</div>
-					</div>
 				</div>
 				<div class="layui-form-item2">
 					<div class="layui-inline">
@@ -346,7 +340,7 @@
 						<label class="layui-form-label2"><a
 							style="color: red;">*</a>活动序号</label>
 						<div class="layui-input-block">
-							<input type="text" name="activityId" value="" id="activityIds" class="layui-input">
+							<input type="text" name="activityId" disabled="disabled" value="" id="activityIds" class="layui-input">
 						</div>
 					</div>
 
@@ -354,22 +348,21 @@
 						<label class="layui-form-label2"><a
 							style="color: red;">*</a>活动标题</label>
 						<div class="layui-input-block">
-							<input type="text" name="activityTitle" id="activityTitles"  class="layui-input">
+							<input type="text" name="activityTitle" id="activityTitles" disabled="disabled"  class="layui-input">
 						</div>
 					</div>
 				</div>
 				<div class="layui-form-item2">
 					<div class="layui-inline">
-						<label class="layui-form-label2"><a
-							style="color: red;">*</a>活动人数</label>
+						<label class="layui-form-label2">活动人数</label>
 						<div class="layui-input-block">
-							<input type="text" name="activityNum" id="activityNums"  class="layui-input">
+							<input type="text" name="activityNum" id="activityNums" disabled="disabled" class="layui-input">
 						</div>
 					</div>
 					<div class="layui-inline">
 						<label class="layui-form-label2">创建年度</label>
 						<div class="layui-input-block">
-							<input type="text" name="createYear" id="createYears"  class="layui-input">
+							<input type="text" name="createYear" id="createYears" disabled="disabled" class="layui-input">
 						</div>
 					</div>
 				</div>
@@ -377,30 +370,27 @@
 					<div class="layui-inline">
 						<label class="layui-form-label2">活动状态</label>
 						<div class="layui-input-block">
-							<input type="text" name="activityStatus" id="activityStatuss" class="layui-input">
+							<input type="text" name="activityStatus" id="activityStatuss" disabled="disabled" class="layui-input">
 						</div>
 					</div>
 					<div class="layui-inline">
-						<label class="layui-form-label2"><a
-							style="color: red;">*</a>备注</label>
+						<label class="layui-form-label2">备注</label>
 						<div class="layui-input-block">
-							<input type="text" name="remark" id="remarks"  class="layui-input">
+							<input type="text" name="remark" id="remarks" disabled="disabled" class="layui-input">
 						</div>
 					</div>
 				</div>
 				<div class="layui-form-item2" id="updateOrderDiv">
 					<div class="layui-inline">
-						<label class="layui-form-label2"><a
-							style="color: red;">*</a>所属部门</label>
+						<label class="layui-form-label2">所属部门</label>
 						<div class="layui-input-block">
-							<input type="text" name="department" id="departments" class="layui-input">
+							<input type="text" name="department" id="departments" disabled="disabled" class="layui-input">
 						</div>
 					</div>
 					<div class="layui-inline">
-						<label class="layui-form-label2"><a
-							style="color: red;">*</a>所属区域</label>
+						<label class="layui-form-label2">所属区域</label>
 						<div class="layui-input-block">
-							<input type="text" name="area" id="areas" class="layui-input">
+							<input type="text" name="area" id="areas" disabled="disabled" class="layui-input">
 						</div>
 					</div>
 				</div>
@@ -424,10 +414,9 @@
 <!-- 						</tr> -->
 				<div class="layui-form-item2">
 					<div class="layui-inline">
-						<label class="layui-form-label2"><a
-							style="color: red;">*</a>活动内容</label>
+						<label class="layui-form-label2">活动内容</label>
 						<div class="layui-input-block">
-							<input type="text"   style="width:400px; height=200px" id="activityMatter"  maxlength="500" name="activityMatter"  class="layui-input">
+							<input type="text" disabled="disabled"  style="width:400px; height=200px" id="activityMatter"  maxlength="500" name="activityMatter"  class="layui-input">
 						</div>
 					</div>
 					
@@ -473,7 +462,6 @@
 			});
 		}
 		function showActivitys(data) {
-			//alert(data.size);
 			// 1.清空数据
 			$("ul.pagination").empty();
 			$("#activityTable tbody").empty();
@@ -487,7 +475,6 @@
 
 		function buildTable(data) {
 			var activityData = data.list;
-			//alert(activityData);
 			$.each(activityData,function() {
 				//创建tr
 				var tr = $("<tr></tr>");
@@ -578,7 +565,6 @@
 		$("body").on("click", ".deleteActivityBtn", function() {
 
 			param.activityIds = $(this).attr("activityId");
-			alert(param.activityIds);
 			layer.confirm("确认删除【" + param.activityIds + "】号员工吗？", {
 				btn : [ '确定删除', '取消删除' ]
 			}, function() {
@@ -607,7 +593,6 @@
 			artDialog.confirm("question", "提示", "确定是否添加地活动？", function(){
 				$.post("${ctp }/activity/add", params, function(data) {
 					//后台返回的内容显示提示
-					//alert(data.msg);
 					layer.msg(data.msg);
 					//关闭模态框
 					$("#newActivityBtn").modal('hide');
@@ -649,7 +634,6 @@
 		});
 		
 		function getActivityOne(data){
-// 			alert(data);
 			$.post("${ctp}/activity/querryOne",data,function(data){
 				showActivitys(data);
 			});
@@ -707,7 +691,6 @@
 			artDialog.confirm("question", "提示", "确定是否修改？", function() {
 				$.post("${ctp }/activity/update", params, function(data) {
 					//后台返回的内容显示提示
-					alert(data.msg);
 					layer.msg(data.msg);
 					//关闭模态框
 					$("#updateModelDiv").modal('hide');

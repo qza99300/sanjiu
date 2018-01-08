@@ -94,7 +94,6 @@
 		$("#updatePwdBtn").click(function(){
 			//获取表单数据
 			var params = $("#updateUserForm").serialize();
-			alert(params);
 			layer.confirm("是否确认修改？" ,{
 				btn : [ '确定修改', '算了吧' ]
 			},function(){

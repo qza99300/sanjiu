@@ -328,7 +328,6 @@ select {
 			});
 		}
 		function showActivitys(data) {
-			//alert(data.size);
 			// 1.清空数据
 			$("ul.pagination").empty();
 			$("#activityTable tbody").empty();
@@ -342,7 +341,6 @@ select {
 
 		function buildTable(data) {
 			var activityData = data.list;
-			//alert(activityData);
 			$.each(activityData,function() {
 				//创建tr
 				var tr = $("<tr></tr>");
@@ -435,7 +433,7 @@ select {
 
 			param.productId = $(this).attr("productId");
 
-			layer.confirm("确认删除【" + param.productId + "】号员工吗？", {
+			layer.confirm("确认删除【" + param.productId + "】号商品吗？", {
 				btn : [ '确定删除', '取消删除' ]
 			}, function() {
 				$.get("${ctp}/product/delete", param, function(data) {
@@ -465,7 +463,6 @@ select {
 			artDialog.confirm("question", "提示", "确定是否添加物品？", function(){
 				$.post("${ctp }/product/add", params, function(data) {
 					//后台返回的内容显示提示
-					//alert(data.msg);
 					layer.msg(data.msg);
 					//关闭模态框
 					$("#newActivityBtn").modal('hide');
@@ -506,7 +503,6 @@ select {
 		});
 		
 		function getActivityOne(data){
-//  			alert(data);
 			$.post("${ctp}/product/querry",data,function(data){
 				showActivitys(data);
 			});
@@ -521,7 +517,6 @@ select {
 	            datatype: "json",
 	            data: { "productId": i},
 	            success: function (data) {
-	            	alert(data.productId);
 	            	$("#productId").val(data.productId);
 	            	$("#productName").val(data.productName);
 	            	$("#productIntegral").val(data.productIntegral);
@@ -541,7 +536,6 @@ select {
 			artDialog.confirm("question", "提示", "确定是否修改？", function() {
 				$.post("${ctp }/product/update", params, function(data) {
 					//后台返回的内容显示提示
-					alert(data.msg);
 					layer.msg(data.msg);
 					//关闭模态框
 					$("#updateModelDiv").modal('hide');

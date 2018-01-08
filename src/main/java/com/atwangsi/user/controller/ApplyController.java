@@ -164,6 +164,7 @@ public class ApplyController {
 		jo.put("department", ap.getDepartment());
 		jo.put("area", ap.getArea());
 		jo.put("userId", ap.getUserId());
+		jo.put("createDate", ap.getCreateDate());
 		return jo.toJSONString();
 	}
 }

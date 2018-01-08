@@ -21,12 +21,6 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public Boolean saveUser(TbUser user) {
 		
-		//检查用户名是否唯一
-		boolean bool = checkLoginName(user.getLoginname());
-		if (bool) {
-			return false;
-		}
-
 		int i = this.userMapper.insertSelective(user);
 
 		return i > 0;
