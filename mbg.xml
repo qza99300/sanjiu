@@ -64,11 +64,11 @@
 <!-- 		<table tableName="tb_integral_product"></table> -->
 <!-- 		<table tableName="tb_consignee"></table> -->
 <!-- 		<table tableName="tb_exchange_order"></table> -->
-<!-- 		<table tableName="tb_exchange_record"></table> -->
+		<table tableName="tb_exchange_record"></table>
 <!-- 		<table tableName="tb_activity_manage"></table> -->
 <!-- 		<table tableName="tb_activity_apply"></table> -->
 <!-- 		<table tableName="tb_topic_manage"></table> -->
-		<table tableName="tb_interact_interflow"></table>
+<!-- 		<table tableName="tb_interact_interflow"></table> -->
 <!-- 		<table tableName="tb_college_synopsis"></table> -->
 <!-- 		<table tableName="tb_rolepermission"></table> -->
 	</context>

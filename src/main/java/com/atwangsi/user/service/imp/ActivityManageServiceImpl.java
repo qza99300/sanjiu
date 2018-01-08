@@ -71,5 +71,6 @@ public class ActivityManageServiceImpl implements ActivityManageService {
 		
 		return this.activityManageMapper.selectByPrimaryKey(parseInt);
 	}
+	
 
 }

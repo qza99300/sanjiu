@@ -16,4 +16,8 @@ public interface RecordService {
 
 	List<TbExchangeRecord> querryByRecordId(Integer id);
 
+	List<TbExchangeRecord> selectRecord(Integer convertStatus);
+
+	List<TbExchangeRecord> querryByRecordPhone(String phone);
+
 }

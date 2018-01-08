@@ -83,13 +83,9 @@ select {
 				style="margin-left: 5%;" data-toggle="modal" data-target="#newActivityBtn">
 				<i class="fa fa-edit"> </i> 新增物品
 			</button>
-			<button type="button" class="btn  btn-info" style="margin-left: 5%;">
-				<i class="fa fa-level-up"> </i> 导出
-			</button>
-			<button type="button" class="btn btn-info btn-primary"
-				style="margin-left: 5%;">
-				<i class="fa fa-level-down"> </i> 导入
-			</button>
+<!-- 			<button type="button" class="btn  btn-info" style="margin-left: 5%;"> -->
+<!-- 				<i class="fa fa-level-up"> </i> 导出 -->
+<!-- 			</button> -->
 			</section>
 		</div>
 	</div>
@@ -164,26 +160,26 @@ select {
 							</div>
 						</div>
 						
-						<div class="layui-form-item2">
-							<label class="layui-form-label2"><a style="color: red;">*</a>产品图片</label>
-							<div class="layui-input-block">
-								<div class="company-logo">
-									<div class="logo-top">
-										<span>上传产品图片</span>
-										<span style="cursor: pointer;color: red;">建议尺寸：68*68像素 图片大小300k以内 支持JPG PNG</span>
-									</div>
-									<div class="logo-cen">
-										<img src="images/step-img.png">
-									</div>
-									<div class="logo-btm">
+<!-- 						<div class="layui-form-item2"> -->
+<!-- 							<label class="layui-form-label2"><a style="color: red;">*</a>产品图片</label> -->
+<!-- 							<div class="layui-input-block"> -->
+<!-- 								<div class="company-logo"> -->
+<!-- 									<div class="logo-top"> -->
+<!-- 										<span>上传产品图片</span> -->
+<!-- 										<span style="cursor: pointer;color: red;">建议尺寸：68*68像素 图片大小300k以内 支持JPG PNG</span> -->
+<!-- 									</div> -->
+<!-- 									<div class="logo-cen"> -->
+<!-- 										<img src="images/step-img.png"> -->
+<!-- 									</div> -->
+<!-- 									<div class="logo-btm"> -->
 <!-- 										class="layui-btn layui-btn-normal" -->
 <!-- 										class="layui-btn layui-btn-grayness" -->
 <!-- 										<button  style="margin-top: 8px;margin-left: 2%;">确认</button> -->
 <!-- 										<button  style="margin-top: 8px;">取消</button> -->
-									</div>
-								</div>
-							</div>
-						</div>
+<!-- 									</div> -->
+<!-- 								</div> -->
+<!-- 							</div> -->
+<!-- 						</div> -->
 						
 						<div class="layui-form-item2" style="margin-top: 10px;">
 							<div class="layui-inline">
@@ -216,7 +212,7 @@ select {
 		    </div>
 	            <div class="modal-footer">
 	                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-	                <button type="button" id="addActivityBtn" class="btn btn-primary">提交更改</button>
+	                <button type="button" id="addActivityBtn" class="btn btn-primary">创建</button>
 	            </div>
 	        </div><!-- /.modal-content -->
 	    </div><!-- /.modal -->
@@ -244,24 +240,24 @@ select {
 							</div>
 						</div>
 						
-						<div class="layui-form-item2">
-							<label class="layui-form-label2"><a style="color: red;">*</a>产品图片</label>
-							<div class="layui-input-block">
-								<div class="company-logo">
-									<div class="logo-top">
-										<span>上传产品图片</span>
-										<span style="cursor: pointer;color: red;">建议尺寸：68*68像素 图片大小300k以内 支持JPG PNG</span>
-									</div>
-									<div class="logo-cen">
-										<img src="images/goods.jpg">
-									</div>
-									<div class="logo-btm">
-										<button class="layui-btn layui-btn-normal" style="margin-top: 8px;margin-left: 2%;">确认</button>
-										<button class="layui-btn layui-btn-grayness" style="margin-top: 8px;">取消</button>
-									</div>
-								</div>
-							</div>
-						</div>
+<!-- 						<div class="layui-form-item2"> -->
+<!-- 							<label class="layui-form-label2"><a style="color: red;">*</a>产品图片</label> -->
+<!-- 							<div class="layui-input-block"> -->
+<!-- 								<div class="company-logo"> -->
+<!-- 									<div class="logo-top"> -->
+<!-- 										<span>上传产品图片</span> -->
+<!-- 										<span style="cursor: pointer;color: red;">建议尺寸：68*68像素 图片大小300k以内 支持JPG PNG</span> -->
+<!-- 									</div> -->
+<!-- 									<div class="logo-cen"> -->
+<!-- 										<img src="images/goods.jpg"> -->
+<!-- 									</div> -->
+<!-- 									<div class="logo-btm"> -->
+<!-- 										<button class="layui-btn layui-btn-normal" style="margin-top: 8px;margin-left: 2%;">确认</button> -->
+<!-- 										<button class="layui-btn layui-btn-grayness" style="margin-top: 8px;">取消</button> -->
+<!-- 									</div> -->
+<!-- 								</div> -->
+<!-- 							</div> -->
+<!-- 						</div> -->
 						
 						<div class="layui-form-item2" style="margin-top: 10px;">
 							<div class="layui-inline">
@@ -364,7 +360,7 @@ select {
 				  .append("<td>" + this.productName + "</td>")
 				  .append("<td>" + this.productIntegral + "</td>")
 				  .append("<td>" + this.productCount + "</td>")
-				  .append("<td>" + this.createDate + "</td>")
+				  .append("<td>" + timeFormat(this.createDate) + "</td>")
 				  .append(btnTd)
 				  .appendTo($("#activityTable"));
 			});
@@ -510,7 +506,7 @@ select {
 		});
 		
 		function getActivityOne(data){
- 			alert(data);
+//  			alert(data);
 			$.post("${ctp}/product/querry",data,function(data){
 				showActivitys(data);
 			});
@@ -571,7 +567,29 @@ select {
 			
 		});
 
-		
+		//时间格式化
+		 function timeFormat (time){
+			     var datetime = new Date();
+			      datetime.setTime(time);
+			      var year = datetime.getFullYear();
+			      var month = datetime.getMonth() + 1;
+			      var date = datetime.getDate();
+			      var hour = datetime.getHours();
+			      if(hour<=9){
+			          hour="0"+hour;
+			      }
+			      var minute = datetime.getMinutes();
+			       if(minute<=9){
+			          minute="0"+minute;
+			      }
+			      var second = datetime.getSeconds();
+			       if(second<=9){
+			          second="0"+second;
+			      }
+			     // var mseconds = datetime.getMilliseconds();
+//		 	      return year + "-" + month + "-" + date+" "+hour+":"+minute+":"+second;//+"."+mseconds;
+			      return year + "-" + month + "-" + date;//+"."+mseconds;
+			 }; 
 		
 		
 		

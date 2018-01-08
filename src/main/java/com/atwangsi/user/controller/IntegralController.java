@@ -17,12 +17,13 @@ import com.alibaba.fastjson.JSONObject;
 import com.atwangsi.base.model.AppContant;
 import com.atwangsi.base.model.ResultVO;
 import com.atwangsi.user.model.TbIntegralRule;
+import com.atwangsi.user.model.TbInteractInterflow;
 import com.atwangsi.user.service.IntegralService;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 
 /**
- * 积分模块
+ * 积分规则模块
  * @author ou
  *
  */
@@ -170,5 +171,8 @@ public class IntegralController {
 		System.out.println(jsonObject.toJSONString());
 		return jsonObject.toJSONString();
 	}
+	
+	
+
 
 }

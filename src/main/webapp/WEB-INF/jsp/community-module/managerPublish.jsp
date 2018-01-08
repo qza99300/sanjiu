@@ -102,6 +102,10 @@ select {
 			</div>
 		</form>
 	</div>
+	
+	<div><p id="newTime">时间：</p></div>
+	
+	</section>
 
 
 	<!--table开始-->

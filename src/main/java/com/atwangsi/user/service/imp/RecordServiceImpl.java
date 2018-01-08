@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.atwangsi.user.dao.TbExchangeRecordMapper;
 import com.atwangsi.user.model.TbExchangeRecord;
+import com.atwangsi.user.model.TbExchangeRecordExample;
 import com.atwangsi.user.service.RecordService;
 
 @Service
@@ -47,5 +48,26 @@ public class RecordServiceImpl implements RecordService {
 		list.add(this.recordMapper.selectByPrimaryKey(id));
 		
 		return list;
+	}
+
+	@Override
+	public List<TbExchangeRecord> selectRecord(Integer convertStatus) {
+		// TODO Auto-generated method stub
+		TbExchangeRecordExample example = new TbExchangeRecordExample();
+		
+		example.createCriteria().andConvertStatusEqualTo(convertStatus);
+		
+		return this.recordMapper.selectByExample(example);
+	}
+
+	@Override
+	public List<TbExchangeRecord> querryByRecordPhone(String phone) {
+		// TODO Auto-generated method stub
+		TbExchangeRecordExample example = new TbExchangeRecordExample();
+		example.createCriteria().andConvertPhoneEqualTo(phone);
+		
+//		List<TbExchangeRecord> list = this.recordMapper.selectByExample(example);
+		
+		return this.recordMapper.selectByExample(example);
 	}
 }

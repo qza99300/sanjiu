@@ -5,6 +5,7 @@ import java.util.Date;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -52,7 +53,7 @@ public class RecordController {
 	 */
 	@RequestMapping("delete")
 	@ResponseBody
-	public ResultVO<Object> deleteRecordById(@RequestParam("id") Integer id) {
+	public ResultVO<Object> deleteRecordById(@RequestParam("rid") Integer id) {
 
 		// 预判断
 		if (id == null) {
@@ -97,23 +98,59 @@ public class RecordController {
 	 * 查询所有
 	 * @param pageNum
 	 * @param pageSize
-	 * @param productId  有值查一个
 	 * @return
 	 */
 	@RequestMapping("querry")
 	@ResponseBody
 	public PageInfo<TbExchangeRecord> queryAll(@RequestParam(value = "pn", defaultValue = "1") Integer pageNum,
-			@RequestParam(value = "ps", defaultValue = "7") Integer pageSize,
-			@RequestParam(value = "id", required=false) Integer id ) {
+			@RequestParam(value = "ps", defaultValue = "7") Integer pageSize) {
 		
 		PageHelper.startPage(pageNum, pageSize);
 		
-		if (id == null) {
 			return new PageInfo<>(this.recordService.queryAll(), AppContant.PAGE_SIZE);
-		}
-		
-		return new PageInfo<>(this.recordService.querryByRecordId(id));
 
 	}
+	
+	@RequestMapping(value="querryByPhone")
+	@ResponseBody
+	public PageInfo<TbExchangeRecord> queryById(
+			@RequestParam("convertPhone") String phone ) {
+		return new PageInfo<>(this.recordService.querryByRecordPhone(phone));
+		
+	}
+	
+	/**
+	 * 根据id查询
+	 * @param id
+	 * @return
+	 */
+	@RequestMapping(value="querryById",method=RequestMethod.GET)
+	@ResponseBody
+	public PageInfo<TbExchangeRecord> queryById(
+			@RequestParam(value = "rId") Integer id ) {
+		return new PageInfo<>(this.recordService.querryByRecordId(id));
+		
+	}
+	
+	/**
+	 * 根据兑换状态进行查询
+	 * @param pageNum
+	 * @param pageSize
+	 * @param convertStatus
+	 * @return
+	 */
+	@RequestMapping("status")
+	@ResponseBody
+	public PageInfo<TbExchangeRecord> querryByStatus(@RequestParam(value = "pn", defaultValue = "1") Integer pageNum,
+			@RequestParam(value = "ps", defaultValue = "7") Integer pageSize,
+			@RequestParam(value = "convertStatus") Integer convertStatus ){
+		
+		PageHelper.startPage(pageNum, pageSize);
+		
+		return new PageInfo<>(this.recordService.selectRecord(convertStatus));
+		
+	}
+	
+	
 
 }

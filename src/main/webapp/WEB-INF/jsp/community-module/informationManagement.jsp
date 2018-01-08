@@ -75,7 +75,6 @@ select {
 			</div>
 		</form>
 	</div>
-
 	<!--table开始-->
 	<table id="topicTable" class="site-table table-hover">
 		<thead>
@@ -373,6 +372,12 @@ select {
 				//创建td
 	
 				var btnTd = $("<td></td>")
+				
+// 				alert(this.createDate);
+// 				alert(new Date());
+// 				alert(new Date().Format("yyyy-MM-dd"));
+// 				var date = this.createDate.Format("yyyy-MM-dd");
+// 				alert(date);
 				//操作列
 	
 				btnTd.append('<button topicId = "' + this.topicId + '" type = "button" class = "topicModelShowBtn btn btn-sm btn-success" title="查看信息" ><i class="fa fa-qrcode"></i></button>')
@@ -384,7 +389,9 @@ select {
 				  .append("<td>" + this.userId + "</td>")
 				  .append("<td>" + this.userName + "</td>")
 				  .append("<td>" + this.likeCount + "</td>")
-				  .append("<td>" + this.createDate + "</td>")
+				  .append("<td>" + timeFormat(this.createDate) + "</td>")
+// 				  .append("<td>" + (this.createDate).Format("yyyy-MM-dd") + "</td>")
+// 				  .append("<td>" + this.createDate + "</td>")
 				  .append("<td>" + this.topicMatter + "</td>")
 				  .append(btnTd).appendTo($("#topicTable"));
 			});
@@ -651,10 +658,36 @@ select {
 			
 		});
 //-------------------------------------------------------------------
-		
-		
-		</script>
 
+//时间格式化
+ function timeFormat (time){
+		 if (time == null) {
+				return null;
+			}
+	     var datetime = new Date();
+	     datetime.setTime(time);
+	     var year = datetime.getFullYear();
+	     var month = datetime.getMonth() + 1;
+	     var date = datetime.getDate();
+	     var hour = datetime.getHours();
+	     if(hour<=9){
+	         hour="0"+hour;
+	     }
+	     var minute = datetime.getMinutes();
+	     if(minute<=9){
+	         minute="0"+minute;
+	     }
+	     var second = datetime.getSeconds();
+	     if(second<=9){
+	        second="0"+second;
+	     }
+	     // var mseconds = datetime.getMilliseconds();
+// 	      return year + "-" + month + "-" + date+" "+hour+":"+minute+":"+second;//+"."+mseconds;
+	     return year + "-" + month + "-" + date;//+"."+mseconds;
+	 }; 
+ 
+ 
+		</script>
 </body>
 </html>
 

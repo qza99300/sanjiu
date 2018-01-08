@@ -201,6 +201,10 @@ select {
     </div><!-- /.modal -->
 </div>
 	
+	<!-- 模态框（Modal） -->
+
+	
+	
 	<!-- 查看简介模态框（Modal） -->
 <div class="modal fade" id="querryIntroModalBtn" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" align="center" aria-hidden="true">
     <div class="modal-dialog">
@@ -210,7 +214,7 @@ select {
                 <h4 class="modal-title" id="myModalLabel">查看简介窗口</h4>
             </div>
             <div class="modal-body">
-				<!-- 内容开始 -->
+			<!--内容开始 -->
 					<form  lass="layui-form" action="" id="addIntroForm" style="width: 100%; margin: 10 auto;">
 						<table>
 							<tr>
@@ -259,7 +263,7 @@ select {
 									<div class="layui-inline">
 										<label class="layui-form-label2">创建时间</label>
 										<div class="layui-input-block">
-											<input  type="text" id="createDatexKey" disabled="disabled" name="createDatex"  class="layui-input">
+											<input  type="text" id="createDateKey" disabled="disabled" name="createDatex"  class="layui-input">
 										</div>
 									</div>
 								</div>
@@ -353,8 +357,9 @@ select {
 				tr.append("<td><input type='checkbox' collegeId="+ this.collegeId +" class='itemCheckBox'></td>")
 				  .append("<td>" + this.collegeId + "</td>")
 				  .append("<td>" + this.userId + "</td>")
-				  .append("<td>" + this.titletitleCollege + "</td>")
-				  .append(btnTd).appendTo($("#collegeTable"));
+				  .append("<td>" + this.titleCollege + "</td>")
+				  .append(btnTd)
+				  .appendTo($("#collegeTable"));
 			});
 		}
 
@@ -489,7 +494,7 @@ select {
 	$("body").on("click",".introModelShowBtn",function(){
 		
 		param.collegeId = $(this).attr("collegeId");
-		
+		alert(param.collegeId);
 		$.ajax({
 			url : "${ctp}/college/querry",
 			data : {
@@ -524,9 +529,39 @@ select {
 		document.getElementById("userIdKey").value = conData.userId;
 		document.getElementById("titleCollegeKey").value = conData.titleCollege;
 		document.getElementById("titleMasterKey").value = conData.titleMaster;
-		document.getElementById("createDateKey").value = conData.createDate;
+		document.getElementById("createDateKey").value = timeFormat(conData.createDate);
 		
 	}
+	
+	//时间格式化
+	function timeFormat(time) {
+
+		if (time == null) {
+			return null;
+		}
+		var datetime = new Date();
+		datetime.setTime(time);
+		var year = datetime.getFullYear();
+		var month = datetime.getMonth() + 1;
+		var date = datetime.getDate();
+		var hour = datetime.getHours();
+		if (hour <= 9) {
+			hour = "0" + hour;
+		}
+		var minute = datetime.getMinutes();
+		if (minute <= 9) {
+			minute = "0" + minute;
+		}
+
+		var second = datetime.getSeconds();
+		if (second <= 9) {
+
+			second = "0" + second;
+		}
+		// var mseconds = datetime.getMilliseconds();
+		//		 	      return year + "-" + month + "-" + date+" "+hour+":"+minute+":"+second;//+"."+mseconds;
+		return year + "-" + month + "-" + date;//+"."+mseconds;
+	};
 	
 	</script>
 

@@ -30,8 +30,7 @@
 	
 	<script src="${ctp }/jquery-validation-1.13.1/dist/jquery.validate.min.js"></script>
 	
-	
-	
+
 	
 	
 	

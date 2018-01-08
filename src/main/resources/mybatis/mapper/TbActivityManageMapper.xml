@@ -24,6 +24,9 @@
   <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.atwangsi.user.model.TbActivityManage">
     <result column="picture" jdbcType="LONGVARBINARY" property="picture" />
   </resultMap>
+  
+  
+  
   <sql id="Example_Where_Clause">
     <where>
       <foreach collection="oredCriteria" item="criteria" separator="or">

@@ -15,6 +15,7 @@
 <%@include file="/commons/common-css.jsp"%>
 
 <!--社区管理--信息互动页面  -->
+<!-- pc端不做发布操作 -->
 
 <style>
 select {

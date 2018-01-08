@@ -3,6 +3,7 @@ package com.atwangsi.user.service;
 import java.util.List;
 
 import com.atwangsi.user.model.TbIntegralRule;
+import com.atwangsi.user.model.TbInteractInterflow;
 
 public interface IntegralService {
 
@@ -18,5 +19,7 @@ public interface IntegralService {
 	
 	//修改显示
 	List<TbIntegralRule> selectwhole();
+
+	List<TbInteractInterflow> getAllIntegralByRecord(Integer id);
 
 }

@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.atwangsi.user.dao.TbIntegralRuleMapper;
 import com.atwangsi.user.model.TbIntegralRule;
+import com.atwangsi.user.model.TbInteractInterflow;
 import com.atwangsi.user.service.IntegralService;
 
 @Service
@@ -53,6 +54,13 @@ public class IntegralServiceImpl implements IntegralService {
 	public List<TbIntegralRule> selectwhole() {
 		
 		return this.ruleMapper.selectwhole();
+	}
+
+	@Override
+	public List<TbInteractInterflow> getAllIntegralByRecord(Integer id) {
+		// TODO Auto-generated method stub
+		
+		return null;
 	}
 
 }

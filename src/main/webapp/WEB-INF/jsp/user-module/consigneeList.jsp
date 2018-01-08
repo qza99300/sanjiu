@@ -309,6 +309,27 @@
 	    </div><!-- /.modal -->
 	</div>
 	
+	<!-- 修改模态框 -->
+	<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	    <div class="modal-dialog">
+	        <div class="modal-content">
+	            <div class="modal-header">
+	                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+	                <h4 class="modal-title" id="myModalLabel">模态框（Modal）标题</h4>
+	            </div>
+	            <div class="modal-body">
+			<!-- 内容开始 -->
+			<!-- 内容结束 -->
+		    </div>
+	            <div class="modal-footer">
+	                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+	                <button type="button" class="btn btn-primary">提交更改</button>
+	            </div>
+	        </div><!-- /.modal-content -->
+	    </div><!-- /.modal -->
+	</div>
+	
+	
 	<!-- 查看一个地址信息结束 -->
 	
 	
@@ -320,6 +341,7 @@
 	<script type="text/javascript">
 	
 		var param = {};
+		
 		var page = {
 			pn : 1,
 			ps : 5,
@@ -601,7 +623,7 @@
 			document.getElementById("selPathKey").value = conData.consigneePath;
 			document.getElementById("areaIdKey").value = conData.area;
 			document.getElementById("selAreaKey").value = conData.area;
-			document.getElementById("selTimeKey").value = conData.createDate;
+			document.getElementById("selTimeKey").value = timeFormat(conData.createDate);
 			
 		}
 		
@@ -636,7 +658,36 @@
 			
 		});
 		
-		</script>
+		//时间格式化
+		function timeFormat(time) {
+
+			if (time == null) {
+				return null;
+			}
+			var datetime = new Date();
+			datetime.setTime(time);
+			var year = datetime.getFullYear();
+			var month = datetime.getMonth() + 1;
+			var date = datetime.getDate();
+			var hour = datetime.getHours();
+			if (hour <= 9) {
+				hour = "0" + hour;
+			}
+			var minute = datetime.getMinutes();
+			if (minute <= 9) {
+				minute = "0" + minute;
+			}
+
+			var second = datetime.getSeconds();
+			if (second <= 9) {
+
+				second = "0" + second;
+			}
+			// var mseconds = datetime.getMilliseconds();
+			//		 	      return year + "-" + month + "-" + date+" "+hour+":"+minute+":"+second;//+"."+mseconds;
+			return year + "-" + month + "-" + date;//+"."+mseconds;
+		};
+	</script>
 </body>
 
 </html>

@@ -392,7 +392,6 @@
 
 		//根据查询id查询订单详细信息 
 		$("body").on("click","#querryOneOrderBtn",function(){
-// 		$("#querryOneOrderBtn").click(function() {
 			param.id = $(this).attr("oid");
 			alert(param.id);
 
