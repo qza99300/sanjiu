@@ -1,6 +1,7 @@
 package com.atwangsi.user.controller;
 
 import java.util.Date;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -12,6 +13,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.atwangsi.base.model.AppContant;
 import com.atwangsi.base.model.ResultVO;
 import com.atwangsi.user.model.TbActivityManage;
+import com.atwangsi.user.model.TbExchangeOrder;
 import com.atwangsi.user.model.TbIntegralProduct;
 import com.atwangsi.user.service.ProductService;
 import com.github.pagehelper.PageHelper;
@@ -24,6 +26,27 @@ public class ProductController {
 	@Autowired
 	private ProductService productService ;
 
+	/**
+	 * 模糊查询-商品名称
+	 * @param pageNum
+	 * @param pageSize
+	 * @param productName
+	 * @return
+	 */
+	@RequestMapping("querryByLike")
+	@ResponseBody
+	public PageInfo<TbIntegralProduct> querryByLike(
+			@RequestParam(value = "pn", defaultValue = "1") Integer pageNum,
+			@RequestParam(value = "ps", defaultValue = "7") Integer pageSize,
+			@RequestParam("productName") String productName) {
+		
+		PageHelper.startPage(pageNum, pageSize);
+		
+		List<TbIntegralProduct> list =this.productService.querryByLike(productName);
+		
+				return new PageInfo<>(list, AppContant.PAGE_SIZE);
+	}
+	
 	/**
 	 * 添加
 	 * @param product

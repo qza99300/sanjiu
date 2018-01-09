@@ -71,6 +71,14 @@ public class ActivityManageServiceImpl implements ActivityManageService {
 		
 		return this.activityManageMapper.selectByPrimaryKey(parseInt);
 	}
+
+	@Override
+	public List<TbActivityManage> querryByLike(String activityTitle) {
+		// TODO Auto-generated method stub
+		TbActivityManageExample example = new TbActivityManageExample();
+		example.createCriteria().andActivityTitleLike("%"+activityTitle+"%");
+		return this.activityManageMapper.selectByExample(example);
+	}
 	
 
 }

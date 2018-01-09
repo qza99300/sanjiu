@@ -27,6 +27,9 @@
 	<script type="text/javascript" src="${ctp }/js/iframeTools.source.js"></script>
 	<script type="text/javascript" src="${ctp }/js/msgbox.js"></script> 
 	
+	<!--时间控件--> 
+	<script type="text/javascript" src="${ctp }/static/My97DatePicker/4.8/WdatePicker.js"></script> 
+	
 	
 	<script src="${ctp }/jquery-validation-1.13.1/dist/jquery.validate.min.js"></script>
 	

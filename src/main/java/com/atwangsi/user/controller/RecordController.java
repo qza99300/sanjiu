@@ -1,6 +1,7 @@
 package com.atwangsi.user.controller;
 
 import java.util.Date;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -17,7 +18,7 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 
 /**
- * 积分兑换明细
+ * 积分兑换记录
  * @author ou
  *
  */
@@ -27,6 +28,27 @@ public class RecordController {
 	
 	@Autowired
 	private RecordService recordService;
+	
+	/**
+	 * 模糊查询-根据兑换人名称来进行模糊查询
+	 * @param pageNum
+	 * @param pageSize
+	 * @param activityTitle
+	 * @return
+	 */
+	@RequestMapping("querryByLike")
+	@ResponseBody
+	public PageInfo<TbExchangeRecord> querryByLike(
+			@RequestParam(value = "pn", defaultValue = "1") Integer pageNum,
+			@RequestParam(value = "ps", defaultValue = "7") Integer pageSize,
+			@RequestParam("convertName") String convertName) {
+		
+		PageHelper.startPage(pageNum, pageSize);
+		
+		List<TbExchangeRecord> list =this.recordService.querryByLike(convertName);
+		
+				return new PageInfo<>(list, AppContant.PAGE_SIZE);
+	}
 	
 	/**
 	 * 添加

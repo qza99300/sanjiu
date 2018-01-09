@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.atwangsi.user.dao.TbIntegralProductMapper;
 import com.atwangsi.user.model.TbActivityManage;
 import com.atwangsi.user.model.TbIntegralProduct;
+import com.atwangsi.user.model.TbIntegralProductExample;
 import com.atwangsi.user.service.ProductService;
 
 @Service
@@ -51,8 +52,16 @@ public class ProductServiceImpl implements ProductService {
 
 	@Override
 	public TbIntegralProduct selectByPrimaryKey(int parseInt) {
-		
+		// TODO Auto-generated method stub
 		return productMapper.selectByPrimaryKey(parseInt);
+	}
+
+	@Override
+	public List<TbIntegralProduct> querryByLike(String productName) {
+		// TODO Auto-generated method stub
+		TbIntegralProductExample example = new TbIntegralProductExample();
+		example.createCriteria().andProductNameLike("%"+ productName + "%");
+		return this.productMapper.selectByExample(example);
 	}
 
 }

@@ -16,7 +16,7 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 
 /**
- * 系统管理--角色管理  测试ok
+ * 系统管理--角色管理 
  * @author ou
  *
  */
@@ -26,6 +26,27 @@ public class RoleController {
 	
 	@Autowired
 	private RoleService roleService;
+	
+	/**
+	 * 模糊查询-根据角色名称来进行模糊查询
+	 * @param pageNum
+	 * @param pageSize
+	 * @param activityTitle
+	 * @return
+	 */
+	@RequestMapping("querryByLike")
+	@ResponseBody
+	public PageInfo<TbRole> querryByLike(
+			@RequestParam(value = "pn", defaultValue = "1") Integer pageNum,
+			@RequestParam(value = "ps", defaultValue = "7") Integer pageSize,
+			@RequestParam("roleName") String roleName) {
+		
+		PageHelper.startPage(pageNum, pageSize);
+		
+		List<TbRole> list =this.roleService.querryByLike(roleName);
+		
+				return new PageInfo<>(list, AppContant.PAGE_SIZE);
+	}
 	
 	/**
 	 * 查看所有的角色

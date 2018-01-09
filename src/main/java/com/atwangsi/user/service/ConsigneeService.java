@@ -18,4 +18,6 @@ public interface ConsigneeService {
 
 	List<TbConsignee> querryById(Integer consigneeId);
 
+	List<TbConsignee> querryByLike(String consigneeName);
+
 }

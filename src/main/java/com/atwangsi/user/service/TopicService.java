@@ -16,4 +16,6 @@ public interface TopicService {
 
 	List<TbTopicManage> querryBytopicId(Integer topicId);
 
+	List<TbTopicManage> querryByLike(String userName);
+
 }

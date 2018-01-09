@@ -57,7 +57,7 @@
 				<div class="layui-inline">
 					<label class="layui-form-label">查询条件</label>
 					<div class="layui-input-block">
-						<input id="inputId" type="text" name="userId" placeholder="请输入用户id"
+						<input id="inputId" type="text" name="userName" placeholder="请输入用户名称"
 							class="layui-input">
 					</div>
 				</div>
@@ -68,6 +68,23 @@
 			</div>
 		</form>
 	</div>
+<!-- 	<div class="layui-field-box" style="margin-top: 10px;"> -->
+<!-- 		<form id="querryForm" class="layui-form" action=""> -->
+<!-- 			<div class="layui-form-item"> -->
+<!-- 				<div class="layui-inline"> -->
+<!-- 					<label class="layui-form-label">查询条件</label> -->
+<!-- 					<div class="layui-input-block"> -->
+<!-- 						<input id="inputId" type="text" name="userId" placeholder="请输入用户id" -->
+<!-- 							class="layui-input"> -->
+<!-- 					</div> -->
+<!-- 				</div> -->
+
+<!-- 				<div class="layui-inline" style="margin-top: -5px; margin-left: 5%;"> -->
+<!-- 					<button type="button" id="querryBtn" class="layui-btn layui-btn-primary-search">查询</button> -->
+<!-- 				</div> -->
+<!-- 			</div> -->
+<!-- 		</form> -->
+<!-- 	</div> -->
 
 
 	<!--table开始-->
@@ -78,11 +95,13 @@
 				<!-- 目录列表 -->
 				<tr>
 					<th width="30"><input id="allCheckBox" type="checkbox">全选</th>
-					<th>用户id</th>
+					<th>序号</th>
 					<th>用户名</th>
+					<th>微信昵称</th>
 					<th>积分总数</th>
 					<th>联系方式</th>
 					<th>邮箱</th>
+					<th>创建时间</th>
 					<th>操作</th>
 				</tr>
 			</thead>
@@ -116,10 +135,6 @@
 					<h4 class="modal-title" id="myModalLabel">新增用户窗口</h4>
 				</div>
 
-				<legend
-					style="font-size: 14px; border-bottom: 1px solid #fff; width: auto;">
-					<a style="color: red;">*为必填项</a>
-				</legend>
 				<div class="modal-body">
 					<form class="layui-form" id="addUser-form" action=""
 						style="width: 95%; margin: 10 auto;">
@@ -625,24 +640,51 @@
 			getusers();
 
 		});
+		
+		//时间格式化
+		function timeFormat(time) {
+
+			if (time == null) {
+				return null;
+			}
+			var datetime = new Date();
+			datetime.setTime(time);
+			var year = datetime.getFullYear();
+			var month = datetime.getMonth() + 1;
+			var date = datetime.getDate();
+			var hour = datetime.getHours();
+			if (hour <= 9) {
+				hour = "0" + hour;
+			}
+			var minute = datetime.getMinutes();
+			if (minute <= 9) {
+				minute = "0" + minute;
+			}
+
+			var second = datetime.getSeconds();
+			if (second <= 9) {
+
+				second = "0" + second;
+			}
+			return year + "-" + month + "-" + date;//+"."+mseconds;
+		};
+		
 
 		
 		//----------------------------------------------------------		
 
-		//根据查询id查询用户信息 
+		//根据查询名称查询用户信息 
 		$("#querryBtn").click(function() {
 
 			//获取表单数据
 			var params = $("#querryForm").serialize();
 			var dataVal = document.getElementById("inputId").value;
-			
 			page.pn = 1;//第一页数据
 			
-			if (dataVal = null) {
-				getusers();
-			}else{
-				
+			if (dataVal != null) {
 				getUserOne(params);
+			}else{
+				getusers();
 			}
 
 			//发起请求
@@ -785,7 +827,7 @@
 		$("body").on("click", ".deleteUserBtn", function() {
 
 			param.userIds = $(this).attr("userId");
-			layer.confirm("确认删除【" + param.userIds + "】号员工吗？", {
+			layer.confirm("确认删除该员工吗？", {
 				btn : [ '确定删除', '取消删除' ]
 			}, function() {
 				$.get("${ctp}/user/delUser", param, function(data) {
@@ -813,7 +855,7 @@
 			});
 
 
-			layer.confirm("确认删除【" + param.userIds + "】号员工吗？", {
+			layer.confirm("确认删除这些员工吗？", {
 				btn : [ "确定删除", "取消删除" ]
 			}, function() {
 				//删除员工
@@ -882,7 +924,8 @@
 		}
 		//获取用户的数据
 		function getUserOne(data) {
-			$.post("${ctp}/user/querry",data,function(data){
+			$.post("${ctp}/user/querryByLike",data,function(data){
+// 				console.log(data);
 				showUsers(data);
 			});
 		}
@@ -954,9 +997,11 @@
 				tr.append("<td><input type='checkbox' userId="+ this.userId +" class='itemCheckBox'></td>")
 				  .append("<td>" + this.userId + "</td>")
 				  .append("<td>" + this.userName+ "</td>")
-				  .append("<td>" + this.integralCount+ "</td>")
+				  .append("<td>" + this.wechatName+ "</td>")
+				  .append("<td>" + nullIsZero(this.integralCount) + "</td>")
 				  .append("<td>" + this.phone + "</td>")
 				  .append("<td>" + this.email + "</td>")
+				  .append("<td>" + timeFormat(this.createDate) + "</td>")
 				  .append(btnTd).appendTo($("#userTable tbody"));
 			});
 		}
@@ -1180,6 +1225,15 @@
 			});
 		});
 		
+	function nullIsZero(data){
+		
+		if (data == null) {
+			return data = 0;
+		}
+		return data;
+		
+		
+	}	
 	</script>
 </body>
 

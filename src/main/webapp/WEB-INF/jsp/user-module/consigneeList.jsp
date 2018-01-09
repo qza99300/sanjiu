@@ -28,9 +28,9 @@
 			<ul class="breadcrumb">
 				<li><a href="#"><i class="fa fa-home"></i>首页</a></li>
 				<li>»</li>
-				<li><a href="#">运单管理</a></li>
+				<li><a href="#">客户管理</a></li>
 				<li>»</li>
-				<li class="active">已完成货物运单</li>
+				<li class="active">地址管理</li>
 			</ul>
 		</div>
 	</div>
@@ -50,9 +50,9 @@
 		<form id="Consignee-form" class="layui-form" action="">
 			<div class="layui-form-item">
 				<div class="layui-inline">
-					<label class="layui-form-label">根据地址ID</label>
+					<label class="layui-form-label">查询条件</label>
 					<div class="layui-input-block">
-						<input id="inputId" type="text" name="consigneeId" placeholder="请输入用户id" class="layui-input">
+						<input id="inputId" type="text" name="consigneeName" placeholder="请输入兑换人名称" class="layui-input">
 					</div>
 				</div>
 
@@ -71,8 +71,9 @@
 			<thead>
 				<tr>
 					<th width="30"><input type="checkbox" id="allCheckBox">全选</th>
-					<th>id序号</th>
-					<th>用户Id</th>
+					<th>序号</th>
+					<th>用户名称</th><!-- js未改 -->
+					<th>收货人电话</th><!-- js未改 -->
 					<th>收货人名称</th>
 					<th>收货地址</th>
 					<th>操作</th>
@@ -395,6 +396,7 @@
 				tr.append("<td><input type='checkbox' consigneeId="+ this.consigneeId +" class='itemCheckBox'></td>")
 				  .append("<td>" + this.consigneeId + "</td>")
 				  .append("<td>" + this.userId + "</td>")
+				  .append("<td>" + this.phone + "</td>")
 				  .append("<td>" + this.consigneeName + "</td>")
 				  .append("<td>" + this.consigneePath)
 				  .append(btnTd).appendTo($("#consigneeTable"));
@@ -528,11 +530,12 @@
 			
 			//获取表单数据
 			var data = $("#Consignee-form").serialize();
+// 			alert(data);
 			var dataVal = document.getElementById("inputId").value;
 			
 			page.pn = 1;//第一页数据
 			
-			if (dataVal != null) {
+			if (dataVal) {
 				getConsigneeOne(data);
 			}else{
 				getConsignees();
@@ -541,7 +544,7 @@
 		
 		function getConsigneeOne(data){
 
-			$.post("${ctp}/consignee/querry",data,function(data){
+			$.post("${ctp}/consignee/querryByLike",data,function(data){
 				showconsignees(data);
 			});
 		}

@@ -34,6 +34,8 @@ public class IntegralController {
 	@Autowired
 	private IntegralService integralService;
 	
+	
+	
 	/**
 	 * 查询所有的积分规则
 	 * @param pageNum

@@ -70,4 +70,12 @@ public class RecordServiceImpl implements RecordService {
 		
 		return this.recordMapper.selectByExample(example);
 	}
+
+	@Override
+	public List<TbExchangeRecord> querryByLike(String convertName) {
+		// TODO Auto-generated method stub
+		TbExchangeRecordExample example = new TbExchangeRecordExample();
+		example.createCriteria().andConvertNameLike("%" + convertName +"%");
+		return this.recordMapper.selectByExample(example);
+	}
 }

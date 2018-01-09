@@ -54,7 +54,7 @@
 				<div class="layui-inline">
 					<label class="layui-form-label">角色序号</label>
 					<div class="layui-input-block">
-						<input id="inputId" type="text" name="roleId" placeholder="请输入角色id" class="layui-input">
+						<input id="inputId" type="text" name="roleName" placeholder="请输入角色名" class="layui-input">
 					</div>
 				</div>
 
@@ -65,6 +65,23 @@
 		</form>
 	</div>
 
+<!-- 	<div class="layui-field-box" style="margin-top: 10px;"> -->
+<!-- 		<form id="querryRoleForm" class="layui-form" action=""> -->
+<!-- 			<div class="layui-form-item"> -->
+
+<!-- 				<div class="layui-inline"> -->
+<!-- 					<label class="layui-form-label">角色序号</label> -->
+<!-- 					<div class="layui-input-block"> -->
+<!-- 						<input id="inputId" type="text" name="roleId" placeholder="请输入角色id" class="layui-input"> -->
+<!-- 					</div> -->
+<!-- 				</div> -->
+
+<!-- 				<div class="layui-inline" style="margin-top: -5px; margin-left: 5%;"> -->
+<!-- 					<button id="querryOneBtn" type="button" class="layui-btn layui-btn-primary-search">查询</button> -->
+<!-- 				</div> -->
+<!-- 			</div> -->
+<!-- 		</form> -->
+<!-- 	</div> -->
 
 	<!--table开始-->
 	<div id="gundong">
@@ -435,7 +452,7 @@
 		});
 		
 		function getRoleOne(data){
-			$.post("${ctp}/role/roles",data,function(data){
+			$.post("${ctp}/role/querryByLike",data,function(data){
 				showRoles(data);
 			});
 		}

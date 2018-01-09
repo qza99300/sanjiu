@@ -19,4 +19,6 @@ public interface ProductService {
 
 	TbIntegralProduct selectByPrimaryKey(int parseInt);
 
+	List<TbIntegralProduct> querryByLike(String productName);
+
 }

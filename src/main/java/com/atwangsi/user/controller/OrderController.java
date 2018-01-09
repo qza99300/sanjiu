@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.atwangsi.base.model.AppContant;
 import com.atwangsi.base.model.ResultVO;
+import com.atwangsi.user.model.TbConsignee;
 import com.atwangsi.user.model.TbExchangeOrder;
 import com.atwangsi.user.service.OrderService;
 import com.github.pagehelper.PageHelper;
@@ -31,6 +32,27 @@ public class OrderController {
 
 	@Autowired
 	private OrderService orderService;
+	
+	/**
+	 * 模糊查询-商品名称
+	 * @param pageNum
+	 * @param pageSize
+	 * @param productName
+	 * @return
+	 */
+	@RequestMapping("querryByLike")
+	@ResponseBody
+	public PageInfo<TbExchangeOrder> querryByLike(
+			@RequestParam(value = "pn", defaultValue = "1") Integer pageNum,
+			@RequestParam(value = "ps", defaultValue = "7") Integer pageSize,
+			@RequestParam("productName") String productName) {
+		
+		PageHelper.startPage(pageNum, pageSize);
+		
+		List<TbExchangeOrder> list =this.orderService.querryByLike(productName);
+		
+				return new PageInfo<>(list, AppContant.PAGE_SIZE);
+	}
 
 	/**
 	 * 查询所有的订单

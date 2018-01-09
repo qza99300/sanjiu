@@ -18,4 +18,6 @@ public interface ActivityManageService {
 
 	TbActivityManage selectByPrimaryKey(Integer parseInt);
 
+	List<TbActivityManage> querryByLike(String activityTitle);
+
 }

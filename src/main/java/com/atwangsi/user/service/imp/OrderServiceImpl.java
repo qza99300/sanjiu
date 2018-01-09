@@ -73,6 +73,14 @@ public class OrderServiceImpl implements OrderService {
 		example.createCriteria().andUserIdEqualTo(userId);
 		
 		return this.orderMapper.selectByExample(example);
+	}
+
+	@Override
+	public List<TbExchangeOrder> querryByLike(String productName) {
+		// TODO Auto-generated method stub
+		TbExchangeOrderExample example = new TbExchangeOrderExample();
+		example.createCriteria().andProductNameLike("%"+productName+"%");
+		return this.orderMapper.selectByExample(example);
 	} 
 
 }

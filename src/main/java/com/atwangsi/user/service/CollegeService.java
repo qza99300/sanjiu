@@ -14,5 +14,7 @@ public interface CollegeService {
 
 	TbCollegeSynopsis queryIntroByid(Integer collegeId);
 
+	List<TbCollegeSynopsis> querryByLike(String activityTitle);
+
 
 }

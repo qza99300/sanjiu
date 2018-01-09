@@ -95,9 +95,9 @@ select {
 		<form class="layui-form" id="activity-form" action="">
 			<div class="layui-form-item">
 				<div class="layui-inline">
-					<label class="layui-form-label">物品id</label>
+					<label class="layui-form-label">查询条件</label>
 					<div class="layui-input-block">
-						<input type="text" placeholder="请输入物品id" name="productId" id="inputId" class="layui-input">
+						<input type="text" placeholder="请输入物品名称" name="productName" id="inputId" class="layui-input">
 					</div>
 				</div>
 
@@ -108,16 +108,32 @@ select {
 		</form>
 	</div>
 
+<!-- 	<div class="layui-field-box" style="margin-top: 10px;"> -->
+<!-- 		<form class="layui-form" id="activity-form" action=""> -->
+<!-- 			<div class="layui-form-item"> -->
+<!-- 				<div class="layui-inline"> -->
+<!-- 					<label class="layui-form-label">物品id</label> -->
+<!-- 					<div class="layui-input-block"> -->
+<!-- 						<input type="text" placeholder="请输入物品id" name="productId" id="inputId" class="layui-input"> -->
+<!-- 					</div> -->
+<!-- 				</div> -->
+
+<!-- 				<div class="layui-inline" style="margin-top: -5px; margin-left: 5%;"> -->
+<!-- 					<button id="querryOneBtn" type="button" class="layui-btn layui-btn-primary-search">查询</button> -->
+<!-- 				</div> -->
+<!-- 			</div> -->
+<!-- 		</form> -->
+<!-- 	</div> -->
 
 	<!--table开始-->
 	<table class="site-table table-hover" id="activityTable">
 		<thead>
 			<tr>
 				<th>序号</th>
-				<th>商品图片</th>
+<!-- 				<th>商品图片</th> -->
 				<th>商品名称</th>
 				<th>兑换积分</th>
-				<th>剩余数量</th>
+				<th>商品数量</th>
 				<th>创建日期</th>
 				<th>操作</th>
 			</tr>
@@ -354,7 +370,7 @@ select {
 
 				tr
 				  .append("<td>" + this.productId + "</td>")
-				  .append("<td>" +  + "</td>")
+// 				  .append("<td>" +  + "</td>")
 				  .append("<td>" + this.productName + "</td>")
 				  .append("<td>" + this.productIntegral + "</td>")
 				  .append("<td>" + this.productCount + "</td>")
@@ -503,7 +519,7 @@ select {
 		});
 		
 		function getActivityOne(data){
-			$.post("${ctp}/product/querry",data,function(data){
+			$.post("${ctp}/product/querryByLike",data,function(data){
 				showActivitys(data);
 			});
 			

@@ -20,4 +20,6 @@ public interface RecordService {
 
 	List<TbExchangeRecord> querryByRecordPhone(String phone);
 
+	List<TbExchangeRecord> querryByLike(String convertName);
+
 }

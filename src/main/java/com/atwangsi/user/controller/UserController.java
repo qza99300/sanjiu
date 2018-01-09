@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.atwangsi.base.model.AppContant;
 import com.atwangsi.base.model.ResultVO;
 import com.atwangsi.base.utils.StringUtil;
+import com.atwangsi.user.model.TbExchangeRecord;
 import com.atwangsi.user.model.TbRole;
 import com.atwangsi.user.model.TbUser;
 import com.atwangsi.user.service.RoleService;
@@ -38,6 +39,30 @@ public class UserController {
 
 	@Autowired
 	private RoleService roleService;
+	
+	
+	
+	
+	/**
+	 * 模糊查询-根据用户名称来进行模糊查询
+	 * @param pageNum
+	 * @param pageSize
+	 * @param 
+	 * @return
+	 */
+	@RequestMapping("querryByLike")
+	@ResponseBody
+	public PageInfo<TbUser> querryByLike(
+			@RequestParam(value = "pn", defaultValue = "1") Integer pageNum,
+			@RequestParam(value = "ps", defaultValue = "7") Integer pageSize,
+			@RequestParam("userName") String userName) {
+		
+		PageHelper.startPage(pageNum, pageSize);
+		
+		List<TbUser> list =this.userService.querryByLike(userName);
+		
+				return new PageInfo<>(list, AppContant.PAGE_SIZE);
+	}
 
 	/**
 	 * 增加用户 ok 但是username不能做到唯一用户，待处理
@@ -49,6 +74,7 @@ public class UserController {
 	@ResponseBody
 	public ResultVO<Object> saveUser(TbUser user) {
 		
+		user.setIntegralCount(10);
 		user.setCreateDate(new Date());
 
 		try {

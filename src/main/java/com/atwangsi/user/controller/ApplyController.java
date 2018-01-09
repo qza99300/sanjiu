@@ -1,6 +1,7 @@
 package com.atwangsi.user.controller;
 
 import java.util.Date;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -9,12 +10,19 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.alibaba.fastjson.JSONObject;
+import com.atwangsi.base.model.AppContant;
 import com.atwangsi.base.model.ResultVO;
 import com.atwangsi.user.model.TbActivityApply;
+import com.atwangsi.user.model.TbActivityManage;
 import com.atwangsi.user.service.ApplyService;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 
+/**
+ * 报名明细
+ * @author ou
+ *
+ */
 @Controller
 @RequestMapping("apply")
 public class ApplyController {
@@ -22,6 +30,29 @@ public class ApplyController {
 	@Autowired
 	private ApplyService applyService;
 
+	/**
+	 * 模糊查询
+	 * @param pageNum
+	 * @param pageSize
+	 * @param activityTitle
+	 * @return
+	 */
+	@RequestMapping("querryByLike")
+	@ResponseBody
+	public PageInfo<TbActivityApply> querryByLike(
+			@RequestParam(value = "pn", defaultValue = "1") Integer pageNum,
+			@RequestParam(value = "ps", defaultValue = "7") Integer pageSize,
+			@RequestParam("title") String title) {
+		
+		PageHelper.startPage(pageNum, pageSize);
+		
+		List<TbActivityApply> list =this.applyService.querryByLike(title);
+		
+		return new PageInfo<>(list, AppContant.PAGE_SIZE);
+		
+		
+	}
+	
 	/**
 	 * 根据用户id查询所有的报名信息
 	 * @param pageNum

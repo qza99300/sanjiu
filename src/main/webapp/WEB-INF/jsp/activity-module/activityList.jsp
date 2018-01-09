@@ -52,9 +52,9 @@
 						<div class="layui-form-item">
 			
 							<div class="layui-inline">
-								<label class="layui-form-label">根据id查询</label>
+								<label class="layui-form-label">标题查询</label>
 								<div class="layui-input-block">
-									<input id="inputId" type="text" name="activityId" placeholder="请输入活动序号" class="layui-input">
+									<input id="inputId" type="text" name="activityTitle" placeholder="请输入活动标题" class="layui-input">
 								</div>
 							</div>
 			
@@ -64,6 +64,23 @@
 						</div>
 					</form>
 				</div>
+<!-- 				<div class="layui-field-box" style="margin-top: 10px;"> -->
+<!-- 					<form id="activity-form" class="layui-form" action=""> -->
+<!-- 						<div class="layui-form-item"> -->
+			
+<!-- 							<div class="layui-inline"> -->
+<!-- 								<label class="layui-form-label">根据id查询</label> -->
+<!-- 								<div class="layui-input-block"> -->
+<!-- 									<input id="inputId" type="text" name="activityId" placeholder="请输入活动序号" class="layui-input"> -->
+<!-- 								</div> -->
+<!-- 							</div> -->
+			
+<!-- 							<div class="layui-inline" style="margin-top: -5px; margin-left: 5%;"> -->
+<!-- 								<button id="querryOneBtn" type="button" class="layui-btn layui-btn-primary-search">查询</button> -->
+<!-- 							</div> -->
+<!-- 						</div> -->
+<!-- 					</form> -->
+<!-- 				</div> -->
 				
 				<div id="gundong">
 					<table id="activityTable" class="site-table table-hover"
@@ -71,10 +88,12 @@
 						<thead>
 							<tr>
 								<th width="30"><input id="allCheckBox" type="checkbox">全选</th>
-								<th>活动序号</th>
+								<th>序号</th>
 								<th>活动人数</th>
 								<th>活动主题</th>
 								<th>活动状态</th>
+								<th>所在区域</th>
+								<th>创建人</th>
 								<th>操作</th>
 							</tr>
 						</thead>
@@ -492,6 +511,8 @@
 				  .append("<td>" + this.activityNum + "</td>")
 				  .append("<td>" + this.activityTitle + "</td>")
 				  .append("<td>" + this.activityStatus + "</td>")
+				  .append("<td>" + this.area + "</td>")
+				  .append("<td>" + nullIsZero(this.createBy) + "</td>")
 				  .append(btnTd)
 				  .appendTo($("#activityTable"));
 			});
@@ -634,7 +655,7 @@
 		});
 		
 		function getActivityOne(data){
-			$.post("${ctp}/activity/querryOne",data,function(data){
+			$.post("${ctp}/activity/querryByLike",data,function(data){
 				showActivitys(data);
 			});
 			
@@ -715,6 +736,17 @@
 			
 			
 		});
+		
+		
+		function nullIsZero(data){
+			
+			if (data == null) {
+				return data = "";
+			}
+			return data;
+			
+			
+		}	
 
 		//---------------------------------------------------------------------------------------------
 		

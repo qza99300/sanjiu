@@ -65,7 +65,7 @@ select {
 				<div class="layui-inline">
 					<label class="layui-form-label">话题序号</label>
 					<div class="layui-input-block">
-						<input id="inputId" name="topicId" type="text" placeholder="请输入话题id" class="layui-input">
+						<input id="inputId" name="userName" type="text" placeholder="请输入用户名" class="layui-input">
 					</div>
 				</div>
 
@@ -75,6 +75,24 @@ select {
 			</div>
 		</form>
 	</div>
+	
+<!-- 	<div class="layui-field-box" style="margin-top: 10px;"> -->
+<!-- 		<form id="querryByIdForm"  class="layui-form" action=""> -->
+<!-- 			<div class="layui-form-item"> -->
+			
+<!-- 				<div class="layui-inline"> -->
+<!-- 					<label class="layui-form-label">话题序号</label> -->
+<!-- 					<div class="layui-input-block"> -->
+<!-- 						<input id="inputId" name="topicId" type="text" placeholder="请输入话题id" class="layui-input"> -->
+<!-- 					</div> -->
+<!-- 				</div> -->
+
+<!-- 				<div class="layui-inline" style="margin-top: -5px; margin-left: 5%;"> -->
+<!-- 					<button id="querryOneBtn" type="button" class="layui-btn layui-btn-primary-search">查询</button> -->
+<!-- 				</div> -->
+<!-- 			</div> -->
+<!-- 		</form> -->
+<!-- 	</div> -->
 	<!--table开始-->
 	<table id="topicTable" class="site-table table-hover">
 		<thead>
@@ -530,7 +548,7 @@ select {
 		
 		function gettopicOne(data){
 
-			$.post("${ctp}/topic/querry",data,function(data){
+			$.post("${ctp}/topic/querryByLike",data,function(data){
 				showTopics(data);
 			});
 		}

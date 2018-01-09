@@ -18,4 +18,6 @@ public interface OrderService {
 
 	List<TbExchangeOrder> querryByUserId(Integer userId);
 
+	List<TbExchangeOrder> querryByLike(String productName);
+
 }

@@ -76,4 +76,12 @@ public class ApplyServiceImpl implements ApplyService {
 		return this.applyMapper.selectByPrimaryKey(parseInt);
 	}
 
+	@Override
+	public List<TbActivityApply> querryByLike(String activityTitle) {
+		// TODO Auto-generated method stub
+		TbActivityApplyExample example = new TbActivityApplyExample();
+		example.createCriteria().andActivityTitleLike("%"+ activityTitle + "%");
+		return this.applyMapper.selectByExample(example);
+	}
+
 }

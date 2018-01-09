@@ -80,6 +80,14 @@ public class ConsigneeServiceImpl implements ConsigneeService {
 		return list;
 	}
 
+	@Override
+	public List<TbConsignee> querryByLike(String consigneeName) {
+		// TODO Auto-generated method stub
+		TbConsigneeExample example = new TbConsigneeExample();
+		example.createCriteria().andConsigneeNameLike("%"+consigneeName + "%");
+		return this.consigneeMapper.selectByExample(example);
+	}
+
 	
 
 }

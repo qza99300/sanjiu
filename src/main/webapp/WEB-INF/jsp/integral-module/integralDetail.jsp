@@ -48,10 +48,25 @@
 
 	<!--筛选开始-->
 	<div class="layui-field-box">
+		<form id="querrtByPhoneForm1" class="layui-form" action="">
+			<div class="layui-form-item">
+				<div class="layui-inline">
+					<label class="layui-form-label">查询条件</label>
+					<div class="layui-input-block">
+						<input id="inputId1" type="text" name="convertName"  placeholder="请输入联系人名称" class="layui-input">
+					</div>
+				</div>
+
+				<div class="layui-inline" style="margin-top: -5px; margin-left: 5%;">
+					<button id="querryOneBtn1" type="button" class="layui-btn layui-btn-primary-search">查询</button>
+				</div>
+			</div>
+		</form>
+		
 		<form id="querrtByPhoneForm" class="layui-form" action="">
 			<div class="layui-form-item">
 				<div class="layui-inline">
-					<label class="layui-form-label">手机号</label>
+					<label class="layui-form-label">查询条件</label>
 					<div class="layui-input-block">
 						<input id="inputId" type="text" name="convertPhone"  placeholder="请输入手机号" class="layui-input">
 					</div>
@@ -591,9 +606,29 @@
 			}
 			
 		});
+		$("#querryOneBtn1").click(function(){
+			
+			var data = $("#querrtByPhoneForm1").serialize();
+			var dataVal = document.getElementById("inputId1").value;
+			page.pn = 1;//第一页数据
+			
+			if (dataVal) {
+				getRecordLike(data);
+			}else{
+				getRecords();
+			}
+			
+		});
 		
 		function getRecordOne(data){
 			$.post("${ctp}/record/querryByPhone",data,function(data){
+				console.log(data);				
+				showrecords(data);
+			});	
+		}
+		
+		function getRecordLike(data){
+			$.post("${ctp}/record/querryByLike",data,function(data){
 				console.log(data);				
 				showrecords(data);
 			});	

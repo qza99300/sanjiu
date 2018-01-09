@@ -30,6 +30,28 @@ public class ActivityManageController {
 	private ActivityManageService activityManageService;
 
 	/**
+	 * 模糊查询-根据标题来进行模糊查询
+	 * @param pageNum
+	 * @param pageSize
+	 * @param activityTitle
+	 * @return
+	 */
+	@RequestMapping("querryByLike")
+	@ResponseBody
+	public PageInfo<TbActivityManage> querryByLike(
+			@RequestParam(value = "pn", defaultValue = "1") Integer pageNum,
+			@RequestParam(value = "ps", defaultValue = "7") Integer pageSize,
+			@RequestParam("activityTitle") String activityTitle) {
+		
+		PageHelper.startPage(pageNum, pageSize);
+		
+		List<TbActivityManage> list =this.activityManageService.querryByLike(activityTitle);
+		
+				return new PageInfo<>(list, AppContant.PAGE_SIZE);
+	}
+	
+	
+	/**
 	 * 查看所有的活动
 	 * @param pageNum
 	 * @param pageSize

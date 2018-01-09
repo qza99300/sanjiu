@@ -178,4 +178,12 @@ public class UserServiceImpl implements UserService {
 		return list;
 	}
 
+	@Override
+	public List<TbUser> querryByLike(String userName) {
+		// TODO Auto-generated method stub
+		TbUserExample example = new TbUserExample();
+		example.createCriteria().andUserNameLike("%" +userName + "%");
+		return this.userMapper.selectByExample(example);
+	}
+
 }

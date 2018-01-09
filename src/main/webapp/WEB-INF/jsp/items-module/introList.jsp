@@ -91,33 +91,48 @@ select {
 
 	<!--筛选开始-->
 	<div class="layui-field-box" style="margin-top: 10px;">
-		<form id="introForm" class="layui-form" action="">
+		<form id="collegeIntroForm" class="layui-form" action="">
 			<div class="layui-form-item">
 				<div class="layui-inline">
 					<label class="layui-form-label">查询条件</label>
 					<div class="layui-input-block">
-						<input id="inputId" name="collegeId" type="text" placeholder="请输入简介id号" class="layui-input">
+						<input id="inputId" name="titleCollege" type="text" placeholder="请输入简介标题" class="layui-input">
 					</div>
 				</div>
 
 				<div class="layui-inline" style="margin-top: -5px; margin-left: 5%;">
 					<button id="querryBtn" type="button" class="layui-btn layui-btn-primary-search">查询</button>
 				</div>
-
-
 			</div>
 		</form>
 	</div>
 
+<!-- 	<div class="layui-field-box" style="margin-top: 10px;"> -->
+<!-- 		<form id="introForm" class="layui-form" action=""> -->
+<!-- 			<div class="layui-form-item"> -->
+<!-- 				<div class="layui-inline"> -->
+<!-- 					<label class="layui-form-label">查询条件</label> -->
+<!-- 					<div class="layui-input-block"> -->
+<!-- 						<input id="inputId" name="collegeId" type="text" placeholder="请输入简介id号" class="layui-input"> -->
+<!-- 					</div> -->
+<!-- 				</div> -->
+
+<!-- 				<div class="layui-inline" style="margin-top: -5px; margin-left: 5%;"> -->
+<!-- 					<button id="querryBtn" type="button" class="layui-btn layui-btn-primary-search">查询</button> -->
+<!-- 				</div> -->
+<!-- 			</div> -->
+<!-- 		</form> -->
+<!-- 	</div> -->
 
 	<!--table开始-->
 	<table id="collegeTable" class="site-table table-hover" style="width: 100%;">
 		<thead>
 			<tr>
 				<th width="30px"><input type="checkbox" id="allCheckBox">全选</th>
-				<th>id</th>
-				<th>用户id</th>
-				<th>简介标题</th>
+				<th>序号</th>
+				<th>用户</th>
+				<th>标题</th>
+				<th>创建时间</th>
 				<th>操作</th>
 			</tr>
 		</thead>
@@ -284,8 +299,36 @@ select {
 <%@include file="/commons/common-js.jsp"%>
 
 	<script type="text/javascript">
-	
+	<%@include file="/commons/commons-timeFormat.jsp"%>
 		var param = {};
+		
+		//时间格式化
+		function timeFormat(time) {
+
+			if (time == null) {
+				return null;
+			}
+			var datetime = new Date();
+			datetime.setTime(time);
+			var year = datetime.getFullYear();
+			var month = datetime.getMonth() + 1;
+			var date = datetime.getDate();
+			var hour = datetime.getHours();
+			if (hour <= 9) {
+				hour = "0" + hour;
+			}
+			var minute = datetime.getMinutes();
+			if (minute <= 9) {
+				minute = "0" + minute;
+			}
+
+			var second = datetime.getSeconds();
+			if (second <= 9) {
+
+				second = "0" + second;
+			}
+			return year + "-" + month + "-" + date;//+"."+mseconds;
+		};
 		
 		$('#gundong').niceScroll({
 			cursorcolor : "#ccc",//#CC0071 光标颜色
@@ -322,7 +365,7 @@ select {
 		
 		function getCollegeOne(data){
 			
-			$.post("${ctp}/college/querry",data,function(data){
+			$.post("${ctp}/college/querryByLike",data,function(data){
 				showcolleges(data);
 			});
 		}
@@ -356,6 +399,7 @@ select {
 				  .append("<td>" + this.collegeId + "</td>")
 				  .append("<td>" + this.userId + "</td>")
 				  .append("<td>" + this.titleCollege + "</td>")
+				  .append("<td>" + timeFormat(this.createDate) + "</td>")
 				  .append(btnTd)
 				  .appendTo($("#collegeTable"));
 			});
@@ -418,16 +462,17 @@ select {
 		$("body").on("click", ".deleteCollegeBtn", function() {
 
 			param.collegeIds = $(this).attr("collegeId");
-			layer.confirm("确认删除【" + param.collegeIds + "】号员工吗？", {
+// 			alert(param);
+			layer.confirm("确认删除该简介吗？", {
 				btn : [ '确定删除', '取消删除' ]
 			}, function() {
 				$.get("${ctp}/college/deleteIntro", param, function(data) {
-					layer.msg(data.msg);
+// 					layer.msg(data.msg);
+					location.reload();
 				});
-// 				location.reload();
 
 				//跳转当前页
-				page.pn = page.pageNum;
+				page.pn = page.lastPage;
 				getColleges();
 			}, function() {
 				layer.msg("....");
@@ -439,7 +484,7 @@ select {
 		//----------------------------------------------
 		$("#querryBtn").click(function(){
 			
-			var data = $("#introForm").serialize();
+			var data = $("#collegeIntroForm").serialize();
 			var dataVal = document.getElementById("inputId").value;
 			
 			page.pn = 1;//第一页数据

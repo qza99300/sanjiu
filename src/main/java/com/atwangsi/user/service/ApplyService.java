@@ -22,4 +22,6 @@ public interface ApplyService {
 
 	TbActivityApply selectByPrimaryKey(int parseInt);
 
+	List<TbActivityApply> querryByLike(String activityTitle);
+
 }

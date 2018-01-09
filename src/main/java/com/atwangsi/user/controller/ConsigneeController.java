@@ -30,6 +30,27 @@ public class ConsigneeController {
 	private ConsigneeService consigneeService;
 	
 	/**
+	 * 根据收货人名称来进行模糊查询
+	 * @param pageNum
+	 * @param pageSize
+	 * @param consigneeName
+	 * @return
+	 */
+	@RequestMapping("querryByLike")
+	@ResponseBody
+	public PageInfo<TbConsignee> querryByLike(
+			@RequestParam(value = "pn", defaultValue = "1") Integer pageNum,
+			@RequestParam(value = "ps", defaultValue = "7") Integer pageSize,
+			@RequestParam("consigneeName") String consigneeName) {
+		
+		PageHelper.startPage(pageNum, pageSize);
+		
+		List<TbConsignee> list =this.consigneeService.querryByLike(consigneeName);
+		
+				return new PageInfo<>(list, AppContant.PAGE_SIZE);
+	}
+	
+	/**
 	 * 添加收货人地址
 	 * @param consignee
 	 * @return

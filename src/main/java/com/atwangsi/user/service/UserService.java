@@ -26,4 +26,6 @@ public interface UserService {
 
 	List<TbUser> getAllUser();
 
+	List<TbUser> querryByLike(String userName);
+
 }

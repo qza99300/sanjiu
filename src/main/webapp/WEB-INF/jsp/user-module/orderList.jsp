@@ -48,13 +48,12 @@
 
 	<!--筛选开始-->
 	<div class="layui-field-box" style="margin-top: 10px;">
-		<form id="querryForm" class="layui-form"
-			action="${ctp }/order/querryOne">
+		<form id="querryForm" class="layui-form" action="">
 			<div class="layui-form-item">
 				<div class="layui-inline">
 					<label class="layui-form-label">查询条件</label>
 					<div class="layui-input-block">
-						<input id="inputId" type="text" name="userId" placeholder="请输入用户id"
+						<input id="inputId" type="text" name="productName" placeholder="请输入商品名称"
 							class="layui-input">
 					</div>
 				</div>
@@ -65,6 +64,25 @@
 			</div>
 		</form>
 	</div>
+	
+<!-- 	<div class="layui-field-box" style="margin-top: 10px;"> -->
+<!-- 		<form id="querryForm" class="layui-form" -->
+<%-- 			action="${ctp }/order/querryOne"> --%>
+<!-- 			<div class="layui-form-item"> -->
+<!-- 				<div class="layui-inline"> -->
+<!-- 					<label class="layui-form-label">查询条件</label> -->
+<!-- 					<div class="layui-input-block"> -->
+<!-- 						<input id="inputId" type="text" name="userId" placeholder="请输入用户id" -->
+<!-- 							class="layui-input"> -->
+<!-- 					</div> -->
+<!-- 				</div> -->
+
+<!-- 				<div class="layui-inline" style="margin-top: -5px; margin-left: 5%;"> -->
+<!-- 					<button id="querryByUserId" type="button" class="layui-btn layui-btn-primary-search">查询</button> -->
+<!-- 				</div> -->
+<!-- 			</div> -->
+<!-- 		</form> -->
+<!-- 	</div> -->
 
 
 	<!--table开始-->
@@ -75,11 +93,13 @@
 				<!-- 目录列表 -->
 				<tr>
 					<th height="1" width="30"><input id="allCheckBox" type="checkbox">全选</th>
-					<th>编号ID</th>
-					<th>用户ID</th>
-					<th>微信昵称</th>
-					<th>商品ID</th>
+					<th>序号</th>
+					<th>用户名称</th><!-- 后台js未改 -->
+					<th>微信名称</th>
 					<th>商品名称</th>
+					<th>收货人名称</th>
+					<th>收货人电话</th>
+					<th>收货人地址</th>
 					<th>操作</th>
 				</tr>
 			</thead>
@@ -636,8 +656,10 @@
 				  .append("<td>" + this.id + "</td>")
 				  .append("<td>" + this.userId + "</td>")
 				  .append("<td>" + this.wechatName+ "</td>")
-				  .append("<td>" + this.productId + "</td>")
 				  .append("<td>" + this.productName + "</td>")
+				  .append("<td>" + this.consigneeName + "</td>")
+				  .append("<td>" + this.phone + "</td>")
+				  .append("<td>" + this.consigneePath + "</td>")
 				  .append(btnTd).appendTo($("#orderTable tbody"));
 			});
 		}
@@ -745,7 +767,8 @@
 		
 	function getOrderOne(data){
 		
-		$.post("${ctp}/order/querry",data,function(data){
+		$.post("${ctp}/order/querryByLike",data,function(data){
+			console.log(data);
 			showOrders(data);
 		});
 		

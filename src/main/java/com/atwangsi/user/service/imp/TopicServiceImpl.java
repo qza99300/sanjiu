@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.atwangsi.user.dao.TbTopicManageMapper;
 import com.atwangsi.user.model.TbTopicManage;
+import com.atwangsi.user.model.TbTopicManageExample;
 import com.atwangsi.user.service.TopicService;
 
 @Service
@@ -47,6 +48,14 @@ public class TopicServiceImpl implements TopicService {
 		List<TbTopicManage> arrayList = new ArrayList<>();
 		arrayList.add(this.topicManageMapper.selectByPrimaryKey(topicId));
 		return arrayList;
+	}
+
+	@Override
+	public List<TbTopicManage> querryByLike(String userName) {
+		// TODO Auto-generated method stub
+		TbTopicManageExample example = new TbTopicManageExample();
+		example.createCriteria().andUserNameLike("%" + userName +"%");
+		return this.topicManageMapper.selectByExample(example);
 	}
 
 }

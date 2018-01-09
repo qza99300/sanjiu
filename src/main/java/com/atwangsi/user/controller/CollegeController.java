@@ -12,13 +12,14 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.atwangsi.base.model.AppContant;
 import com.atwangsi.base.model.ResultVO;
+import com.atwangsi.user.model.TbActivityManage;
 import com.atwangsi.user.model.TbCollegeSynopsis;
 import com.atwangsi.user.service.CollegeService;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 
 /**
- * 学院简介和学院特点
+ * 学院简介
  * 
  * 简介增删查已经做完，测试ok
  * @author ou
@@ -31,6 +32,21 @@ public class CollegeController {
 	//创建一个collegeservice
 	@Autowired
 	private CollegeService collegeService;
+	
+	
+	@RequestMapping("querryByLike")
+	@ResponseBody
+	public PageInfo<TbCollegeSynopsis> querryByLike(
+			@RequestParam(value = "pn", defaultValue = "1") Integer pageNum,
+			@RequestParam(value = "ps", defaultValue = "7") Integer pageSize,
+			@RequestParam("titleCollege") String titleCollege) {
+		
+		PageHelper.startPage(pageNum, pageSize);
+		
+		List<TbCollegeSynopsis> list =this.collegeService.querryByLike(titleCollege);
+		
+				return new PageInfo<>(list, AppContant.PAGE_SIZE);
+	}
 	
 	/**
 	 * 获取所有的简介

@@ -1,6 +1,7 @@
 package com.atwangsi.user.controller;
 
 import java.util.Date;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.atwangsi.base.model.AppContant;
 import com.atwangsi.base.model.ResultVO;
+import com.atwangsi.user.model.TbExchangeRecord;
 import com.atwangsi.user.model.TbTopicManage;
 import com.atwangsi.user.service.TopicService;
 import com.github.pagehelper.PageHelper;
@@ -26,6 +28,27 @@ public class TopicController {
 	
 	@Autowired
 	private TopicService topicService;
+	
+	/**
+	 * 模糊查询-根据兑换人名称来进行模糊查询
+	 * @param pageNum
+	 * @param pageSize
+	 * @param activityTitle
+	 * @return
+	 */
+	@RequestMapping("querryByLike")
+	@ResponseBody
+	public PageInfo<TbTopicManage> querryByLike(
+			@RequestParam(value = "pn", defaultValue = "1") Integer pageNum,
+			@RequestParam(value = "ps", defaultValue = "7") Integer pageSize,
+			@RequestParam("userName") String userName) {
+		
+		PageHelper.startPage(pageNum, pageSize);
+		
+		List<TbTopicManage> list =this.topicService.querryByLike(userName);
+		
+				return new PageInfo<>(list, AppContant.PAGE_SIZE);
+	}
 	
 	/**
 	 * 添加

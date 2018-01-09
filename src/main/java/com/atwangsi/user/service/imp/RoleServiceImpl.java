@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 
 import com.atwangsi.user.dao.TbRoleMapper;
 import com.atwangsi.user.dao.TbUserroleMapper;
-import com.atwangsi.user.model.TbIntegralRule;
 import com.atwangsi.user.model.TbRole;
 import com.atwangsi.user.model.TbRoleExample;
 import com.atwangsi.user.model.TbUserroleExample;
@@ -151,6 +150,14 @@ public class RoleServiceImpl implements RoleService {
 		
 		
 		return this.roleMapper.updateByPrimaryKey(role) > 0;
+	}
+
+	@Override
+	public List<TbRole> querryByLike(String roleName) {
+		// TODO Auto-generated method stub
+		TbRoleExample example = new TbRoleExample();
+		example.createCriteria().andRoleNameLike("%"+roleName+"%");
+		return this.roleMapper.selectByExample(example);
 	}
 
 

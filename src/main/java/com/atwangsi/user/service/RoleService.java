@@ -2,7 +2,6 @@ package com.atwangsi.user.service;
 
 import java.util.List;
 
-import com.atwangsi.user.model.TbIntegralRule;
 import com.atwangsi.user.model.TbRole;
 
 public interface RoleService {
@@ -22,5 +21,7 @@ public interface RoleService {
 	List<TbRole> getRoleById(Integer roleId);
 
 	Boolean updateRole(TbRole role);
+
+	List<TbRole> querryByLike(String roleName);
 	
 }

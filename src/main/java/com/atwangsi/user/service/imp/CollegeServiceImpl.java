@@ -67,6 +67,14 @@ public class CollegeServiceImpl implements CollegeService {
 		
 		return this.collegeSynopsisMapper.selectByPrimaryKey(collegeId);
 	}
+
+	@Override
+	public List<TbCollegeSynopsis> querryByLike(String activityTitle) {
+		// TODO Auto-generated method stub
+		TbCollegeSynopsisExample example = new TbCollegeSynopsisExample();
+		example.createCriteria().andTitleCollegeLike("%"+ activityTitle +"%");
+		return this.collegeSynopsisMapper.selectByExample(example);
+	}
 	
 		
 
