@@ -61,15 +61,15 @@
 			<tr>
 				<div class="layui-form-item2" id="updateUserDiv">
 					<div class="layui-inline">
-						<label class="layui-form-label2"><a style="color: red;">*</a>用户id</label>
+						<label class="layui-form-label2">用户ID</label>
 						<div class="layui-input-block">
-							<input type="text" name="userName"
+							<input type="text" name="userId"
 								value="${loginUser.userId }" disabled="disabled"
 								class="layui-input">
 						</div>
 					</div>
 					<div class="layui-inline">
-						<label class="layui-form-label2"><a style="color: red;">*</a>用户名</label>
+						<label class="layui-form-label2">用户名</label>
 						<div class="layui-input-block">
 							<input type="text" name="userName" disabled="disabled"
 								value="${empty loginUser.userName ? '未设置': loginUser.userName }"
@@ -144,7 +144,7 @@
 				<div class="layui-form-item2">
 
 					<div class="layui-inline">
-						<label class="layui-form-label2"><a style="color: red;">*</a>联系方式</label>
+						<label class="layui-form-label2">联系方式</label>
 						<div class="layui-input-block">
 							<input type="text" name="phone" disabled="disabled"
 								value="${empty loginUser.phone ? '未设置': loginUser.phone}"
@@ -152,7 +152,7 @@
 						</div>
 					</div>
 					<div class="layui-inline">
-						<label class="layui-form-label2"><a style="color: red;">*</a>邮箱地址</label>
+						<label class="layui-form-label2">邮箱地址</label>
 						<div class="layui-input-block">
 							<input type="text" name="email" disabled="disabled"
 								value="${empty loginUser.email ? '未设置': loginUser.email}"
@@ -172,7 +172,7 @@
 						</div>
 					</div>
 					<div class="layui-inline">
-						<label class="layui-form-label2"><a style="color: red;">*</a>现任职务</label>
+						<label class="layui-form-label2">现任职务</label>
 						<div class="layui-input-block">
 							<input type="text" name="duty" disabled="disabled"
 								value="${empty loginUser.duty ? '未设置': loginUser.duty}"
@@ -192,7 +192,7 @@
 						</div>
 					</div>
 					<div class="layui-inline">
-						<label class="layui-form-label2"><a style="color: red;">*</a>所在市</label>
+						<label class="layui-form-label2">所在市</label>
 						<div class="layui-input-block">
 							<input type="text" name="city" disabled="disabled"
 								value="${empty loginUser.city ? '未设置': loginUser.city}"
