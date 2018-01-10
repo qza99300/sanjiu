@@ -160,8 +160,15 @@ public class UserController {
 		return new PageInfo<>(this.userService.querryUserOne(userId),AppContant.PAGE_SIZE);
 	}
 	
+	@RequestMapping("querryById")
+	@ResponseBody
+	public ResultVO<Object> querryById(@RequestParam("userId") Integer userId){
+		return null;
+		
+	}
+	
 	/**
-	 * 根据用户id查询
+	 * 根据用户id查询(页面跳转）
 	 * @param userId
 	 * @return
 	 */
@@ -269,47 +276,6 @@ public class UserController {
 			return ResultVO.fail("密码修改失败", null, null);
 		
 	}
-//	@RequestMapping("updatePossword")
-//	@ResponseBody
-//	public ResultVO<Object> updatePassword(
-//			@RequestParam("oldPassword") String oldPassword, 
-//			@RequestParam("loginname") String loginname, 
-//			@RequestParam("userId") Integer userId,
-//			@RequestParam("password") String password){
-//		
-//		if (userId == null) {
-//			System.err.println("开始就异常");
-//			return ResultVO.fail("提交异常，请联系管理员！", null, null);
-//		}
-//		Boolean bool = this.userService.updatePassword(loginname,oldPassword, userId,password);
-//		if (bool) {
-//			System.err.println("修改成功");
-//			return ResultVO.success("密码修改成功！", null, null);
-//		}
-//		
-//		return ResultVO.fail("密码修改失败", null, null);
-//		
-//	}
-	
-//	@RequestMapping("updatePossword")
-//	@ResponseBody
-//	public ResultVO<Object> updatePassword(ResultPW pw){
-//		
-//		Boolean bool = null;
-//		try {
-//			bool = this.userService.updatePassword(pw.getOldPassword(), pw.getLoginname(), pw.getUserId(), pw.getPassword());
-//		} catch (Exception e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//		
-//		if (bool) {
-//			System.err.println("修改成功");
-//			return ResultVO.success("密码修改成功！", null, null);
-//		}
-//		
-//		return ResultVO.fail("密码修改失败", null, null);
-//		
-//	}
+
 
 }

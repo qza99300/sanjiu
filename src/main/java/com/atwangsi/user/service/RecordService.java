@@ -18,8 +18,6 @@ public interface RecordService {
 
 	List<TbExchangeRecord> selectRecord(Integer convertStatus);
 
-	List<TbExchangeRecord> querryByRecordPhone(String phone);
-
-	List<TbExchangeRecord> querryByLike(String convertName);
+	List<TbExchangeRecord> querryByLike(String userName);
 
 }

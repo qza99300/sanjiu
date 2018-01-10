@@ -192,203 +192,193 @@ public class TbExchangeRecordExample {
             return (Criteria) this;
         }
 
-        public Criteria andConvertIdIsNull() {
-            addCriterion("convert_id is null");
+        public Criteria andUserIdIsNull() {
+            addCriterion("user_id is null");
             return (Criteria) this;
         }
 
-        public Criteria andConvertIdIsNotNull() {
-            addCriterion("convert_id is not null");
+        public Criteria andUserIdIsNotNull() {
+            addCriterion("user_id is not null");
             return (Criteria) this;
         }
 
-        public Criteria andConvertIdEqualTo(Integer value) {
-            addCriterion("convert_id =", value, "convertId");
+        public Criteria andUserIdEqualTo(Integer value) {
+            addCriterion("user_id =", value, "userId");
             return (Criteria) this;
         }
 
-        public Criteria andConvertIdNotEqualTo(Integer value) {
-            addCriterion("convert_id <>", value, "convertId");
+        public Criteria andUserIdNotEqualTo(Integer value) {
+            addCriterion("user_id <>", value, "userId");
             return (Criteria) this;
         }
 
-        public Criteria andConvertIdGreaterThan(Integer value) {
-            addCriterion("convert_id >", value, "convertId");
+        public Criteria andUserIdGreaterThan(Integer value) {
+            addCriterion("user_id >", value, "userId");
             return (Criteria) this;
         }
 
-        public Criteria andConvertIdGreaterThanOrEqualTo(Integer value) {
-            addCriterion("convert_id >=", value, "convertId");
+        public Criteria andUserIdGreaterThanOrEqualTo(Integer value) {
+            addCriterion("user_id >=", value, "userId");
             return (Criteria) this;
         }
 
-        public Criteria andConvertIdLessThan(Integer value) {
-            addCriterion("convert_id <", value, "convertId");
+        public Criteria andUserIdLessThan(Integer value) {
+            addCriterion("user_id <", value, "userId");
             return (Criteria) this;
         }
 
-        public Criteria andConvertIdLessThanOrEqualTo(Integer value) {
-            addCriterion("convert_id <=", value, "convertId");
+        public Criteria andUserIdLessThanOrEqualTo(Integer value) {
+            addCriterion("user_id <=", value, "userId");
             return (Criteria) this;
         }
 
-        public Criteria andConvertIdIn(List<Integer> values) {
-            addCriterion("convert_id in", values, "convertId");
+        public Criteria andUserIdIn(List<Integer> values) {
+            addCriterion("user_id in", values, "userId");
             return (Criteria) this;
         }
 
-        public Criteria andConvertIdNotIn(List<Integer> values) {
-            addCriterion("convert_id not in", values, "convertId");
+        public Criteria andUserIdNotIn(List<Integer> values) {
+            addCriterion("user_id not in", values, "userId");
             return (Criteria) this;
         }
 
-        public Criteria andConvertIdBetween(Integer value1, Integer value2) {
-            addCriterion("convert_id between", value1, value2, "convertId");
+        public Criteria andUserIdBetween(Integer value1, Integer value2) {
+            addCriterion("user_id between", value1, value2, "userId");
             return (Criteria) this;
         }
 
-        public Criteria andConvertIdNotBetween(Integer value1, Integer value2) {
-            addCriterion("convert_id not between", value1, value2, "convertId");
+        public Criteria andUserIdNotBetween(Integer value1, Integer value2) {
+            addCriterion("user_id not between", value1, value2, "userId");
             return (Criteria) this;
         }
 
-        public Criteria andConvertNameIsNull() {
-            addCriterion("convert_name is null");
+        public Criteria andConsigneeIdIsNull() {
+            addCriterion("consignee_id is null");
             return (Criteria) this;
         }
 
-        public Criteria andConvertNameIsNotNull() {
-            addCriterion("convert_name is not null");
+        public Criteria andConsigneeIdIsNotNull() {
+            addCriterion("consignee_id is not null");
             return (Criteria) this;
         }
 
-        public Criteria andConvertNameEqualTo(String value) {
-            addCriterion("convert_name =", value, "convertName");
+        public Criteria andConsigneeIdEqualTo(Integer value) {
+            addCriterion("consignee_id =", value, "consigneeId");
             return (Criteria) this;
         }
 
-        public Criteria andConvertNameNotEqualTo(String value) {
-            addCriterion("convert_name <>", value, "convertName");
+        public Criteria andConsigneeIdNotEqualTo(Integer value) {
+            addCriterion("consignee_id <>", value, "consigneeId");
             return (Criteria) this;
         }
 
-        public Criteria andConvertNameGreaterThan(String value) {
-            addCriterion("convert_name >", value, "convertName");
+        public Criteria andConsigneeIdGreaterThan(Integer value) {
+            addCriterion("consignee_id >", value, "consigneeId");
             return (Criteria) this;
         }
 
-        public Criteria andConvertNameGreaterThanOrEqualTo(String value) {
-            addCriterion("convert_name >=", value, "convertName");
+        public Criteria andConsigneeIdGreaterThanOrEqualTo(Integer value) {
+            addCriterion("consignee_id >=", value, "consigneeId");
             return (Criteria) this;
         }
 
-        public Criteria andConvertNameLessThan(String value) {
-            addCriterion("convert_name <", value, "convertName");
+        public Criteria andConsigneeIdLessThan(Integer value) {
+            addCriterion("consignee_id <", value, "consigneeId");
             return (Criteria) this;
         }
 
-        public Criteria andConvertNameLessThanOrEqualTo(String value) {
-            addCriterion("convert_name <=", value, "convertName");
+        public Criteria andConsigneeIdLessThanOrEqualTo(Integer value) {
+            addCriterion("consignee_id <=", value, "consigneeId");
             return (Criteria) this;
         }
 
-        public Criteria andConvertNameLike(String value) {
-            addCriterion("convert_name like", value, "convertName");
+        public Criteria andConsigneeIdIn(List<Integer> values) {
+            addCriterion("consignee_id in", values, "consigneeId");
             return (Criteria) this;
         }
 
-        public Criteria andConvertNameNotLike(String value) {
-            addCriterion("convert_name not like", value, "convertName");
+        public Criteria andConsigneeIdNotIn(List<Integer> values) {
+            addCriterion("consignee_id not in", values, "consigneeId");
             return (Criteria) this;
         }
 
-        public Criteria andConvertNameIn(List<String> values) {
-            addCriterion("convert_name in", values, "convertName");
+        public Criteria andConsigneeIdBetween(Integer value1, Integer value2) {
+            addCriterion("consignee_id between", value1, value2, "consigneeId");
             return (Criteria) this;
         }
 
-        public Criteria andConvertNameNotIn(List<String> values) {
-            addCriterion("convert_name not in", values, "convertName");
+        public Criteria andConsigneeIdNotBetween(Integer value1, Integer value2) {
+            addCriterion("consignee_id not between", value1, value2, "consigneeId");
             return (Criteria) this;
         }
 
-        public Criteria andConvertNameBetween(String value1, String value2) {
-            addCriterion("convert_name between", value1, value2, "convertName");
+        public Criteria andUserNameIsNull() {
+            addCriterion("user_name is null");
             return (Criteria) this;
         }
 
-        public Criteria andConvertNameNotBetween(String value1, String value2) {
-            addCriterion("convert_name not between", value1, value2, "convertName");
+        public Criteria andUserNameIsNotNull() {
+            addCriterion("user_name is not null");
             return (Criteria) this;
         }
 
-        public Criteria andConvertPhoneIsNull() {
-            addCriterion("convert_phone is null");
+        public Criteria andUserNameEqualTo(String value) {
+            addCriterion("user_name =", value, "userName");
             return (Criteria) this;
         }
 
-        public Criteria andConvertPhoneIsNotNull() {
-            addCriterion("convert_phone is not null");
+        public Criteria andUserNameNotEqualTo(String value) {
+            addCriterion("user_name <>", value, "userName");
             return (Criteria) this;
         }
 
-        public Criteria andConvertPhoneEqualTo(String value) {
-            addCriterion("convert_phone =", value, "convertPhone");
+        public Criteria andUserNameGreaterThan(String value) {
+            addCriterion("user_name >", value, "userName");
             return (Criteria) this;
         }
 
-        public Criteria andConvertPhoneNotEqualTo(String value) {
-            addCriterion("convert_phone <>", value, "convertPhone");
+        public Criteria andUserNameGreaterThanOrEqualTo(String value) {
+            addCriterion("user_name >=", value, "userName");
             return (Criteria) this;
         }
 
-        public Criteria andConvertPhoneGreaterThan(String value) {
-            addCriterion("convert_phone >", value, "convertPhone");
+        public Criteria andUserNameLessThan(String value) {
+            addCriterion("user_name <", value, "userName");
             return (Criteria) this;
         }
 
-        public Criteria andConvertPhoneGreaterThanOrEqualTo(String value) {
-            addCriterion("convert_phone >=", value, "convertPhone");
+        public Criteria andUserNameLessThanOrEqualTo(String value) {
+            addCriterion("user_name <=", value, "userName");
             return (Criteria) this;
         }
 
-        public Criteria andConvertPhoneLessThan(String value) {
-            addCriterion("convert_phone <", value, "convertPhone");
+        public Criteria andUserNameLike(String value) {
+            addCriterion("user_name like", value, "userName");
             return (Criteria) this;
         }
 
-        public Criteria andConvertPhoneLessThanOrEqualTo(String value) {
-            addCriterion("convert_phone <=", value, "convertPhone");
+        public Criteria andUserNameNotLike(String value) {
+            addCriterion("user_name not like", value, "userName");
             return (Criteria) this;
         }
 
-        public Criteria andConvertPhoneLike(String value) {
-            addCriterion("convert_phone like", value, "convertPhone");
+        public Criteria andUserNameIn(List<String> values) {
+            addCriterion("user_name in", values, "userName");
             return (Criteria) this;
         }
 
-        public Criteria andConvertPhoneNotLike(String value) {
-            addCriterion("convert_phone not like", value, "convertPhone");
+        public Criteria andUserNameNotIn(List<String> values) {
+            addCriterion("user_name not in", values, "userName");
             return (Criteria) this;
         }
 
-        public Criteria andConvertPhoneIn(List<String> values) {
-            addCriterion("convert_phone in", values, "convertPhone");
+        public Criteria andUserNameBetween(String value1, String value2) {
+            addCriterion("user_name between", value1, value2, "userName");
             return (Criteria) this;
         }
 
-        public Criteria andConvertPhoneNotIn(List<String> values) {
-            addCriterion("convert_phone not in", values, "convertPhone");
-            return (Criteria) this;
-        }
-
-        public Criteria andConvertPhoneBetween(String value1, String value2) {
-            addCriterion("convert_phone between", value1, value2, "convertPhone");
-            return (Criteria) this;
-        }
-
-        public Criteria andConvertPhoneNotBetween(String value1, String value2) {
-            addCriterion("convert_phone not between", value1, value2, "convertPhone");
+        public Criteria andUserNameNotBetween(String value1, String value2) {
+            addCriterion("user_name not between", value1, value2, "userName");
             return (Criteria) this;
         }
 
@@ -779,76 +769,6 @@ public class TbExchangeRecordExample {
 
         public Criteria andLogisticsStatusNotBetween(String value1, String value2) {
             addCriterion("logistics_status not between", value1, value2, "logisticsStatus");
-            return (Criteria) this;
-        }
-
-        public Criteria andConsigneePathIsNull() {
-            addCriterion("consignee_path is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andConsigneePathIsNotNull() {
-            addCriterion("consignee_path is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andConsigneePathEqualTo(String value) {
-            addCriterion("consignee_path =", value, "consigneePath");
-            return (Criteria) this;
-        }
-
-        public Criteria andConsigneePathNotEqualTo(String value) {
-            addCriterion("consignee_path <>", value, "consigneePath");
-            return (Criteria) this;
-        }
-
-        public Criteria andConsigneePathGreaterThan(String value) {
-            addCriterion("consignee_path >", value, "consigneePath");
-            return (Criteria) this;
-        }
-
-        public Criteria andConsigneePathGreaterThanOrEqualTo(String value) {
-            addCriterion("consignee_path >=", value, "consigneePath");
-            return (Criteria) this;
-        }
-
-        public Criteria andConsigneePathLessThan(String value) {
-            addCriterion("consignee_path <", value, "consigneePath");
-            return (Criteria) this;
-        }
-
-        public Criteria andConsigneePathLessThanOrEqualTo(String value) {
-            addCriterion("consignee_path <=", value, "consigneePath");
-            return (Criteria) this;
-        }
-
-        public Criteria andConsigneePathLike(String value) {
-            addCriterion("consignee_path like", value, "consigneePath");
-            return (Criteria) this;
-        }
-
-        public Criteria andConsigneePathNotLike(String value) {
-            addCriterion("consignee_path not like", value, "consigneePath");
-            return (Criteria) this;
-        }
-
-        public Criteria andConsigneePathIn(List<String> values) {
-            addCriterion("consignee_path in", values, "consigneePath");
-            return (Criteria) this;
-        }
-
-        public Criteria andConsigneePathNotIn(List<String> values) {
-            addCriterion("consignee_path not in", values, "consigneePath");
-            return (Criteria) this;
-        }
-
-        public Criteria andConsigneePathBetween(String value1, String value2) {
-            addCriterion("consignee_path between", value1, value2, "consigneePath");
-            return (Criteria) this;
-        }
-
-        public Criteria andConsigneePathNotBetween(String value1, String value2) {
-            addCriterion("consignee_path not between", value1, value2, "consigneePath");
             return (Criteria) this;
         }
 

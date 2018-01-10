@@ -72,10 +72,11 @@
 				<tr>
 					<th width="30"><input type="checkbox" id="allCheckBox">全选</th>
 					<th>序号</th>
-					<th>用户名称</th><!-- js未改 -->
+					<th>用户名</th>
 					<th>收货人电话</th><!-- js未改 -->
 					<th>收货人名称</th>
 					<th>收货地址</th>
+					<th>创建时间</th>
 					<th>操作</th>
 				</tr>
 			</thead>
@@ -367,6 +368,16 @@
 			});
 		}
 		
+		function selectByUid(data){
+// 			alert("当前id是："+data);
+			param.userId = data;
+// 			alert("当前对象是："+param);
+			$.post("${ctp}/user/querry",param,function(data){
+				console.log(data);
+				return data.list.get(0).userName;
+			});
+		}
+		
 		function showconsignees(data) {
 			// 1.清空数据
 			$("ul.pagination").empty();
@@ -380,31 +391,48 @@
 		}
 
 		function buildTable(data) {
+// 			console.log(data);
 			var consigneeData = data.list;
+// 			console.log(consigneeData);
 			$.each(consigneeData, function() {
+// 			console.log(consigneeData);
 				//创建tr
 				var tr = $("<tr></tr>");
 				//创建td
 	
-				var btnTd = $("<td></td>")
+				var btnTd = $("<td></td>");
 				//操作列
-	
 				btnTd.append('<button consigneeId = "' + this.consigneeId + '" type = "button" class = "consigneeModelShowBtn btn btn-sm btn-success" title="查看信息" ><i class="fa fa-qrcode"></i></button>')
 					 .append('&nbsp;<button consigneeId = "' + this.consigneeId + '" type = "button" class = "updateConsigneeModelBtn btn btn-sm btn-info" title="修改地址" ><i class="fa fa-pencil"></i></button>')
 					 .append('&nbsp;<button consigneeId = "' + this.consigneeId + '" type = "button" class = "deleteConsigneeBtn btn btn-sm btn-danger" title="删除地址" id="removeUserBtn"><i class="fa fa-trash"></i></button>');
 	
 				tr.append("<td><input type='checkbox' consigneeId="+ this.consigneeId +" class='itemCheckBox'></td>")
 				  .append("<td>" + this.consigneeId + "</td>")
-				  .append("<td>" + this.userId + "</td>")
+				  .append("<td>" + selectByUid(this.userId) + "</td>")
 				  .append("<td>" + this.phone + "</td>")
 				  .append("<td>" + this.consigneeName + "</td>")
-				  .append("<td>" + this.consigneePath)
+				  .append("<td>" + this.consigneePath + "</td>")
+				  .append("<td>" + timeFormat(this.createDate))
 				  .append(btnTd).appendTo($("#consigneeTable"));
 			});
+// 				btnTd.append('<button consigneeId = "' + this.conInfo.list.consigneeId + '" type = "button" class = "consigneeModelShowBtn btn btn-sm btn-success" title="查看信息" ><i class="fa fa-qrcode"></i></button>')
+// 					 .append('&nbsp;<button consigneeId = "' + this.conInfo.list.consigneeId + '" type = "button" class = "updateConsigneeModelBtn btn btn-sm btn-info" title="修改地址" ><i class="fa fa-pencil"></i></button>')
+// 					 .append('&nbsp;<button consigneeId = "' + this.conInfo.list.consigneeId + '" type = "button" class = "deleteConsigneeBtn btn btn-sm btn-danger" title="删除地址" id="removeUserBtn"><i class="fa fa-trash"></i></button>');
+	
+// 				tr.append("<td><input type='checkbox' consigneeId="+ this.conInfo.consigneeId +" class='itemCheckBox'></td>")
+// 				  .append("<td>" + this.conInfo.consigneeId + "</td>")
+// 				  .append("<td>" + this.userInfo.username + "</td>")
+// 				  .append("<td>" + this.conInfo.phone + "</td>")
+// 				  .append("<td>" + this.conInfo.consigneeName + "</td>")
+// 				  .append("<td>" + this.conInfo.consigneePath + "</td>")
+// 				  .append("<td>" + timeFormat(this.conInfo.createDate))
+// 				  .append(btnTd).appendTo($("#consigneeTable"));
+// 			});
 		}
 
 		//分页条显示
 		function buildPage(data) {
+// 			console.log(data);
 			//首页
 			var firstPage = $('<li class="jumpli" pn="1"><a href="#">首页</a></li>');
 			//上一页
@@ -413,7 +441,7 @@
 				prePage = "";
 			}
 			//下一页
-			var nextPage = $('<li class="jumpli" pn="'+data.nextPage+'"><a href="#">下一页</a></li>');
+			var nextPage = $('<li class="jumpli" pn="'+ data.nextPage+'"><a href="#">下一页</a></li>');
 			if (!data.hasNextPage) {
 				nextPage = "";
 			}

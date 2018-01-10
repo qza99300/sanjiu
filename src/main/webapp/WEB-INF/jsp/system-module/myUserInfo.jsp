@@ -61,7 +61,7 @@
 			<tr>
 				<div class="layui-form-item2" id="updateUserDiv">
 					<div class="layui-inline">
-						<label class="layui-form-label2">用户ID</label>
+						<label class="layui-form-label2">用户ID${loginUser.userId }</label>
 						<div class="layui-input-block">
 							<input type="text" name="userId"
 								value="${loginUser.userId }" disabled="disabled"
@@ -262,7 +262,7 @@
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal"
 						aria-hidden="true">&times;</button>
-					<h4 class="modal-title" id="myModalLabel">模态框（Modal）标题</h4>
+					<h4 class="modal-title" id="myModalLabel">修改我的信息</h4>
 				</div>
 				<div class="modal-body">
 					<!-- 模态框主题内容开始 -->
@@ -505,26 +505,92 @@
 
 			//获取表单数据
 			var data = $("#updateModalForm").serialize();
+// 			alert(data);
 
-			layer.confirm("是否确认修改？", {
-				btn : [ '确定修改', '算了吧' ]
-			}, function() {
-				$.ajax({
-					type : "POST",
-					url : "${ctp }/user/updateUser",
-					data : data,
-					success : function(msg) {
-						$("#updateMyUserModalBtn").modal('hide');
-						
-					}
+			artDialog.confirm("question", "提示", "确定是否修改？", function(){
+				alert(data);
+				$.post("${ctp }/user/updateUser", data, function(data) {
+					//后台返回的内容显示提示
+					layer.msg(data.msg);
+					//关闭模态框
+					$("#updateMyUserModalBtn").modal('hide');
+					//后台清空模态框里面的内容
+					$("#updateMyUserModalBtn input").val("");
+					$("#updateMyUserModalBtn input").val("");
+					//刷新登录信息
+// 					window.location.href = "indexcommen.html";
+					//失败返回的msg
+				}).fail(function() {
+					layer.msg(data.msg);
+					//关闭模态框
+					$("#updateMyUserModalBtn").modal('hide');
+					//后台清空模态框里面的内容
+					$("#updateMyUserModalBtn input").val("");
+					$("#updateMyUserModalBtn input").val("");
+					
 				});
-				
-				location.reload();
-			}, function() {
-				layer.msg("88.");
-			});
-
+			});		
+// 			location.reload();	
 		});
+		
+		//-----------------------------------------------------
+		//回显方法
+		function showReturnMsg(data){
+			
+			var conData = data.list[0];
+
+			
+			
+			document.getElementById("userId1Key").value = conData.userId;
+			document.getElementById("loginname3Key").value = conData.loginname;
+			document.getElementById("password1Key").value = conData.password;
+			document.getElementById("userName1Key").value = conData.userName;
+			document.getElementById("phone1Key").value = conData.phone;
+			document.getElementById("openId1Key").value = conData.openId;
+			document.getElementById("wechatName1Key").value = conData.wechatName;
+			document.getElementById("company1Key").value = conData.company;
+			document.getElementById("department1Key").value = conData.department;
+			document.getElementById("duty1Key").value = conData.duty;
+			document.getElementById("area11Key").value = conData.area1;
+			document.getElementById("email1Key").value = conData.email;
+			document.getElementById("province1Key").value = conData.province;
+			document.getElementById("city1Key").value = conData.city;
+			document.getElementById("area21Key").value = conData.area2;
+			document.getElementById("address1Key").value = conData.address;
+			document.getElementById("phoneremark1Key").value = conData.phoneremark;
+			document.getElementById("integralCount1Key").value = conData.integralCount;
+			document.getElementById("createDate1Key").value = timeFormat(conData.createDate);
+			
+			//input值
+			$("#userIdKey").attr("value",conData.userId);
+			//回显操作
+			document.getElementById("loginnameKey").value = conData.loginname;
+			document.getElementById("passwordKey").value = conData.password;
+			document.getElementById("userNameKey").value = conData.userName;
+			document.getElementById("phoneKey").value = conData.phone;
+			document.getElementById("openIdKey").value = conData.openId;
+			document.getElementById("wechatNameKey").value = conData.wechatName;
+			document.getElementById("companyKey").value = conData.company;
+			document.getElementById("departmentKey").value = conData.department;
+			document.getElementById("dutyKey").value = conData.duty;
+			document.getElementById("area1Key").value = conData.area1;
+			document.getElementById("emailKey").value = conData.email;
+			document.getElementById("provinceKey").value = conData.province;
+			document.getElementById("cityKey").value = conData.city;
+// 			document.getElementById("area2Key").value = conData.area2;
+			document.getElementById("addressKey").value = conData.address;
+// 			document.getElementById("phoneremarkKey").value = conData.phoneremark;
+			document.getElementById("integralCountKey").value = conData.integralCount;
+			
+		}
+		
+		
+		
+		
+		
+		
+		
+		
 	</script>
 </body>
 

@@ -53,27 +53,12 @@
 				<div class="layui-inline">
 					<label class="layui-form-label">查询条件</label>
 					<div class="layui-input-block">
-						<input id="inputId1" type="text" name="convertName"  placeholder="请输入联系人名称" class="layui-input">
+						<input id="inputId1" type="text" name="userName"  placeholder="请输入联系人名称" class="layui-input">
 					</div>
 				</div>
 
 				<div class="layui-inline" style="margin-top: -5px; margin-left: 5%;">
 					<button id="querryOneBtn1" type="button" class="layui-btn layui-btn-primary-search">查询</button>
-				</div>
-			</div>
-		</form>
-		
-		<form id="querrtByPhoneForm" class="layui-form" action="">
-			<div class="layui-form-item">
-				<div class="layui-inline">
-					<label class="layui-form-label">查询条件</label>
-					<div class="layui-input-block">
-						<input id="inputId" type="text" name="convertPhone"  placeholder="请输入手机号" class="layui-input">
-					</div>
-				</div>
-
-				<div class="layui-inline" style="margin-top: -5px; margin-left: 5%;">
-					<button id="querryOneBtn" type="button" class="layui-btn layui-btn-primary-search">查询</button>
 				</div>
 			</div>
 		</form>
@@ -94,8 +79,7 @@
 						<tr>
 							<th width="30"><input type="checkbox" id="allCheckBox">全选</th>
 							<th>序号</th>
-							<th>联系人名称</th>
-							<th>联系电话</th>
+							<th>用户名称</th>
 							<th>商品名称</th>
 							<th>所需积分</th>
 							<th>兑换状态</th>
@@ -255,7 +239,7 @@
 					<form class="layui-form" action="" id="addRecordForm" style="width: 100%; margin: 10 auto;">
 						<div class="layui-form-item2">
 							<div class="layui-inline">
-								<label class="layui-form-label2"><a style="color: red;">*</a>兑换人账号id</label>
+								<label class="layui-form-label2"><a style="color: red;">*</a>兑换人账号ID</label>
 								<div class="layui-input-block">
 									<input type="text" id="" name="convertId" class="layui-input">
 								</div>
@@ -467,8 +451,7 @@
 	
 				tr.append("<td><input type='checkbox' recordId="+ this.iId +" class='itemCheckBox'></td>")
 				  .append("<td>" + this.id + "</td>")
-				  .append("<td>" + this.convertName + "</td>")
-				  .append("<td>" + this.convertPhone + "</td>")
+				  .append("<td>" + this.userName + "</td>")
 				  .append("<td>" + this.productName + "</td>")
 				  .append("<td>" + this.productIntegral + "</td>")
 				  .append("<td>" + this.convertStatus + "</td>")
@@ -592,20 +575,6 @@
 		});
 		
 		//-----------------------------------------------------------------------
-		
-		$("#querryOneBtn").click(function(){
-			
-			var data = $("#querrtByPhoneForm").serialize();
-			var dataVal = document.getElementById("inputId").value;
-			page.pn = 1;//第一页数据
-			
-			if (dataVal) {
-				getRecordOne(data);
-			}else{
-				getRecords();
-			}
-			
-		});
 		$("#querryOneBtn1").click(function(){
 			
 			var data = $("#querrtByPhoneForm1").serialize();
@@ -619,13 +588,6 @@
 			}
 			
 		});
-		
-		function getRecordOne(data){
-			$.post("${ctp}/record/querryByPhone",data,function(data){
-				console.log(data);				
-				showrecords(data);
-			});	
-		}
 		
 		function getRecordLike(data){
 			$.post("${ctp}/record/querryByLike",data,function(data){

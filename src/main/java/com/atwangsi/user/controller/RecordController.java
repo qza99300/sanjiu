@@ -41,11 +41,11 @@ public class RecordController {
 	public PageInfo<TbExchangeRecord> querryByLike(
 			@RequestParam(value = "pn", defaultValue = "1") Integer pageNum,
 			@RequestParam(value = "ps", defaultValue = "7") Integer pageSize,
-			@RequestParam("convertName") String convertName) {
+			@RequestParam("userName") String userName) {
 		
 		PageHelper.startPage(pageNum, pageSize);
 		
-		List<TbExchangeRecord> list =this.recordService.querryByLike(convertName);
+		List<TbExchangeRecord> list =this.recordService.querryByLike(userName);
 		
 				return new PageInfo<>(list, AppContant.PAGE_SIZE);
 	}
@@ -133,13 +133,6 @@ public class RecordController {
 
 	}
 	
-	@RequestMapping(value="querryByPhone")
-	@ResponseBody
-	public PageInfo<TbExchangeRecord> queryById(
-			@RequestParam("convertPhone") String phone ) {
-		return new PageInfo<>(this.recordService.querryByRecordPhone(phone));
-		
-	}
 	
 	/**
 	 * 根据id查询

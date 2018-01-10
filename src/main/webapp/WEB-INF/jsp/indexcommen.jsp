@@ -106,26 +106,8 @@
 
 	</section>
 
-	<!-- JS -->
-
-	<script type="text/javascript" src="${ctp }/js/jquery-1.8.3.min.js"></script>
-	<!-- BASIC JQUERY 1.8.3 LIB. JS -->
-
-	<script type="text/javascript" src="${ctp }/js/bootstrap.min.js"></script>
-	<!-- BOOTSTRAP JS -->
-
-	<script type="text/javascript"
-		src="${ctp }/js/jquery.dcjqaccordion.2.7.js"></script>
-	<!-- 左测点击拉下去 JS -->
-
-	<script type="text/javascript" src="${ctp }/js/jquery.nicescroll.js"></script>
-	<!-- 滚动条 JS -->
-
-
-	<script type="text/javascript" src="${ctp }/js/jquery.metisMenu.js"></script>
-
-	<script type="text/javascript" src="${ctp }/js/common-scripts.js"></script>
-	<!-- 公用的 JS -->
+<!-- 公共的js样式 -->
+<%@include file="/commons/common-js.jsp"%>
 
 	<script>
 		$(function() {

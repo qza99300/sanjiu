@@ -57,5 +57,5 @@ public class TopicServiceImpl implements TopicService {
 		example.createCriteria().andUserNameLike("%" + userName +"%");
 		return this.topicManageMapper.selectByExample(example);
 	}
-
+	
 }

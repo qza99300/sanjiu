@@ -4,6 +4,7 @@
   <resultMap id="BaseResultMap" type="com.atwangsi.user.model.TbConsignee">
     <id column="consignee_id" jdbcType="INTEGER" property="consigneeId" />
     <result column="user_id" jdbcType="INTEGER" property="userId" />
+    <result column="phone" jdbcType="VARCHAR" property="phone" />
     <result column="consignee_name" jdbcType="VARCHAR" property="consigneeName" />
     <result column="consignee_path" jdbcType="VARCHAR" property="consigneePath" />
     <result column="area" jdbcType="VARCHAR" property="area" />
@@ -75,8 +76,9 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    consignee_id, user_id, consignee_name, consignee_path, area, create_date, create_by, 
-    last_updated_by, last_update_date, record_version, deleted_flag, deleted_by, deletion_date
+    consignee_id, user_id, phone, consignee_name, consignee_path, area, create_date, 
+    create_by, last_updated_by, last_update_date, record_version, deleted_flag, deleted_by, 
+    deletion_date
   </sql>
   <select id="selectByExample" parameterType="com.atwangsi.user.model.TbConsigneeExample" resultMap="BaseResultMap">
     select
@@ -109,16 +111,16 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.atwangsi.user.model.TbConsignee">
-    insert into tb_consignee (consignee_id, user_id, consignee_name, 
-      consignee_path, area, create_date, 
-      create_by, last_updated_by, last_update_date, 
-      record_version, deleted_flag, deleted_by, 
-      deletion_date)
-    values (#{consigneeId,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{consigneeName,jdbcType=VARCHAR}, 
-      #{consigneePath,jdbcType=VARCHAR}, #{area,jdbcType=VARCHAR}, #{createDate,jdbcType=DATE}, 
-      #{createBy,jdbcType=VARCHAR}, #{lastUpdatedBy,jdbcType=VARCHAR}, #{lastUpdateDate,jdbcType=DATE}, 
-      #{recordVersion,jdbcType=INTEGER}, #{deletedFlag,jdbcType=INTEGER}, #{deletedBy,jdbcType=VARCHAR}, 
-      #{deletionDate,jdbcType=DATE})
+    insert into tb_consignee (consignee_id, user_id, phone, 
+      consignee_name, consignee_path, area, 
+      create_date, create_by, last_updated_by, 
+      last_update_date, record_version, deleted_flag, 
+      deleted_by, deletion_date)
+    values (#{consigneeId,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{phone,jdbcType=VARCHAR}, 
+      #{consigneeName,jdbcType=VARCHAR}, #{consigneePath,jdbcType=VARCHAR}, #{area,jdbcType=VARCHAR}, 
+      #{createDate,jdbcType=DATE}, #{createBy,jdbcType=VARCHAR}, #{lastUpdatedBy,jdbcType=VARCHAR}, 
+      #{lastUpdateDate,jdbcType=DATE}, #{recordVersion,jdbcType=INTEGER}, #{deletedFlag,jdbcType=INTEGER}, 
+      #{deletedBy,jdbcType=VARCHAR}, #{deletionDate,jdbcType=DATE})
   </insert>
   <insert id="insertSelective" parameterType="com.atwangsi.user.model.TbConsignee">
     insert into tb_consignee
@@ -128,6 +130,9 @@
       </if>
       <if test="userId != null">
         user_id,
+      </if>
+      <if test="phone != null">
+        phone,
       </if>
       <if test="consigneeName != null">
         consignee_name,
@@ -169,6 +174,9 @@
       </if>
       <if test="userId != null">
         #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="phone != null">
+        #{phone,jdbcType=VARCHAR},
       </if>
       <if test="consigneeName != null">
         #{consigneeName,jdbcType=VARCHAR},
@@ -220,6 +228,9 @@
       <if test="record.userId != null">
         user_id = #{record.userId,jdbcType=INTEGER},
       </if>
+      <if test="record.phone != null">
+        phone = #{record.phone,jdbcType=VARCHAR},
+      </if>
       <if test="record.consigneeName != null">
         consignee_name = #{record.consigneeName,jdbcType=VARCHAR},
       </if>
@@ -262,6 +273,7 @@
     update tb_consignee
     set consignee_id = #{record.consigneeId,jdbcType=INTEGER},
       user_id = #{record.userId,jdbcType=INTEGER},
+      phone = #{record.phone,jdbcType=VARCHAR},
       consignee_name = #{record.consigneeName,jdbcType=VARCHAR},
       consignee_path = #{record.consigneePath,jdbcType=VARCHAR},
       area = #{record.area,jdbcType=VARCHAR},
@@ -282,6 +294,9 @@
     <set>
       <if test="userId != null">
         user_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="phone != null">
+        phone = #{phone,jdbcType=VARCHAR},
       </if>
       <if test="consigneeName != null">
         consignee_name = #{consigneeName,jdbcType=VARCHAR},
@@ -322,6 +337,7 @@
   <update id="updateByPrimaryKey" parameterType="com.atwangsi.user.model.TbConsignee">
     update tb_consignee
     set user_id = #{userId,jdbcType=INTEGER},
+      phone = #{phone,jdbcType=VARCHAR},
       consignee_name = #{consigneeName,jdbcType=VARCHAR},
       consignee_path = #{consigneePath,jdbcType=VARCHAR},
       area = #{area,jdbcType=VARCHAR},

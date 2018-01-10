@@ -8,8 +8,8 @@
 <meta http-equiv=X-UA-Compatible content="IE=edge">
 <link rel="shortcut icon" href="favicon.ico" />
 <title>华润三九药业股份有限公司厚德毅行</title>
-<link rel="stylesheet" href="css/homepage.css" />
-<link rel="stylesheet" href="css/bootstrap-3.3.7.min.css" />
+<link rel="stylesheet" href="static/css/homepage.css" />
+<link rel="stylesheet" href="static/css/bootstrap-3.3.7.min.css" />
 </head>
 <body>
 	<div class=wrap id=wrap>
@@ -55,10 +55,10 @@
 					<!-- 						id="uPass"> -->
 					<hr class="hr15">
 				</div>
-				<input name="code" placeholder="验证码" required="" type="text"
-					style="width: 50%;"> <img src="images/code.jpg"
-					class="code" />
-				<hr class="hr15">
+<!-- 				<input name="code" placeholder="验证码" required="" type="text" -->
+<!-- 					style="width: 50%;"> <img src="static/images/code.jpg" -->
+<!-- 					class="code" /> -->
+<!-- 				<hr class="hr15"> -->
 				<input value="登录" style="width: 100%; margin-top: 15px;"
 					type="submit" onclick="dologin()">
 				<!-- <hr class="hr20"> -->

@@ -60,22 +60,12 @@ public class RecordServiceImpl implements RecordService {
 		return this.recordMapper.selectByExample(example);
 	}
 
-	@Override
-	public List<TbExchangeRecord> querryByRecordPhone(String phone) {
-		// TODO Auto-generated method stub
-		TbExchangeRecordExample example = new TbExchangeRecordExample();
-		example.createCriteria().andConvertPhoneEqualTo(phone);
-		
-//		List<TbExchangeRecord> list = this.recordMapper.selectByExample(example);
-		
-		return this.recordMapper.selectByExample(example);
-	}
 
 	@Override
-	public List<TbExchangeRecord> querryByLike(String convertName) {
+	public List<TbExchangeRecord> querryByLike(String userName) {
 		// TODO Auto-generated method stub
 		TbExchangeRecordExample example = new TbExchangeRecordExample();
-		example.createCriteria().andConvertNameLike("%" + convertName +"%");
+		example.createCriteria().andUserNameLike("%" + userName +"%");
 		return this.recordMapper.selectByExample(example);
 	}
 }

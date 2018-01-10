@@ -1,7 +1,9 @@
 package com.atwangsi.user.controller;
 
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -12,7 +14,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.atwangsi.base.model.AppContant;
 import com.atwangsi.base.model.ResultVO;
 import com.atwangsi.user.model.TbConsignee;
+import com.atwangsi.user.model.TbUser;
 import com.atwangsi.user.service.ConsigneeService;
+import com.atwangsi.user.service.UserService;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 
@@ -28,6 +32,9 @@ public class ConsigneeController {
 
 	@Autowired
 	private ConsigneeService consigneeService;
+	
+	@Autowired
+	private UserService userService;
 	
 	/**
 	 * 根据收货人名称来进行模糊查询
@@ -142,6 +149,43 @@ public class ConsigneeController {
 	}
 	
 	/**
+	 * 测试查询
+	 * @param pageNum
+	 * @param pageSize
+	 * @param consigneeId
+	 * @return
+	 */
+	@RequestMapping("querryall")
+	@ResponseBody
+	public ResultVO<Object> querryAllConsigneeText(@RequestParam(value = "pn", defaultValue = "1") Integer pageNum,
+			@RequestParam(value = "ps", defaultValue = "7") Integer pageSize,
+			@RequestParam(value="consigneeId", required = false) Integer consigneeId) {
+		
+		PageHelper.startPage(pageNum, pageSize);
+		
+		Map<String, Object> resultMap = new HashMap<>();
+		List<TbUser> user = this.userService.getAllUser();
+		List<TbConsignee> consignee = this.consigneeService.querryAllConsignee();
+		PageInfo<TbConsignee> conInfo = new PageInfo<>(this.consigneeService.querryAllConsignee(), AppContant.PAGE_SIZE);
+		
+		resultMap.put("conInfo", conInfo);
+//		resultMap.put("user", user);
+		
+		return ResultVO.success("查询成功", user, resultMap);
+		
+//		Map<String, Object>
+		
+//		if (consigneeId == null) {
+//			
+//			return ;
+//			
+//		}
+//		
+//		return new PageInfo<>(this.consigneeService.querryById(consigneeId), AppContant.PAGE_SIZE);
+//		
+	}
+	
+	/**
 	 * 查看一个用户的所有地址
 	 * @param userId
 	 * @return
@@ -164,3 +208,4 @@ public class ConsigneeController {
 	}
 
 }
+

@@ -299,7 +299,6 @@ select {
 <%@include file="/commons/common-js.jsp"%>
 
 	<script type="text/javascript">
-	<%@include file="/commons/commons-timeFormat.jsp"%>
 		var param = {};
 		
 		//时间格式化

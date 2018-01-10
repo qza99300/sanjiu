@@ -441,7 +441,7 @@
 						<tr>
 							<div class="layui-form-item2" id="updateUserDiv">
 								<div class="layui-inline">
-									<label class="layui-form-label2"><a style="color: red;">*</a>用户id</label>
+									<label class="layui-form-label2">用户id</label>
 									<div class="layui-input-block">
 										<input id="userId1Key" value="" type="text" name="userId" disabled="disabled" class="layui-input">
 									</div>
@@ -1234,6 +1234,8 @@
 		
 		
 	}	
+	
+	
 	</script>
 </body>
 

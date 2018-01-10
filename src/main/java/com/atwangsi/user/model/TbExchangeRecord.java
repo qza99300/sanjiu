@@ -5,11 +5,11 @@ import java.util.Date;
 public class TbExchangeRecord {
     private Integer id;
 
-    private Integer convertId;
+    private Integer userId;
 
-    private String convertName;
+    private Integer consigneeId;
 
-    private String convertPhone;
+    private String userName;
 
     private Integer productId;
 
@@ -23,8 +23,6 @@ public class TbExchangeRecord {
 
     private String logisticsStatus;
 
-    private String consigneePath;
-
     private Date createDate;
 
     public Integer getId() {
@@ -35,28 +33,28 @@ public class TbExchangeRecord {
         this.id = id;
     }
 
-    public Integer getConvertId() {
-        return convertId;
+    public Integer getUserId() {
+        return userId;
     }
 
-    public void setConvertId(Integer convertId) {
-        this.convertId = convertId;
+    public void setUserId(Integer userId) {
+        this.userId = userId;
     }
 
-    public String getConvertName() {
-        return convertName;
+    public Integer getConsigneeId() {
+        return consigneeId;
     }
 
-    public void setConvertName(String convertName) {
-        this.convertName = convertName == null ? null : convertName.trim();
+    public void setConsigneeId(Integer consigneeId) {
+        this.consigneeId = consigneeId;
     }
 
-    public String getConvertPhone() {
-        return convertPhone;
+    public String getUserName() {
+        return userName;
     }
 
-    public void setConvertPhone(String convertPhone) {
-        this.convertPhone = convertPhone == null ? null : convertPhone.trim();
+    public void setUserName(String userName) {
+        this.userName = userName == null ? null : userName.trim();
     }
 
     public Integer getProductId() {
@@ -105,14 +103,6 @@ public class TbExchangeRecord {
 
     public void setLogisticsStatus(String logisticsStatus) {
         this.logisticsStatus = logisticsStatus == null ? null : logisticsStatus.trim();
-    }
-
-    public String getConsigneePath() {
-        return consigneePath;
-    }
-
-    public void setConsigneePath(String consigneePath) {
-        this.consigneePath = consigneePath == null ? null : consigneePath.trim();
     }
 
     public Date getCreateDate() {

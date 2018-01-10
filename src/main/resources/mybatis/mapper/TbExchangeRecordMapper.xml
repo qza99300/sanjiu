@@ -3,16 +3,15 @@
 <mapper namespace="com.atwangsi.user.dao.TbExchangeRecordMapper">
   <resultMap id="BaseResultMap" type="com.atwangsi.user.model.TbExchangeRecord">
     <id column="id" jdbcType="INTEGER" property="id" />
-    <result column="convert_id" jdbcType="INTEGER" property="convertId" />
-    <result column="convert_name" jdbcType="VARCHAR" property="convertName" />
-    <result column="convert_phone" jdbcType="VARCHAR" property="convertPhone" />
+    <result column="user_id" jdbcType="INTEGER" property="userId" />
+    <result column="consignee_id" jdbcType="INTEGER" property="consigneeId" />
+    <result column="user_name" jdbcType="VARCHAR" property="userName" />
     <result column="product_id" jdbcType="INTEGER" property="productId" />
     <result column="product_name" jdbcType="VARCHAR" property="productName" />
     <result column="product_integral" jdbcType="INTEGER" property="productIntegral" />
     <result column="convert_status" jdbcType="INTEGER" property="convertStatus" />
     <result column="courierinteger" jdbcType="VARCHAR" property="courierinteger" />
     <result column="logistics_status" jdbcType="VARCHAR" property="logisticsStatus" />
-    <result column="consignee_path" jdbcType="VARCHAR" property="consigneePath" />
     <result column="create_date" jdbcType="DATE" property="createDate" />
   </resultMap>
   <sql id="Example_Where_Clause">
@@ -74,8 +73,8 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, convert_id, convert_name, convert_phone, product_id, product_name, product_integral, 
-    convert_status, courierinteger, logistics_status, consignee_path, create_date
+    id, user_id, consignee_id, user_name, product_id, product_name, product_integral, 
+    convert_status, courierinteger, logistics_status, create_date
   </sql>
   <select id="selectByExample" parameterType="com.atwangsi.user.model.TbExchangeRecordExample" resultMap="BaseResultMap">
     select
@@ -108,16 +107,14 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.atwangsi.user.model.TbExchangeRecord">
-    insert into tb_exchange_record (id, convert_id, convert_name, 
-      convert_phone, product_id, product_name, 
+    insert into tb_exchange_record (id, user_id, consignee_id, 
+      user_name, product_id, product_name, 
       product_integral, convert_status, courierinteger, 
-      logistics_status, consignee_path, create_date
-      )
-    values (#{id,jdbcType=INTEGER}, #{convertId,jdbcType=INTEGER}, #{convertName,jdbcType=VARCHAR}, 
-      #{convertPhone,jdbcType=VARCHAR}, #{productId,jdbcType=INTEGER}, #{productName,jdbcType=VARCHAR}, 
+      logistics_status, create_date)
+    values (#{id,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{consigneeId,jdbcType=INTEGER}, 
+      #{userName,jdbcType=VARCHAR}, #{productId,jdbcType=INTEGER}, #{productName,jdbcType=VARCHAR}, 
       #{productIntegral,jdbcType=INTEGER}, #{convertStatus,jdbcType=INTEGER}, #{courierinteger,jdbcType=VARCHAR}, 
-      #{logisticsStatus,jdbcType=VARCHAR}, #{consigneePath,jdbcType=VARCHAR}, #{createDate,jdbcType=DATE}
-      )
+      #{logisticsStatus,jdbcType=VARCHAR}, #{createDate,jdbcType=DATE})
   </insert>
   <insert id="insertSelective" parameterType="com.atwangsi.user.model.TbExchangeRecord">
     insert into tb_exchange_record
@@ -125,14 +122,14 @@
       <if test="id != null">
         id,
       </if>
-      <if test="convertId != null">
-        convert_id,
+      <if test="userId != null">
+        user_id,
       </if>
-      <if test="convertName != null">
-        convert_name,
+      <if test="consigneeId != null">
+        consignee_id,
       </if>
-      <if test="convertPhone != null">
-        convert_phone,
+      <if test="userName != null">
+        user_name,
       </if>
       <if test="productId != null">
         product_id,
@@ -152,9 +149,6 @@
       <if test="logisticsStatus != null">
         logistics_status,
       </if>
-      <if test="consigneePath != null">
-        consignee_path,
-      </if>
       <if test="createDate != null">
         create_date,
       </if>
@@ -163,14 +157,14 @@
       <if test="id != null">
         #{id,jdbcType=INTEGER},
       </if>
-      <if test="convertId != null">
-        #{convertId,jdbcType=INTEGER},
+      <if test="userId != null">
+        #{userId,jdbcType=INTEGER},
       </if>
-      <if test="convertName != null">
-        #{convertName,jdbcType=VARCHAR},
+      <if test="consigneeId != null">
+        #{consigneeId,jdbcType=INTEGER},
       </if>
-      <if test="convertPhone != null">
-        #{convertPhone,jdbcType=VARCHAR},
+      <if test="userName != null">
+        #{userName,jdbcType=VARCHAR},
       </if>
       <if test="productId != null">
         #{productId,jdbcType=INTEGER},
@@ -190,9 +184,6 @@
       <if test="logisticsStatus != null">
         #{logisticsStatus,jdbcType=VARCHAR},
       </if>
-      <if test="consigneePath != null">
-        #{consigneePath,jdbcType=VARCHAR},
-      </if>
       <if test="createDate != null">
         #{createDate,jdbcType=DATE},
       </if>
@@ -210,14 +201,14 @@
       <if test="record.id != null">
         id = #{record.id,jdbcType=INTEGER},
       </if>
-      <if test="record.convertId != null">
-        convert_id = #{record.convertId,jdbcType=INTEGER},
+      <if test="record.userId != null">
+        user_id = #{record.userId,jdbcType=INTEGER},
       </if>
-      <if test="record.convertName != null">
-        convert_name = #{record.convertName,jdbcType=VARCHAR},
+      <if test="record.consigneeId != null">
+        consignee_id = #{record.consigneeId,jdbcType=INTEGER},
       </if>
-      <if test="record.convertPhone != null">
-        convert_phone = #{record.convertPhone,jdbcType=VARCHAR},
+      <if test="record.userName != null">
+        user_name = #{record.userName,jdbcType=VARCHAR},
       </if>
       <if test="record.productId != null">
         product_id = #{record.productId,jdbcType=INTEGER},
@@ -237,9 +228,6 @@
       <if test="record.logisticsStatus != null">
         logistics_status = #{record.logisticsStatus,jdbcType=VARCHAR},
       </if>
-      <if test="record.consigneePath != null">
-        consignee_path = #{record.consigneePath,jdbcType=VARCHAR},
-      </if>
       <if test="record.createDate != null">
         create_date = #{record.createDate,jdbcType=DATE},
       </if>
@@ -251,16 +239,15 @@
   <update id="updateByExample" parameterType="map">
     update tb_exchange_record
     set id = #{record.id,jdbcType=INTEGER},
-      convert_id = #{record.convertId,jdbcType=INTEGER},
-      convert_name = #{record.convertName,jdbcType=VARCHAR},
-      convert_phone = #{record.convertPhone,jdbcType=VARCHAR},
+      user_id = #{record.userId,jdbcType=INTEGER},
+      consignee_id = #{record.consigneeId,jdbcType=INTEGER},
+      user_name = #{record.userName,jdbcType=VARCHAR},
       product_id = #{record.productId,jdbcType=INTEGER},
       product_name = #{record.productName,jdbcType=VARCHAR},
       product_integral = #{record.productIntegral,jdbcType=INTEGER},
       convert_status = #{record.convertStatus,jdbcType=INTEGER},
       courierinteger = #{record.courierinteger,jdbcType=VARCHAR},
       logistics_status = #{record.logisticsStatus,jdbcType=VARCHAR},
-      consignee_path = #{record.consigneePath,jdbcType=VARCHAR},
       create_date = #{record.createDate,jdbcType=DATE}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -269,14 +256,14 @@
   <update id="updateByPrimaryKeySelective" parameterType="com.atwangsi.user.model.TbExchangeRecord">
     update tb_exchange_record
     <set>
-      <if test="convertId != null">
-        convert_id = #{convertId,jdbcType=INTEGER},
+      <if test="userId != null">
+        user_id = #{userId,jdbcType=INTEGER},
       </if>
-      <if test="convertName != null">
-        convert_name = #{convertName,jdbcType=VARCHAR},
+      <if test="consigneeId != null">
+        consignee_id = #{consigneeId,jdbcType=INTEGER},
       </if>
-      <if test="convertPhone != null">
-        convert_phone = #{convertPhone,jdbcType=VARCHAR},
+      <if test="userName != null">
+        user_name = #{userName,jdbcType=VARCHAR},
       </if>
       <if test="productId != null">
         product_id = #{productId,jdbcType=INTEGER},
@@ -296,9 +283,6 @@
       <if test="logisticsStatus != null">
         logistics_status = #{logisticsStatus,jdbcType=VARCHAR},
       </if>
-      <if test="consigneePath != null">
-        consignee_path = #{consigneePath,jdbcType=VARCHAR},
-      </if>
       <if test="createDate != null">
         create_date = #{createDate,jdbcType=DATE},
       </if>
@@ -307,16 +291,15 @@
   </update>
   <update id="updateByPrimaryKey" parameterType="com.atwangsi.user.model.TbExchangeRecord">
     update tb_exchange_record
-    set convert_id = #{convertId,jdbcType=INTEGER},
-      convert_name = #{convertName,jdbcType=VARCHAR},
-      convert_phone = #{convertPhone,jdbcType=VARCHAR},
+    set user_id = #{userId,jdbcType=INTEGER},
+      consignee_id = #{consigneeId,jdbcType=INTEGER},
+      user_name = #{userName,jdbcType=VARCHAR},
       product_id = #{productId,jdbcType=INTEGER},
       product_name = #{productName,jdbcType=VARCHAR},
       product_integral = #{productIntegral,jdbcType=INTEGER},
       convert_status = #{convertStatus,jdbcType=INTEGER},
       courierinteger = #{courierinteger,jdbcType=VARCHAR},
       logistics_status = #{logisticsStatus,jdbcType=VARCHAR},
-      consignee_path = #{consigneePath,jdbcType=VARCHAR},
       create_date = #{createDate,jdbcType=DATE}
     where id = #{id,jdbcType=INTEGER}
   </update>
