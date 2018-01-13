@@ -7,6 +7,8 @@ public class TbConsignee {
 
     private Integer userId;
 
+    private String userName;
+
     private String phone;
 
     private String consigneeName;
@@ -45,6 +47,14 @@ public class TbConsignee {
 
     public void setUserId(Integer userId) {
         this.userId = userId;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName == null ? null : userName.trim();
     }
 
     public String getPhone() {

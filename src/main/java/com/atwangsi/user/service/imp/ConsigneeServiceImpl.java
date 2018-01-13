@@ -1,22 +1,17 @@
 package com.atwangsi.user.service.imp;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.atwangsi.base.model.ResultVO;
 import com.atwangsi.user.dao.TbConsigneeMapper;
 import com.atwangsi.user.dao.TbUserMapper;
 import com.atwangsi.user.model.TbConsignee;
 import com.atwangsi.user.model.TbConsigneeExample;
 import com.atwangsi.user.model.TbUser;
-import com.atwangsi.user.model.TbUserExample;
 import com.atwangsi.user.service.ConsigneeService;
-import com.atwangsi.user.service.UserService;
 
 @Service
 public class ConsigneeServiceImpl implements ConsigneeService {
@@ -27,32 +22,21 @@ public class ConsigneeServiceImpl implements ConsigneeService {
 	@Autowired
 	private TbUserMapper userMapper;
 
-	//查询所有的地址信息，根据地址
-//	@Override
-//	public ResultVO<Object> querryAllConsignee() {
-//		// TODO Auto-generated method stub
-//		Map<String,Object> map = new HashMap<>();
-//		List<Integer> userIdList = new ArrayList<>();
-//		List<TbConsignee> conList = this.consigneeMapper.selectByExample(null);
-//		
-//		//获取所有的地址的userid信息
-//		for (TbConsignee consignees : conList) {
-//			Integer i = consignees.getUserId();
-//			userIdList.add(i);
-//		}
-//		
-//		TbUserExample example = new TbUserExample();
-//		example.createCriteria().andUserIdIn(userIdList);
-//		List<TbUser> userList = this.userMapper.selectByExample(example);
-//		map.put("conList", conList);
-//		
-//		return ResultVO.success("查询成功", userList, map);
-//	}
 	
+	//查询所有，并降序返回
 	@Override
 	public List<TbConsignee> querryAllConsignee() {
 		// TODO Auto-generated method stub
-		return this.consigneeMapper.selectByExample(null);
+		List<TbConsignee> list = new ArrayList<>();
+		
+		List<TbConsignee> selectList = this.consigneeMapper.selectByExample(null);
+		
+		for (int i = selectList.size()-1; i >= 0; i--) {
+			list.add(selectList.get(i));
+		}
+		
+		
+		return list;
 	}
 
 	@Override
@@ -99,6 +83,11 @@ public class ConsigneeServiceImpl implements ConsigneeService {
 	@Override
 	public Boolean saveConsignee(TbConsignee consignee) {
 		// TODO Auto-generated method stub
+		//根据用户id查询用户，把用户名设置地址中
+		Integer userId = consignee.getUserId();
+		TbUser user = this.userMapper.selectByPrimaryKey(userId);
+		consignee.setUserName(user.getUserName());
+		
 		return this.consigneeMapper.insertSelective(consignee) > 0;
 	}
 
@@ -112,27 +101,7 @@ public class ConsigneeServiceImpl implements ConsigneeService {
 		return list;
 	}
 
-//	@Override
-//	public List<TbConsignee> querryByLike(String userName) {
-//		// TODO Auto-generated method stub
-//		//存储id
-//		List<Integer> list = new ArrayList<>();
-//		TbConsigneeExample example = new TbConsigneeExample();
-//		TbUserExample userExample = new TbUserExample();
-//		userExample.createCriteria().andUserNameLike("%"+userName + "%");
-//		List<TbUser> userList = this.userMapper.selectByExample(userExample);
-//		
-//		//模糊查询，查出符合条件的用户id
-//		for (TbUser user : userList) {
-//			Integer userId = user.getUserId();
-//			list.add(userId);
-//		}
-//		
-//		example.createCriteria().andUserIdIn(list);
-//		
-//		
-//		return this.consigneeMapper.selectByExample(example);
-//	}
+	//根据兑换人名称来进行模糊查询
 	@Override
 	public List<TbConsignee> querryByLike(String consigneeName) {
 		// TODO Auto-generated method stub
@@ -141,10 +110,6 @@ public class ConsigneeServiceImpl implements ConsigneeService {
 		return this.consigneeMapper.selectByExample(example);
 	}
 	
-//	public List<TbConsignee> querryByLikeByUserName(String userName) {
-//		
-//		return this.consigneeMapper.querryByLikeByUserName(userName);
-//	}
 
 	@Override
 	public TbConsignee selectByPrimaryKey(Integer consigneeId) {

@@ -27,6 +27,4 @@ public interface TbConsigneeMapper {
     int updateByPrimaryKeySelective(TbConsignee record);
 
     int updateByPrimaryKey(TbConsignee record);
-
-	List<TbConsignee> querryByLikeByUserName(String userName);
 }
