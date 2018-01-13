@@ -652,8 +652,7 @@
 					 .append('&nbsp;<button oid = "'+ this.id+ '" type = "button" class = "updateOrderBtn btn btn-sm btn-info" title="修改订单" ><i class="fa fa-pencil"></i></button>')
 					 .append('&nbsp;<button oid = "'+ this.id+ '" type = "button" class = "deleteOrderBtn btn btn-sm btn-danger" title="删除订单" id="removeUserBtn"><i class="fa fa-trash"></i></button>');
 
-				tr.append("<td><input type='checkbox' orderId="+ this.id +" class='itemCheckBox'></td>")
-				  .append("<td>" + this.id + "</td>")
+				  tr.append("<td>" + this.id + "</td>")
 				  .append("<td>" + this.userId + "</td>")
 				  .append("<td>" + this.wechatName+ "</td>")
 				  .append("<td>" + this.productName + "</td>")

@@ -15,7 +15,7 @@
 <!-- 公共的css样式 -->
 <%@include file="/commons/common-css.jsp"%>
 
-<!-- 客户管理模块--用户管理页面 -->
+<!-- 业务管理模块--客客户理页面 -->
 
 </head>
 
@@ -34,18 +34,18 @@
 			</ul>
 		</div>
 	</div>
-
 	<div class="row">
 		<div class="col-sm-9">
 
 			<section> <!-- 按钮触发模态框 -->
-			<button class="btn btn-info btn-primary" style="margin-left: 5%;"
-				data-toggle="modal" data-target="#myModal111">新增用户</button>
-			</button>
-			<button type="button" class="btn  btn-info" style="margin-left: 5%;"
-				id="removeUserBtn">
-				<i class="fa fa-level-up"> </i> 删除用户
-			</button>
+				
+				<button class="btn btn-info btn-primary" style="margin-left: 5%;"
+					data-toggle="modal" data-target="#myModal111">新增用户</button>
+				</button>
+				<button class="btn btn-info btn-primary" style="margin-left: 5%;">导入用户</button>
+				</button>
+				<button class="btn btn-info btn-primary" style="margin-left: 5%;">导出用户</button>
+				</button>
 			</section>
 		</div>
 	</div>
@@ -68,24 +68,6 @@
 			</div>
 		</form>
 	</div>
-<!-- 	<div class="layui-field-box" style="margin-top: 10px;"> -->
-<!-- 		<form id="querryForm" class="layui-form" action=""> -->
-<!-- 			<div class="layui-form-item"> -->
-<!-- 				<div class="layui-inline"> -->
-<!-- 					<label class="layui-form-label">查询条件</label> -->
-<!-- 					<div class="layui-input-block"> -->
-<!-- 						<input id="inputId" type="text" name="userId" placeholder="请输入用户id" -->
-<!-- 							class="layui-input"> -->
-<!-- 					</div> -->
-<!-- 				</div> -->
-
-<!-- 				<div class="layui-inline" style="margin-top: -5px; margin-left: 5%;"> -->
-<!-- 					<button type="button" id="querryBtn" class="layui-btn layui-btn-primary-search">查询</button> -->
-<!-- 				</div> -->
-<!-- 			</div> -->
-<!-- 		</form> -->
-<!-- 	</div> -->
-
 
 	<!--table开始-->
 	<div id="gundong">
@@ -94,7 +76,6 @@
 			<thead>
 				<!-- 目录列表 -->
 				<tr>
-					<th width="30"><input id="allCheckBox" type="checkbox">全选</th>
 					<th>序号</th>
 					<th>用户名</th>
 					<th>微信昵称</th>
@@ -140,13 +121,13 @@
 						style="width: 95%; margin: 10 auto;">
 						<div class="layui-form-item2"  >
 							<div class="layui-inline">
-								<label class="layui-form-label2"><a style="color: red;">*</a>用户名</label>
+								<label class="layui-form-label2">用户名</label>
 								<div class="layui-input-block">
 									<input type="text" name="userName" class="layui-input">
 								</div>
 							</div>
 							<div class="layui-inline" style="margin-left: 10%;">
-								<label class="layui-form-label2"><a style="color: red;">*</a>联系方式</label>
+								<label class="layui-form-label2">联系方式</label>
 								<div class="layui-input-block">
 									<input type="text" name="phone" class="layui-input">
 								</div>
@@ -154,7 +135,7 @@
 						</div>
 						<div class="layui-form-item2"  >
 							<div class="layui-inline">
-								<label class="layui-form-label2"><a style="color: red;">*</a>微信账号</label>
+								<label class="layui-form-label2">微信账号</label>
 								<div class="layui-input-block">
 									<input type="text" name="openId" class="layui-input">
 								</div>
@@ -189,7 +170,7 @@
 								</div>
 							</div>
 							<div class="layui-inline" style="margin-left: 10%;">
-								<label class="layui-form-label2"><a style="color: red;">*</a>邮箱地址</label>
+								<label class="layui-form-label2">邮箱地址</label>
 								<div class="layui-input-block">
 									<input type="text" name="email" class="layui-input">
 								</div>
@@ -198,7 +179,7 @@
 
 						<div class="layui-form-item2"  >
 							<div class="layui-inline">
-								<label class="layui-form-label2"><a style="color: red;">*</a>现任职务</label>
+								<label class="layui-form-label2">现任职务</label>
 								<div class="layui-input-block">
 									<input type="text" name="duty" class="layui-input">
 								</div>
@@ -234,8 +215,7 @@
 	<!-- /.modal -->
 	
 	<!-- 修改用户信息模态框 -->
-	<div class="modal fade" id="updateUserModalBtn" tabindex="-1" role="dialog"
-		aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal fade" id="updateUserModalBtn" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 		<div class="modal-dialog modal-lg">
 			<div class="modal-content">
 				<div class="modal-header">
@@ -316,7 +296,7 @@
 								</div>
 							</div>
 							<div class="layui-inline" style="margin-left: 10%;">
-								<label class="layui-form-label2"><a style="color: red;">*</a>邮箱地址</label>
+								<label class="layui-form-label2">邮箱地址</label>
 								<div class="layui-input-block">
 									<input id="emailKey" type="text" name="email" class="layui-input">
 								</div>
@@ -376,7 +356,7 @@
 	<!-- /.modal -->
 	
 	
-	<!-- 角色模态框增删改查开始 -->
+	<!-- 角色模态框  增删改查开始 -->
 	 <!-- 模态框（Modal） -->
 	<div class="modal fade" id="userModel" tabindex="-1" role="dialog"
 		aria-labelledby="myModalLabel" aria-hidden="true">
@@ -397,7 +377,7 @@
 						</div>
 						<div class="form-group">
 							<ul>
-								<li id="addRoleBtn" class="btn btn-default"><label>》》设置》》</label></li>
+								<li id="addRoleBtn" class="btn btn-default"><label>》》添加》》</label></li>
 								<!-- glyphicon glyphicon-chevron-right -->
 								<br>
 								<li id="removeRoleBtn" class="btn btn-default"
@@ -425,12 +405,10 @@
 	</div>
 	<!-- 添加角色模态框结束 --> 
 	
-	
-	
 	<!-- 查看用户详细信息模态框 -->
 	<div class="modal fade" id="showMyUserModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 	    <div class="modal-dialog modal-lg">
-	        <div class="modal-content">
+	        <div class="modal-content" a>
 	            <div class="modal-header">
 	                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 	                <h4 class="modal-title" id="myModalLabel">用户个人信息</h4>
@@ -441,18 +419,32 @@
 						<tr>
 							<div class="layui-form-item2" id="updateUserDiv">
 								<div class="layui-inline">
-									<label class="layui-form-label2">用户id</label>
+									<label class="layui-form-label2">用户名</label>
 									<div class="layui-input-block">
-										<input id="userId1Key" value="" type="text" name="userId" disabled="disabled" class="layui-input">
-									</div>
-								</div>
-								<div class="layui-inline">
-									<label class="layui-form-label2"><a style="color: red;">*</a>用户名</label>
-									<div class="layui-input-block">
+										<input id="userId1Key" value="" type="hidden" name="userId" disabled="disabled" class="layui-input">
 										<input id="userName1Key" value="" type="text" name="userName" disabled="disabled" class="layui-input">
 									</div>
 								</div>
-			
+								<div class="layui-inline">
+									<label class="layui-form-label2">积分总数</label>
+									<div class="layui-input-block">
+										<input id="integralCount1Key" disabled="disabled" type="text" name="integralCount" class="layui-input">
+									</div>
+								</div>
+							</div>
+						</tr>
+						<tr>
+							<div class="layui-inline">
+								<label class="layui-form-label2">微信昵称</label>
+								<div class="layui-input-block">
+									<input id="openId1Key" type="text" name="opendId" disabled="disabled" class="layui-input">
+								</div>
+							</div>
+							<div class="layui-inline">
+								<label class="layui-form-label2">微信昵称</label>
+								<div class="layui-input-block">
+									<input id="wechatName1Key" type="text" name="wechatName" disabled="disabled" class="layui-input">
+								</div>
 							</div>
 						</tr>
 						<tr>
@@ -471,22 +463,6 @@
 								</div>
 							</div>
 						</tr>
-						<tr>
-							<div class="layui-form-item2">
-			
-								<div class="layui-inline">
-									<label class="layui-form-label2">微信id:</label>
-									<div class="layui-input-block">
-										<input id="openId1Key" type="text" name="openId" disabled="disabled" class="layui-input">
-									</div>
-								</div>
-								<div class="layui-inline">
-									<label class="layui-form-label2">微信昵称</label>
-									<div class="layui-input-block">
-										<input id="wechatName1Key" type="text" name="wechatName" disabled="disabled" class="layui-input">
-									</div>
-								</div>
-							</div>
 						</tr>
 						<tr>
 							<div class="layui-form-item2">
@@ -508,13 +484,13 @@
 							<div class="layui-form-item2">
 			
 								<div class="layui-inline">
-									<label class="layui-form-label2"><a style="color: red;">*</a>联系方式</label>
+									<label class="layui-form-label2">联系方式</label>
 									<div class="layui-input-block">
 										<input id="phone1Key" type="text" name="phone" disabled="disabled" class="layui-input">
 									</div>
 								</div>
 								<div class="layui-inline">
-									<label class="layui-form-label2"><a style="color: red;">*</a>邮箱地址</label>
+									<label class="layui-form-label2">邮箱地址</label>
 									<div class="layui-input-block">
 										<input id="email1Key" type="text" name="email" disabled="disabled" class="layui-input">
 									</div>
@@ -530,7 +506,7 @@
 									</div>
 								</div>
 								<div class="layui-inline">
-									<label class="layui-form-label2"><a style="color: red;">*</a>现任职务</label>
+									<label class="layui-form-label2">现任职务</label>
 									<div class="layui-input-block">
 										<input id="duty1Key" type="text" name="duty" disabled="disabled" class="layui-input">
 									</div>
@@ -546,7 +522,7 @@
 									</div>
 								</div>
 								<div class="layui-inline">
-									<label class="layui-form-label2"><a style="color: red;">*</a>所在市</label>
+									<label class="layui-form-label2">所在市</label>
 									<div class="layui-input-block">
 										<input id="city1Key" type="text" name="city" disabled="disabled" class="layui-input">
 									</div>
@@ -562,22 +538,6 @@
 									</div>
 								</div>
 								<div class="layui-inline">
-									<label class="layui-form-label2">备 注</label>
-									<div class="layui-input-block">
-										<input id="phoneremark1Key" type="text" name="phoneremark" disabled="disabled" class="layui-input">
-									</div>
-								</div>
-							</div>
-						</tr>
-						<tr>
-							<div class="layui-form-item2">
-								<div class="layui-inline">
-									<label class="layui-form-label2">积分总数</label>
-									<div class="layui-input-block">
-										<input id="integralCount1Key" disabled="disabled" type="text" name="integralCount" class="layui-input">
-									</div>
-								</div>
-								<div class="layui-inline">
 									<label class="layui-form-label2">创建时间</label>
 									<div class="layui-input-block">
 										<input id="createDate1Key" type="text" name="createDate" disabled="disabled" class="layui-input">
@@ -585,7 +545,6 @@
 								</div>
 							</div>
 						</tr>
-						
 						<tr>
 							<div class="layui-form-item2">
 								<div class="layui-inline">
@@ -981,7 +940,7 @@
 		//表格显示
 		function buildTable(data) {
 			var userData = data.list;
-
+			var id = 0;
 			$.each(userData,function() {
 				//创建tr
 				var tr = $("<tr></tr>");
@@ -994,16 +953,20 @@
 					 .append('&nbsp;<button userId = "'+ this.userId+ '" type = "button" class = "showMyUserModal btn btn-sm btn-info" title="查看信息" ><i class="fa fa-pencil"></i></button>')
 					 .append('&nbsp;<button userId = "'+ this.userId+ '" type = "button" class = "deleteUserBtn btn btn-sm btn-danger" title="删除用户" id="removeUserBtn"><i class="fa fa-trash"></i></button>');
 
-				tr.append("<td><input type='checkbox' userId="+ this.userId +" class='itemCheckBox'></td>")
-				  .append("<td>" + this.userId + "</td>")
-				  .append("<td>" + this.userName+ "</td>")
-				  .append("<td>" + this.wechatName+ "</td>")
-				  .append("<td>" + nullIsZero(this.integralCount) + "</td>")
-				  .append("<td>" + this.phone + "</td>")
-				  .append("<td>" + this.email + "</td>")
-				  .append("<td>" + timeFormat(this.createDate) + "</td>")
-				  .append(btnTd).appendTo($("#userTable tbody"));
+				 tr.append("<td>" + ++id + "</td>")
+// 				 tr.append("<td>" + this.userId + "</td>")
+				   .append("<td><a onclick='toUserById("+ this.userId +")'>" + this.userName+ "</a></td>")
+				   .append("<td>" + this.wechatName+ "</td>")
+				   .append("<td>" + nullIsZero(this.integralCount) + "</td>")
+				   .append("<td>" + this.phone + "</td>")
+				   .append("<td>" + this.email + "</td>")
+				   .append("<td>" + timeFormat(this.createDate) + "</td>")
+				   .append(btnTd).appendTo($("#userTable tbody"));
 			});
+		}
+		
+		function toUserById(data){
+			alert("111");
 		}
 
 		//分页条显示
@@ -1078,7 +1041,7 @@
 			document.getElementById("city1Key").value = conData.city;
 			document.getElementById("area21Key").value = conData.area2;
 			document.getElementById("address1Key").value = conData.address;
-			document.getElementById("phoneremark1Key").value = conData.phoneremark;
+// 			document.getElementById("phoneremark1Key").value = conData.phoneremark;
 			document.getElementById("integralCount1Key").value = conData.integralCount;
 			document.getElementById("createDate1Key").value = timeFormat(conData.createDate);
 			

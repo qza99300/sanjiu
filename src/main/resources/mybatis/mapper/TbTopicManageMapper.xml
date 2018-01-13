@@ -284,4 +284,12 @@
       create_date = #{createDate,jdbcType=DATE}
     where topic_id = #{topicId,jdbcType=INTEGER}
   </update>
+
+  <select id="selectTbTopicObj" resultMap="BaseResultMap">
+  	select *from tb_topic_manage ORDER by topic_id DESC
+  </select>
+  
+  <select id="selectTbTopicHottest" resultMap="BaseResultMap">
+  	select *from tb_topic_manage ORDER BY like_count DESC
+  </select>
 </mapper>

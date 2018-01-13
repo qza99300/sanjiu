@@ -303,4 +303,12 @@
       create_date = #{createDate,jdbcType=DATE}
     where id = #{id,jdbcType=INTEGER}
   </update>
+
+  <select id="selectexchange" resultMap="BaseResultMap">
+  	SELECT *from tb_exchange_record where user_id=#{0}
+  </select>
+  
+  <select id="selectsingle" resultMap="BaseResultMap">
+  	SELECT *from tb_exchange_record where id=#{0}
+  </select>
 </mapper>

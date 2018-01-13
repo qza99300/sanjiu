@@ -89,13 +89,11 @@
 			style="width: 100%;">
 			<thead>
 				<tr>
-					<th width="30"><input id="allCheckBox" type="checkbox">全选</th>
 					<th>角色序号</th>
 					<th>角色名</th>
 					<th>操作</th>
 				</tr>
 			</thead>
-
 
 			<!--内容容器-->
 			<tbody>
@@ -112,9 +110,7 @@
 					</td>
 				</tr>
 			</tfoot>
-
 		</table>
-
 	</div>
 	</section> </section> 
 	
@@ -134,10 +130,9 @@
 						id="addRoleForm" style="width: 100%; margin: 10 auto;">
 						<table>
 							<tr>
-								<div class="layui-form-item2" id="updateOrderDiv">
+								<div class="layui-form-item2">
 									<div class="layui-inline">
-										<label class="layui-form-label2"><a
-											style="color: red;">*</a>角色名称</label>
+										<label class="layui-form-label2">角色名称</label>
 										<div class="layui-input-block">
 											<input type="text" name="roleName"  class="layui-input">
 										</div>
@@ -181,15 +176,6 @@
 										</div>
 									</div>
 								</div>
-								<div class="layui-form-item2" id="updateOrderDiv">
-									<div class="layui-inline">
-										<label class="layui-form-label2"><a
-											style="color: red;">*</a>备注</label>
-										<div id="" class="layui-input-block">
-<!-- 											<input type="text" name="state" value="{{state}}"  class="layui-input"> -->
-										</div>
-									</div>
-								</div>
 							</tr>
 						</table>
 					</form>
@@ -227,9 +213,7 @@
 	
 <!-- 公共的js样式 -->
 <%@include file="/commons/common-js.jsp"%>
-<script src="${ctp }/zTree_v3-3.5.28/js/jquery.ztree.all.min.js"></script>
-<!-- vue -->
-<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+<script src="${ctp }/static/zTree_v3-3.5.28/js/jquery.ztree.all.min.js"></script>
 
 
 	<script type="text/javascript">
@@ -287,8 +271,7 @@
 					 .append('&nbsp;<button roleId = "' + this.roleId + '" type = "button"  class = "updateRoleModelShowBtn btn btn-sm btn-info" title="修改信息" ><i class="fa fa-pencil"></i></button>')
 					 .append('&nbsp;<button roleId = "' + this.roleId + '" type = "button" class = "deleteRoleBtn btn btn-sm btn-danger" title="删除角色" id="removeUserBtn"><i class="fa fa-trash"></i></button>');
 	
-				tr.append("<td><input type='checkbox' roleId="+ this.roleId +" class='itemCheckBox'></td>")
-				  .append("<td>" + this.roleId + "</td>")
+				tr.append("<td>" + this.roleId + "</td>")
 				  .append("<td>" + this.roleName + "</td>")
 				  .append(btnTd)
 				  .appendTo($("#roleTable"));

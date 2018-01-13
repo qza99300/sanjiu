@@ -68,4 +68,18 @@ public class RecordServiceImpl implements RecordService {
 		example.createCriteria().andUserNameLike("%" + userName +"%");
 		return this.recordMapper.selectByExample(example);
 	}
+
+	//查询个人信息
+	@Override
+	public List<TbExchangeRecord> selectexchange(int id) {
+				
+		return recordMapper.selectexchange(id);
+	}
+
+	//查询单个兑换信息
+	@Override
+	public TbExchangeRecord selectsingle(int id) {
+				
+		return recordMapper.selectsingle(id);
+	}
 }

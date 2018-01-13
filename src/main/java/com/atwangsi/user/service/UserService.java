@@ -28,4 +28,6 @@ public interface UserService {
 
 	List<TbUser> querryByLike(String userName);
 
+	TbUser selectweixin(String open);
+
 }

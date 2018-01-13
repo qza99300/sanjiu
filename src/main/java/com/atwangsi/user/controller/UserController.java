@@ -160,10 +160,19 @@ public class UserController {
 		return new PageInfo<>(this.userService.querryUserOne(userId),AppContant.PAGE_SIZE);
 	}
 	
+	/**
+	 * 根据用户id查询用户信息
+	 * json
+	 * @param userId
+	 * @return
+	 */
 	@RequestMapping("querryById")
 	@ResponseBody
 	public ResultVO<Object> querryById(@RequestParam("userId") Integer userId){
-		return null;
+		
+		List<TbUser> userlist = this.userService.querryUserOne(userId);
+		
+		return ResultVO.success("查询成功！", userlist.get(0), null);
 		
 	}
 	

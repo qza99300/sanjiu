@@ -501,4 +501,12 @@
       deletion_date = #{deletionDate,jdbcType=DATE}
     where activity_id = #{activityId,jdbcType=INTEGER}
   </update>
+
+  <select id="selectList" resultMap="BaseResultMap">
+  		select * from tb_activity_manage where create_date between current_date()-7 and sysdate() ORDER BY create_date DESC
+  </select>
+  
+  <select id="selectHistory" resultMap="BaseResultMap">
+  		SELECT * FROM tb_activity_manage where DATE_SUB(CURDATE(), INTERVAL 7 DAY) >= date(create_date) ORDER BY create_date DESC
+  </select>
 </mapper>

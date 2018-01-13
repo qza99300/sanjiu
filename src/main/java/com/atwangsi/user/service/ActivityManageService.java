@@ -20,4 +20,10 @@ public interface ActivityManageService {
 
 	List<TbActivityManage> querryByLike(String activityTitle);
 
+	//显示最新活动
+    List<TbActivityManage> selectList();
+    
+    //显示历史活动
+    List<TbActivityManage> selectHistory();
+
 }

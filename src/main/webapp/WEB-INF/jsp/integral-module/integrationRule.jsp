@@ -56,10 +56,6 @@ select {
 					style="margin-left: 5%;" onclick="show()">
 					<i class="fa fa-edit"> </i> 设置积分获取规则
 				</button>
-				<button type="button" class="btn btn-info btn-primary"
-					style="margin-left: 5%;" data-toggle="modal" data-target="#newApplyModelBtn">
-					<i class="fa fa-edit"> </i> 新增积分获取规则
-				</button>
 			</section>
 		</div>
 	</div>
@@ -89,7 +85,6 @@ select {
 	<table class="site-table table-hover" id="activityApplyTable" style="margin-top: 20px;">
 		<thead>
 			<tr>
-				<th width="30px"><input id="allCheckBox" type="checkbox">全选</th>
 				<th>序号</th>
 				<th>规则名称</th>
 				<th>积分</th>
@@ -179,44 +174,36 @@ select {
 	    </div><!-- /.modal -->
 	</div>
 	
-	<!-- 修改规则详细模态框 -->
-	<div class="modal fade" id="showUpdateRuleBtn" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-	    <div class="modal-dialog">
-	        <div class="modal-content">
-	            <div class="modal-header">
-	                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-	                <h4 class="modal-title" id="myModalLabel">修改规则信息窗口</h4>
-	            </div>
-	            <div class="modal-body">
-				<!-- 内容开始 -->
-					<form  class="layui-form" action="" id="updateRuleForm" style="width: 100%; margin: 10 auto;">
-						<div class="layui-form-item2" id="updateOrderDiv">
-							<div class="layui-inline">
-								<label class="layui-form-label2"><a
-									style="color: red;">*</a>规则名称</label>
-								<div class="layui-input-block">
-									<input id="ruleIdKey" type="hidden" name="ruleId" value="">
-									<input type="text" id="ruleNameKey" name="ruleName"  class="layui-input">
-								</div>
-							</div>
-							<div class="layui-inline">
-								<label class="layui-form-label2"><a
-									style="color: red;">*</a>积分</label>
-								<div class="layui-input-block">
-									<input type="text" id="ruleNumKey" name="ruleNum"  class="layui-input">
-								</div>
-							</div>
-						</div>
-					</form>
-				<!-- 内容结束 -->
-			    </div>
-	            <div class="modal-footer">
-	                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-	                <button id="subUpdateBtn" type="button" class="btn btn-primary">提交更改</button>
-	            </div>
-	        </div><!-- /.modal-content -->
-	    </div><!-- /.modal -->
-	</div>
+<!-- 	<!-- 修改规则详细模态框 --> -->
+<!-- 	<div class="modal fade" id="showUpdateRuleBtn" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"> -->
+<!-- 	    <div class="modal-dialog"> -->
+<!-- 	        <div class="modal-content"> -->
+<!-- 	            <div class="modal-header"> -->
+<!-- 	                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button> -->
+<!-- 	                <h4 class="modal-title" id="myModalLabel">修改规则信息窗口</h4> -->
+<!-- 	            </div> -->
+<!-- 	            <div class="modal-body"> -->
+<!-- 				内容开始 -->
+<!-- 					<form  class="layui-form" action="" id="updateRuleForm" style="width: 100%; margin: 10 auto;"> -->
+<!-- 						<div class="layui-form-item2" id="updateOrderDiv"> -->
+<!-- 							<div class="layui-inline"> -->
+<!-- 								<label class="layui-form-label2">积分</label> -->
+<!-- 								<div class="layui-input-block"> -->
+<!-- 									<input id="ruleIdKey" type="hidden" name="ruleId" value=""> -->
+<!-- 									<input type="text" id="ruleNumKey" name="ruleNum"  class="layui-input"> -->
+<!-- 								</div> -->
+<!-- 							</div> -->
+<!-- 						</div> -->
+<!-- 					</form> -->
+<!-- 				内容结束 -->
+<!-- 			    </div> -->
+<!-- 	            <div class="modal-footer"> -->
+<!-- 	                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button> -->
+<!-- 	                <button id="subUpdateBtn" type="button" class="btn btn-primary">提交更改</button> -->
+<!-- 	            </div> -->
+<!-- 	        </div>/.modal-content -->
+<!-- 	    </div>/.modal -->
+<!-- 	</div> -->
 	
 
 	<!-- —————————————————————————————————————js开始——————————————————————————————————————————— --> 
@@ -282,13 +269,12 @@ select {
 					var btnTd = $("<td></td>")
 					//操作列
 					
-					btnTd.append('<button ruleId = "' + this.ruleId + '" type = "button" class = "updateRuleModalBtn btn btn-sm btn-success" title="修改规则" ><i class="fa fa-qrcode"></i></button>')
-					 .append('&nbsp;<button ruleId = "' + this.ruleId + '" type = "button" class = "deleteRuleBtn btn btn-sm btn-danger" title="删除规则" id="removeUserBtn"><i class="fa fa-trash"></i></button>');
+// 					.append('<button ruleId = "' + this.ruleId + '" type = "button" class = "updateRuleModalBtn btn btn-sm btn-success" title="修改规则" ><i class="fa fa-qrcode"></i></button>')
+						 btnTd.append('&nbsp;<button ruleId = "' + this.ruleId + '" type = "button" class = "deleteRuleBtn btn btn-sm btn-danger" title="删除规则" id="removeUserBtn"><i class="fa fa-trash"></i></button>');
 	
 					
 	
-					tr.append("<td><input type='checkbox' applyId="+ this.ruleId +" class='itemCheckBox'></td>")
-					  .append("<td>" + this.ruleId + "</td>")
+					tr.append("<td>" + this.ruleId + "</td>")
 					  .append("<td>" + this.ruleName + "</td>")
 					  .append("<td>" + this.ruleNum + "</td>")
 					  .append(btnTd)
@@ -384,38 +370,6 @@ select {
 				return false;
 			});
 			
-			//----------------------------------添加--------------------------------------------------------------
-			$("#addActivityBtn").click(function() {
-				//获取表单数据
-				var params = $("#addApplyForm").serialize();
-				
-	
-				artDialog.confirm("question", "提示", "确定是否添加积分规则？", function(){
-					$.post("${ctp }/integral/add", params, function(data) {
-						//后台返回的内容显示提示
-						layer.msg(data.msg);
-						//关闭模态框
-						$("#newApplyModelBtn").modal('hide');
-						//后台清空模态框里面的内容
-						$("#newApplyModelBtn input").val("");
-						//来到最后一页；
-						page.pn = page.lastPage + 10;
-						getApplys();
-	
-						//失败返回的msg
-					}).fail(function() {
-						layer.msg(data.msg);
-						//关闭模态框
-						$("#newApplyModelBtn").modal('hide');
-						//后台清空模态框里面的内容
-						$("#newApplyModelBtn input").val("");
-						//来到最后一页；
-						page.pn = page.lastPage + 10;
-						getApplys();
-						
-					});
-				});
-			});
 			//----------------------------------查询一个--------------------------------------------------------------
 			$("#querryOneBtn").click(function(){
 				
@@ -563,75 +517,72 @@ select {
 			
 	//---------------------------------------------------------------------------------
 	//修改
-	$("body").on("click",".updateRuleModalBtn",function(){
+// 	$("body").on("click",".updateRuleModalBtn",function(){
 		
-		param.ruleId = $(this).attr("ruleId");
+// 		param.ruleId = $(this).attr("ruleId");
 		
-		$.ajax({
-			url : "${ctp}/integral/querry",
-			data : {
-				ruleId : param.ruleId
-			},
-			dataType: 'json',
-			success : function(data) {
+// 		$.ajax({
+// 			url : "${ctp}/integral/querry",
+// 			data : {
+// 				ruleId : param.ruleId
+// 			},
+// 			dataType: 'json',
+// 			success : function(data) {
 				
-				showReturnMsg(data);
+// 				showReturnMsg(data);
 				
-			}
-		});
+// 			}
+// 		});
 		
 		
-		//显示模态框
-		$("#showUpdateRuleBtn").modal({
-   			backdrop : 'static',
-   			show : true
-   		});
-	});
+// 		//显示模态框
+// 		$("#showUpdateRuleBtn").modal({
+//    			backdrop : 'static',
+//    			show : true
+//    		});
+// 	});
 	
 	
-	//回显信息
-	function showReturnMsg(data){
+// 	//回显信息
+// 	function showReturnMsg(data){
+// 		var conData = data.list[0];
+// 		//input值
+// 		$("#ruleIdKey").attr("value",conData.ruleId);
+// 		//回显操作
+// 		document.getElementById("ruleNameKey").value = conData.ruleName;
+// 		document.getElementById("ruleNumKey").value = conData.ruleNum;
 		
-		var conData = data.list[0];
-		
-		//input值
-		$("#ruleIdKey").attr("value",conData.ruleId);
-		
-		//回显操作
-		document.getElementById("ruleNameKey").value = conData.ruleName;
-		document.getElementById("ruleNumKey").value = conData.ruleNum;
-		
-	}
+// 	}
 	
-	$("#subUpdateBtn").click(function(){
-		//获取表单信息
-		var data = $("#updateRuleForm").serialize();
+// 	$("#subUpdateBtn").click(function(){
+// 		//获取表单信息
+// 		var data = $("#updateRuleForm").serialize();
 		
-		artDialog.confirm("question", "提示", "确定是否修改规则？", function(){
-			$.post("${ctp }/integral/update", data, function(data) {
-				//后台返回的内容显示提示
-				layer.msg(data.msg);
-				//关闭模态框
-				$("#showUpdateRuleBtn").modal('hide');
-				//后台清空模态框里面的内容
-				$("#showUpdateRuleBtn input").val("");
-				//跳转当前页
-				page.pn = page.pageNum;
-				getApplys();
-				//失败返回的msg
-			}).fail(function() {
-				layer.msg(data.msg);
-				//关闭模态框
-				$("#showUpdateRuleBtn").modal('hide');
-				//后台清空模态框里面的内容
-				$("#showUpdateRuleBtn input").val("");
-				//跳转当前页
-				page.pn = page.pageNum;
-				getApplys();
-			});
-		});
+// 		artDialog.confirm("question", "提示", "确定是否修改规则？", function(){
+// 			$.post("${ctp }/integral/update", data, function(data) {
+// 				//后台返回的内容显示提示
+// 				layer.msg(data.msg);
+// 				//关闭模态框
+// 				$("#showUpdateRuleBtn").modal('hide');
+// 				//后台清空模态框里面的内容
+// 				$("#showUpdateRuleBtn input").val("");
+// 				//跳转当前页
+// 				page.pn = page.pageNum;
+// 				getApplys();
+// 				//失败返回的msg
+// 			}).fail(function() {
+// 				layer.msg(data.msg);
+// 				//关闭模态框
+// 				$("#showUpdateRuleBtn").modal('hide');
+// 				//后台清空模态框里面的内容
+// 				$("#showUpdateRuleBtn input").val("");
+// 				//跳转当前页
+// 				page.pn = page.pageNum;
+// 				getApplys();
+// 			});
+// 		});
 		
-	});
+// 	});
 			
 			
 			

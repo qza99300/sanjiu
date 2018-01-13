@@ -18,4 +18,13 @@ public interface TopicService {
 
 	List<TbTopicManage> querryByLike(String userName);
 
+	//点赞加1
+    Integer updateLikeCount(Integer topicId);
+    
+  //显示所有社区信息
+    List<TbTopicManage> selectTbTopicObj();
+    
+  //最热社区信息
+    List<TbTopicManage> selectTbTopicHottest();
+
 }

@@ -20,4 +20,10 @@ public interface RecordService {
 
 	List<TbExchangeRecord> querryByLike(String userName);
 
+	//查询个人兑换信息
+    List<TbExchangeRecord> selectexchange(int id);
+    
+    //查询单个兑换信息
+    TbExchangeRecord selectsingle(int id);
+
 }

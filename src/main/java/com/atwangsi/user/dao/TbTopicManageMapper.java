@@ -33,4 +33,10 @@ public interface TbTopicManageMapper {
     int updateByPrimaryKeyWithBLOBs(TbTopicManage record);
 
     int updateByPrimaryKey(TbTopicManage record);
+
+	//显示所有社区信息
+    List<TbTopicManage> selectTbTopicObj();
+    
+    //最热社区信息
+    List<TbTopicManage> selectTbTopicHottest();
 }

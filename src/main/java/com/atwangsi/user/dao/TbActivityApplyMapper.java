@@ -27,4 +27,10 @@ public interface TbActivityApplyMapper {
     int updateByPrimaryKeySelective(TbActivityApply record);
 
     int updateByPrimaryKey(TbActivityApply record);
+
+	//查看个人报名信息
+    List<TbActivityApply> selectApply(int id);
+    
+    //查询是否报名过
+    TbActivityApply selectObj(TbActivityApply record);
 }

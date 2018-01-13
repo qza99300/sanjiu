@@ -52,10 +52,14 @@ public class ConsigneeController {
 		
 		PageHelper.startPage(pageNum, pageSize);
 		
+		Map<String,Object> map = new HashMap<>();
+		
 		List<TbConsignee> list =this.consigneeService.querryByLike(consigneeName);
 		
-				return new PageInfo<>(list, AppContant.PAGE_SIZE);
+		
+		return new PageInfo<>(list, AppContant.PAGE_SIZE);
 	}
+
 	
 	/**
 	 * 添加收货人地址
@@ -157,7 +161,7 @@ public class ConsigneeController {
 	 */
 	@RequestMapping("querryall")
 	@ResponseBody
-	public ResultVO<Object> querryAllConsigneeText(@RequestParam(value = "pn", defaultValue = "1") Integer pageNum,
+	public ResultVO<List<TbUser>> querryAllConsigneeText(@RequestParam(value = "pn", defaultValue = "1") Integer pageNum,
 			@RequestParam(value = "ps", defaultValue = "7") Integer pageSize,
 			@RequestParam(value="consigneeId", required = false) Integer consigneeId) {
 		
@@ -165,24 +169,14 @@ public class ConsigneeController {
 		
 		Map<String, Object> resultMap = new HashMap<>();
 		List<TbUser> user = this.userService.getAllUser();
-		List<TbConsignee> consignee = this.consigneeService.querryAllConsignee();
+//		List<TbConsignee> consignee = this.consigneeService.querryAllConsignee();
 		PageInfo<TbConsignee> conInfo = new PageInfo<>(this.consigneeService.querryAllConsignee(), AppContant.PAGE_SIZE);
 		
 		resultMap.put("conInfo", conInfo);
 //		resultMap.put("user", user);
-		
 		return ResultVO.success("查询成功", user, resultMap);
 		
-//		Map<String, Object>
 		
-//		if (consigneeId == null) {
-//			
-//			return ;
-//			
-//		}
-//		
-//		return new PageInfo<>(this.consigneeService.querryById(consigneeId), AppContant.PAGE_SIZE);
-//		
 	}
 	
 	/**

@@ -37,6 +37,26 @@ public class TbActivityApply {
 
     private Date deletionDate;
 
+	private String picture;
+    
+    private String activityNum;
+
+	public String getPicture() {
+		return picture;
+	}
+
+	public void setPicture(String picture) {
+		this.picture = picture;
+	}
+    
+    public String getActivityNum() {
+		return activityNum;
+	}
+
+	public void setActivityNum(String activityNum) {
+		this.activityNum = activityNum;
+	}
+
     public Integer getApplyId() {
         return applyId;
     }

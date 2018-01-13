@@ -84,4 +84,18 @@ public class ApplyServiceImpl implements ApplyService {
 		return this.applyMapper.selectByExample(example);
 	}
 
+	//查询个人报名信息
+	@Override
+	public List<TbActivityApply> selectApply(int id) {
+			
+		return applyMapper.selectApply(id);
+	}
+
+	//查询是否已经报名
+	@Override
+	public TbActivityApply selectObj(TbActivityApply record) {
+			
+		return applyMapper.selectObj(record);
+	}
+
 }

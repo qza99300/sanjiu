@@ -641,20 +641,10 @@
 
 
 
-	<!-- JS --> <script type="text/javascript"
-		src="${ctp }/js/jquery-1.8.3.min.js"></script><!-- BASIC JQUERY 1.8.3 LIB. JS -->
+	<!-- 公共的js样式 -->
+<%@include file="/commons/common-js.jsp"%>
 
-	<script type="text/javascript" src="${ctp }/js/bootstrap.min.js"></script> <!-- BOOTSTRAP JS -->
-	<script type="text/javascript" src="${ctp }/js/jquery.dcjqaccordion.2.7.js"></script>
-	<!-- 左测点击拉下去 JS --> <script type="text/javascript"
-		src="${ctp }/js/jquery.nicescroll.js"></script> <!-- 滚动条 JS --> <script
-		type="text/javascript" src="${ctp }/js/common-scripts.js"></script> <!-- 公用的 JS -->
-	<script type="text/javascript" src="${ctp }/js/placeholder-IE789.js"></script>
-	<!--ie6789input提示兼容js--> <!--全选js--> <script type="text/javascript"
-		src="${ctp }/js/tableCheckbox.js"></script> <!--弹出层js引用--> <script
-		type="text/javascript" src="${ctp }/js/jquery.artDialog.source.js"></script>
-	<script type="text/javascript" src="${ctp }/js/iframeTools.source.js"></script>
-	<script type="text/javascript" src="${ctp }/js/msgbox.js"></script> <script
+	<script
 		type="text/javascript">
 		//查看
 		function Examine() {

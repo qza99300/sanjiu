@@ -88,11 +88,11 @@
 
 	</div>
 
-	<script type="text/javascript" src="${ctp }/js/jquery-1.8.3.min.js"></script>
-	<script type="text/javascript" src="${ctp }/js/placeholder-IE789.js"></script>
+	<script type="text/javascript" src="${ctp }/static/js/jquery-1.8.3.min.js"></script>
+	<script type="text/javascript" src="${ctp }/static/js/placeholder-IE789.js"></script>
 
-	<script type="text/javascript" src="${ctp }/js/vendors.js"></script>
-	<script type="text/javascript" src="${ctp }/js/homepage.js"></script>
+	<script type="text/javascript" src="${ctp }/static/js/vendors.js"></script>
+	<script type="text/javascript" src="${ctp }/static/js/homepage.js"></script>
 
 	<!--[if IE 6]>
 		<script type="text/javascript" src="http://static.webgame.kanimg.com/com/DD_PNG_min.js"></script>

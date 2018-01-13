@@ -9,7 +9,7 @@ public class TbUser {
 
     private String password;
 
-    private String userName;
+    private String userName = "未定义";
 
     private String phone;
 
@@ -78,7 +78,7 @@ public class TbUser {
     }
 
     public void setUserName(String userName) {
-        this.userName = userName == null ? null : userName.trim();
+        this.userName = userName == null ? "未定义" : userName.trim();
     }
 
     public String getPhone() {

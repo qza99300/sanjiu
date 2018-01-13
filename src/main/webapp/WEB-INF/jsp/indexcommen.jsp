@@ -26,7 +26,7 @@
 
 		<!--logo -->
 		<a href="indexcommen.html" class="logo"> <img
-			src="${ctp }/images/logo.png" />
+			src="${ctp }/static/images/logo.png" />
 		</a>
 
 		<!--头部右侧搜索和搜索-->
@@ -34,7 +34,7 @@
 			<div class="top-right">
 				<div class="my-dropout">
 					<div class="pice">
-						<img src="${ctp }/images/dropout.png" />
+						<img src="${ctp }/static/images/dropout.png" />
 					</div>
 
 					<div class="tuichu">
@@ -43,12 +43,12 @@
 				</div>
 
 				<span style="float: right; width: 10px; margin-top: 13px;"> <img
-					src="${ctp }/images/xian.png" />
+					src="${ctp }/static/images/xian.png" />
 				</span>
 
 				<div class="my-help">
 					<div class="pice">
-						<img src="${ctp }/images/help.png" />
+						<img src="${ctp }/static/images/help.png" />
 					</div>
 					<div class="help">
 						<a>帮助</a>
@@ -56,12 +56,12 @@
 				</div>
 
 				<span style="float: right; width: 10px; margin-top: 13px;"> <img
-					src="${ctp }/images/xian.png" />
+					src="${ctp }/static/images/xian.png" />
 				</span>
 
 				<div class="my-dropout">
 					<div class="pice">
-						<img src="${ctp }/images/my.png" />
+						<img src="${ctp }/static/images/my.png" />
 					</div>
 
 					<div class="tuichu">

@@ -17,6 +17,17 @@
     <result column="deleted_by" jdbcType="VARCHAR" property="deletedBy" />
     <result column="deletion_date" jdbcType="DATE" property="deletionDate" />
   </resultMap>
+  
+<!--   public List<TbConsignee> querryByLikeByUserName(String userName) 该方法查询失败 -->
+<!-- 	<select id="querryByLikeByUserName" resultMap="BaseResultMap"> -->
+<!-- 		select con.* -->
+<!-- 		from tb_consignee con -->
+<!-- 		JOIN tb_user user -->
+<!-- 		ON  con.user_id = user.user_id -->
+<!-- 		WHERE  user.user_name LIKE '%#{userName}%' -->
+<!-- 	</select> -->
+  
+  
   <sql id="Example_Where_Clause">
     <where>
       <foreach collection="oredCriteria" item="criteria" separator="or">

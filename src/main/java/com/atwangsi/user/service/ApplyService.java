@@ -24,4 +24,10 @@ public interface ApplyService {
 
 	List<TbActivityApply> querryByLike(String activityTitle);
 
+	//查看个人报名信息
+    List<TbActivityApply> selectApply(int id);
+    
+    //查询是否报名过
+    TbActivityApply selectObj(TbActivityApply record);
+
 }

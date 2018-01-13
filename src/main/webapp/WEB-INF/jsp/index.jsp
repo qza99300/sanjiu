@@ -1,6 +1,7 @@
 <%@page import="java.util.Date"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 
 <html lang="en">
@@ -29,7 +30,7 @@
 		<div class="header-left">
 			<img src="${ctp}/static/images/welcome.png">
 			<p>
-				您好!<a style="color: #ffb500; margin: 2%;">${loginUser.userName}</a>现在是 <%= new Date() %>
+				您好!<a style="color: #ffb500; margin: 2%;">${loginUser.userName}</a>现在是 <fmt:formatDate value="<%=new Date() %>" pattern="yyyy-MM-dd HH:mm:ss"/>
 			</p>
 		</div>
 		
@@ -41,8 +42,6 @@
 
 	<!-- 公共的js样式 -->
 <%@include file="/commons/common-js.jsp"%>
-
-
 
 </body>
 

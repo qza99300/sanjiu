@@ -58,4 +58,34 @@ public class TopicServiceImpl implements TopicService {
 		return this.topicManageMapper.selectByExample(example);
 	}
 	
+	//��ʾȫ��������Ϣ
+	@Override
+	public List<TbTopicManage> selectTbTopicObj() {
+			
+		return topicManageMapper.selectTbTopicObj();
+	}
+
+	//���������Ϣ
+	@Override
+	public List<TbTopicManage> selectTbTopicHottest() {
+			
+		return topicManageMapper.selectTbTopicHottest();
+	}
+
+	//点赞+1
+	@Override
+	public Integer updateLikeCount(Integer topicId) {
+		TbTopicManage manage = new TbTopicManage();
+		
+		TbTopicManage topicManage = this.topicManageMapper.selectByPrimaryKey(topicId);
+		Integer likeCount2 = topicManage.getLikeCount() + 1;
+		
+		manage.setTopicId(topicId);
+		manage.setLikeCount(likeCount2);
+		
+		
+		int i = this.topicManageMapper.updateByPrimaryKeySelective(manage);
+		return i;
+	}
+
 }

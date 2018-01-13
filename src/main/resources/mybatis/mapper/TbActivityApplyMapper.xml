@@ -398,4 +398,13 @@
       deletion_date = #{deletionDate,jdbcType=DATE}
     where apply_id = #{applyId,jdbcType=INTEGER}
   </update>
+
+  <select id="selectApply" resultType="com.atwangsi.user.model.TbActivityApply">
+  		SELECT a.activity_title as 'activityTitle',m.picture,m.activity_num as 'activityNum' from tb_activity_apply a LEFT JOIN tb_activity_manage m on m.activity_id=a.activity_id
+		where a.user_id=#{0}
+  </select>
+  
+  <select id="selectObj" resultMap="BaseResultMap">
+  		select *from tb_activity_apply where activity_id=#{activityId} and user_id=#{userId}
+  </select>
 </mapper>

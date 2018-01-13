@@ -33,4 +33,10 @@ public interface TbActivityManageMapper {
     int updateByPrimaryKeyWithBLOBs(TbActivityManage record);
 
     int updateByPrimaryKey(TbActivityManage record);
+
+	//显示最新活动
+    List<TbActivityManage> selectList();
+    
+    //显示历史活动
+    List<TbActivityManage> selectHistory();
 }

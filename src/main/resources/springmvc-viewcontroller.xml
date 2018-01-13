@@ -16,8 +16,8 @@
 
 	<!--客户用户管理模块 -->
 	<mvc:view-controller path="userList.html" view-name="user-module/userList" />
-	<mvc:view-controller path="orderList.html" view-name="user-module/orderList" />
-	<mvc:view-controller path="consigneeList.html" view-name="user-module/consigneeList" />
+	<mvc:view-controller path="clientList.html" view-name="user-module/clientList" />
+	
 	
 	<!-- 我的首页 -->
 	<mvc:view-controller path="index.html" view-name="index"/>
@@ -40,7 +40,7 @@
 	<mvc:view-controller path="integrationRule.html" view-name="integral-module/integrationRule"/>
 	<mvc:view-controller path="productManage.html" view-name="integral-module/productManage"/>
 	<mvc:view-controller path="integralDetail.html" view-name="integral-module/integralDetail"/>
-	
+	<mvc:view-controller path="consigneeList.html" view-name="integral-module/consigneeList" />
 	
 	<!--社区管理模块  -->
 	<mvc:view-controller path="informationManagement.html" view-name="community-module/informationManagement"/>

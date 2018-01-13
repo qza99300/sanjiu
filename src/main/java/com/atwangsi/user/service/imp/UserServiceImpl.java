@@ -186,4 +186,10 @@ public class UserServiceImpl implements UserService {
 		return this.userMapper.selectByExample(example);
 	}
 
+	//根据微信查询对象
+	@Override
+	public TbUser selectweixin(String open) {
+		
+		return userMapper.selectweixin(open);
+	}
 }
