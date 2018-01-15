@@ -2,6 +2,8 @@ package com.atwangsi.user.service;
 
 import java.util.List;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import com.atwangsi.user.model.TbActivityManage;
 import com.atwangsi.user.model.TbIntegralProduct;
 
@@ -20,5 +22,6 @@ public interface ProductService {
 	TbIntegralProduct selectByPrimaryKey(int parseInt);
 
 	List<TbIntegralProduct> querryByLike(String productName);
+
 
 }

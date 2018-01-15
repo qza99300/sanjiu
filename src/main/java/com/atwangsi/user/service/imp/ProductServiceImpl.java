@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.atwangsi.user.dao.TbIntegralProductMapper;
-import com.atwangsi.user.model.TbActivityManage;
 import com.atwangsi.user.model.TbIntegralProduct;
 import com.atwangsi.user.model.TbIntegralProductExample;
 import com.atwangsi.user.service.ProductService;
@@ -64,4 +63,6 @@ public class ProductServiceImpl implements ProductService {
 		return this.productMapper.selectByExample(example);
 	}
 
+
 }
+

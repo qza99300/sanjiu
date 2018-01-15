@@ -61,9 +61,9 @@
 	</mvc:interceptors>
 	
  	<!--文件上传解析器-->
-<!-- 	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver"> -->
-<!-- 		<property name="defaultEncoding" value="utf-8"/> -->
-<!-- 		<property name="maxUploadSizePerFile" value="#{1024*1024*80}"/>设置大小 -->
-<!-- 	</bean> -->
+	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<property name="defaultEncoding" value="utf-8"/>
+		<property name="maxUploadSize" value="#{1024*1024*80}"/>
+	</bean>
 
 </beans>

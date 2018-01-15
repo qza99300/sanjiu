@@ -165,9 +165,8 @@ select {
 	            </div>
 	            <div class="modal-body">
 				<!-- 内容开始 -->
-					<form class="layui-form" action="${ctp }/consignee/add"
-					id="addConsigneeForm" style="width: 100%; margin: 10 auto;">
-					<div class="layui-form-item2">
+					<form class="layui-form" method="post" enctype="multipart/form-data" action="${ctp }/product/add" id="addConsigneeForm" style="width: 100%; margin: 10 auto;">
+						<div class="layui-form-item2">
 							<div class="layui-inline">
 								<label class="layui-form-label2"><a style="color: red;">*</a>商品名称</label>
 								<div class="layui-input-block">
@@ -176,26 +175,15 @@ select {
 							</div>
 						</div>
 						
-<!-- 						<div class="layui-form-item2"> -->
-<!-- 							<label class="layui-form-label2"><a style="color: red;">*</a>产品图片</label> -->
-<!-- 							<div class="layui-input-block"> -->
-<!-- 								<div class="company-logo"> -->
-<!-- 									<div class="logo-top"> -->
-<!-- 										<span>上传产品图片</span> -->
+						<div class="layui-form-item2">
+							<div class="layui-inline">
+								<label class="layui-form-label2"><a style="color: red;">*</a>产品图片</label>
+									<div class="layui-input-block">
 <!-- 										<span style="cursor: pointer;color: red;">建议尺寸：68*68像素 图片大小300k以内 支持JPG PNG</span> -->
-<!-- 									</div> -->
-<!-- 									<div class="logo-cen"> -->
-<!-- 										<img src="images/step-img.png"> -->
-<!-- 									</div> -->
-<!-- 									<div class="logo-btm"> -->
-<!-- 										class="layui-btn layui-btn-normal" -->
-<!-- 										class="layui-btn layui-btn-grayness" -->
-<!-- 										<button  style="margin-top: 8px;margin-left: 2%;">确认</button> -->
-<!-- 										<button  style="margin-top: 8px;">取消</button> -->
-<!-- 									</div> -->
-<!-- 								</div> -->
-<!-- 							</div> -->
-<!-- 						</div> -->
+										<input type="file" name="file" class="layui-input">
+									</div>
+							</div>
+						</div>
 						
 						<div class="layui-form-item2" style="margin-top: 10px;">
 							<div class="layui-inline">
@@ -223,13 +211,16 @@ select {
 								</div>
 							</div>
 						</div>
+						
+						<div class="modal-footer">
+			                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+			                <button type="submit" class="btn btn-primary">创建</button>
+		<!-- 	                <button type="submit" id="addActivityBtn" class="btn btn-primary">创建</button> -->
+			            </div>
 				</form>
 				<!-- 内容结束 -->
 		    </div>
-	            <div class="modal-footer">
-	                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-	                <button type="button" id="addActivityBtn" class="btn btn-primary">创建</button>
-	            </div>
+	            
 	        </div><!-- /.modal-content -->
 	    </div><!-- /.modal -->
 	</div>
@@ -256,24 +247,24 @@ select {
 							</div>
 						</div>
 						
-<!-- 						<div class="layui-form-item2"> -->
-<!-- 							<label class="layui-form-label2"><a style="color: red;">*</a>产品图片</label> -->
-<!-- 							<div class="layui-input-block"> -->
-<!-- 								<div class="company-logo"> -->
-<!-- 									<div class="logo-top"> -->
-<!-- 										<span>上传产品图片</span> -->
-<!-- 										<span style="cursor: pointer;color: red;">建议尺寸：68*68像素 图片大小300k以内 支持JPG PNG</span> -->
-<!-- 									</div> -->
-<!-- 									<div class="logo-cen"> -->
-<!-- 										<img src="images/goods.jpg"> -->
-<!-- 									</div> -->
-<!-- 									<div class="logo-btm"> -->
-<!-- 										<button class="layui-btn layui-btn-normal" style="margin-top: 8px;margin-left: 2%;">确认</button> -->
-<!-- 										<button class="layui-btn layui-btn-grayness" style="margin-top: 8px;">取消</button> -->
-<!-- 									</div> -->
-<!-- 								</div> -->
-<!-- 							</div> -->
-<!-- 						</div> -->
+						<div class="layui-form-item2">
+							<label class="layui-form-label2"><a style="color: red;">*</a>产品图片</label>
+							<div class="layui-input-block">
+								<div class="company-logo">
+									<div class="logo-top">
+										<span>上传产品图片</span>
+										<span style="cursor: pointer;color: red;">建议尺寸：68*68像素 图片大小300k以内 支持JPG PNG</span>
+									</div>
+									<div class="logo-cen">
+										<img id="productPictrue" src="">
+									</div>
+									<div class="logo-btm">
+										<button class="layui-btn layui-btn-normal" style="margin-top: 8px;margin-left: 2%;">确认</button>
+										<button class="layui-btn layui-btn-grayness" style="margin-top: 8px;">取消</button>
+									</div>
+								</div>
+							</div>
+						</div>
 						
 						<div class="layui-form-item2" style="margin-top: 10px;">
 							<div class="layui-inline">
@@ -475,10 +466,12 @@ select {
 		$("#addActivityBtn").click(function() {
 			//获取表单数据
 			var params = $("#addConsigneeForm").serialize();
+			console.log(params);
 
 			artDialog.confirm("question", "提示", "确定是否添加物品？", function(){
 				$.post("${ctp }/product/add", params, function(data) {
 					//后台返回的内容显示提示
+					alert("11");
 					layer.msg(data.msg);
 					//关闭模态框
 					$("#newActivityBtn").modal('hide');
@@ -490,6 +483,7 @@ select {
 
 					//失败返回的msg
 				}).fail(function() {
+					alert("22");
 					layer.msg(data.msg);
 					//关闭模态框
 					$("#newActivityBtn").modal('hide');
@@ -538,6 +532,7 @@ select {
 	            	$("#productIntegral").val(data.productIntegral);
 	            	$("#productCount").val(data.productCount);
 	            	$("#productPresentation").val(data.productPresentation);
+	            	$("#productPictrue").val(data.productPicture);
 	            }
 	        })
 		}
@@ -602,7 +597,17 @@ select {
 			 }; 
 		
 		
-		
+			 function showUploadUrl() { 
+				 for(var i=0; i<document.forms.length; i++) { 
+				 	 var form = document.forms[i]; 
+					 for (var j=0; j<form.elements.length;j++){ 
+						 if ( form.elements[j].type==="file") { 
+						 alert("上传地址是:" + form.action); 
+						 } 
+					 } 
+				 }
+				 
+			} 
 		
 		
 	</script>
