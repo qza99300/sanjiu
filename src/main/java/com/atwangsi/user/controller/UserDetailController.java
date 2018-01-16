@@ -11,11 +11,17 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.atwangsi.base.model.AppContant;
 import com.atwangsi.base.model.ResultVO;
+import com.atwangsi.base.utils.HDYXUtils;
 import com.atwangsi.user.model.TbUserIntegralDetail;
 import com.atwangsi.user.service.UserDetailService;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 
+/**
+ * 积分明细
+ * @author ou
+ *
+ */
 @RequestMapping("detail")
 @Controller
 public class UserDetailController {
@@ -51,14 +57,18 @@ public class UserDetailController {
 	@ResponseBody
 	public ResultVO<Object> addUserDetail(TbUserIntegralDetail userIntegralDetail){
 		userIntegralDetail.setCreateDate(new Date());
+		//判断记录是否绑定用户
+		if (HDYXUtils.isNull(userIntegralDetail.getUserId())) {
+			return ResultVO.fail("添加失败，请联系技术！", null, null);
+		}
 		Boolean bool = this.userDetailService.add(userIntegralDetail);
 		
 		if (bool) {
 			// 返回成功添加的状态
-			return ResultVO.success("更新成功", null, null);
+			return ResultVO.success("添加成功", null, null);
 		} else {
 			// 返回添加失败的状态
-			return ResultVO.fail("更新失败", null, null);
+			return ResultVO.fail("添加失败", null, null);
 		}
 	}
 	

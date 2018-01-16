@@ -15,6 +15,7 @@
 		<result column="department" jdbcType="VARCHAR" property="department" />
 		<result column="duty" jdbcType="VARCHAR" property="duty" />
 		<result column="operation_id" jdbcType="INTEGER" property="operationId" />
+		<result column="handle_brand" jdbcType="VARCHAR" property="handleBrand" />
 		<result column="area_1" jdbcType="VARCHAR" property="area1" />
 		<result column="email" jdbcType="VARCHAR" property="email" />
 		<result column="province" jdbcType="VARCHAR" property="province" />
@@ -102,11 +103,11 @@
 	<sql id="Base_Column_List">
 		user_id, loginname, password, user_name, id_name, id_card, phone, open_id,
 		wechat_name,
-		company, department, duty, operation_id, area_1, email, province, city,
-		area_2, address,
-		phoneremark, create_date, integral_count, create_by, last_updated_by,
-		last_update_date,
-		record_version
+		company, department, duty, operation_id, handle_brand, area_1, email,
+		province, city,
+		area_2, address, phoneremark, create_date, integral_count, create_by,
+		last_updated_by,
+		last_update_date, record_version
 	</sql>
 	<select id="selectByExample" parameterType="com.atwangsi.user.model.TbUserExample"
 		resultMap="BaseResultMap">
@@ -145,25 +146,28 @@
 		user_name, id_name, id_card,
 		phone, open_id, wechat_name,
 		company, department, duty,
-		operation_id, area_1, email,
-		province, city, area_2,
-		address, phoneremark, create_date,
-		integral_count, create_by, last_updated_by,
-		last_update_date, record_version)
+		operation_id, handle_brand, area_1,
+		email, province, city,
+		area_2, address, phoneremark,
+		create_date, integral_count, create_by,
+		last_updated_by, last_update_date, record_version
+		)
 		values (#{userId,jdbcType=INTEGER}, #{loginname,jdbcType=VARCHAR},
 		#{password,jdbcType=VARCHAR},
 		#{userName,jdbcType=VARCHAR}, #{idName,jdbcType=VARCHAR}, #{idCard,jdbcType=VARCHAR},
 		#{phone,jdbcType=VARCHAR}, #{openId,jdbcType=VARCHAR},
 		#{wechatName,jdbcType=VARCHAR},
 		#{company,jdbcType=VARCHAR}, #{department,jdbcType=VARCHAR}, #{duty,jdbcType=VARCHAR},
-		#{operationId,jdbcType=INTEGER}, #{area1,jdbcType=VARCHAR},
-		#{email,jdbcType=VARCHAR},
-		#{province,jdbcType=VARCHAR}, #{city,jdbcType=VARCHAR}, #{area2,jdbcType=VARCHAR},
-		#{address,jdbcType=VARCHAR}, #{phoneremark,jdbcType=VARCHAR},
-		#{createDate,jdbcType=DATE},
-		#{integralCount,jdbcType=INTEGER}, #{createBy,jdbcType=VARCHAR}, #{lastUpdatedBy,jdbcType=VARCHAR},
+		#{operationId,jdbcType=INTEGER}, #{handleBrand,jdbcType=VARCHAR},
+		#{area1,jdbcType=VARCHAR},
+		#{email,jdbcType=VARCHAR}, #{province,jdbcType=VARCHAR}, #{city,jdbcType=VARCHAR},
+		#{area2,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR},
+		#{phoneremark,jdbcType=VARCHAR},
+		#{createDate,jdbcType=DATE}, #{integralCount,jdbcType=INTEGER}, #{createBy,jdbcType=VARCHAR},
+		#{lastUpdatedBy,jdbcType=VARCHAR},
 		#{lastUpdateDate,jdbcType=TIMESTAMP},
-		#{recordVersion,jdbcType=INTEGER})
+		#{recordVersion,jdbcType=INTEGER}
+		)
 	</insert>
 	<insert id="insertSelective" parameterType="com.atwangsi.user.model.TbUser">
 		insert into tb_user
@@ -206,6 +210,9 @@
 			</if>
 			<if test="operationId != null">
 				operation_id,
+			</if>
+			<if test="handleBrand != null">
+				handle_brand,
 			</if>
 			<if test="area1 != null">
 				area_1,
@@ -286,6 +293,9 @@
 			</if>
 			<if test="operationId != null">
 				#{operationId,jdbcType=INTEGER},
+			</if>
+			<if test="handleBrand != null">
+				#{handleBrand,jdbcType=VARCHAR},
 			</if>
 			<if test="area1 != null">
 				#{area1,jdbcType=VARCHAR},
@@ -377,6 +387,9 @@
 			<if test="record.operationId != null">
 				operation_id = #{record.operationId,jdbcType=INTEGER},
 			</if>
+			<if test="record.handleBrand != null">
+				handle_brand = #{record.handleBrand,jdbcType=VARCHAR},
+			</if>
 			<if test="record.area1 != null">
 				area_1 = #{record.area1,jdbcType=VARCHAR},
 			</if>
@@ -436,6 +449,7 @@
 		department = #{record.department,jdbcType=VARCHAR},
 		duty = #{record.duty,jdbcType=VARCHAR},
 		operation_id = #{record.operationId,jdbcType=INTEGER},
+		handle_brand = #{record.handleBrand,jdbcType=VARCHAR},
 		area_1 = #{record.area1,jdbcType=VARCHAR},
 		email = #{record.email,jdbcType=VARCHAR},
 		province = #{record.province,jdbcType=VARCHAR},
@@ -491,6 +505,9 @@
 			</if>
 			<if test="operationId != null">
 				operation_id = #{operationId,jdbcType=INTEGER},
+			</if>
+			<if test="handleBrand != null">
+				handle_brand = #{handleBrand,jdbcType=VARCHAR},
 			</if>
 			<if test="area1 != null">
 				area_1 = #{area1,jdbcType=VARCHAR},
@@ -548,6 +565,7 @@
 		department = #{department,jdbcType=VARCHAR},
 		duty = #{duty,jdbcType=VARCHAR},
 		operation_id = #{operationId,jdbcType=INTEGER},
+		handle_brand = #{handleBrand,jdbcType=VARCHAR},
 		area_1 = #{area1,jdbcType=VARCHAR},
 		email = #{email,jdbcType=VARCHAR},
 		province = #{province,jdbcType=VARCHAR},

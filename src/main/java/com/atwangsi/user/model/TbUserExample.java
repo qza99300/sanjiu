@@ -1022,6 +1022,76 @@ public class TbUserExample {
             return (Criteria) this;
         }
 
+        public Criteria andHandleBrandIsNull() {
+            addCriterion("handle_brand is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andHandleBrandIsNotNull() {
+            addCriterion("handle_brand is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andHandleBrandEqualTo(String value) {
+            addCriterion("handle_brand =", value, "handleBrand");
+            return (Criteria) this;
+        }
+
+        public Criteria andHandleBrandNotEqualTo(String value) {
+            addCriterion("handle_brand <>", value, "handleBrand");
+            return (Criteria) this;
+        }
+
+        public Criteria andHandleBrandGreaterThan(String value) {
+            addCriterion("handle_brand >", value, "handleBrand");
+            return (Criteria) this;
+        }
+
+        public Criteria andHandleBrandGreaterThanOrEqualTo(String value) {
+            addCriterion("handle_brand >=", value, "handleBrand");
+            return (Criteria) this;
+        }
+
+        public Criteria andHandleBrandLessThan(String value) {
+            addCriterion("handle_brand <", value, "handleBrand");
+            return (Criteria) this;
+        }
+
+        public Criteria andHandleBrandLessThanOrEqualTo(String value) {
+            addCriterion("handle_brand <=", value, "handleBrand");
+            return (Criteria) this;
+        }
+
+        public Criteria andHandleBrandLike(String value) {
+            addCriterion("handle_brand like", value, "handleBrand");
+            return (Criteria) this;
+        }
+
+        public Criteria andHandleBrandNotLike(String value) {
+            addCriterion("handle_brand not like", value, "handleBrand");
+            return (Criteria) this;
+        }
+
+        public Criteria andHandleBrandIn(List<String> values) {
+            addCriterion("handle_brand in", values, "handleBrand");
+            return (Criteria) this;
+        }
+
+        public Criteria andHandleBrandNotIn(List<String> values) {
+            addCriterion("handle_brand not in", values, "handleBrand");
+            return (Criteria) this;
+        }
+
+        public Criteria andHandleBrandBetween(String value1, String value2) {
+            addCriterion("handle_brand between", value1, value2, "handleBrand");
+            return (Criteria) this;
+        }
+
+        public Criteria andHandleBrandNotBetween(String value1, String value2) {
+            addCriterion("handle_brand not between", value1, value2, "handleBrand");
+            return (Criteria) this;
+        }
+
         public Criteria andArea1IsNull() {
             addCriterion("area_1 is null");
             return (Criteria) this;

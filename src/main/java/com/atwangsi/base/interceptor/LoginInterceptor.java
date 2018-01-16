@@ -8,7 +8,11 @@ import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.atwangsi.base.model.AppContant;
-
+/**
+ * 自定义监听器
+ * @author ou
+ *
+ */
 public class LoginInterceptor implements HandlerInterceptor {
 
 	/**

@@ -13,7 +13,9 @@ import com.alibaba.fastjson.JSONObject;
 import com.atwangsi.base.model.AppContant;
 import com.atwangsi.base.model.ResultVO;
 import com.atwangsi.user.model.TbActivityApply;
+import com.atwangsi.user.model.TbUser;
 import com.atwangsi.user.service.ApplyService;
+import com.atwangsi.user.service.UserService;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 
@@ -28,6 +30,9 @@ public class ApplyController {
 	
 	@Autowired
 	private ApplyService applyService;
+	
+	@Autowired
+	private UserService userService;
 
 	/**
 	 * 模糊查询
@@ -116,7 +121,7 @@ public class ApplyController {
 	}
 	
 	/**
-	 * 添加报名的信息
+	 * 添加报名的信息，对用户区域校验
 	 * @param activityApply
 	 * @return
 	 */
@@ -126,6 +131,13 @@ public class ApplyController {
 		
 		activityApply.setCreateDate(new Date());
 		
+		//获取当前用户信息
+		TbUser user = this.userService.querryUserById(activityApply.getUserId());
+		//区域校验
+		if (user.getArea1().equals(activityApply.getArea())) {
+			return ResultVO.fail("报名失败,您不是该区域人员！", null, null);
+		}
+		//执行报名操作
 		Boolean bool = this.applyService.addApply(activityApply);
 		
 		if (bool) {

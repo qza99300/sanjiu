@@ -50,6 +50,22 @@
 		</div>
 	</div>
 
+	<div class="layui-field-box" style="margin-top: 10px;">
+		<form class="layui-form" method="post" enctype="multipart/form-data" action="${ctp }/user/importFile" style="width: 100%; margin: 10 auto;">
+			<div class="layui-form-item2">
+				<div class="layui-inline">
+					<label class="layui-form-label2">导入用户</label>
+						<div class="layui-input-block">
+							<input type="file" name="file" class="layui-input">
+						</div>
+				</div>
+			</div>
+<!-- 			<input type="submit" value="提交"/> -->
+			<button type="submit" class="btn btn-info btn-primary" style="margin-left: 5%;">导入</button>
+		</form>
+	</div>
+
+
 	<!--筛选开始-->
 	<div class="layui-field-box" style="margin-top: 10px;">
 		<form id="querryForm" class="layui-form" action="">

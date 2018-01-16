@@ -2,6 +2,9 @@ package com.atwangsi.user.service;
 
 import java.util.List;
 
+import org.springframework.web.multipart.MultipartFile;
+
+import com.atwangsi.base.model.ResultVO;
 import com.atwangsi.user.model.TbUser;
 
 public interface UserService {
@@ -35,5 +38,7 @@ public interface UserService {
 	Boolean checkoutByLoginName(String loginname);
 
 	Boolean checkoutByPhone(String phone);
+
+	ResultVO<Object> importMsg(MultipartFile file);
 
 }

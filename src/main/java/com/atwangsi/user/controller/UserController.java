@@ -1,5 +1,6 @@
 package com.atwangsi.user.controller;
 
+import java.rmi.registry.Registry;
 import java.util.Date;
 import java.util.List;
 
@@ -9,8 +10,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.atwangsi.base.model.AppContant;
 import com.atwangsi.base.model.ResultVO;
@@ -40,6 +43,21 @@ public class UserController {
 	@Autowired
 	private RoleService roleService;
 	
+	/**
+	 * 读取文件的数据
+	 * 仅限于.xls文件
+	 * @param file
+	 * @return
+	 */
+	@RequestMapping(value="importFile" ,method=RequestMethod.POST)
+	@ResponseBody
+	public ResultVO<Object> importMsg(@RequestParam("file") MultipartFile file){
+		//执行操作
+		ResultVO<Object> result = this.userService.importMsg(file);
+		
+		return result;
+		
+	}
 	
 	/**
 	 * 检验练习方式是否唯一

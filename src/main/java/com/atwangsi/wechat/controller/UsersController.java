@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.atwangsi.base.utils.CommonUtil;
@@ -93,7 +94,7 @@ public class UsersController {
 	
 	//个人信息
 	@RequestMapping("personal")
-	public String personal(String code,Model model,HttpServletRequest request) {
+	public String personal(@RequestParam("code") String code,Model model,HttpServletRequest request) {
 		TbUser users=userService.selectweixin(code);//根据微信ID查询用户表
 		TbUser user = this.userService.querryUserById(users.getUserId());
 		model.addAttribute("list",user);

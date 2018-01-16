@@ -6,12 +6,44 @@ import java.math.BigDecimal;
 import java.math.BigInteger;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.web.multipart.MultipartFile;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class HDYXUtils {
+	
+	/**
+	 * 设置导入信息的文件标准模板
+	 * @param response
+	 * @param clazz
+	 * @param list
+	 * @param params
+	 * @param fileName
+	 */
+//	public static void exportExcel(HttpServletResponse response,Class<?> clazz, List<?> list,ExportParams params,String fileName)  {
+//        setResponseHeader(response, fileName);
+//        try{
+//            Workbook workbook = ExcelExportUtil.exportExcel(params,clazz, list);
+//            workbook.write(response.getOutputStream());
+//        }catch (IOException e){
+//            e.printStackTrace();
+//       }
+//	}
+	
+	//用户导入导出基本信息  
+	protected static void setResponseHeader(HttpServletResponse response, String fileName){
+        fileName += ".xls";
+        String cntentType = "application/vnd.ms-excel";
+        try {
+            fileName = new String(fileName.getBytes("UTF-8"), "ISO_8859_1");//解决文件中文名乱码
+        }catch (Throwable e){
+            e.printStackTrace();
+        }
+        response.setHeader("Content-Type", cntentType);// 告诉浏览器用什么软件可以打开此文件
+        response.setHeader("Content-Disposition", "attachment;filename="+fileName);// 下载文件的默认名称
+    }
 	
 	/**
 	 * 返回工程绝对路径

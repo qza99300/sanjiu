@@ -29,6 +29,8 @@ public class TbUser {
 
     private Integer operationId;
 
+    private String handleBrand;  //操作品种
+
     private String area1;
 
     private String email;
@@ -159,6 +161,14 @@ public class TbUser {
         this.operationId = operationId;
     }
 
+    public String getHandleBrand() {
+        return handleBrand;
+    }
+
+    public void setHandleBrand(String handleBrand) {
+        this.handleBrand = handleBrand == null ? null : handleBrand.trim();
+    }
+
     public String getArea1() {
         return area1;
     }
@@ -262,4 +272,18 @@ public class TbUser {
     public void setRecordVersion(Integer recordVersion) {
         this.recordVersion = recordVersion;
     }
+
+	@Override
+	public String toString() {
+		return "TbUser [userId=" + userId + ", loginname=" + loginname + ", password=" + password + ", userName="
+				+ userName + ", idName=" + idName + ", idCard=" + idCard + ", phone=" + phone + ", openId=" + openId
+				+ ", wechatName=" + wechatName + ", company=" + company + ", department=" + department + ", duty="
+				+ duty + ", operationId=" + operationId + ", handleBrand=" + handleBrand + ", area1=" + area1
+				+ ", email=" + email + ", province=" + province + ", city=" + city + ", area2=" + area2 + ", address="
+				+ address + ", phoneremark=" + phoneremark + ", createDate=" + createDate + ", integralCount="
+				+ integralCount + ", createBy=" + createBy + ", lastUpdatedBy=" + lastUpdatedBy + ", lastUpdateDate="
+				+ lastUpdateDate + ", recordVersion=" + recordVersion + "]";
+	}
+    
+    
 }

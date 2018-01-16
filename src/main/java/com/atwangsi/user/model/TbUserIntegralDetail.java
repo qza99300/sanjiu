@@ -7,9 +7,9 @@ public class TbUserIntegralDetail {
 
     private Integer userId;
 
-    private Integer surplusIntegral;
+    private Integer surplusIntegral;//兑换前积分总数
 
-    private Integer integral;
+    private Integer integral;//兑换所需积分
 
     private String purpose;
 

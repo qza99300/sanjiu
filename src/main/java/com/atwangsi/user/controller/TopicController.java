@@ -29,21 +29,6 @@ public class TopicController {
 	@Autowired
 	private TopicService topicService;
 	
-//	点赞测试
-//	@RequestMapping("abcd")
-//	@ResponseBody
-//	public ResultVO<Object> updateLikeCount(@RequestParam("topicId") Integer topicId){
-//
-//		Integer bool = this.topicService.updateLikeCount(topicId);
-//
-//		if (bool > 0) {
-//			return ResultVO.success("修改成功", null, null);
-//		}
-//
-//		return ResultVO.fail("修改失败，请重新修改！", null, null);
-//
-//	}
-		
 	
 	/**
 	 * 模糊查询-根据兑换人名称来进行模糊查询
