@@ -392,76 +392,6 @@ public class TbActivityManageExample {
             return (Criteria) this;
         }
 
-        public Criteria andCreateYearIsNull() {
-            addCriterion("create_year is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andCreateYearIsNotNull() {
-            addCriterion("create_year is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andCreateYearEqualTo(String value) {
-            addCriterion("create_year =", value, "createYear");
-            return (Criteria) this;
-        }
-
-        public Criteria andCreateYearNotEqualTo(String value) {
-            addCriterion("create_year <>", value, "createYear");
-            return (Criteria) this;
-        }
-
-        public Criteria andCreateYearGreaterThan(String value) {
-            addCriterion("create_year >", value, "createYear");
-            return (Criteria) this;
-        }
-
-        public Criteria andCreateYearGreaterThanOrEqualTo(String value) {
-            addCriterion("create_year >=", value, "createYear");
-            return (Criteria) this;
-        }
-
-        public Criteria andCreateYearLessThan(String value) {
-            addCriterion("create_year <", value, "createYear");
-            return (Criteria) this;
-        }
-
-        public Criteria andCreateYearLessThanOrEqualTo(String value) {
-            addCriterion("create_year <=", value, "createYear");
-            return (Criteria) this;
-        }
-
-        public Criteria andCreateYearLike(String value) {
-            addCriterion("create_year like", value, "createYear");
-            return (Criteria) this;
-        }
-
-        public Criteria andCreateYearNotLike(String value) {
-            addCriterion("create_year not like", value, "createYear");
-            return (Criteria) this;
-        }
-
-        public Criteria andCreateYearIn(List<String> values) {
-            addCriterion("create_year in", values, "createYear");
-            return (Criteria) this;
-        }
-
-        public Criteria andCreateYearNotIn(List<String> values) {
-            addCriterion("create_year not in", values, "createYear");
-            return (Criteria) this;
-        }
-
-        public Criteria andCreateYearBetween(String value1, String value2) {
-            addCriterion("create_year between", value1, value2, "createYear");
-            return (Criteria) this;
-        }
-
-        public Criteria andCreateYearNotBetween(String value1, String value2) {
-            addCriterion("create_year not between", value1, value2, "createYear");
-            return (Criteria) this;
-        }
-
         public Criteria andDepartmentIsNull() {
             addCriterion("department is null");
             return (Criteria) this;
@@ -602,6 +532,216 @@ public class TbActivityManageExample {
             return (Criteria) this;
         }
 
+        public Criteria andProvinceIsNull() {
+            addCriterion("province is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andProvinceIsNotNull() {
+            addCriterion("province is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andProvinceEqualTo(String value) {
+            addCriterion("province =", value, "province");
+            return (Criteria) this;
+        }
+
+        public Criteria andProvinceNotEqualTo(String value) {
+            addCriterion("province <>", value, "province");
+            return (Criteria) this;
+        }
+
+        public Criteria andProvinceGreaterThan(String value) {
+            addCriterion("province >", value, "province");
+            return (Criteria) this;
+        }
+
+        public Criteria andProvinceGreaterThanOrEqualTo(String value) {
+            addCriterion("province >=", value, "province");
+            return (Criteria) this;
+        }
+
+        public Criteria andProvinceLessThan(String value) {
+            addCriterion("province <", value, "province");
+            return (Criteria) this;
+        }
+
+        public Criteria andProvinceLessThanOrEqualTo(String value) {
+            addCriterion("province <=", value, "province");
+            return (Criteria) this;
+        }
+
+        public Criteria andProvinceLike(String value) {
+            addCriterion("province like", value, "province");
+            return (Criteria) this;
+        }
+
+        public Criteria andProvinceNotLike(String value) {
+            addCriterion("province not like", value, "province");
+            return (Criteria) this;
+        }
+
+        public Criteria andProvinceIn(List<String> values) {
+            addCriterion("province in", values, "province");
+            return (Criteria) this;
+        }
+
+        public Criteria andProvinceNotIn(List<String> values) {
+            addCriterion("province not in", values, "province");
+            return (Criteria) this;
+        }
+
+        public Criteria andProvinceBetween(String value1, String value2) {
+            addCriterion("province between", value1, value2, "province");
+            return (Criteria) this;
+        }
+
+        public Criteria andProvinceNotBetween(String value1, String value2) {
+            addCriterion("province not between", value1, value2, "province");
+            return (Criteria) this;
+        }
+
+        public Criteria andCityIsNull() {
+            addCriterion("city is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andCityIsNotNull() {
+            addCriterion("city is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andCityEqualTo(String value) {
+            addCriterion("city =", value, "city");
+            return (Criteria) this;
+        }
+
+        public Criteria andCityNotEqualTo(String value) {
+            addCriterion("city <>", value, "city");
+            return (Criteria) this;
+        }
+
+        public Criteria andCityGreaterThan(String value) {
+            addCriterion("city >", value, "city");
+            return (Criteria) this;
+        }
+
+        public Criteria andCityGreaterThanOrEqualTo(String value) {
+            addCriterion("city >=", value, "city");
+            return (Criteria) this;
+        }
+
+        public Criteria andCityLessThan(String value) {
+            addCriterion("city <", value, "city");
+            return (Criteria) this;
+        }
+
+        public Criteria andCityLessThanOrEqualTo(String value) {
+            addCriterion("city <=", value, "city");
+            return (Criteria) this;
+        }
+
+        public Criteria andCityLike(String value) {
+            addCriterion("city like", value, "city");
+            return (Criteria) this;
+        }
+
+        public Criteria andCityNotLike(String value) {
+            addCriterion("city not like", value, "city");
+            return (Criteria) this;
+        }
+
+        public Criteria andCityIn(List<String> values) {
+            addCriterion("city in", values, "city");
+            return (Criteria) this;
+        }
+
+        public Criteria andCityNotIn(List<String> values) {
+            addCriterion("city not in", values, "city");
+            return (Criteria) this;
+        }
+
+        public Criteria andCityBetween(String value1, String value2) {
+            addCriterion("city between", value1, value2, "city");
+            return (Criteria) this;
+        }
+
+        public Criteria andCityNotBetween(String value1, String value2) {
+            addCriterion("city not between", value1, value2, "city");
+            return (Criteria) this;
+        }
+
+        public Criteria andArea1IsNull() {
+            addCriterion("area1 is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andArea1IsNotNull() {
+            addCriterion("area1 is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andArea1EqualTo(String value) {
+            addCriterion("area1 =", value, "area1");
+            return (Criteria) this;
+        }
+
+        public Criteria andArea1NotEqualTo(String value) {
+            addCriterion("area1 <>", value, "area1");
+            return (Criteria) this;
+        }
+
+        public Criteria andArea1GreaterThan(String value) {
+            addCriterion("area1 >", value, "area1");
+            return (Criteria) this;
+        }
+
+        public Criteria andArea1GreaterThanOrEqualTo(String value) {
+            addCriterion("area1 >=", value, "area1");
+            return (Criteria) this;
+        }
+
+        public Criteria andArea1LessThan(String value) {
+            addCriterion("area1 <", value, "area1");
+            return (Criteria) this;
+        }
+
+        public Criteria andArea1LessThanOrEqualTo(String value) {
+            addCriterion("area1 <=", value, "area1");
+            return (Criteria) this;
+        }
+
+        public Criteria andArea1Like(String value) {
+            addCriterion("area1 like", value, "area1");
+            return (Criteria) this;
+        }
+
+        public Criteria andArea1NotLike(String value) {
+            addCriterion("area1 not like", value, "area1");
+            return (Criteria) this;
+        }
+
+        public Criteria andArea1In(List<String> values) {
+            addCriterion("area1 in", values, "area1");
+            return (Criteria) this;
+        }
+
+        public Criteria andArea1NotIn(List<String> values) {
+            addCriterion("area1 not in", values, "area1");
+            return (Criteria) this;
+        }
+
+        public Criteria andArea1Between(String value1, String value2) {
+            addCriterion("area1 between", value1, value2, "area1");
+            return (Criteria) this;
+        }
+
+        public Criteria andArea1NotBetween(String value1, String value2) {
+            addCriterion("area1 not between", value1, value2, "area1");
+            return (Criteria) this;
+        }
+
         public Criteria andRemarkIsNull() {
             addCriterion("remark is null");
             return (Criteria) this;
@@ -669,6 +809,76 @@ public class TbActivityManageExample {
 
         public Criteria andRemarkNotBetween(String value1, String value2) {
             addCriterion("remark not between", value1, value2, "remark");
+            return (Criteria) this;
+        }
+
+        public Criteria andPictureIsNull() {
+            addCriterion("picture is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andPictureIsNotNull() {
+            addCriterion("picture is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andPictureEqualTo(String value) {
+            addCriterion("picture =", value, "picture");
+            return (Criteria) this;
+        }
+
+        public Criteria andPictureNotEqualTo(String value) {
+            addCriterion("picture <>", value, "picture");
+            return (Criteria) this;
+        }
+
+        public Criteria andPictureGreaterThan(String value) {
+            addCriterion("picture >", value, "picture");
+            return (Criteria) this;
+        }
+
+        public Criteria andPictureGreaterThanOrEqualTo(String value) {
+            addCriterion("picture >=", value, "picture");
+            return (Criteria) this;
+        }
+
+        public Criteria andPictureLessThan(String value) {
+            addCriterion("picture <", value, "picture");
+            return (Criteria) this;
+        }
+
+        public Criteria andPictureLessThanOrEqualTo(String value) {
+            addCriterion("picture <=", value, "picture");
+            return (Criteria) this;
+        }
+
+        public Criteria andPictureLike(String value) {
+            addCriterion("picture like", value, "picture");
+            return (Criteria) this;
+        }
+
+        public Criteria andPictureNotLike(String value) {
+            addCriterion("picture not like", value, "picture");
+            return (Criteria) this;
+        }
+
+        public Criteria andPictureIn(List<String> values) {
+            addCriterion("picture in", values, "picture");
+            return (Criteria) this;
+        }
+
+        public Criteria andPictureNotIn(List<String> values) {
+            addCriterion("picture not in", values, "picture");
+            return (Criteria) this;
+        }
+
+        public Criteria andPictureBetween(String value1, String value2) {
+            addCriterion("picture between", value1, value2, "picture");
+            return (Criteria) this;
+        }
+
+        public Criteria andPictureNotBetween(String value1, String value2) {
+            addCriterion("picture not between", value1, value2, "picture");
             return (Criteria) this;
         }
 
@@ -869,6 +1079,66 @@ public class TbActivityManageExample {
 
         public Criteria andCreateDateNotBetween(Date value1, Date value2) {
             addCriterionForJDBCDate("create_date not between", value1, value2, "createDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andStopDateIsNull() {
+            addCriterion("stop_date is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andStopDateIsNotNull() {
+            addCriterion("stop_date is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andStopDateEqualTo(Date value) {
+            addCriterionForJDBCDate("stop_date =", value, "stopDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andStopDateNotEqualTo(Date value) {
+            addCriterionForJDBCDate("stop_date <>", value, "stopDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andStopDateGreaterThan(Date value) {
+            addCriterionForJDBCDate("stop_date >", value, "stopDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andStopDateGreaterThanOrEqualTo(Date value) {
+            addCriterionForJDBCDate("stop_date >=", value, "stopDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andStopDateLessThan(Date value) {
+            addCriterionForJDBCDate("stop_date <", value, "stopDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andStopDateLessThanOrEqualTo(Date value) {
+            addCriterionForJDBCDate("stop_date <=", value, "stopDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andStopDateIn(List<Date> values) {
+            addCriterionForJDBCDate("stop_date in", values, "stopDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andStopDateNotIn(List<Date> values) {
+            addCriterionForJDBCDate("stop_date not in", values, "stopDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andStopDateBetween(Date value1, Date value2) {
+            addCriterionForJDBCDate("stop_date between", value1, value2, "stopDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andStopDateNotBetween(Date value1, Date value2) {
+            addCriterionForJDBCDate("stop_date not between", value1, value2, "stopDate");
             return (Criteria) this;
         }
 

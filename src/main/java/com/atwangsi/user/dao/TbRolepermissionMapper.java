@@ -28,5 +28,5 @@ public interface TbRolepermissionMapper {
 
     int updateByPrimaryKey(TbRolepermission record);
 
-	void insertRolePermissions(@Param("roleId") Integer roleId, @Param("permissionIds") List<Integer> pidList);
+	void insertRolePermissions(Integer roleId, List<Integer> pidList);
 }

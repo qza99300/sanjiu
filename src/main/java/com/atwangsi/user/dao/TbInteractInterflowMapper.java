@@ -16,21 +16,15 @@ public interface TbInteractInterflowMapper {
 
     int insertSelective(TbInteractInterflow record);
 
-    List<TbInteractInterflow> selectByExampleWithBLOBs(TbInteractInterflowExample example);
-
     List<TbInteractInterflow> selectByExample(TbInteractInterflowExample example);
 
     TbInteractInterflow selectByPrimaryKey(Integer interactId);
 
     int updateByExampleSelective(@Param("record") TbInteractInterflow record, @Param("example") TbInteractInterflowExample example);
 
-    int updateByExampleWithBLOBs(@Param("record") TbInteractInterflow record, @Param("example") TbInteractInterflowExample example);
-
     int updateByExample(@Param("record") TbInteractInterflow record, @Param("example") TbInteractInterflowExample example);
 
     int updateByPrimaryKeySelective(TbInteractInterflow record);
-
-    int updateByPrimaryKeyWithBLOBs(TbInteractInterflow record);
 
     int updateByPrimaryKey(TbInteractInterflow record);
 }

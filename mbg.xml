@@ -62,7 +62,7 @@
 <!-- 		<table tableName="tb_integral_rule"></table> -->
 <!-- 		<table tableName="tb_user_integral_detail"></table> -->
 <!-- 		<table tableName="tb_integral_product"></table> -->
-		<table tableName="tb_consignee"></table>
+<!-- 		<table tableName="tb_consignee"></table> -->
 <!-- 		<table tableName="tb_exchange_order"></table> -->
 <!-- 		<table tableName="tb_exchange_record"></table> -->
 <!-- 		<table tableName="tb_activity_manage"></table> -->
@@ -71,5 +71,9 @@
 <!-- 		<table tableName="tb_interact_interflow"></table> -->
 <!-- 		<table tableName="tb_college_synopsis"></table> -->
 <!-- 		<table tableName="tb_rolepermission"></table> -->
+<!-- 		<table tableName="tb_Sign"></table> -->
+<!-- 		<table tableName="tb_Sign_copy"></table> -->
+		<table tableName="tb_area_manager"></table>
+		
 	</context>
 </generatorConfiguration>

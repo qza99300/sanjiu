@@ -69,14 +69,12 @@ public class RecordServiceImpl implements RecordService {
 		return this.recordMapper.selectByExample(example);
 	}
 
-	//查询个人信息
 	@Override
 	public List<TbExchangeRecord> selectexchange(int id) {
 				
 		return recordMapper.selectexchange(id);
 	}
 
-	//查询单个兑换信息
 	@Override
 	public TbExchangeRecord selectsingle(int id) {
 				

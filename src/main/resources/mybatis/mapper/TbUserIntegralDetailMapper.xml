@@ -4,6 +4,7 @@
   <resultMap id="BaseResultMap" type="com.atwangsi.user.model.TbUserIntegralDetail">
     <id column="integral_id" jdbcType="INTEGER" property="integralId" />
     <result column="user_id" jdbcType="INTEGER" property="userId" />
+    <result column="surplus_integral" jdbcType="INTEGER" property="surplusIntegral" />
     <result column="integral" jdbcType="INTEGER" property="integral" />
     <result column="purpose" jdbcType="VARCHAR" property="purpose" />
     <result column="create_date" jdbcType="DATE" property="createDate" />
@@ -74,8 +75,8 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    integral_id, user_id, integral, purpose, create_date, create_by, last_updated_by, 
-    last_update_date, record_version, deleted_flag, deleted_by, deletion_date
+    integral_id, user_id, surplus_integral, integral, purpose, create_date, create_by, 
+    last_updated_by, last_update_date, record_version, deleted_flag, deleted_by, deletion_date
   </sql>
   <select id="selectByExample" parameterType="com.atwangsi.user.model.TbUserIntegralDetailExample" resultMap="BaseResultMap">
     select
@@ -108,16 +109,16 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.atwangsi.user.model.TbUserIntegralDetail">
-    insert into tb_user_integral_detail (integral_id, user_id, integral, 
-      purpose, create_date, create_by, 
-      last_updated_by, last_update_date, record_version, 
-      deleted_flag, deleted_by, deletion_date
-      )
-    values (#{integralId,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{integral,jdbcType=INTEGER}, 
-      #{purpose,jdbcType=VARCHAR}, #{createDate,jdbcType=DATE}, #{createBy,jdbcType=VARCHAR}, 
-      #{lastUpdatedBy,jdbcType=VARCHAR}, #{lastUpdateDate,jdbcType=DATE}, #{recordVersion,jdbcType=INTEGER}, 
-      #{deletedFlag,jdbcType=INTEGER}, #{deletedBy,jdbcType=VARCHAR}, #{deletionDate,jdbcType=DATE}
-      )
+    insert into tb_user_integral_detail (integral_id, user_id, surplus_integral, 
+      integral, purpose, create_date, 
+      create_by, last_updated_by, last_update_date, 
+      record_version, deleted_flag, deleted_by, 
+      deletion_date)
+    values (#{integralId,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{surplusIntegral,jdbcType=INTEGER}, 
+      #{integral,jdbcType=INTEGER}, #{purpose,jdbcType=VARCHAR}, #{createDate,jdbcType=DATE}, 
+      #{createBy,jdbcType=VARCHAR}, #{lastUpdatedBy,jdbcType=VARCHAR}, #{lastUpdateDate,jdbcType=DATE}, 
+      #{recordVersion,jdbcType=INTEGER}, #{deletedFlag,jdbcType=INTEGER}, #{deletedBy,jdbcType=VARCHAR}, 
+      #{deletionDate,jdbcType=DATE})
   </insert>
   <insert id="insertSelective" parameterType="com.atwangsi.user.model.TbUserIntegralDetail">
     insert into tb_user_integral_detail
@@ -127,6 +128,9 @@
       </if>
       <if test="userId != null">
         user_id,
+      </if>
+      <if test="surplusIntegral != null">
+        surplus_integral,
       </if>
       <if test="integral != null">
         integral,
@@ -165,6 +169,9 @@
       </if>
       <if test="userId != null">
         #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="surplusIntegral != null">
+        #{surplusIntegral,jdbcType=INTEGER},
       </if>
       <if test="integral != null">
         #{integral,jdbcType=INTEGER},
@@ -213,6 +220,9 @@
       <if test="record.userId != null">
         user_id = #{record.userId,jdbcType=INTEGER},
       </if>
+      <if test="record.surplusIntegral != null">
+        surplus_integral = #{record.surplusIntegral,jdbcType=INTEGER},
+      </if>
       <if test="record.integral != null">
         integral = #{record.integral,jdbcType=INTEGER},
       </if>
@@ -252,6 +262,7 @@
     update tb_user_integral_detail
     set integral_id = #{record.integralId,jdbcType=INTEGER},
       user_id = #{record.userId,jdbcType=INTEGER},
+      surplus_integral = #{record.surplusIntegral,jdbcType=INTEGER},
       integral = #{record.integral,jdbcType=INTEGER},
       purpose = #{record.purpose,jdbcType=VARCHAR},
       create_date = #{record.createDate,jdbcType=DATE},
@@ -271,6 +282,9 @@
     <set>
       <if test="userId != null">
         user_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="surplusIntegral != null">
+        surplus_integral = #{surplusIntegral,jdbcType=INTEGER},
       </if>
       <if test="integral != null">
         integral = #{integral,jdbcType=INTEGER},
@@ -308,6 +322,7 @@
   <update id="updateByPrimaryKey" parameterType="com.atwangsi.user.model.TbUserIntegralDetail">
     update tb_user_integral_detail
     set user_id = #{userId,jdbcType=INTEGER},
+      surplus_integral = #{surplusIntegral,jdbcType=INTEGER},
       integral = #{integral,jdbcType=INTEGER},
       purpose = #{purpose,jdbcType=VARCHAR},
       create_date = #{createDate,jdbcType=DATE},

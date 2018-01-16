@@ -17,10 +17,6 @@
 		</foreach>
 	</insert>
 
-	<!-- <insert id="insertUserRoles"> INSERT INTO tb_userrole(id, user_id, 
-		role_id) VALUES <foreach collection="roleIds" item="roleIds" separator=","> 
-		(#{userId},#{roleIds}) </foreach> </insert> -->
-
 	<sql id="Example_Where_Clause">
 		<where>
 			<foreach collection="oredCriteria" item="criteria" separator="or">
@@ -35,8 +31,7 @@
 									and ${criterion.condition} #{criterion.value}
 								</when>
 								<when test="criterion.betweenValue">
-									and ${criterion.condition} #{criterion.value}
-									and
+									and ${criterion.condition} #{criterion.value} and
 									#{criterion.secondValue}
 								</when>
 								<when test="criterion.listValue">
@@ -68,8 +63,7 @@
 									and ${criterion.condition} #{criterion.value}
 								</when>
 								<when test="criterion.betweenValue">
-									and ${criterion.condition} #{criterion.value}
-									and
+									and ${criterion.condition} #{criterion.value} and
 									#{criterion.secondValue}
 								</when>
 								<when test="criterion.listValue">
@@ -112,8 +106,7 @@
 		where id = #{id,jdbcType=INTEGER}
 	</select>
 	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-		delete from
-		tb_userrole
+		delete from tb_userrole
 		where id = #{id,jdbcType=INTEGER}
 	</delete>
 	<delete id="deleteByExample" parameterType="com.atwangsi.user.model.TbUserroleExample">
@@ -123,11 +116,9 @@
 		</if>
 	</delete>
 	<insert id="insert" parameterType="com.atwangsi.user.model.TbUserrole">
-		insert into tb_userrole (id,
-		user_id, role_id
+		insert into tb_userrole (id, user_id, role_id
 		)
-		values (#{id,jdbcType=INTEGER},
-		#{userId,jdbcType=INTEGER},
+		values (#{id,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER},
 		#{roleId,jdbcType=INTEGER}
 		)
 	</insert>
@@ -183,10 +174,8 @@
 	<update id="updateByExample" parameterType="map">
 		update tb_userrole
 		set id = #{record.id,jdbcType=INTEGER},
-		user_id =
-		#{record.userId,jdbcType=INTEGER},
-		role_id =
-		#{record.roleId,jdbcType=INTEGER}
+		user_id = #{record.userId,jdbcType=INTEGER},
+		role_id = #{record.roleId,jdbcType=INTEGER}
 		<if test="_parameter != null">
 			<include refid="Update_By_Example_Where_Clause" />
 		</if>
@@ -206,8 +195,7 @@
 	<update id="updateByPrimaryKey" parameterType="com.atwangsi.user.model.TbUserrole">
 		update tb_userrole
 		set user_id = #{userId,jdbcType=INTEGER},
-		role_id =
-		#{roleId,jdbcType=INTEGER}
+		role_id = #{roleId,jdbcType=INTEGER}
 		where id = #{id,jdbcType=INTEGER}
 	</update>
 </mapper>

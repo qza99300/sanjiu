@@ -16,27 +16,19 @@ public interface TbActivityManageMapper {
 
     int insertSelective(TbActivityManage record);
 
-    List<TbActivityManage> selectByExampleWithBLOBs(TbActivityManageExample example);
-
     List<TbActivityManage> selectByExample(TbActivityManageExample example);
 
     TbActivityManage selectByPrimaryKey(Integer activityId);
 
     int updateByExampleSelective(@Param("record") TbActivityManage record, @Param("example") TbActivityManageExample example);
 
-    int updateByExampleWithBLOBs(@Param("record") TbActivityManage record, @Param("example") TbActivityManageExample example);
-
     int updateByExample(@Param("record") TbActivityManage record, @Param("example") TbActivityManageExample example);
 
     int updateByPrimaryKeySelective(TbActivityManage record);
 
-    int updateByPrimaryKeyWithBLOBs(TbActivityManage record);
-
     int updateByPrimaryKey(TbActivityManage record);
 
-	//显示最新活动
-    List<TbActivityManage> selectList();
-    
-    //显示历史活动
-    List<TbActivityManage> selectHistory();
+	List<TbActivityManage> selectList();
+
+	List<TbActivityManage> selectHistory();
 }

@@ -106,7 +106,6 @@ public class ActivityManageController {
 		jo.put("activityId", tm.getActivityId());
 		jo.put("activityTitle", tm.getActivityTitle());
 		jo.put("activityNum", tm.getActivityNum());
-		jo.put("createYear", tm.getCreateYear());
 		jo.put("activityStatus", tm.getActivityStatus());
 		jo.put("remark", tm.getRemark());
 		jo.put("department", tm.getDepartment());

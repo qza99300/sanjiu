@@ -28,9 +28,7 @@ public interface TbExchangeRecordMapper {
 
     int updateByPrimaryKey(TbExchangeRecord record);
 
-	//查询个人兑换信息
-    List<TbExchangeRecord> selectexchange(int id);
-    
-    //查询单个兑换信息
-    TbExchangeRecord selectsingle(int id);
+	List<TbExchangeRecord> selectexchange(int id);
+
+	TbExchangeRecord selectsingle(int id);
 }

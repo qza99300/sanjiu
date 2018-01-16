@@ -13,9 +13,11 @@ public class TbTopicManage {
 
     private String userName;
 
-    private Date createDate;
+    private String picture;
 
-    private byte[] picture;
+    private String videoPath;
+
+    private Date createDate;
 
     public Integer getTopicId() {
         return topicId;
@@ -57,19 +59,27 @@ public class TbTopicManage {
         this.userName = userName == null ? null : userName.trim();
     }
 
+    public String getPicture() {
+        return picture;
+    }
+
+    public void setPicture(String picture) {
+        this.picture = picture == null ? null : picture.trim();
+    }
+
+    public String getVideoPath() {
+        return videoPath;
+    }
+
+    public void setVideoPath(String videoPath) {
+        this.videoPath = videoPath == null ? null : videoPath.trim();
+    }
+
     public Date getCreateDate() {
         return createDate;
     }
 
     public void setCreateDate(Date createDate) {
         this.createDate = createDate;
-    }
-
-    public byte[] getPicture() {
-        return picture;
-    }
-
-    public void setPicture(byte[] picture) {
-        this.picture = picture;
     }
 }

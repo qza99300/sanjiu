@@ -9,6 +9,9 @@
     <result column="valid_date" jdbcType="DATE" property="validDate" />
     <result column="department" jdbcType="VARCHAR" property="department" />
     <result column="area" jdbcType="VARCHAR" property="area" />
+    <result column="province" jdbcType="VARCHAR" property="province" />
+    <result column="city" jdbcType="VARCHAR" property="city" />
+    <result column="area1" jdbcType="VARCHAR" property="area1" />
     <result column="collect_count" jdbcType="INTEGER" property="collectCount" />
     <result column="remark" jdbcType="VARCHAR" property="remark" />
     <result column="create_date" jdbcType="DATE" property="createDate" />
@@ -20,6 +23,16 @@
     <result column="deleted_by" jdbcType="VARCHAR" property="deletedBy" />
     <result column="deletion_date" jdbcType="DATE" property="deletionDate" />
   </resultMap>
+  
+  <select id="selectApply" resultType="com.atwangsi.user.model.TbActivityApply">
+  		SELECT a.activity_title as 'activityTitle',m.picture,m.activity_num as 'activityNum' from tb_activity_apply a LEFT JOIN tb_activity_manage m on m.activity_id=a.activity_id
+		where a.user_id=#{0}
+  </select>
+  
+  <select id="selectObj" resultMap="BaseResultMap">
+  		select *from tb_activity_apply where activity_id=#{activityId} and user_id=#{userId}
+  </select>
+  
   <sql id="Example_Where_Clause">
     <where>
       <foreach collection="oredCriteria" item="criteria" separator="or">
@@ -79,9 +92,9 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    apply_id, activity_id, user_id, activity_title, valid_date, department, area, collect_count, 
-    remark, create_date, create_by, last_updated_by, last_update_date, record_version, 
-    deleted_flag, deleted_by, deletion_date
+    apply_id, activity_id, user_id, activity_title, valid_date, department, area, province, 
+    city, area1, collect_count, remark, create_date, create_by, last_updated_by, last_update_date, 
+    record_version, deleted_flag, deleted_by, deletion_date
   </sql>
   <select id="selectByExample" parameterType="com.atwangsi.user.model.TbActivityApplyExample" resultMap="BaseResultMap">
     select
@@ -116,13 +129,15 @@
   <insert id="insert" parameterType="com.atwangsi.user.model.TbActivityApply">
     insert into tb_activity_apply (apply_id, activity_id, user_id, 
       activity_title, valid_date, department, 
-      area, collect_count, remark, 
+      area, province, city, 
+      area1, collect_count, remark, 
       create_date, create_by, last_updated_by, 
       last_update_date, record_version, deleted_flag, 
       deleted_by, deletion_date)
     values (#{applyId,jdbcType=INTEGER}, #{activityId,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, 
       #{activityTitle,jdbcType=VARCHAR}, #{validDate,jdbcType=DATE}, #{department,jdbcType=VARCHAR}, 
-      #{area,jdbcType=VARCHAR}, #{collectCount,jdbcType=INTEGER}, #{remark,jdbcType=VARCHAR}, 
+      #{area,jdbcType=VARCHAR}, #{province,jdbcType=VARCHAR}, #{city,jdbcType=VARCHAR}, 
+      #{area1,jdbcType=VARCHAR}, #{collectCount,jdbcType=INTEGER}, #{remark,jdbcType=VARCHAR}, 
       #{createDate,jdbcType=DATE}, #{createBy,jdbcType=VARCHAR}, #{lastUpdatedBy,jdbcType=VARCHAR}, 
       #{lastUpdateDate,jdbcType=DATE}, #{recordVersion,jdbcType=INTEGER}, #{deletedFlag,jdbcType=INTEGER}, 
       #{deletedBy,jdbcType=VARCHAR}, #{deletionDate,jdbcType=DATE})
@@ -150,6 +165,15 @@
       </if>
       <if test="area != null">
         area,
+      </if>
+      <if test="province != null">
+        province,
+      </if>
+      <if test="city != null">
+        city,
+      </if>
+      <if test="area1 != null">
+        area1,
       </if>
       <if test="collectCount != null">
         collect_count,
@@ -203,6 +227,15 @@
       </if>
       <if test="area != null">
         #{area,jdbcType=VARCHAR},
+      </if>
+      <if test="province != null">
+        #{province,jdbcType=VARCHAR},
+      </if>
+      <if test="city != null">
+        #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="area1 != null">
+        #{area1,jdbcType=VARCHAR},
       </if>
       <if test="collectCount != null">
         #{collectCount,jdbcType=INTEGER},
@@ -266,6 +299,15 @@
       <if test="record.area != null">
         area = #{record.area,jdbcType=VARCHAR},
       </if>
+      <if test="record.province != null">
+        province = #{record.province,jdbcType=VARCHAR},
+      </if>
+      <if test="record.city != null">
+        city = #{record.city,jdbcType=VARCHAR},
+      </if>
+      <if test="record.area1 != null">
+        area1 = #{record.area1,jdbcType=VARCHAR},
+      </if>
       <if test="record.collectCount != null">
         collect_count = #{record.collectCount,jdbcType=INTEGER},
       </if>
@@ -310,6 +352,9 @@
       valid_date = #{record.validDate,jdbcType=DATE},
       department = #{record.department,jdbcType=VARCHAR},
       area = #{record.area,jdbcType=VARCHAR},
+      province = #{record.province,jdbcType=VARCHAR},
+      city = #{record.city,jdbcType=VARCHAR},
+      area1 = #{record.area1,jdbcType=VARCHAR},
       collect_count = #{record.collectCount,jdbcType=INTEGER},
       remark = #{record.remark,jdbcType=VARCHAR},
       create_date = #{record.createDate,jdbcType=DATE},
@@ -344,6 +389,15 @@
       </if>
       <if test="area != null">
         area = #{area,jdbcType=VARCHAR},
+      </if>
+      <if test="province != null">
+        province = #{province,jdbcType=VARCHAR},
+      </if>
+      <if test="city != null">
+        city = #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="area1 != null">
+        area1 = #{area1,jdbcType=VARCHAR},
       </if>
       <if test="collectCount != null">
         collect_count = #{collectCount,jdbcType=INTEGER},
@@ -386,6 +440,9 @@
       valid_date = #{validDate,jdbcType=DATE},
       department = #{department,jdbcType=VARCHAR},
       area = #{area,jdbcType=VARCHAR},
+      province = #{province,jdbcType=VARCHAR},
+      city = #{city,jdbcType=VARCHAR},
+      area1 = #{area1,jdbcType=VARCHAR},
       collect_count = #{collectCount,jdbcType=INTEGER},
       remark = #{remark,jdbcType=VARCHAR},
       create_date = #{createDate,jdbcType=DATE},
@@ -398,13 +455,4 @@
       deletion_date = #{deletionDate,jdbcType=DATE}
     where apply_id = #{applyId,jdbcType=INTEGER}
   </update>
-
-  <select id="selectApply" resultType="com.atwangsi.user.model.TbActivityApply">
-  		SELECT a.activity_title as 'activityTitle',m.picture,m.activity_num as 'activityNum' from tb_activity_apply a LEFT JOIN tb_activity_manage m on m.activity_id=a.activity_id
-		where a.user_id=#{0}
-  </select>
-  
-  <select id="selectObj" resultMap="BaseResultMap">
-  		select *from tb_activity_apply where activity_id=#{activityId} and user_id=#{userId}
-  </select>
 </mapper>

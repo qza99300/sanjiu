@@ -13,7 +13,6 @@ import com.alibaba.fastjson.JSONObject;
 import com.atwangsi.base.model.AppContant;
 import com.atwangsi.base.model.ResultVO;
 import com.atwangsi.user.model.TbActivityApply;
-import com.atwangsi.user.model.TbActivityManage;
 import com.atwangsi.user.service.ApplyService;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;

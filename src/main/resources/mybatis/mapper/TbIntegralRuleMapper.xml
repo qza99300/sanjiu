@@ -320,8 +320,4 @@
       deletion_date = #{deletionDate,jdbcType=DATE}
     where rule_id = #{ruleId,jdbcType=INTEGER}
   </update>
-  
-  <select id="selectwhole" resultMap="BaseResultMap">
-  		SELECT *from tb_integral_rule
-  </select>
 </mapper>

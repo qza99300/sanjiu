@@ -252,6 +252,66 @@ public class TbUserIntegralDetailExample {
             return (Criteria) this;
         }
 
+        public Criteria andSurplusIntegralIsNull() {
+            addCriterion("surplus_integral is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andSurplusIntegralIsNotNull() {
+            addCriterion("surplus_integral is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andSurplusIntegralEqualTo(Integer value) {
+            addCriterion("surplus_integral =", value, "surplusIntegral");
+            return (Criteria) this;
+        }
+
+        public Criteria andSurplusIntegralNotEqualTo(Integer value) {
+            addCriterion("surplus_integral <>", value, "surplusIntegral");
+            return (Criteria) this;
+        }
+
+        public Criteria andSurplusIntegralGreaterThan(Integer value) {
+            addCriterion("surplus_integral >", value, "surplusIntegral");
+            return (Criteria) this;
+        }
+
+        public Criteria andSurplusIntegralGreaterThanOrEqualTo(Integer value) {
+            addCriterion("surplus_integral >=", value, "surplusIntegral");
+            return (Criteria) this;
+        }
+
+        public Criteria andSurplusIntegralLessThan(Integer value) {
+            addCriterion("surplus_integral <", value, "surplusIntegral");
+            return (Criteria) this;
+        }
+
+        public Criteria andSurplusIntegralLessThanOrEqualTo(Integer value) {
+            addCriterion("surplus_integral <=", value, "surplusIntegral");
+            return (Criteria) this;
+        }
+
+        public Criteria andSurplusIntegralIn(List<Integer> values) {
+            addCriterion("surplus_integral in", values, "surplusIntegral");
+            return (Criteria) this;
+        }
+
+        public Criteria andSurplusIntegralNotIn(List<Integer> values) {
+            addCriterion("surplus_integral not in", values, "surplusIntegral");
+            return (Criteria) this;
+        }
+
+        public Criteria andSurplusIntegralBetween(Integer value1, Integer value2) {
+            addCriterion("surplus_integral between", value1, value2, "surplusIntegral");
+            return (Criteria) this;
+        }
+
+        public Criteria andSurplusIntegralNotBetween(Integer value1, Integer value2) {
+            addCriterion("surplus_integral not between", value1, value2, "surplusIntegral");
+            return (Criteria) this;
+        }
+
         public Criteria andIntegralIsNull() {
             addCriterion("integral is null");
             return (Criteria) this;

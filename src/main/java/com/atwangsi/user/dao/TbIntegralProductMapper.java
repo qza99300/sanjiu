@@ -16,21 +16,15 @@ public interface TbIntegralProductMapper {
 
     int insertSelective(TbIntegralProduct record);
 
-    List<TbIntegralProduct> selectByExampleWithBLOBs(TbIntegralProductExample example);
-
     List<TbIntegralProduct> selectByExample(TbIntegralProductExample example);
 
     TbIntegralProduct selectByPrimaryKey(Integer productId);
 
     int updateByExampleSelective(@Param("record") TbIntegralProduct record, @Param("example") TbIntegralProductExample example);
 
-    int updateByExampleWithBLOBs(@Param("record") TbIntegralProduct record, @Param("example") TbIntegralProductExample example);
-
     int updateByExample(@Param("record") TbIntegralProduct record, @Param("example") TbIntegralProductExample example);
 
     int updateByPrimaryKeySelective(TbIntegralProduct record);
-
-    int updateByPrimaryKeyWithBLOBs(TbIntegralProduct record);
 
     int updateByPrimaryKey(TbIntegralProduct record);
 }

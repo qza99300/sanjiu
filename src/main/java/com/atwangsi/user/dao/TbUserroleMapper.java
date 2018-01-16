@@ -28,7 +28,5 @@ public interface TbUserroleMapper {
 
     int updateByPrimaryKey(TbUserrole record);
 
-	Boolean insertUserRoles(@Param("userId") Integer userId, @Param("roleIds") List<Integer> roleIds);
-
-	
+	void insertUserRoles(Integer userId, List<Integer> list);
 }

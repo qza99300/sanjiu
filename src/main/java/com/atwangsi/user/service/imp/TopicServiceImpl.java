@@ -58,14 +58,12 @@ public class TopicServiceImpl implements TopicService {
 		return this.topicManageMapper.selectByExample(example);
 	}
 	
-	//��ʾȫ��������Ϣ
 	@Override
 	public List<TbTopicManage> selectTbTopicObj() {
 			
 		return topicManageMapper.selectTbTopicObj();
 	}
 
-	//���������Ϣ
 	@Override
 	public List<TbTopicManage> selectTbTopicHottest() {
 			

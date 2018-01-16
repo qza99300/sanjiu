@@ -17,14 +17,13 @@
     <result column="deletion_date" jdbcType="DATE" property="deletionDate" />
   </resultMap>
   
-  <!-- List<TPermission> getUserPermissions(Integer id); -->
+ 	<!-- List<TPermission> getUserPermissions(Integer id); -->
 	<select id="getUserPermissions" resultMap="BaseResultMap">
 		select distinct p.* from tb_permission p
 		left join tb_rolepermission rp on rp.`permission_id`=p.`permission_id`
 		left join tb_userrole ur on ur.`role_id`= rp.`role_id`
 		where ur.`user_id`=#{id}
 	</select>
-
 
 	<!-- List<TbPermission> selectRolesPermissions(Integer roleId); -->
 	<select id="selectRolesPermissions" resultMap="BaseResultMap">

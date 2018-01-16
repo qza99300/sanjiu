@@ -7,6 +7,7 @@
     <result column="title_id" jdbcType="INTEGER" property="titleId" />
     <result column="title" jdbcType="VARCHAR" property="title" />
     <result column="comment_date" jdbcType="DATE" property="commentDate" />
+    <result column="picture" jdbcType="VARCHAR" property="picture" />
     <result column="like_count" jdbcType="INTEGER" property="likeCount" />
     <result column="create_date" jdbcType="DATE" property="createDate" />
     <result column="create_by" jdbcType="VARCHAR" property="createBy" />
@@ -16,9 +17,6 @@
     <result column="deleted_flag" jdbcType="INTEGER" property="deletedFlag" />
     <result column="deleted_by" jdbcType="VARCHAR" property="deletedBy" />
     <result column="deletion_date" jdbcType="DATE" property="deletionDate" />
-  </resultMap>
-  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.atwangsi.user.model.TbInteractInterflow">
-    <result column="picture" jdbcType="LONGVARBINARY" property="picture" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -79,28 +77,10 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    interact_id, user_id, title_id, title, comment_date, like_count, create_date, create_by, 
-    last_updated_by, last_update_date, record_version, deleted_flag, deleted_by, deletion_date
+    interact_id, user_id, title_id, title, comment_date, picture, like_count, create_date, 
+    create_by, last_updated_by, last_update_date, record_version, deleted_flag, deleted_by, 
+    deletion_date
   </sql>
-  <sql id="Blob_Column_List">
-    picture
-  </sql>
-  <select id="selectByExampleWithBLOBs" parameterType="com.atwangsi.user.model.TbInteractInterflowExample" resultMap="ResultMapWithBLOBs">
-    select
-    <if test="distinct">
-      distinct
-    </if>
-    <include refid="Base_Column_List" />
-    ,
-    <include refid="Blob_Column_List" />
-    from tb_interact_interflow
-    <if test="_parameter != null">
-      <include refid="Example_Where_Clause" />
-    </if>
-    <if test="orderByClause != null">
-      order by ${orderByClause}
-    </if>
-  </select>
   <select id="selectByExample" parameterType="com.atwangsi.user.model.TbInteractInterflowExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
@@ -115,11 +95,9 @@
       order by ${orderByClause}
     </if>
   </select>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
-    ,
-    <include refid="Blob_Column_List" />
     from tb_interact_interflow
     where interact_id = #{interactId,jdbcType=INTEGER}
   </select>
@@ -135,16 +113,16 @@
   </delete>
   <insert id="insert" parameterType="com.atwangsi.user.model.TbInteractInterflow">
     insert into tb_interact_interflow (interact_id, user_id, title_id, 
-      title, comment_date, like_count, 
-      create_date, create_by, last_updated_by, 
-      last_update_date, record_version, deleted_flag, 
-      deleted_by, deletion_date, picture
+      title, comment_date, picture, 
+      like_count, create_date, create_by, 
+      last_updated_by, last_update_date, record_version, 
+      deleted_flag, deleted_by, deletion_date
       )
     values (#{interactId,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{titleId,jdbcType=INTEGER}, 
-      #{title,jdbcType=VARCHAR}, #{commentDate,jdbcType=DATE}, #{likeCount,jdbcType=INTEGER}, 
-      #{createDate,jdbcType=DATE}, #{createBy,jdbcType=VARCHAR}, #{lastUpdatedBy,jdbcType=VARCHAR}, 
-      #{lastUpdateDate,jdbcType=DATE}, #{recordVersion,jdbcType=INTEGER}, #{deletedFlag,jdbcType=INTEGER}, 
-      #{deletedBy,jdbcType=VARCHAR}, #{deletionDate,jdbcType=DATE}, #{picture,jdbcType=LONGVARBINARY}
+      #{title,jdbcType=VARCHAR}, #{commentDate,jdbcType=DATE}, #{picture,jdbcType=VARCHAR}, 
+      #{likeCount,jdbcType=INTEGER}, #{createDate,jdbcType=DATE}, #{createBy,jdbcType=VARCHAR}, 
+      #{lastUpdatedBy,jdbcType=VARCHAR}, #{lastUpdateDate,jdbcType=DATE}, #{recordVersion,jdbcType=INTEGER}, 
+      #{deletedFlag,jdbcType=INTEGER}, #{deletedBy,jdbcType=VARCHAR}, #{deletionDate,jdbcType=DATE}
       )
   </insert>
   <insert id="insertSelective" parameterType="com.atwangsi.user.model.TbInteractInterflow">
@@ -164,6 +142,9 @@
       </if>
       <if test="commentDate != null">
         comment_date,
+      </if>
+      <if test="picture != null">
+        picture,
       </if>
       <if test="likeCount != null">
         like_count,
@@ -192,9 +173,6 @@
       <if test="deletionDate != null">
         deletion_date,
       </if>
-      <if test="picture != null">
-        picture,
-      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="interactId != null">
@@ -211,6 +189,9 @@
       </if>
       <if test="commentDate != null">
         #{commentDate,jdbcType=DATE},
+      </if>
+      <if test="picture != null">
+        #{picture,jdbcType=VARCHAR},
       </if>
       <if test="likeCount != null">
         #{likeCount,jdbcType=INTEGER},
@@ -239,9 +220,6 @@
       <if test="deletionDate != null">
         #{deletionDate,jdbcType=DATE},
       </if>
-      <if test="picture != null">
-        #{picture,jdbcType=LONGVARBINARY},
-      </if>
     </trim>
   </insert>
   <select id="countByExample" parameterType="com.atwangsi.user.model.TbInteractInterflowExample" resultType="java.lang.Long">
@@ -267,6 +245,9 @@
       </if>
       <if test="record.commentDate != null">
         comment_date = #{record.commentDate,jdbcType=DATE},
+      </if>
+      <if test="record.picture != null">
+        picture = #{record.picture,jdbcType=VARCHAR},
       </if>
       <if test="record.likeCount != null">
         like_count = #{record.likeCount,jdbcType=INTEGER},
@@ -295,31 +276,7 @@
       <if test="record.deletionDate != null">
         deletion_date = #{record.deletionDate,jdbcType=DATE},
       </if>
-      <if test="record.picture != null">
-        picture = #{record.picture,jdbcType=LONGVARBINARY},
-      </if>
     </set>
-    <if test="_parameter != null">
-      <include refid="Update_By_Example_Where_Clause" />
-    </if>
-  </update>
-  <update id="updateByExampleWithBLOBs" parameterType="map">
-    update tb_interact_interflow
-    set interact_id = #{record.interactId,jdbcType=INTEGER},
-      user_id = #{record.userId,jdbcType=INTEGER},
-      title_id = #{record.titleId,jdbcType=INTEGER},
-      title = #{record.title,jdbcType=VARCHAR},
-      comment_date = #{record.commentDate,jdbcType=DATE},
-      like_count = #{record.likeCount,jdbcType=INTEGER},
-      create_date = #{record.createDate,jdbcType=DATE},
-      create_by = #{record.createBy,jdbcType=VARCHAR},
-      last_updated_by = #{record.lastUpdatedBy,jdbcType=VARCHAR},
-      last_update_date = #{record.lastUpdateDate,jdbcType=DATE},
-      record_version = #{record.recordVersion,jdbcType=INTEGER},
-      deleted_flag = #{record.deletedFlag,jdbcType=INTEGER},
-      deleted_by = #{record.deletedBy,jdbcType=VARCHAR},
-      deletion_date = #{record.deletionDate,jdbcType=DATE},
-      picture = #{record.picture,jdbcType=LONGVARBINARY}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -331,6 +288,7 @@
       title_id = #{record.titleId,jdbcType=INTEGER},
       title = #{record.title,jdbcType=VARCHAR},
       comment_date = #{record.commentDate,jdbcType=DATE},
+      picture = #{record.picture,jdbcType=VARCHAR},
       like_count = #{record.likeCount,jdbcType=INTEGER},
       create_date = #{record.createDate,jdbcType=DATE},
       create_by = #{record.createBy,jdbcType=VARCHAR},
@@ -359,6 +317,9 @@
       <if test="commentDate != null">
         comment_date = #{commentDate,jdbcType=DATE},
       </if>
+      <if test="picture != null">
+        picture = #{picture,jdbcType=VARCHAR},
+      </if>
       <if test="likeCount != null">
         like_count = #{likeCount,jdbcType=INTEGER},
       </if>
@@ -386,28 +347,7 @@
       <if test="deletionDate != null">
         deletion_date = #{deletionDate,jdbcType=DATE},
       </if>
-      <if test="picture != null">
-        picture = #{picture,jdbcType=LONGVARBINARY},
-      </if>
     </set>
-    where interact_id = #{interactId,jdbcType=INTEGER}
-  </update>
-  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.atwangsi.user.model.TbInteractInterflow">
-    update tb_interact_interflow
-    set user_id = #{userId,jdbcType=INTEGER},
-      title_id = #{titleId,jdbcType=INTEGER},
-      title = #{title,jdbcType=VARCHAR},
-      comment_date = #{commentDate,jdbcType=DATE},
-      like_count = #{likeCount,jdbcType=INTEGER},
-      create_date = #{createDate,jdbcType=DATE},
-      create_by = #{createBy,jdbcType=VARCHAR},
-      last_updated_by = #{lastUpdatedBy,jdbcType=VARCHAR},
-      last_update_date = #{lastUpdateDate,jdbcType=DATE},
-      record_version = #{recordVersion,jdbcType=INTEGER},
-      deleted_flag = #{deletedFlag,jdbcType=INTEGER},
-      deleted_by = #{deletedBy,jdbcType=VARCHAR},
-      deletion_date = #{deletionDate,jdbcType=DATE},
-      picture = #{picture,jdbcType=LONGVARBINARY}
     where interact_id = #{interactId,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.atwangsi.user.model.TbInteractInterflow">
@@ -416,6 +356,7 @@
       title_id = #{titleId,jdbcType=INTEGER},
       title = #{title,jdbcType=VARCHAR},
       comment_date = #{commentDate,jdbcType=DATE},
+      picture = #{picture,jdbcType=VARCHAR},
       like_count = #{likeCount,jdbcType=INTEGER},
       create_date = #{createDate,jdbcType=DATE},
       create_by = #{createBy,jdbcType=VARCHAR},

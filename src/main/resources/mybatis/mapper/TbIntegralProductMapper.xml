@@ -7,6 +7,7 @@
     <result column="product_count" jdbcType="INTEGER" property="productCount" />
     <result column="product_presentation" jdbcType="VARCHAR" property="productPresentation" />
     <result column="product_integral" jdbcType="INTEGER" property="productIntegral" />
+    <result column="product_picture" jdbcType="VARCHAR" property="productPicture" />
     <result column="manage_name" jdbcType="INTEGER" property="manageName" />
     <result column="create_date" jdbcType="DATE" property="createDate" />
     <result column="end_date" jdbcType="DATE" property="endDate" />
@@ -18,9 +19,6 @@
     <result column="deleted_flag" jdbcType="INTEGER" property="deletedFlag" />
     <result column="deleted_by" jdbcType="VARCHAR" property="deletedBy" />
     <result column="deletion_date" jdbcType="DATE" property="deletionDate" />
-  </resultMap>
-  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.atwangsi.user.model.TbIntegralProduct">
-    <result column="product_picture" jdbcType="LONGVARBINARY" property="productPicture" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -82,28 +80,9 @@
   </sql>
   <sql id="Base_Column_List">
     product_id, product_name, product_count, product_presentation, product_integral, 
-    manage_name, create_date, end_date, open_status, create_by, last_updated_by, last_update_date, 
-    record_version, deleted_flag, deleted_by, deletion_date
+    product_picture, manage_name, create_date, end_date, open_status, create_by, last_updated_by, 
+    last_update_date, record_version, deleted_flag, deleted_by, deletion_date
   </sql>
-  <sql id="Blob_Column_List">
-    product_picture
-  </sql>
-  <select id="selectByExampleWithBLOBs" parameterType="com.atwangsi.user.model.TbIntegralProductExample" resultMap="ResultMapWithBLOBs">
-    select
-    <if test="distinct">
-      distinct
-    </if>
-    <include refid="Base_Column_List" />
-    ,
-    <include refid="Blob_Column_List" />
-    from tb_integral_product
-    <if test="_parameter != null">
-      <include refid="Example_Where_Clause" />
-    </if>
-    <if test="orderByClause != null">
-      order by ${orderByClause}
-    </if>
-  </select>
   <select id="selectByExample" parameterType="com.atwangsi.user.model.TbIntegralProductExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
@@ -118,11 +97,9 @@
       order by ${orderByClause}
     </if>
   </select>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
-    ,
-    <include refid="Blob_Column_List" />
     from tb_integral_product
     where product_id = #{productId,jdbcType=INTEGER}
   </select>
@@ -138,17 +115,17 @@
   </delete>
   <insert id="insert" parameterType="com.atwangsi.user.model.TbIntegralProduct">
     insert into tb_integral_product (product_id, product_name, product_count, 
-      product_presentation, product_integral, manage_name, 
-      create_date, end_date, open_status, 
-      create_by, last_updated_by, last_update_date, 
-      record_version, deleted_flag, deleted_by, 
-      deletion_date, product_picture)
+      product_presentation, product_integral, product_picture, 
+      manage_name, create_date, end_date, 
+      open_status, create_by, last_updated_by, 
+      last_update_date, record_version, deleted_flag, 
+      deleted_by, deletion_date)
     values (#{productId,jdbcType=INTEGER}, #{productName,jdbcType=VARCHAR}, #{productCount,jdbcType=INTEGER}, 
-      #{productPresentation,jdbcType=VARCHAR}, #{productIntegral,jdbcType=INTEGER}, #{manageName,jdbcType=INTEGER}, 
-      #{createDate,jdbcType=DATE}, #{endDate,jdbcType=DATE}, #{openStatus,jdbcType=VARCHAR}, 
-      #{createBy,jdbcType=VARCHAR}, #{lastUpdatedBy,jdbcType=VARCHAR}, #{lastUpdateDate,jdbcType=DATE}, 
-      #{recordVersion,jdbcType=INTEGER}, #{deletedFlag,jdbcType=INTEGER}, #{deletedBy,jdbcType=VARCHAR}, 
-      #{deletionDate,jdbcType=DATE}, #{productPicture,jdbcType=LONGVARBINARY})
+      #{productPresentation,jdbcType=VARCHAR}, #{productIntegral,jdbcType=INTEGER}, #{productPicture,jdbcType=VARCHAR}, 
+      #{manageName,jdbcType=INTEGER}, #{createDate,jdbcType=DATE}, #{endDate,jdbcType=DATE}, 
+      #{openStatus,jdbcType=VARCHAR}, #{createBy,jdbcType=VARCHAR}, #{lastUpdatedBy,jdbcType=VARCHAR}, 
+      #{lastUpdateDate,jdbcType=DATE}, #{recordVersion,jdbcType=INTEGER}, #{deletedFlag,jdbcType=INTEGER}, 
+      #{deletedBy,jdbcType=VARCHAR}, #{deletionDate,jdbcType=DATE})
   </insert>
   <insert id="insertSelective" parameterType="com.atwangsi.user.model.TbIntegralProduct">
     insert into tb_integral_product
@@ -167,6 +144,9 @@
       </if>
       <if test="productIntegral != null">
         product_integral,
+      </if>
+      <if test="productPicture != null">
+        product_picture,
       </if>
       <if test="manageName != null">
         manage_name,
@@ -201,9 +181,6 @@
       <if test="deletionDate != null">
         deletion_date,
       </if>
-      <if test="productPicture != null">
-        product_picture,
-      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="productId != null">
@@ -220,6 +197,9 @@
       </if>
       <if test="productIntegral != null">
         #{productIntegral,jdbcType=INTEGER},
+      </if>
+      <if test="productPicture != null">
+        #{productPicture,jdbcType=VARCHAR},
       </if>
       <if test="manageName != null">
         #{manageName,jdbcType=INTEGER},
@@ -254,9 +234,6 @@
       <if test="deletionDate != null">
         #{deletionDate,jdbcType=DATE},
       </if>
-      <if test="productPicture != null">
-        #{productPicture,jdbcType=LONGVARBINARY},
-      </if>
     </trim>
   </insert>
   <select id="countByExample" parameterType="com.atwangsi.user.model.TbIntegralProductExample" resultType="java.lang.Long">
@@ -282,6 +259,9 @@
       </if>
       <if test="record.productIntegral != null">
         product_integral = #{record.productIntegral,jdbcType=INTEGER},
+      </if>
+      <if test="record.productPicture != null">
+        product_picture = #{record.productPicture,jdbcType=VARCHAR},
       </if>
       <if test="record.manageName != null">
         manage_name = #{record.manageName,jdbcType=INTEGER},
@@ -316,33 +296,7 @@
       <if test="record.deletionDate != null">
         deletion_date = #{record.deletionDate,jdbcType=DATE},
       </if>
-      <if test="record.productPicture != null">
-        product_picture = #{record.productPicture,jdbcType=LONGVARBINARY},
-      </if>
     </set>
-    <if test="_parameter != null">
-      <include refid="Update_By_Example_Where_Clause" />
-    </if>
-  </update>
-  <update id="updateByExampleWithBLOBs" parameterType="map">
-    update tb_integral_product
-    set product_id = #{record.productId,jdbcType=INTEGER},
-      product_name = #{record.productName,jdbcType=VARCHAR},
-      product_count = #{record.productCount,jdbcType=INTEGER},
-      product_presentation = #{record.productPresentation,jdbcType=VARCHAR},
-      product_integral = #{record.productIntegral,jdbcType=INTEGER},
-      manage_name = #{record.manageName,jdbcType=INTEGER},
-      create_date = #{record.createDate,jdbcType=DATE},
-      end_date = #{record.endDate,jdbcType=DATE},
-      open_status = #{record.openStatus,jdbcType=VARCHAR},
-      create_by = #{record.createBy,jdbcType=VARCHAR},
-      last_updated_by = #{record.lastUpdatedBy,jdbcType=VARCHAR},
-      last_update_date = #{record.lastUpdateDate,jdbcType=DATE},
-      record_version = #{record.recordVersion,jdbcType=INTEGER},
-      deleted_flag = #{record.deletedFlag,jdbcType=INTEGER},
-      deleted_by = #{record.deletedBy,jdbcType=VARCHAR},
-      deletion_date = #{record.deletionDate,jdbcType=DATE},
-      product_picture = #{record.productPicture,jdbcType=LONGVARBINARY}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -354,6 +308,7 @@
       product_count = #{record.productCount,jdbcType=INTEGER},
       product_presentation = #{record.productPresentation,jdbcType=VARCHAR},
       product_integral = #{record.productIntegral,jdbcType=INTEGER},
+      product_picture = #{record.productPicture,jdbcType=VARCHAR},
       manage_name = #{record.manageName,jdbcType=INTEGER},
       create_date = #{record.createDate,jdbcType=DATE},
       end_date = #{record.endDate,jdbcType=DATE},
@@ -383,6 +338,9 @@
       </if>
       <if test="productIntegral != null">
         product_integral = #{productIntegral,jdbcType=INTEGER},
+      </if>
+      <if test="productPicture != null">
+        product_picture = #{productPicture,jdbcType=VARCHAR},
       </if>
       <if test="manageName != null">
         manage_name = #{manageName,jdbcType=INTEGER},
@@ -417,30 +375,7 @@
       <if test="deletionDate != null">
         deletion_date = #{deletionDate,jdbcType=DATE},
       </if>
-      <if test="productPicture != null">
-        product_picture = #{productPicture,jdbcType=LONGVARBINARY},
-      </if>
     </set>
-    where product_id = #{productId,jdbcType=INTEGER}
-  </update>
-  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.atwangsi.user.model.TbIntegralProduct">
-    update tb_integral_product
-    set product_name = #{productName,jdbcType=VARCHAR},
-      product_count = #{productCount,jdbcType=INTEGER},
-      product_presentation = #{productPresentation,jdbcType=VARCHAR},
-      product_integral = #{productIntegral,jdbcType=INTEGER},
-      manage_name = #{manageName,jdbcType=INTEGER},
-      create_date = #{createDate,jdbcType=DATE},
-      end_date = #{endDate,jdbcType=DATE},
-      open_status = #{openStatus,jdbcType=VARCHAR},
-      create_by = #{createBy,jdbcType=VARCHAR},
-      last_updated_by = #{lastUpdatedBy,jdbcType=VARCHAR},
-      last_update_date = #{lastUpdateDate,jdbcType=DATE},
-      record_version = #{recordVersion,jdbcType=INTEGER},
-      deleted_flag = #{deletedFlag,jdbcType=INTEGER},
-      deleted_by = #{deletedBy,jdbcType=VARCHAR},
-      deletion_date = #{deletionDate,jdbcType=DATE},
-      product_picture = #{productPicture,jdbcType=LONGVARBINARY}
     where product_id = #{productId,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.atwangsi.user.model.TbIntegralProduct">
@@ -449,6 +384,7 @@
       product_count = #{productCount,jdbcType=INTEGER},
       product_presentation = #{productPresentation,jdbcType=VARCHAR},
       product_integral = #{productIntegral,jdbcType=INTEGER},
+      product_picture = #{productPicture,jdbcType=VARCHAR},
       manage_name = #{manageName,jdbcType=INTEGER},
       create_date = #{createDate,jdbcType=DATE},
       end_date = #{endDate,jdbcType=DATE},

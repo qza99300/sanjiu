@@ -3,8 +3,6 @@ package com.atwangsi.user.controller;
 import java.util.Date;
 import java.util.List;
 
-import javax.servlet.http.HttpServletRequest;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -61,9 +59,6 @@ public class ProductController {
 	public ResultVO<Object> addProduct(TbIntegralProduct product,@RequestParam(value="file",required=false) MultipartFile file) throws IllegalStateException, Exception {
 		//设置创建时间
 		product.setCreateDate(new Date());
-		
-		//转化为字节数组
-		product.setProductPicture(file.getBytes());
 		
 		Boolean bool = this.productService.addProduct(product);
 		if (bool) {

@@ -452,6 +452,146 @@ public class TbTopicManageExample {
             return (Criteria) this;
         }
 
+        public Criteria andPictureIsNull() {
+            addCriterion("picture is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andPictureIsNotNull() {
+            addCriterion("picture is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andPictureEqualTo(String value) {
+            addCriterion("picture =", value, "picture");
+            return (Criteria) this;
+        }
+
+        public Criteria andPictureNotEqualTo(String value) {
+            addCriterion("picture <>", value, "picture");
+            return (Criteria) this;
+        }
+
+        public Criteria andPictureGreaterThan(String value) {
+            addCriterion("picture >", value, "picture");
+            return (Criteria) this;
+        }
+
+        public Criteria andPictureGreaterThanOrEqualTo(String value) {
+            addCriterion("picture >=", value, "picture");
+            return (Criteria) this;
+        }
+
+        public Criteria andPictureLessThan(String value) {
+            addCriterion("picture <", value, "picture");
+            return (Criteria) this;
+        }
+
+        public Criteria andPictureLessThanOrEqualTo(String value) {
+            addCriterion("picture <=", value, "picture");
+            return (Criteria) this;
+        }
+
+        public Criteria andPictureLike(String value) {
+            addCriterion("picture like", value, "picture");
+            return (Criteria) this;
+        }
+
+        public Criteria andPictureNotLike(String value) {
+            addCriterion("picture not like", value, "picture");
+            return (Criteria) this;
+        }
+
+        public Criteria andPictureIn(List<String> values) {
+            addCriterion("picture in", values, "picture");
+            return (Criteria) this;
+        }
+
+        public Criteria andPictureNotIn(List<String> values) {
+            addCriterion("picture not in", values, "picture");
+            return (Criteria) this;
+        }
+
+        public Criteria andPictureBetween(String value1, String value2) {
+            addCriterion("picture between", value1, value2, "picture");
+            return (Criteria) this;
+        }
+
+        public Criteria andPictureNotBetween(String value1, String value2) {
+            addCriterion("picture not between", value1, value2, "picture");
+            return (Criteria) this;
+        }
+
+        public Criteria andVideoPathIsNull() {
+            addCriterion("video_path is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andVideoPathIsNotNull() {
+            addCriterion("video_path is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andVideoPathEqualTo(String value) {
+            addCriterion("video_path =", value, "videoPath");
+            return (Criteria) this;
+        }
+
+        public Criteria andVideoPathNotEqualTo(String value) {
+            addCriterion("video_path <>", value, "videoPath");
+            return (Criteria) this;
+        }
+
+        public Criteria andVideoPathGreaterThan(String value) {
+            addCriterion("video_path >", value, "videoPath");
+            return (Criteria) this;
+        }
+
+        public Criteria andVideoPathGreaterThanOrEqualTo(String value) {
+            addCriterion("video_path >=", value, "videoPath");
+            return (Criteria) this;
+        }
+
+        public Criteria andVideoPathLessThan(String value) {
+            addCriterion("video_path <", value, "videoPath");
+            return (Criteria) this;
+        }
+
+        public Criteria andVideoPathLessThanOrEqualTo(String value) {
+            addCriterion("video_path <=", value, "videoPath");
+            return (Criteria) this;
+        }
+
+        public Criteria andVideoPathLike(String value) {
+            addCriterion("video_path like", value, "videoPath");
+            return (Criteria) this;
+        }
+
+        public Criteria andVideoPathNotLike(String value) {
+            addCriterion("video_path not like", value, "videoPath");
+            return (Criteria) this;
+        }
+
+        public Criteria andVideoPathIn(List<String> values) {
+            addCriterion("video_path in", values, "videoPath");
+            return (Criteria) this;
+        }
+
+        public Criteria andVideoPathNotIn(List<String> values) {
+            addCriterion("video_path not in", values, "videoPath");
+            return (Criteria) this;
+        }
+
+        public Criteria andVideoPathBetween(String value1, String value2) {
+            addCriterion("video_path between", value1, value2, "videoPath");
+            return (Criteria) this;
+        }
+
+        public Criteria andVideoPathNotBetween(String value1, String value2) {
+            addCriterion("video_path not between", value1, value2, "videoPath");
+            return (Criteria) this;
+        }
+
         public Criteria andCreateDateIsNull() {
             addCriterion("create_date is null");
             return (Criteria) this;

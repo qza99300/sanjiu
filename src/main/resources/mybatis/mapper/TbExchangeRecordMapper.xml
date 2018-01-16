@@ -14,6 +14,15 @@
     <result column="logistics_status" jdbcType="VARCHAR" property="logisticsStatus" />
     <result column="create_date" jdbcType="DATE" property="createDate" />
   </resultMap>
+  
+  <select id="selectexchange" resultMap="BaseResultMap">
+  	SELECT *from tb_exchange_record where user_id=#{0}
+  </select>
+  
+  <select id="selectsingle" resultMap="BaseResultMap">
+  	SELECT *from tb_exchange_record where id=#{0}
+  </select>
+  
   <sql id="Example_Where_Clause">
     <where>
       <foreach collection="oredCriteria" item="criteria" separator="or">
@@ -303,12 +312,4 @@
       create_date = #{createDate,jdbcType=DATE}
     where id = #{id,jdbcType=INTEGER}
   </update>
-
-  <select id="selectexchange" resultMap="BaseResultMap">
-  	SELECT *from tb_exchange_record where user_id=#{0}
-  </select>
-  
-  <select id="selectsingle" resultMap="BaseResultMap">
-  	SELECT *from tb_exchange_record where id=#{0}
-  </select>
 </mapper>

@@ -28,8 +28,5 @@ public interface TbUserMapper {
 
     int updateByPrimaryKey(TbUser record);
 
-	TbUser userLogin(TbUser user);
-
-	//根据微信id查询对象
 	TbUser selectweixin(String open);
 }

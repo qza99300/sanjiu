@@ -17,6 +17,12 @@ public class TbActivityApply {
 
     private String area;
 
+    private String province;
+
+    private String city;
+
+    private String area1;
+
     private Integer collectCount;
 
     private String remark;
@@ -36,26 +42,6 @@ public class TbActivityApply {
     private String deletedBy;
 
     private Date deletionDate;
-
-	private String picture;
-    
-    private String activityNum;
-
-	public String getPicture() {
-		return picture;
-	}
-
-	public void setPicture(String picture) {
-		this.picture = picture;
-	}
-    
-    public String getActivityNum() {
-		return activityNum;
-	}
-
-	public void setActivityNum(String activityNum) {
-		this.activityNum = activityNum;
-	}
 
     public Integer getApplyId() {
         return applyId;
@@ -111,6 +97,30 @@ public class TbActivityApply {
 
     public void setArea(String area) {
         this.area = area == null ? null : area.trim();
+    }
+
+    public String getProvince() {
+        return province;
+    }
+
+    public void setProvince(String province) {
+        this.province = province == null ? null : province.trim();
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city == null ? null : city.trim();
+    }
+
+    public String getArea1() {
+        return area1;
+    }
+
+    public void setArea1(String area1) {
+        this.area1 = area1 == null ? null : area1.trim();
     }
 
     public Integer getCollectCount() {

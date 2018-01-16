@@ -6,12 +6,15 @@
 		<result column="loginname" jdbcType="VARCHAR" property="loginname" />
 		<result column="password" jdbcType="VARCHAR" property="password" />
 		<result column="user_name" jdbcType="VARCHAR" property="userName" />
+		<result column="id_name" jdbcType="VARCHAR" property="idName" />
+		<result column="id_card" jdbcType="VARCHAR" property="idCard" />
 		<result column="phone" jdbcType="VARCHAR" property="phone" />
 		<result column="open_id" jdbcType="VARCHAR" property="openId" />
 		<result column="wechat_name" jdbcType="VARCHAR" property="wechatName" />
 		<result column="company" jdbcType="VARCHAR" property="company" />
 		<result column="department" jdbcType="VARCHAR" property="department" />
 		<result column="duty" jdbcType="VARCHAR" property="duty" />
+		<result column="operation_id" jdbcType="INTEGER" property="operationId" />
 		<result column="area_1" jdbcType="VARCHAR" property="area1" />
 		<result column="email" jdbcType="VARCHAR" property="email" />
 		<result column="province" jdbcType="VARCHAR" property="province" />
@@ -23,16 +26,15 @@
 		<result column="integral_count" jdbcType="INTEGER" property="integralCount" />
 		<result column="create_by" jdbcType="VARCHAR" property="createBy" />
 		<result column="last_updated_by" jdbcType="VARCHAR" property="lastUpdatedBy" />
-		<result column="last_update_date" jdbcType="DATE" property="lastUpdateDate" />
+		<result column="last_update_date" jdbcType="TIMESTAMP"
+			property="lastUpdateDate" />
 		<result column="record_version" jdbcType="INTEGER" property="recordVersion" />
 	</resultMap>
 
-	<!-- 登录 -->
-	<select id="userLogin" parameterType="com.atwangsi.user.model.TbUser"
-		resultType="com.atwangsi.user.model.TbUser">
-		SELECT * FROM tb_user WHERE loginname = #{loginname} and password=#{password};
+	<select id="selectweixin" resultMap="BaseResultMap">
+		select *from tb_user where
+		open_id=#{0}
 	</select>
-
 
 	<sql id="Example_Where_Clause">
 		<where>
@@ -48,8 +50,7 @@
 									and ${criterion.condition} #{criterion.value}
 								</when>
 								<when test="criterion.betweenValue">
-									and ${criterion.condition} #{criterion.value}
-									and
+									and ${criterion.condition} #{criterion.value} and
 									#{criterion.secondValue}
 								</when>
 								<when test="criterion.listValue">
@@ -81,8 +82,7 @@
 									and ${criterion.condition} #{criterion.value}
 								</when>
 								<when test="criterion.betweenValue">
-									and ${criterion.condition} #{criterion.value}
-									and
+									and ${criterion.condition} #{criterion.value} and
 									#{criterion.secondValue}
 								</when>
 								<when test="criterion.listValue">
@@ -100,14 +100,13 @@
 		</where>
 	</sql>
 	<sql id="Base_Column_List">
-		user_id, loginname, password, user_name, phone, open_id,
-		wechat_name, company,
-		department,
-		duty, area_1, email, province, city,
-		area_2, address, phoneremark,
-		create_date, integral_count,
-		create_by,
-		last_updated_by, last_update_date, record_version
+		user_id, loginname, password, user_name, id_name, id_card, phone, open_id,
+		wechat_name,
+		company, department, duty, operation_id, area_1, email, province, city,
+		area_2, address,
+		phoneremark, create_date, integral_count, create_by, last_updated_by,
+		last_update_date,
+		record_version
 	</sql>
 	<select id="selectByExample" parameterType="com.atwangsi.user.model.TbUserExample"
 		resultMap="BaseResultMap">
@@ -132,8 +131,7 @@
 		where user_id = #{userId,jdbcType=INTEGER}
 	</select>
 	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-		delete from
-		tb_user
+		delete from tb_user
 		where user_id = #{userId,jdbcType=INTEGER}
 	</delete>
 	<delete id="deleteByExample" parameterType="com.atwangsi.user.model.TbUserExample">
@@ -143,36 +141,29 @@
 		</if>
 	</delete>
 	<insert id="insert" parameterType="com.atwangsi.user.model.TbUser">
-		insert into tb_user (user_id,
-		loginname, password,
-		user_name, phone, open_id,
-		wechat_name, company,
-		department,
-		duty, area_1, email,
+		insert into tb_user (user_id, loginname, password,
+		user_name, id_name, id_card,
+		phone, open_id, wechat_name,
+		company, department, duty,
+		operation_id, area_1, email,
 		province, city, area_2,
-		address,
-		phoneremark, create_date,
+		address, phoneremark, create_date,
 		integral_count, create_by, last_updated_by,
 		last_update_date, record_version)
-		values (#{userId,jdbcType=INTEGER},
-		#{loginname,jdbcType=VARCHAR},
+		values (#{userId,jdbcType=INTEGER}, #{loginname,jdbcType=VARCHAR},
 		#{password,jdbcType=VARCHAR},
-		#{userName,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR},
-		#{openId,jdbcType=VARCHAR},
+		#{userName,jdbcType=VARCHAR}, #{idName,jdbcType=VARCHAR}, #{idCard,jdbcType=VARCHAR},
+		#{phone,jdbcType=VARCHAR}, #{openId,jdbcType=VARCHAR},
 		#{wechatName,jdbcType=VARCHAR},
-		#{company,jdbcType=VARCHAR},
-		#{department,jdbcType=VARCHAR},
-		#{duty,jdbcType=VARCHAR}, #{area1,jdbcType=VARCHAR},
+		#{company,jdbcType=VARCHAR}, #{department,jdbcType=VARCHAR}, #{duty,jdbcType=VARCHAR},
+		#{operationId,jdbcType=INTEGER}, #{area1,jdbcType=VARCHAR},
 		#{email,jdbcType=VARCHAR},
-		#{province,jdbcType=VARCHAR},
-		#{city,jdbcType=VARCHAR},
-		#{area2,jdbcType=VARCHAR},
+		#{province,jdbcType=VARCHAR}, #{city,jdbcType=VARCHAR}, #{area2,jdbcType=VARCHAR},
 		#{address,jdbcType=VARCHAR}, #{phoneremark,jdbcType=VARCHAR},
 		#{createDate,jdbcType=DATE},
-		#{integralCount,jdbcType=INTEGER},
-		#{createBy,jdbcType=VARCHAR},
-		#{lastUpdatedBy,jdbcType=VARCHAR},
-		#{lastUpdateDate,jdbcType=DATE}, #{recordVersion,jdbcType=INTEGER})
+		#{integralCount,jdbcType=INTEGER}, #{createBy,jdbcType=VARCHAR}, #{lastUpdatedBy,jdbcType=VARCHAR},
+		#{lastUpdateDate,jdbcType=TIMESTAMP},
+		#{recordVersion,jdbcType=INTEGER})
 	</insert>
 	<insert id="insertSelective" parameterType="com.atwangsi.user.model.TbUser">
 		insert into tb_user
@@ -188,6 +179,12 @@
 			</if>
 			<if test="userName != null">
 				user_name,
+			</if>
+			<if test="idName != null">
+				id_name,
+			</if>
+			<if test="idCard != null">
+				id_card,
 			</if>
 			<if test="phone != null">
 				phone,
@@ -206,6 +203,9 @@
 			</if>
 			<if test="duty != null">
 				duty,
+			</if>
+			<if test="operationId != null">
+				operation_id,
 			</if>
 			<if test="area1 != null">
 				area_1,
@@ -260,6 +260,12 @@
 			<if test="userName != null">
 				#{userName,jdbcType=VARCHAR},
 			</if>
+			<if test="idName != null">
+				#{idName,jdbcType=VARCHAR},
+			</if>
+			<if test="idCard != null">
+				#{idCard,jdbcType=VARCHAR},
+			</if>
 			<if test="phone != null">
 				#{phone,jdbcType=VARCHAR},
 			</if>
@@ -277,6 +283,9 @@
 			</if>
 			<if test="duty != null">
 				#{duty,jdbcType=VARCHAR},
+			</if>
+			<if test="operationId != null">
+				#{operationId,jdbcType=INTEGER},
 			</if>
 			<if test="area1 != null">
 				#{area1,jdbcType=VARCHAR},
@@ -312,7 +321,7 @@
 				#{lastUpdatedBy,jdbcType=VARCHAR},
 			</if>
 			<if test="lastUpdateDate != null">
-				#{lastUpdateDate,jdbcType=DATE},
+				#{lastUpdateDate,jdbcType=TIMESTAMP},
 			</if>
 			<if test="recordVersion != null">
 				#{recordVersion,jdbcType=INTEGER},
@@ -341,6 +350,12 @@
 			<if test="record.userName != null">
 				user_name = #{record.userName,jdbcType=VARCHAR},
 			</if>
+			<if test="record.idName != null">
+				id_name = #{record.idName,jdbcType=VARCHAR},
+			</if>
+			<if test="record.idCard != null">
+				id_card = #{record.idCard,jdbcType=VARCHAR},
+			</if>
 			<if test="record.phone != null">
 				phone = #{record.phone,jdbcType=VARCHAR},
 			</if>
@@ -358,6 +373,9 @@
 			</if>
 			<if test="record.duty != null">
 				duty = #{record.duty,jdbcType=VARCHAR},
+			</if>
+			<if test="record.operationId != null">
+				operation_id = #{record.operationId,jdbcType=INTEGER},
 			</if>
 			<if test="record.area1 != null">
 				area_1 = #{record.area1,jdbcType=VARCHAR},
@@ -384,23 +402,19 @@
 				create_date = #{record.createDate,jdbcType=DATE},
 			</if>
 			<if test="record.integralCount != null">
-				integral_count =
-				#{record.integralCount,jdbcType=INTEGER},
+				integral_count = #{record.integralCount,jdbcType=INTEGER},
 			</if>
 			<if test="record.createBy != null">
 				create_by = #{record.createBy,jdbcType=VARCHAR},
 			</if>
 			<if test="record.lastUpdatedBy != null">
-				last_updated_by =
-				#{record.lastUpdatedBy,jdbcType=VARCHAR},
+				last_updated_by = #{record.lastUpdatedBy,jdbcType=VARCHAR},
 			</if>
 			<if test="record.lastUpdateDate != null">
-				last_update_date =
-				#{record.lastUpdateDate,jdbcType=DATE},
+				last_update_date = #{record.lastUpdateDate,jdbcType=TIMESTAMP},
 			</if>
 			<if test="record.recordVersion != null">
-				record_version =
-				#{record.recordVersion,jdbcType=INTEGER},
+				record_version = #{record.recordVersion,jdbcType=INTEGER},
 			</if>
 		</set>
 		<if test="_parameter != null">
@@ -411,48 +425,30 @@
 		update tb_user
 		set user_id = #{record.userId,jdbcType=INTEGER},
 		loginname = #{record.loginname,jdbcType=VARCHAR},
-		password =
-		#{record.password,jdbcType=VARCHAR},
-		user_name =
-		#{record.userName,jdbcType=VARCHAR},
-		phone =
-		#{record.phone,jdbcType=VARCHAR},
-		open_id =
-		#{record.openId,jdbcType=VARCHAR},
-		wechat_name =
-		#{record.wechatName,jdbcType=VARCHAR},
-		company =
-		#{record.company,jdbcType=VARCHAR},
-		department =
-		#{record.department,jdbcType=VARCHAR},
-		duty =
-		#{record.duty,jdbcType=VARCHAR},
-		area_1 =
-		#{record.area1,jdbcType=VARCHAR},
-		email =
-		#{record.email,jdbcType=VARCHAR},
-		province =
-		#{record.province,jdbcType=VARCHAR},
-		city =
-		#{record.city,jdbcType=VARCHAR},
-		area_2 =
-		#{record.area2,jdbcType=VARCHAR},
-		address =
-		#{record.address,jdbcType=VARCHAR},
-		phoneremark =
-		#{record.phoneremark,jdbcType=VARCHAR},
-		create_date =
-		#{record.createDate,jdbcType=DATE},
-		integral_count =
-		#{record.integralCount,jdbcType=INTEGER},
-		create_by =
-		#{record.createBy,jdbcType=VARCHAR},
-		last_updated_by =
-		#{record.lastUpdatedBy,jdbcType=VARCHAR},
-		last_update_date =
-		#{record.lastUpdateDate,jdbcType=DATE},
-		record_version =
-		#{record.recordVersion,jdbcType=INTEGER}
+		password = #{record.password,jdbcType=VARCHAR},
+		user_name = #{record.userName,jdbcType=VARCHAR},
+		id_name = #{record.idName,jdbcType=VARCHAR},
+		id_card = #{record.idCard,jdbcType=VARCHAR},
+		phone = #{record.phone,jdbcType=VARCHAR},
+		open_id = #{record.openId,jdbcType=VARCHAR},
+		wechat_name = #{record.wechatName,jdbcType=VARCHAR},
+		company = #{record.company,jdbcType=VARCHAR},
+		department = #{record.department,jdbcType=VARCHAR},
+		duty = #{record.duty,jdbcType=VARCHAR},
+		operation_id = #{record.operationId,jdbcType=INTEGER},
+		area_1 = #{record.area1,jdbcType=VARCHAR},
+		email = #{record.email,jdbcType=VARCHAR},
+		province = #{record.province,jdbcType=VARCHAR},
+		city = #{record.city,jdbcType=VARCHAR},
+		area_2 = #{record.area2,jdbcType=VARCHAR},
+		address = #{record.address,jdbcType=VARCHAR},
+		phoneremark = #{record.phoneremark,jdbcType=VARCHAR},
+		create_date = #{record.createDate,jdbcType=DATE},
+		integral_count = #{record.integralCount,jdbcType=INTEGER},
+		create_by = #{record.createBy,jdbcType=VARCHAR},
+		last_updated_by = #{record.lastUpdatedBy,jdbcType=VARCHAR},
+		last_update_date = #{record.lastUpdateDate,jdbcType=TIMESTAMP},
+		record_version = #{record.recordVersion,jdbcType=INTEGER}
 		<if test="_parameter != null">
 			<include refid="Update_By_Example_Where_Clause" />
 		</if>
@@ -468,6 +464,12 @@
 			</if>
 			<if test="userName != null">
 				user_name = #{userName,jdbcType=VARCHAR},
+			</if>
+			<if test="idName != null">
+				id_name = #{idName,jdbcType=VARCHAR},
+			</if>
+			<if test="idCard != null">
+				id_card = #{idCard,jdbcType=VARCHAR},
 			</if>
 			<if test="phone != null">
 				phone = #{phone,jdbcType=VARCHAR},
@@ -486,6 +488,9 @@
 			</if>
 			<if test="duty != null">
 				duty = #{duty,jdbcType=VARCHAR},
+			</if>
+			<if test="operationId != null">
+				operation_id = #{operationId,jdbcType=INTEGER},
 			</if>
 			<if test="area1 != null">
 				area_1 = #{area1,jdbcType=VARCHAR},
@@ -521,7 +526,7 @@
 				last_updated_by = #{lastUpdatedBy,jdbcType=VARCHAR},
 			</if>
 			<if test="lastUpdateDate != null">
-				last_update_date = #{lastUpdateDate,jdbcType=DATE},
+				last_update_date = #{lastUpdateDate,jdbcType=TIMESTAMP},
 			</if>
 			<if test="recordVersion != null">
 				record_version = #{recordVersion,jdbcType=INTEGER},
@@ -531,46 +536,31 @@
 	</update>
 	<update id="updateByPrimaryKey" parameterType="com.atwangsi.user.model.TbUser">
 		update tb_user
-		set
-		loginname = #{loginname,jdbcType=VARCHAR},
-		password =
-		#{password,jdbcType=VARCHAR},
+		set loginname = #{loginname,jdbcType=VARCHAR},
+		password = #{password,jdbcType=VARCHAR},
 		user_name = #{userName,jdbcType=VARCHAR},
+		id_name = #{idName,jdbcType=VARCHAR},
+		id_card = #{idCard,jdbcType=VARCHAR},
 		phone = #{phone,jdbcType=VARCHAR},
-		open_id =
-		#{openId,jdbcType=VARCHAR},
-		wechat_name =
-		#{wechatName,jdbcType=VARCHAR},
+		open_id = #{openId,jdbcType=VARCHAR},
+		wechat_name = #{wechatName,jdbcType=VARCHAR},
 		company = #{company,jdbcType=VARCHAR},
 		department = #{department,jdbcType=VARCHAR},
-		duty =
-		#{duty,jdbcType=VARCHAR},
+		duty = #{duty,jdbcType=VARCHAR},
+		operation_id = #{operationId,jdbcType=INTEGER},
 		area_1 = #{area1,jdbcType=VARCHAR},
-		email =
-		#{email,jdbcType=VARCHAR},
+		email = #{email,jdbcType=VARCHAR},
 		province = #{province,jdbcType=VARCHAR},
 		city = #{city,jdbcType=VARCHAR},
 		area_2 = #{area2,jdbcType=VARCHAR},
 		address = #{address,jdbcType=VARCHAR},
-		phoneremark =
-		#{phoneremark,jdbcType=VARCHAR},
-		create_date =
-		#{createDate,jdbcType=DATE},
-		integral_count =
-		#{integralCount,jdbcType=INTEGER},
-		create_by =
-		#{createBy,jdbcType=VARCHAR},
-		last_updated_by =
-		#{lastUpdatedBy,jdbcType=VARCHAR},
-		last_update_date =
-		#{lastUpdateDate,jdbcType=DATE},
-		record_version =
-		#{recordVersion,jdbcType=INTEGER}
-		where user_id =
-		#{userId,jdbcType=INTEGER}
+		phoneremark = #{phoneremark,jdbcType=VARCHAR},
+		create_date = #{createDate,jdbcType=DATE},
+		integral_count = #{integralCount,jdbcType=INTEGER},
+		create_by = #{createBy,jdbcType=VARCHAR},
+		last_updated_by = #{lastUpdatedBy,jdbcType=VARCHAR},
+		last_update_date = #{lastUpdateDate,jdbcType=TIMESTAMP},
+		record_version = #{recordVersion,jdbcType=INTEGER}
+		where user_id = #{userId,jdbcType=INTEGER}
 	</update>
-
-	<select id="selectweixin" resultMap="BaseResultMap">
-		select *from tb_user where open_id=#{0}
-	</select>
 </mapper>

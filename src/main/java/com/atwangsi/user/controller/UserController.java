@@ -41,7 +41,62 @@ public class UserController {
 	private RoleService roleService;
 	
 	
+	/**
+	 * 检验练习方式是否唯一
+	 * @param phone
+	 * @return
+	 */
+	@RequestMapping("checkoutBypPone")
+	@ResponseBody
+	public ResultVO<Object> checkoutByPhone(@RequestParam("phone") String phone){
+		
+		Boolean bool = this.userService.checkoutByPhone(phone);
+		if (bool) {
+			return ResultVO.success("账号已存在!", null, null);
+		}
+		return ResultVO.success("账号可以使用!", null, null);
+		
+	}
 	
+	/**
+	 * 检查用户账号是否唯一
+	 * @param loginname
+	 * @return
+	 */
+	@RequestMapping("checkoutByLoginName")
+	@ResponseBody
+	public ResultVO<Object> checkoutByLoginName(@RequestParam("loginname") String loginname){
+		
+		Boolean bool = this.userService.checkoutByLoginName(loginname);
+		if (bool) {
+			return ResultVO.success("账号已存在!", null, null);
+		}
+		return ResultVO.success("账号可以使用!", null, null);
+	}
+	
+	
+	/**
+	 * 根据业务id查询所用用户信息
+	 * 1为业务，2为客户
+	 * @param pageNum
+	 * @param pageSize
+	 * @param operationId
+	 * @return
+	 */
+	@RequestMapping("querryByOperationId")
+	@ResponseBody
+	public PageInfo<TbUser> querryByOperationId(
+			@RequestParam(value = "pn", defaultValue = "1") Integer pageNum,
+			@RequestParam(value = "ps", defaultValue = "7") Integer pageSize,
+			@RequestParam("operationId") Integer operationId){
+		
+		PageHelper.startPage(pageNum, pageSize);
+		
+		List<TbUser> userList = this.userService.querryByOperationId(operationId);
+		
+		return new PageInfo<>(userList, AppContant.PAGE_SIZE);
+		
+	}
 	
 	/**
 	 * 模糊查询-根据用户名称来进行模糊查询
@@ -61,11 +116,11 @@ public class UserController {
 		
 		List<TbUser> list =this.userService.querryByLike(userName);
 		
-				return new PageInfo<>(list, AppContant.PAGE_SIZE);
+		return new PageInfo<>(list, AppContant.PAGE_SIZE);
 	}
 
 	/**
-	 * 增加用户 ok 但是username不能做到唯一用户，待处理
+	 * 增加用户 ok 但是loginname不能做到唯一用户，待处理
 	 * 
 	 * @param user
 	 * @return
@@ -73,8 +128,7 @@ public class UserController {
 	@RequestMapping(value = "add")
 	@ResponseBody
 	public ResultVO<Object> saveUser(TbUser user) {
-		
-		user.setIntegralCount(10);
+		//创建时间
 		user.setCreateDate(new Date());
 
 		try {
@@ -215,6 +269,12 @@ public class UserController {
 
 	}
 
+	/**
+	 * 删除用户角色
+	 * @param userId
+	 * @param roleIds
+	 * @return
+	 */
 	@RequestMapping("removeRole")
 	@ResponseBody
 	public ResultVO<Object> deleteRoleById(@RequestParam("userId") Integer userId,

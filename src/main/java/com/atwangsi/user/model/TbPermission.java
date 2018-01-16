@@ -44,7 +44,7 @@ public class TbPermission {
 		this.childs = childs;
 	}
 
-	public Integer getPermissionId() {
+    public Integer getPermissionId() {
         return permissionId;
     }
 

@@ -6,13 +6,17 @@
     <result column="activity_title" jdbcType="VARCHAR" property="activityTitle" />
     <result column="activity_matter" jdbcType="VARCHAR" property="activityMatter" />
     <result column="activity_num" jdbcType="INTEGER" property="activityNum" />
-    <result column="create_year" jdbcType="VARCHAR" property="createYear" />
     <result column="department" jdbcType="VARCHAR" property="department" />
     <result column="area" jdbcType="VARCHAR" property="area" />
+    <result column="province" jdbcType="VARCHAR" property="province" />
+    <result column="city" jdbcType="VARCHAR" property="city" />
+    <result column="area1" jdbcType="VARCHAR" property="area1" />
     <result column="remark" jdbcType="VARCHAR" property="remark" />
+    <result column="picture" jdbcType="VARCHAR" property="picture" />
     <result column="Accessory_path" jdbcType="VARCHAR" property="accessoryPath" />
     <result column="activity_status" jdbcType="VARCHAR" property="activityStatus" />
     <result column="create_date" jdbcType="DATE" property="createDate" />
+    <result column="stop_date" jdbcType="DATE" property="stopDate" />
     <result column="create_by" jdbcType="VARCHAR" property="createBy" />
     <result column="last_updated_by" jdbcType="VARCHAR" property="lastUpdatedBy" />
     <result column="last_update_date" jdbcType="DATE" property="lastUpdateDate" />
@@ -21,11 +25,14 @@
     <result column="deleted_by" jdbcType="VARCHAR" property="deletedBy" />
     <result column="deletion_date" jdbcType="DATE" property="deletionDate" />
   </resultMap>
-  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.atwangsi.user.model.TbActivityManage">
-    <result column="picture" jdbcType="LONGVARBINARY" property="picture" />
-  </resultMap>
   
+  <select id="selectList" resultMap="BaseResultMap">
+  		select * from tb_activity_manage where create_date between current_date()-7 and sysdate() ORDER BY create_date DESC
+  </select>
   
+  <select id="selectHistory" resultMap="BaseResultMap">
+  		SELECT * FROM tb_activity_manage where DATE_SUB(CURDATE(), INTERVAL 7 DAY) >= date(create_date) ORDER BY create_date DESC
+  </select>
   
   <sql id="Example_Where_Clause">
     <where>
@@ -86,29 +93,11 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    activity_id, activity_title, activity_matter, activity_num, create_year, department, 
-    area, remark, Accessory_path, activity_status, create_date, create_by, last_updated_by, 
-    last_update_date, record_version, deleted_flag, deleted_by, deletion_date
+    activity_id, activity_title, activity_matter, activity_num, department, area, province, 
+    city, area1, remark, picture, Accessory_path, activity_status, create_date, stop_date, 
+    create_by, last_updated_by, last_update_date, record_version, deleted_flag, deleted_by, 
+    deletion_date
   </sql>
-  <sql id="Blob_Column_List">
-    picture
-  </sql>
-  <select id="selectByExampleWithBLOBs" parameterType="com.atwangsi.user.model.TbActivityManageExample" resultMap="ResultMapWithBLOBs">
-    select
-    <if test="distinct">
-      distinct
-    </if>
-    <include refid="Base_Column_List" />
-    ,
-    <include refid="Blob_Column_List" />
-    from tb_activity_manage
-    <if test="_parameter != null">
-      <include refid="Example_Where_Clause" />
-    </if>
-    <if test="orderByClause != null">
-      order by ${orderByClause}
-    </if>
-  </select>
   <select id="selectByExample" parameterType="com.atwangsi.user.model.TbActivityManageExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
@@ -123,11 +112,9 @@
       order by ${orderByClause}
     </if>
   </select>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
-    ,
-    <include refid="Blob_Column_List" />
     from tb_activity_manage
     where activity_id = #{activityId,jdbcType=INTEGER}
   </select>
@@ -143,19 +130,21 @@
   </delete>
   <insert id="insert" parameterType="com.atwangsi.user.model.TbActivityManage">
     insert into tb_activity_manage (activity_id, activity_title, activity_matter, 
-      activity_num, create_year, department, 
-      area, remark, Accessory_path, 
-      activity_status, create_date, create_by, 
-      last_updated_by, last_update_date, record_version, 
-      deleted_flag, deleted_by, deletion_date, 
-      picture)
+      activity_num, department, area, 
+      province, city, area1, 
+      remark, picture, Accessory_path, 
+      activity_status, create_date, stop_date, 
+      create_by, last_updated_by, last_update_date, 
+      record_version, deleted_flag, deleted_by, 
+      deletion_date)
     values (#{activityId,jdbcType=INTEGER}, #{activityTitle,jdbcType=VARCHAR}, #{activityMatter,jdbcType=VARCHAR}, 
-      #{activityNum,jdbcType=INTEGER}, #{createYear,jdbcType=VARCHAR}, #{department,jdbcType=VARCHAR}, 
-      #{area,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, #{accessoryPath,jdbcType=VARCHAR}, 
-      #{activityStatus,jdbcType=VARCHAR}, #{createDate,jdbcType=DATE}, #{createBy,jdbcType=VARCHAR}, 
-      #{lastUpdatedBy,jdbcType=VARCHAR}, #{lastUpdateDate,jdbcType=DATE}, #{recordVersion,jdbcType=INTEGER}, 
-      #{deletedFlag,jdbcType=INTEGER}, #{deletedBy,jdbcType=VARCHAR}, #{deletionDate,jdbcType=DATE}, 
-      #{picture,jdbcType=LONGVARBINARY})
+      #{activityNum,jdbcType=INTEGER}, #{department,jdbcType=VARCHAR}, #{area,jdbcType=VARCHAR}, 
+      #{province,jdbcType=VARCHAR}, #{city,jdbcType=VARCHAR}, #{area1,jdbcType=VARCHAR}, 
+      #{remark,jdbcType=VARCHAR}, #{picture,jdbcType=VARCHAR}, #{accessoryPath,jdbcType=VARCHAR}, 
+      #{activityStatus,jdbcType=VARCHAR}, #{createDate,jdbcType=DATE}, #{stopDate,jdbcType=DATE}, 
+      #{createBy,jdbcType=VARCHAR}, #{lastUpdatedBy,jdbcType=VARCHAR}, #{lastUpdateDate,jdbcType=DATE}, 
+      #{recordVersion,jdbcType=INTEGER}, #{deletedFlag,jdbcType=INTEGER}, #{deletedBy,jdbcType=VARCHAR}, 
+      #{deletionDate,jdbcType=DATE})
   </insert>
   <insert id="insertSelective" parameterType="com.atwangsi.user.model.TbActivityManage">
     insert into tb_activity_manage
@@ -172,17 +161,26 @@
       <if test="activityNum != null">
         activity_num,
       </if>
-      <if test="createYear != null">
-        create_year,
-      </if>
       <if test="department != null">
         department,
       </if>
       <if test="area != null">
         area,
       </if>
+      <if test="province != null">
+        province,
+      </if>
+      <if test="city != null">
+        city,
+      </if>
+      <if test="area1 != null">
+        area1,
+      </if>
       <if test="remark != null">
         remark,
+      </if>
+      <if test="picture != null">
+        picture,
       </if>
       <if test="accessoryPath != null">
         Accessory_path,
@@ -192,6 +190,9 @@
       </if>
       <if test="createDate != null">
         create_date,
+      </if>
+      <if test="stopDate != null">
+        stop_date,
       </if>
       <if test="createBy != null">
         create_by,
@@ -214,9 +215,6 @@
       <if test="deletionDate != null">
         deletion_date,
       </if>
-      <if test="picture != null">
-        picture,
-      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="activityId != null">
@@ -231,17 +229,26 @@
       <if test="activityNum != null">
         #{activityNum,jdbcType=INTEGER},
       </if>
-      <if test="createYear != null">
-        #{createYear,jdbcType=VARCHAR},
-      </if>
       <if test="department != null">
         #{department,jdbcType=VARCHAR},
       </if>
       <if test="area != null">
         #{area,jdbcType=VARCHAR},
       </if>
+      <if test="province != null">
+        #{province,jdbcType=VARCHAR},
+      </if>
+      <if test="city != null">
+        #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="area1 != null">
+        #{area1,jdbcType=VARCHAR},
+      </if>
       <if test="remark != null">
         #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="picture != null">
+        #{picture,jdbcType=VARCHAR},
       </if>
       <if test="accessoryPath != null">
         #{accessoryPath,jdbcType=VARCHAR},
@@ -251,6 +258,9 @@
       </if>
       <if test="createDate != null">
         #{createDate,jdbcType=DATE},
+      </if>
+      <if test="stopDate != null">
+        #{stopDate,jdbcType=DATE},
       </if>
       <if test="createBy != null">
         #{createBy,jdbcType=VARCHAR},
@@ -272,9 +282,6 @@
       </if>
       <if test="deletionDate != null">
         #{deletionDate,jdbcType=DATE},
-      </if>
-      <if test="picture != null">
-        #{picture,jdbcType=LONGVARBINARY},
       </if>
     </trim>
   </insert>
@@ -299,17 +306,26 @@
       <if test="record.activityNum != null">
         activity_num = #{record.activityNum,jdbcType=INTEGER},
       </if>
-      <if test="record.createYear != null">
-        create_year = #{record.createYear,jdbcType=VARCHAR},
-      </if>
       <if test="record.department != null">
         department = #{record.department,jdbcType=VARCHAR},
       </if>
       <if test="record.area != null">
         area = #{record.area,jdbcType=VARCHAR},
       </if>
+      <if test="record.province != null">
+        province = #{record.province,jdbcType=VARCHAR},
+      </if>
+      <if test="record.city != null">
+        city = #{record.city,jdbcType=VARCHAR},
+      </if>
+      <if test="record.area1 != null">
+        area1 = #{record.area1,jdbcType=VARCHAR},
+      </if>
       <if test="record.remark != null">
         remark = #{record.remark,jdbcType=VARCHAR},
+      </if>
+      <if test="record.picture != null">
+        picture = #{record.picture,jdbcType=VARCHAR},
       </if>
       <if test="record.accessoryPath != null">
         Accessory_path = #{record.accessoryPath,jdbcType=VARCHAR},
@@ -319,6 +335,9 @@
       </if>
       <if test="record.createDate != null">
         create_date = #{record.createDate,jdbcType=DATE},
+      </if>
+      <if test="record.stopDate != null">
+        stop_date = #{record.stopDate,jdbcType=DATE},
       </if>
       <if test="record.createBy != null">
         create_by = #{record.createBy,jdbcType=VARCHAR},
@@ -341,35 +360,7 @@
       <if test="record.deletionDate != null">
         deletion_date = #{record.deletionDate,jdbcType=DATE},
       </if>
-      <if test="record.picture != null">
-        picture = #{record.picture,jdbcType=LONGVARBINARY},
-      </if>
     </set>
-    <if test="_parameter != null">
-      <include refid="Update_By_Example_Where_Clause" />
-    </if>
-  </update>
-  <update id="updateByExampleWithBLOBs" parameterType="map">
-    update tb_activity_manage
-    set activity_id = #{record.activityId,jdbcType=INTEGER},
-      activity_title = #{record.activityTitle,jdbcType=VARCHAR},
-      activity_matter = #{record.activityMatter,jdbcType=VARCHAR},
-      activity_num = #{record.activityNum,jdbcType=INTEGER},
-      create_year = #{record.createYear,jdbcType=VARCHAR},
-      department = #{record.department,jdbcType=VARCHAR},
-      area = #{record.area,jdbcType=VARCHAR},
-      remark = #{record.remark,jdbcType=VARCHAR},
-      Accessory_path = #{record.accessoryPath,jdbcType=VARCHAR},
-      activity_status = #{record.activityStatus,jdbcType=VARCHAR},
-      create_date = #{record.createDate,jdbcType=DATE},
-      create_by = #{record.createBy,jdbcType=VARCHAR},
-      last_updated_by = #{record.lastUpdatedBy,jdbcType=VARCHAR},
-      last_update_date = #{record.lastUpdateDate,jdbcType=DATE},
-      record_version = #{record.recordVersion,jdbcType=INTEGER},
-      deleted_flag = #{record.deletedFlag,jdbcType=INTEGER},
-      deleted_by = #{record.deletedBy,jdbcType=VARCHAR},
-      deletion_date = #{record.deletionDate,jdbcType=DATE},
-      picture = #{record.picture,jdbcType=LONGVARBINARY}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -380,13 +371,17 @@
       activity_title = #{record.activityTitle,jdbcType=VARCHAR},
       activity_matter = #{record.activityMatter,jdbcType=VARCHAR},
       activity_num = #{record.activityNum,jdbcType=INTEGER},
-      create_year = #{record.createYear,jdbcType=VARCHAR},
       department = #{record.department,jdbcType=VARCHAR},
       area = #{record.area,jdbcType=VARCHAR},
+      province = #{record.province,jdbcType=VARCHAR},
+      city = #{record.city,jdbcType=VARCHAR},
+      area1 = #{record.area1,jdbcType=VARCHAR},
       remark = #{record.remark,jdbcType=VARCHAR},
+      picture = #{record.picture,jdbcType=VARCHAR},
       Accessory_path = #{record.accessoryPath,jdbcType=VARCHAR},
       activity_status = #{record.activityStatus,jdbcType=VARCHAR},
       create_date = #{record.createDate,jdbcType=DATE},
+      stop_date = #{record.stopDate,jdbcType=DATE},
       create_by = #{record.createBy,jdbcType=VARCHAR},
       last_updated_by = #{record.lastUpdatedBy,jdbcType=VARCHAR},
       last_update_date = #{record.lastUpdateDate,jdbcType=DATE},
@@ -410,17 +405,26 @@
       <if test="activityNum != null">
         activity_num = #{activityNum,jdbcType=INTEGER},
       </if>
-      <if test="createYear != null">
-        create_year = #{createYear,jdbcType=VARCHAR},
-      </if>
       <if test="department != null">
         department = #{department,jdbcType=VARCHAR},
       </if>
       <if test="area != null">
         area = #{area,jdbcType=VARCHAR},
       </if>
+      <if test="province != null">
+        province = #{province,jdbcType=VARCHAR},
+      </if>
+      <if test="city != null">
+        city = #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="area1 != null">
+        area1 = #{area1,jdbcType=VARCHAR},
+      </if>
       <if test="remark != null">
         remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="picture != null">
+        picture = #{picture,jdbcType=VARCHAR},
       </if>
       <if test="accessoryPath != null">
         Accessory_path = #{accessoryPath,jdbcType=VARCHAR},
@@ -430,6 +434,9 @@
       </if>
       <if test="createDate != null">
         create_date = #{createDate,jdbcType=DATE},
+      </if>
+      <if test="stopDate != null">
+        stop_date = #{stopDate,jdbcType=DATE},
       </if>
       <if test="createBy != null">
         create_by = #{createBy,jdbcType=VARCHAR},
@@ -452,32 +459,7 @@
       <if test="deletionDate != null">
         deletion_date = #{deletionDate,jdbcType=DATE},
       </if>
-      <if test="picture != null">
-        picture = #{picture,jdbcType=LONGVARBINARY},
-      </if>
     </set>
-    where activity_id = #{activityId,jdbcType=INTEGER}
-  </update>
-  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.atwangsi.user.model.TbActivityManage">
-    update tb_activity_manage
-    set activity_title = #{activityTitle,jdbcType=VARCHAR},
-      activity_matter = #{activityMatter,jdbcType=VARCHAR},
-      activity_num = #{activityNum,jdbcType=INTEGER},
-      create_year = #{createYear,jdbcType=VARCHAR},
-      department = #{department,jdbcType=VARCHAR},
-      area = #{area,jdbcType=VARCHAR},
-      remark = #{remark,jdbcType=VARCHAR},
-      Accessory_path = #{accessoryPath,jdbcType=VARCHAR},
-      activity_status = #{activityStatus,jdbcType=VARCHAR},
-      create_date = #{createDate,jdbcType=DATE},
-      create_by = #{createBy,jdbcType=VARCHAR},
-      last_updated_by = #{lastUpdatedBy,jdbcType=VARCHAR},
-      last_update_date = #{lastUpdateDate,jdbcType=DATE},
-      record_version = #{recordVersion,jdbcType=INTEGER},
-      deleted_flag = #{deletedFlag,jdbcType=INTEGER},
-      deleted_by = #{deletedBy,jdbcType=VARCHAR},
-      deletion_date = #{deletionDate,jdbcType=DATE},
-      picture = #{picture,jdbcType=LONGVARBINARY}
     where activity_id = #{activityId,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.atwangsi.user.model.TbActivityManage">
@@ -485,13 +467,17 @@
     set activity_title = #{activityTitle,jdbcType=VARCHAR},
       activity_matter = #{activityMatter,jdbcType=VARCHAR},
       activity_num = #{activityNum,jdbcType=INTEGER},
-      create_year = #{createYear,jdbcType=VARCHAR},
       department = #{department,jdbcType=VARCHAR},
       area = #{area,jdbcType=VARCHAR},
+      province = #{province,jdbcType=VARCHAR},
+      city = #{city,jdbcType=VARCHAR},
+      area1 = #{area1,jdbcType=VARCHAR},
       remark = #{remark,jdbcType=VARCHAR},
+      picture = #{picture,jdbcType=VARCHAR},
       Accessory_path = #{accessoryPath,jdbcType=VARCHAR},
       activity_status = #{activityStatus,jdbcType=VARCHAR},
       create_date = #{createDate,jdbcType=DATE},
+      stop_date = #{stopDate,jdbcType=DATE},
       create_by = #{createBy,jdbcType=VARCHAR},
       last_updated_by = #{lastUpdatedBy,jdbcType=VARCHAR},
       last_update_date = #{lastUpdateDate,jdbcType=DATE},
@@ -501,12 +487,4 @@
       deletion_date = #{deletionDate,jdbcType=DATE}
     where activity_id = #{activityId,jdbcType=INTEGER}
   </update>
-
-  <select id="selectList" resultMap="BaseResultMap">
-  		select * from tb_activity_manage where create_date between current_date()-7 and sysdate() ORDER BY create_date DESC
-  </select>
-  
-  <select id="selectHistory" resultMap="BaseResultMap">
-  		SELECT * FROM tb_activity_manage where DATE_SUB(CURDATE(), INTERVAL 7 DAY) >= date(create_date) ORDER BY create_date DESC
-  </select>
 </mapper>

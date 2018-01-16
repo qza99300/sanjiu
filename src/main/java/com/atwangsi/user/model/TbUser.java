@@ -9,7 +9,11 @@ public class TbUser {
 
     private String password;
 
-    private String userName = "未定义";
+    private String userName;
+
+    private String idName;
+
+    private String idCard;
 
     private String phone;
 
@@ -22,6 +26,8 @@ public class TbUser {
     private String department;
 
     private String duty;
+
+    private Integer operationId;
 
     private String area1;
 
@@ -78,7 +84,23 @@ public class TbUser {
     }
 
     public void setUserName(String userName) {
-        this.userName = userName == null ? "未定义" : userName.trim();
+        this.userName = userName == null ? null : userName.trim();
+    }
+
+    public String getIdName() {
+        return idName;
+    }
+
+    public void setIdName(String idName) {
+        this.idName = idName == null ? null : idName.trim();
+    }
+
+    public String getIdCard() {
+        return idCard;
+    }
+
+    public void setIdCard(String idCard) {
+        this.idCard = idCard == null ? null : idCard.trim();
     }
 
     public String getPhone() {
@@ -127,6 +149,14 @@ public class TbUser {
 
     public void setDuty(String duty) {
         this.duty = duty == null ? null : duty.trim();
+    }
+
+    public Integer getOperationId() {
+        return operationId;
+    }
+
+    public void setOperationId(Integer operationId) {
+        this.operationId = operationId;
     }
 
     public String getArea1() {

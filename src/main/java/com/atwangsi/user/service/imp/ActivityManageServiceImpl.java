@@ -81,14 +81,12 @@ public class ActivityManageServiceImpl implements ActivityManageService {
 	}
 	
 
-	//显示最新活动
 	@Override
 	public List<TbActivityManage> selectList() {
 			
 		return activityManageMapper.selectList();
 	}
 
-	//示历史活动
 	@Override
 	public List<TbActivityManage> selectHistory() {
 			

@@ -30,4 +30,10 @@ public interface UserService {
 
 	TbUser selectweixin(String open);
 
+	List<TbUser> querryByOperationId(Integer operationId);
+
+	Boolean checkoutByLoginName(String loginname);
+
+	Boolean checkoutByPhone(String phone);
+
 }

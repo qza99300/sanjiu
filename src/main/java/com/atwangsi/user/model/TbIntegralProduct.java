@@ -13,6 +13,8 @@ public class TbIntegralProduct {
 
     private Integer productIntegral;
 
+    private String productPicture;
+
     private Integer manageName;
 
     private Date createDate;
@@ -34,8 +36,6 @@ public class TbIntegralProduct {
     private String deletedBy;
 
     private Date deletionDate;
-
-    private byte[] productPicture;
 
     public Integer getProductId() {
         return productId;
@@ -75,6 +75,14 @@ public class TbIntegralProduct {
 
     public void setProductIntegral(Integer productIntegral) {
         this.productIntegral = productIntegral;
+    }
+
+    public String getProductPicture() {
+        return productPicture;
+    }
+
+    public void setProductPicture(String productPicture) {
+        this.productPicture = productPicture == null ? null : productPicture.trim();
     }
 
     public Integer getManageName() {
@@ -163,13 +171,5 @@ public class TbIntegralProduct {
 
     public void setDeletionDate(Date deletionDate) {
         this.deletionDate = deletionDate;
-    }
-
-    public byte[] getProductPicture() {
-        return productPicture;
-    }
-
-    public void setProductPicture(byte[] productPicture) {
-        this.productPicture = productPicture;
     }
 }

@@ -402,6 +402,146 @@ public class TbUserExample {
             return (Criteria) this;
         }
 
+        public Criteria andIdNameIsNull() {
+            addCriterion("id_name is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andIdNameIsNotNull() {
+            addCriterion("id_name is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andIdNameEqualTo(String value) {
+            addCriterion("id_name =", value, "idName");
+            return (Criteria) this;
+        }
+
+        public Criteria andIdNameNotEqualTo(String value) {
+            addCriterion("id_name <>", value, "idName");
+            return (Criteria) this;
+        }
+
+        public Criteria andIdNameGreaterThan(String value) {
+            addCriterion("id_name >", value, "idName");
+            return (Criteria) this;
+        }
+
+        public Criteria andIdNameGreaterThanOrEqualTo(String value) {
+            addCriterion("id_name >=", value, "idName");
+            return (Criteria) this;
+        }
+
+        public Criteria andIdNameLessThan(String value) {
+            addCriterion("id_name <", value, "idName");
+            return (Criteria) this;
+        }
+
+        public Criteria andIdNameLessThanOrEqualTo(String value) {
+            addCriterion("id_name <=", value, "idName");
+            return (Criteria) this;
+        }
+
+        public Criteria andIdNameLike(String value) {
+            addCriterion("id_name like", value, "idName");
+            return (Criteria) this;
+        }
+
+        public Criteria andIdNameNotLike(String value) {
+            addCriterion("id_name not like", value, "idName");
+            return (Criteria) this;
+        }
+
+        public Criteria andIdNameIn(List<String> values) {
+            addCriterion("id_name in", values, "idName");
+            return (Criteria) this;
+        }
+
+        public Criteria andIdNameNotIn(List<String> values) {
+            addCriterion("id_name not in", values, "idName");
+            return (Criteria) this;
+        }
+
+        public Criteria andIdNameBetween(String value1, String value2) {
+            addCriterion("id_name between", value1, value2, "idName");
+            return (Criteria) this;
+        }
+
+        public Criteria andIdNameNotBetween(String value1, String value2) {
+            addCriterion("id_name not between", value1, value2, "idName");
+            return (Criteria) this;
+        }
+
+        public Criteria andIdCardIsNull() {
+            addCriterion("id_card is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andIdCardIsNotNull() {
+            addCriterion("id_card is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andIdCardEqualTo(String value) {
+            addCriterion("id_card =", value, "idCard");
+            return (Criteria) this;
+        }
+
+        public Criteria andIdCardNotEqualTo(String value) {
+            addCriterion("id_card <>", value, "idCard");
+            return (Criteria) this;
+        }
+
+        public Criteria andIdCardGreaterThan(String value) {
+            addCriterion("id_card >", value, "idCard");
+            return (Criteria) this;
+        }
+
+        public Criteria andIdCardGreaterThanOrEqualTo(String value) {
+            addCriterion("id_card >=", value, "idCard");
+            return (Criteria) this;
+        }
+
+        public Criteria andIdCardLessThan(String value) {
+            addCriterion("id_card <", value, "idCard");
+            return (Criteria) this;
+        }
+
+        public Criteria andIdCardLessThanOrEqualTo(String value) {
+            addCriterion("id_card <=", value, "idCard");
+            return (Criteria) this;
+        }
+
+        public Criteria andIdCardLike(String value) {
+            addCriterion("id_card like", value, "idCard");
+            return (Criteria) this;
+        }
+
+        public Criteria andIdCardNotLike(String value) {
+            addCriterion("id_card not like", value, "idCard");
+            return (Criteria) this;
+        }
+
+        public Criteria andIdCardIn(List<String> values) {
+            addCriterion("id_card in", values, "idCard");
+            return (Criteria) this;
+        }
+
+        public Criteria andIdCardNotIn(List<String> values) {
+            addCriterion("id_card not in", values, "idCard");
+            return (Criteria) this;
+        }
+
+        public Criteria andIdCardBetween(String value1, String value2) {
+            addCriterion("id_card between", value1, value2, "idCard");
+            return (Criteria) this;
+        }
+
+        public Criteria andIdCardNotBetween(String value1, String value2) {
+            addCriterion("id_card not between", value1, value2, "idCard");
+            return (Criteria) this;
+        }
+
         public Criteria andPhoneIsNull() {
             addCriterion("phone is null");
             return (Criteria) this;
@@ -819,6 +959,66 @@ public class TbUserExample {
 
         public Criteria andDutyNotBetween(String value1, String value2) {
             addCriterion("duty not between", value1, value2, "duty");
+            return (Criteria) this;
+        }
+
+        public Criteria andOperationIdIsNull() {
+            addCriterion("operation_id is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andOperationIdIsNotNull() {
+            addCriterion("operation_id is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andOperationIdEqualTo(Integer value) {
+            addCriterion("operation_id =", value, "operationId");
+            return (Criteria) this;
+        }
+
+        public Criteria andOperationIdNotEqualTo(Integer value) {
+            addCriterion("operation_id <>", value, "operationId");
+            return (Criteria) this;
+        }
+
+        public Criteria andOperationIdGreaterThan(Integer value) {
+            addCriterion("operation_id >", value, "operationId");
+            return (Criteria) this;
+        }
+
+        public Criteria andOperationIdGreaterThanOrEqualTo(Integer value) {
+            addCriterion("operation_id >=", value, "operationId");
+            return (Criteria) this;
+        }
+
+        public Criteria andOperationIdLessThan(Integer value) {
+            addCriterion("operation_id <", value, "operationId");
+            return (Criteria) this;
+        }
+
+        public Criteria andOperationIdLessThanOrEqualTo(Integer value) {
+            addCriterion("operation_id <=", value, "operationId");
+            return (Criteria) this;
+        }
+
+        public Criteria andOperationIdIn(List<Integer> values) {
+            addCriterion("operation_id in", values, "operationId");
+            return (Criteria) this;
+        }
+
+        public Criteria andOperationIdNotIn(List<Integer> values) {
+            addCriterion("operation_id not in", values, "operationId");
+            return (Criteria) this;
+        }
+
+        public Criteria andOperationIdBetween(Integer value1, Integer value2) {
+            addCriterion("operation_id between", value1, value2, "operationId");
+            return (Criteria) this;
+        }
+
+        public Criteria andOperationIdNotBetween(Integer value1, Integer value2) {
+            addCriterion("operation_id not between", value1, value2, "operationId");
             return (Criteria) this;
         }
 
@@ -1583,52 +1783,52 @@ public class TbUserExample {
         }
 
         public Criteria andLastUpdateDateEqualTo(Date value) {
-            addCriterionForJDBCDate("last_update_date =", value, "lastUpdateDate");
+            addCriterion("last_update_date =", value, "lastUpdateDate");
             return (Criteria) this;
         }
 
         public Criteria andLastUpdateDateNotEqualTo(Date value) {
-            addCriterionForJDBCDate("last_update_date <>", value, "lastUpdateDate");
+            addCriterion("last_update_date <>", value, "lastUpdateDate");
             return (Criteria) this;
         }
 
         public Criteria andLastUpdateDateGreaterThan(Date value) {
-            addCriterionForJDBCDate("last_update_date >", value, "lastUpdateDate");
+            addCriterion("last_update_date >", value, "lastUpdateDate");
             return (Criteria) this;
         }
 
         public Criteria andLastUpdateDateGreaterThanOrEqualTo(Date value) {
-            addCriterionForJDBCDate("last_update_date >=", value, "lastUpdateDate");
+            addCriterion("last_update_date >=", value, "lastUpdateDate");
             return (Criteria) this;
         }
 
         public Criteria andLastUpdateDateLessThan(Date value) {
-            addCriterionForJDBCDate("last_update_date <", value, "lastUpdateDate");
+            addCriterion("last_update_date <", value, "lastUpdateDate");
             return (Criteria) this;
         }
 
         public Criteria andLastUpdateDateLessThanOrEqualTo(Date value) {
-            addCriterionForJDBCDate("last_update_date <=", value, "lastUpdateDate");
+            addCriterion("last_update_date <=", value, "lastUpdateDate");
             return (Criteria) this;
         }
 
         public Criteria andLastUpdateDateIn(List<Date> values) {
-            addCriterionForJDBCDate("last_update_date in", values, "lastUpdateDate");
+            addCriterion("last_update_date in", values, "lastUpdateDate");
             return (Criteria) this;
         }
 
         public Criteria andLastUpdateDateNotIn(List<Date> values) {
-            addCriterionForJDBCDate("last_update_date not in", values, "lastUpdateDate");
+            addCriterion("last_update_date not in", values, "lastUpdateDate");
             return (Criteria) this;
         }
 
         public Criteria andLastUpdateDateBetween(Date value1, Date value2) {
-            addCriterionForJDBCDate("last_update_date between", value1, value2, "lastUpdateDate");
+            addCriterion("last_update_date between", value1, value2, "lastUpdateDate");
             return (Criteria) this;
         }
 
         public Criteria andLastUpdateDateNotBetween(Date value1, Date value2) {
-            addCriterionForJDBCDate("last_update_date not between", value1, value2, "lastUpdateDate");
+            addCriterion("last_update_date not between", value1, value2, "lastUpdateDate");
             return (Criteria) this;
         }
 

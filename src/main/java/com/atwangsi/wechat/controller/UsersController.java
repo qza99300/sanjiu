@@ -15,6 +15,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.atwangsi.base.utils.CommonUtil;
 import com.atwangsi.user.model.TbActivityApply;
 import com.atwangsi.user.model.TbConsignee;
 import com.atwangsi.user.model.TbExchangeRecord;
@@ -24,7 +25,6 @@ import com.atwangsi.user.model.TbTopicManage;
 import com.atwangsi.user.model.TbUser;
 import com.atwangsi.user.service.ApplyService;
 import com.atwangsi.user.service.ConsigneeService;
-import com.atwangsi.user.service.OrderService;
 import com.atwangsi.user.service.ProductService;
 import com.atwangsi.user.service.RecordService;
 import com.atwangsi.user.service.SignService;
@@ -32,8 +32,6 @@ import com.atwangsi.user.service.TopicService;
 import com.atwangsi.user.service.UserService;
 
 import net.sf.json.JSONObject;
-
-import com.atwangsi.base.utils.CommonUtil;
 
 @Controller
 @RequestMapping(value = "users")
@@ -53,9 +51,6 @@ public class UsersController {
 	
 	@Autowired
 	private TopicService topicService;
-	
-	@Autowired
-	private OrderService orderService;
 	
 	@Autowired
 	private ConsigneeService consigneeService;

@@ -28,7 +28,7 @@ public interface TbPermissionMapper {
 
     int updateByPrimaryKey(TbPermission record);
 
-	List<TbPermission> selectRolesPermissions(Integer roleId);
-
 	List<TbPermission> getUserPermissions(Integer userId);
+
+	List<TbPermission> selectRolesPermissions(Integer roleId);
 }

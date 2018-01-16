@@ -18,14 +18,29 @@ public class UserServiceImpl implements UserService {
 	@Autowired
 	private TbUserMapper userMapper;
 
+	//新增用户，新增前做校验
 	@Override
 	public Boolean saveUser(TbUser user) {
+		//联系方式唯一
+		//用户的联系方式
+//		String userOhone = user.getPhone();
+//		TbUserExample example = new TbUserExample();
+//		example.createCriteria().andPhoneEqualTo(userOhone);
+//		
+//		List<TbUser> list = this.userMapper.selectByExample(example);
+//		//联系方式已存在
+//		if (list.size()>0) {
+//			return false;
+//		}
 		
 		int i = this.userMapper.insertSelective(user);
 
 		return i > 0;
 	}
 
+	
+	
+	//删除用户
 	@Override
 	public void deleteByIds(String userId) {
 		// 存储需要删除的id
@@ -58,6 +73,7 @@ public class UserServiceImpl implements UserService {
 
 	}
 
+	//修改
 	@Override
 	public void updateUser(TbUser user) {
 
@@ -68,6 +84,7 @@ public class UserServiceImpl implements UserService {
 
 	}
 
+	//登录
 	public TbUser login(TbUser user) {
 
 		TbUserExample example = new TbUserExample();
@@ -87,6 +104,7 @@ public class UserServiceImpl implements UserService {
 
 	}
 
+	//
 	@Override
 	public TbUser login(String loginname, String password) {
 		// TODO Auto-generated method stub
@@ -107,6 +125,7 @@ public class UserServiceImpl implements UserService {
 		return null;
 	}
 
+	//根据用户id查询
 	@Override
 	public TbUser querryUserById(Integer userId) {
 		// TODO Auto-generated method stub
@@ -128,6 +147,7 @@ public class UserServiceImpl implements UserService {
 		return l == 0;
 	}
 
+	//修改密码
 	@Override
 	public Boolean updatePassword(String loginname, String oldPassword, Integer userId, String password) {
 		// TODO Auto-generated method stub
@@ -149,6 +169,7 @@ public class UserServiceImpl implements UserService {
 		return null;
 	}
 
+	//修改密码
 	@Override
 	public Boolean updatePassword(String oldPassword, TbUser user) {
 		// TODO Auto-generated method stub
@@ -164,6 +185,7 @@ public class UserServiceImpl implements UserService {
 		return false;
 	}
 
+	//查询所有业务信息
 	@Override
 	public List<TbUser> getAllUser() {
 		// TODO Auto-generated method stub
@@ -191,5 +213,34 @@ public class UserServiceImpl implements UserService {
 	public TbUser selectweixin(String open) {
 		
 		return userMapper.selectweixin(open);
+	}
+
+	//根据operationId查询用户信息
+	//1为业务员，2为客户
+	@Override
+	public List<TbUser> querryByOperationId(Integer operationId) {
+		// TODO Auto-generated method stub
+		TbUserExample example = new TbUserExample();
+		example.createCriteria().andOperationIdEqualTo(operationId);
+		return this.userMapper.selectByExample(example);
+	}
+
+	//判断登录账号是否存在
+	@Override
+	public Boolean checkoutByLoginName(String loginname) {
+		// TODO Auto-generated method stub
+		TbUserExample example = new TbUserExample();
+		example.createCriteria().andLoginnameEqualTo(loginname);
+		
+		return this.userMapper.selectByExample(example).size() > 0;
+	}
+
+	//检测手机是否存在
+	@Override
+	public Boolean checkoutByPhone(String phone) {
+		// TODO Auto-generated method stub
+		TbUserExample example = new TbUserExample();
+		example.createCriteria().andPhoneEqualTo(phone);
+		return this.userMapper.selectByExample(example).size() > 0;
 	}
 }

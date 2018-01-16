@@ -7,6 +7,8 @@ public class TbUserIntegralDetail {
 
     private Integer userId;
 
+    private Integer surplusIntegral;
+
     private Integer integral;
 
     private String purpose;
@@ -41,6 +43,14 @@ public class TbUserIntegralDetail {
 
     public void setUserId(Integer userId) {
         this.userId = userId;
+    }
+
+    public Integer getSurplusIntegral() {
+        return surplusIntegral;
+    }
+
+    public void setSurplusIntegral(Integer surplusIntegral) {
+        this.surplusIntegral = surplusIntegral;
     }
 
     public Integer getIntegral() {

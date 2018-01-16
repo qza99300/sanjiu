@@ -13,6 +13,8 @@ public class TbInteractInterflow {
 
     private Date commentDate;
 
+    private String picture;
+
     private Integer likeCount;
 
     private Date createDate;
@@ -30,8 +32,6 @@ public class TbInteractInterflow {
     private String deletedBy;
 
     private Date deletionDate;
-
-    private byte[] picture;
 
     public Integer getInteractId() {
         return interactId;
@@ -71,6 +71,14 @@ public class TbInteractInterflow {
 
     public void setCommentDate(Date commentDate) {
         this.commentDate = commentDate;
+    }
+
+    public String getPicture() {
+        return picture;
+    }
+
+    public void setPicture(String picture) {
+        this.picture = picture == null ? null : picture.trim();
     }
 
     public Integer getLikeCount() {
@@ -143,13 +151,5 @@ public class TbInteractInterflow {
 
     public void setDeletionDate(Date deletionDate) {
         this.deletionDate = deletionDate;
-    }
-
-    public byte[] getPicture() {
-        return picture;
-    }
-
-    public void setPicture(byte[] picture) {
-        this.picture = picture;
     }
 }

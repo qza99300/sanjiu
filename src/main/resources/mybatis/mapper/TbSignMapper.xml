@@ -6,6 +6,15 @@
     <result column="userId" jdbcType="INTEGER" property="userid" />
     <result column="signDate" jdbcType="DATE" property="signdate" />
   </resultMap>
+  
+  <select id="selectObj" resultMap="BaseResultMap">
+  	SELECT *from tb_Sign where userId=#{0} and signDate=#{1}
+  </select>
+  
+  <insert id="addsign" parameterType="com.atwangsi.user.model.TbSign">
+  INSERT INTO tb_Sign (userId, signDate) VALUES (#{userid}, NOW());
+  </insert>
+  
   <sql id="Example_Where_Clause">
     <where>
       <foreach collection="oredCriteria" item="criteria" separator="or">
@@ -73,7 +82,7 @@
       distinct
     </if>
     <include refid="Base_Column_List" />
-    from tb_Sign
+    from tb_sign
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
@@ -84,27 +93,27 @@
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
-    from tb_Sign
+    from tb_sign
     where signId = #{signid,jdbcType=INTEGER}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-    delete from tb_Sign
+    delete from tb_sign
     where signId = #{signid,jdbcType=INTEGER}
   </delete>
   <delete id="deleteByExample" parameterType="com.atwangsi.user.model.TbSignExample">
-    delete from tb_Sign
+    delete from tb_sign
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
   <insert id="insert" parameterType="com.atwangsi.user.model.TbSign">
-    insert into tb_Sign (signId, userId, signDate
+    insert into tb_sign (signId, userId, signDate
       )
     values (#{signid,jdbcType=INTEGER}, #{userid,jdbcType=INTEGER}, #{signdate,jdbcType=DATE}
       )
   </insert>
   <insert id="insertSelective" parameterType="com.atwangsi.user.model.TbSign">
-    insert into tb_Sign
+    insert into tb_sign
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="signid != null">
         signId,
@@ -129,13 +138,13 @@
     </trim>
   </insert>
   <select id="countByExample" parameterType="com.atwangsi.user.model.TbSignExample" resultType="java.lang.Long">
-    select count(*) from tb_Sign
+    select count(*) from tb_sign
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </select>
   <update id="updateByExampleSelective" parameterType="map">
-    update tb_Sign
+    update tb_sign
     <set>
       <if test="record.signid != null">
         signId = #{record.signid,jdbcType=INTEGER},
@@ -152,7 +161,7 @@
     </if>
   </update>
   <update id="updateByExample" parameterType="map">
-    update tb_Sign
+    update tb_sign
     set signId = #{record.signid,jdbcType=INTEGER},
       userId = #{record.userid,jdbcType=INTEGER},
       signDate = #{record.signdate,jdbcType=DATE}
@@ -161,7 +170,7 @@
     </if>
   </update>
   <update id="updateByPrimaryKeySelective" parameterType="com.atwangsi.user.model.TbSign">
-    update tb_Sign
+    update tb_sign
     <set>
       <if test="userid != null">
         userId = #{userid,jdbcType=INTEGER},
@@ -173,17 +182,9 @@
     where signId = #{signid,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.atwangsi.user.model.TbSign">
-    update tb_Sign
+    update tb_sign
     set userId = #{userid,jdbcType=INTEGER},
       signDate = #{signdate,jdbcType=DATE}
     where signId = #{signid,jdbcType=INTEGER}
   </update>
-  
-  <select id="selectObj" resultMap="BaseResultMap">
-  	SELECT *from tb_Sign where userId=#{0} and signDate=#{1}
-  </select>
-  
-  <insert id="addsign" parameterType="com.atwangsi.user.model.TbSign">
-  INSERT INTO tb_Sign (userId, signDate) VALUES (#{userid}, NOW());
-  </insert>
 </mapper>

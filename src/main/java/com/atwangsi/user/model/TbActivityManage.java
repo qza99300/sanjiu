@@ -11,19 +11,27 @@ public class TbActivityManage {
 
     private Integer activityNum;
 
-    private String createYear;
-
     private String department;
 
     private String area;
 
+    private String province;
+
+    private String city;
+
+    private String area1;
+
     private String remark;
+
+    private String picture;
 
     private String accessoryPath;
 
     private String activityStatus;
 
     private Date createDate;
+
+    private Date stopDate;
 
     private String createBy;
 
@@ -38,8 +46,6 @@ public class TbActivityManage {
     private String deletedBy;
 
     private Date deletionDate;
-
-    private byte[] picture;
 
     public Integer getActivityId() {
         return activityId;
@@ -73,14 +79,6 @@ public class TbActivityManage {
         this.activityNum = activityNum;
     }
 
-    public String getCreateYear() {
-        return createYear;
-    }
-
-    public void setCreateYear(String createYear) {
-        this.createYear = createYear == null ? null : createYear.trim();
-    }
-
     public String getDepartment() {
         return department;
     }
@@ -97,12 +95,44 @@ public class TbActivityManage {
         this.area = area == null ? null : area.trim();
     }
 
+    public String getProvince() {
+        return province;
+    }
+
+    public void setProvince(String province) {
+        this.province = province == null ? null : province.trim();
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city == null ? null : city.trim();
+    }
+
+    public String getArea1() {
+        return area1;
+    }
+
+    public void setArea1(String area1) {
+        this.area1 = area1 == null ? null : area1.trim();
+    }
+
     public String getRemark() {
         return remark;
     }
 
     public void setRemark(String remark) {
         this.remark = remark == null ? null : remark.trim();
+    }
+
+    public String getPicture() {
+        return picture;
+    }
+
+    public void setPicture(String picture) {
+        this.picture = picture == null ? null : picture.trim();
     }
 
     public String getAccessoryPath() {
@@ -127,6 +157,14 @@ public class TbActivityManage {
 
     public void setCreateDate(Date createDate) {
         this.createDate = createDate;
+    }
+
+    public Date getStopDate() {
+        return stopDate;
+    }
+
+    public void setStopDate(Date stopDate) {
+        this.stopDate = stopDate;
     }
 
     public String getCreateBy() {
@@ -183,13 +221,5 @@ public class TbActivityManage {
 
     public void setDeletionDate(Date deletionDate) {
         this.deletionDate = deletionDate;
-    }
-
-    public byte[] getPicture() {
-        return picture;
-    }
-
-    public void setPicture(byte[] picture) {
-        this.picture = picture;
     }
 }

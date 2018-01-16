@@ -27,7 +27,5 @@ public interface TbIntegralRuleMapper {
     int updateByPrimaryKeySelective(TbIntegralRule record);
 
     int updateByPrimaryKey(TbIntegralRule record);
-    
-    //修改显示
-    List<TbIntegralRule> selectwhole();
+
 }
