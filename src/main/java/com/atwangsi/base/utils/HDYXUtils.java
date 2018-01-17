@@ -8,8 +8,11 @@ import java.math.BigInteger;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.junit.experimental.theories.Theories;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.atwangsi.user.service.ProductService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class HDYXUtils {
@@ -44,6 +47,7 @@ public class HDYXUtils {
         response.setHeader("Content-Type", cntentType);// 告诉浏览器用什么软件可以打开此文件
         response.setHeader("Content-Disposition", "attachment;filename="+fileName);// 下载文件的默认名称
     }
+	
 	
 	/**
 	 * 返回工程绝对路径

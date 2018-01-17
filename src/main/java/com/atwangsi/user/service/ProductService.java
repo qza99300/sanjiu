@@ -23,5 +23,7 @@ public interface ProductService {
 
 	List<TbIntegralProduct> querryByLike(String productName);
 
+	int querryMaxId();
+
 
 }
