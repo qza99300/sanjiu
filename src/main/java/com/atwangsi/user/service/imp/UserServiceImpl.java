@@ -211,6 +211,7 @@ public class UserServiceImpl implements UserService {
 		return list;
 	}
 
+	//根据用户名进行模糊查询
 	@Override
 	public List<TbUser> querryByLike(String userName) {
 		// TODO Auto-generated method stub
@@ -258,13 +259,19 @@ public class UserServiceImpl implements UserService {
 	// 添加每一行的数据
 	private static TbUser buildStudent(Row row) {
 		TbUser user = new TbUser();
-		user.setUserName(getStringCellValue(row.getCell(0)));
-		user.setIdName(getStringCellValue(row.getCell(1)));
-		user.setIdCard(getStringCellValue(row.getCell(2)));
-		user.setPhone(getStringCellValue(row.getCell(3)));
-		user.setOpenId(getStringCellValue(row.getCell(4)));
-		user.setWechatName(getStringCellValue(row.getCell(5)));
-
+		user.setUserName(getStringCellValue(row.getCell(1)));//用户名
+		user.setPhone(getStringCellValue(row.getCell(2)));//联系电话
+		user.setIdName(getStringCellValue(row.getCell(3)));//真实姓名
+		user.setOpenId(getStringCellValue(row.getCell(4)));//企业微信账号
+		user.setCompany(getStringCellValue(row.getCell(5)));//所在公司
+		user.setDepartment(getStringCellValue(row.getCell(6)));//所在部门
+		user.setDuty(getStringCellValue(row.getCell(7)));//现任职务
+		user.setArea1(getStringCellValue(row.getCell(8)));//所属区域
+		user.setProvince(getStringCellValue(row.getCell(9)));
+		user.setCity(getStringCellValue(row.getCell(10)));
+		user.setEmail(getStringCellValue(row.getCell(11)));//邮箱地址
+		user.setAddress(getStringCellValue(row.getCell(12)));//详细地址
+		
 		return user;
 	}
 
@@ -308,9 +315,7 @@ public class UserServiceImpl implements UserService {
 	public ResultVO<Object> importMsg(MultipartFile file) {
 		// TODO Auto-generated method stub
 		List<TbUser> list = new ArrayList<>();
-
 		Workbook workbook = null;
-
 		// Partner Excel 数据文件流
 		InputStream inputStream = null;
 
@@ -320,15 +325,11 @@ public class UserServiceImpl implements UserService {
 		} catch (Exception e) {
 			return ResultVO.fail("导入失败,请联系技术！", null, null);
 		}
-
 		// 第一个工作簿
 		Sheet sheet = workbook.getSheetAt(0);
-
 		// 总行数
 		int num = sheet.getLastRowNum();
-
 		Row row = null;
-
 		// 正文内容应该从第二行开始,第一行为表头的标题
 		for (int i = 1; i <= num; i++) {
 			row = sheet.getRow(i);
@@ -343,5 +344,22 @@ public class UserServiceImpl implements UserService {
 		}
 		return ResultVO.success("数据导入成功", null, null);
 
+	}
+
+	//根据真实姓名进行模糊查询
+	@Override
+	public List<TbUser> querryByLikeByIdName(String idName) {
+		// TODO Auto-generated method stub
+		TbUserExample example = new TbUserExample();
+		example.createCriteria().andIdNameLike("%"+idName+"%");
+		return this.userMapper.selectByExample(example);
+	}
+
+	@Override
+	public List<TbUser> querryByLikeByProvince(String province) {
+		// TODO Auto-generated method stub
+		TbUserExample example = new TbUserExample();
+		example.createCriteria().andIdNameLike("%"+province	+"%");
+		return this.userMapper.selectByExample(example);
 	}
 }

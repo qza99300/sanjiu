@@ -63,6 +63,13 @@ public class ProductServiceImpl implements ProductService {
 		return this.productMapper.selectByExample(example);
 	}
 
+	@Override
+	public int querryMaxId() {
+		// TODO Auto-generated method stub
+		
+		return 0;
+	}
+
 
 }
 

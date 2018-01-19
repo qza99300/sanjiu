@@ -312,6 +312,146 @@ public class TbActivityApplyExample {
             return (Criteria) this;
         }
 
+        public Criteria andApplyNameIsNull() {
+            addCriterion("apply_name is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andApplyNameIsNotNull() {
+            addCriterion("apply_name is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andApplyNameEqualTo(String value) {
+            addCriterion("apply_name =", value, "applyName");
+            return (Criteria) this;
+        }
+
+        public Criteria andApplyNameNotEqualTo(String value) {
+            addCriterion("apply_name <>", value, "applyName");
+            return (Criteria) this;
+        }
+
+        public Criteria andApplyNameGreaterThan(String value) {
+            addCriterion("apply_name >", value, "applyName");
+            return (Criteria) this;
+        }
+
+        public Criteria andApplyNameGreaterThanOrEqualTo(String value) {
+            addCriterion("apply_name >=", value, "applyName");
+            return (Criteria) this;
+        }
+
+        public Criteria andApplyNameLessThan(String value) {
+            addCriterion("apply_name <", value, "applyName");
+            return (Criteria) this;
+        }
+
+        public Criteria andApplyNameLessThanOrEqualTo(String value) {
+            addCriterion("apply_name <=", value, "applyName");
+            return (Criteria) this;
+        }
+
+        public Criteria andApplyNameLike(String value) {
+            addCriterion("apply_name like", value, "applyName");
+            return (Criteria) this;
+        }
+
+        public Criteria andApplyNameNotLike(String value) {
+            addCriterion("apply_name not like", value, "applyName");
+            return (Criteria) this;
+        }
+
+        public Criteria andApplyNameIn(List<String> values) {
+            addCriterion("apply_name in", values, "applyName");
+            return (Criteria) this;
+        }
+
+        public Criteria andApplyNameNotIn(List<String> values) {
+            addCriterion("apply_name not in", values, "applyName");
+            return (Criteria) this;
+        }
+
+        public Criteria andApplyNameBetween(String value1, String value2) {
+            addCriterion("apply_name between", value1, value2, "applyName");
+            return (Criteria) this;
+        }
+
+        public Criteria andApplyNameNotBetween(String value1, String value2) {
+            addCriterion("apply_name not between", value1, value2, "applyName");
+            return (Criteria) this;
+        }
+
+        public Criteria andApplyPhoneIsNull() {
+            addCriterion("apply_phone is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andApplyPhoneIsNotNull() {
+            addCriterion("apply_phone is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andApplyPhoneEqualTo(String value) {
+            addCriterion("apply_phone =", value, "applyPhone");
+            return (Criteria) this;
+        }
+
+        public Criteria andApplyPhoneNotEqualTo(String value) {
+            addCriterion("apply_phone <>", value, "applyPhone");
+            return (Criteria) this;
+        }
+
+        public Criteria andApplyPhoneGreaterThan(String value) {
+            addCriterion("apply_phone >", value, "applyPhone");
+            return (Criteria) this;
+        }
+
+        public Criteria andApplyPhoneGreaterThanOrEqualTo(String value) {
+            addCriterion("apply_phone >=", value, "applyPhone");
+            return (Criteria) this;
+        }
+
+        public Criteria andApplyPhoneLessThan(String value) {
+            addCriterion("apply_phone <", value, "applyPhone");
+            return (Criteria) this;
+        }
+
+        public Criteria andApplyPhoneLessThanOrEqualTo(String value) {
+            addCriterion("apply_phone <=", value, "applyPhone");
+            return (Criteria) this;
+        }
+
+        public Criteria andApplyPhoneLike(String value) {
+            addCriterion("apply_phone like", value, "applyPhone");
+            return (Criteria) this;
+        }
+
+        public Criteria andApplyPhoneNotLike(String value) {
+            addCriterion("apply_phone not like", value, "applyPhone");
+            return (Criteria) this;
+        }
+
+        public Criteria andApplyPhoneIn(List<String> values) {
+            addCriterion("apply_phone in", values, "applyPhone");
+            return (Criteria) this;
+        }
+
+        public Criteria andApplyPhoneNotIn(List<String> values) {
+            addCriterion("apply_phone not in", values, "applyPhone");
+            return (Criteria) this;
+        }
+
+        public Criteria andApplyPhoneBetween(String value1, String value2) {
+            addCriterion("apply_phone between", value1, value2, "applyPhone");
+            return (Criteria) this;
+        }
+
+        public Criteria andApplyPhoneNotBetween(String value1, String value2) {
+            addCriterion("apply_phone not between", value1, value2, "applyPhone");
+            return (Criteria) this;
+        }
+
         public Criteria andActivityTitleIsNull() {
             addCriterion("activity_title is null");
             return (Criteria) this;
@@ -789,66 +929,6 @@ public class TbActivityApplyExample {
 
         public Criteria andArea1NotBetween(String value1, String value2) {
             addCriterion("area1 not between", value1, value2, "area1");
-            return (Criteria) this;
-        }
-
-        public Criteria andCollectCountIsNull() {
-            addCriterion("collect_count is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andCollectCountIsNotNull() {
-            addCriterion("collect_count is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andCollectCountEqualTo(Integer value) {
-            addCriterion("collect_count =", value, "collectCount");
-            return (Criteria) this;
-        }
-
-        public Criteria andCollectCountNotEqualTo(Integer value) {
-            addCriterion("collect_count <>", value, "collectCount");
-            return (Criteria) this;
-        }
-
-        public Criteria andCollectCountGreaterThan(Integer value) {
-            addCriterion("collect_count >", value, "collectCount");
-            return (Criteria) this;
-        }
-
-        public Criteria andCollectCountGreaterThanOrEqualTo(Integer value) {
-            addCriterion("collect_count >=", value, "collectCount");
-            return (Criteria) this;
-        }
-
-        public Criteria andCollectCountLessThan(Integer value) {
-            addCriterion("collect_count <", value, "collectCount");
-            return (Criteria) this;
-        }
-
-        public Criteria andCollectCountLessThanOrEqualTo(Integer value) {
-            addCriterion("collect_count <=", value, "collectCount");
-            return (Criteria) this;
-        }
-
-        public Criteria andCollectCountIn(List<Integer> values) {
-            addCriterion("collect_count in", values, "collectCount");
-            return (Criteria) this;
-        }
-
-        public Criteria andCollectCountNotIn(List<Integer> values) {
-            addCriterion("collect_count not in", values, "collectCount");
-            return (Criteria) this;
-        }
-
-        public Criteria andCollectCountBetween(Integer value1, Integer value2) {
-            addCriterion("collect_count between", value1, value2, "collectCount");
-            return (Criteria) this;
-        }
-
-        public Criteria andCollectCountNotBetween(Integer value1, Integer value2) {
-            addCriterion("collect_count not between", value1, value2, "collectCount");
             return (Criteria) this;
         }
 

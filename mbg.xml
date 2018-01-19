@@ -55,7 +55,7 @@
 
 		<!-- table指定要逆向哪些表 ；一个表要逆向成一个javaBean tableName：指定表名 domainObjectName：指定对应的javaBean 
 			domainObjectName="TUserRole" -->
-		<table tableName="tb_user"></table>
+<!-- 		<table tableName="tb_user"></table> -->
 <!-- 		<table tableName="tb_role"></table> -->
 <!-- 		<table tableName="tb_permission"></table> -->
 <!-- 		<table tableName="tb_userrole"></table> -->
@@ -67,7 +67,7 @@
 <!-- 		<table tableName="tb_exchange_record"></table> -->
 <!-- 		<table tableName="tb_activity_manage"></table> -->
 <!-- 		<table tableName="tb_activity_apply"></table> -->
-<!-- 		<table tableName="tb_topic_manage"></table> -->
+		<table tableName="tb_topic_manage"></table>
 <!-- 		<table tableName="tb_interact_interflow"></table> -->
 <!-- 		<table tableName="tb_college_synopsis"></table> -->
 <!-- 		<table tableName="tb_rolepermission"></table> -->

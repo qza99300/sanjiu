@@ -3,15 +3,21 @@ package com.atwangsi.user.controller;
 import java.util.Date;
 import java.util.List;
 
+import javax.servlet.http.HttpServletResponse;
+
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.alibaba.fastjson.JSONObject;
 import com.atwangsi.base.model.AppContant;
 import com.atwangsi.base.model.ResultVO;
+import com.atwangsi.base.utils.FileDown;
+import com.atwangsi.base.utils.HDYXUtils;
 import com.atwangsi.user.model.TbActivityApply;
 import com.atwangsi.user.model.TbUser;
 import com.atwangsi.user.service.ApplyService;
@@ -54,7 +60,6 @@ public class ApplyController {
 		
 		return new PageInfo<>(list, AppContant.PAGE_SIZE);
 		
-		
 	}
 	
 	/**
@@ -94,6 +99,31 @@ public class ApplyController {
 		
 		return new PageInfo<>(this.applyService.querryByActivityId(activityId));
 		
+	}
+	
+	/**
+	 * 根据活动id查询所有报名信息，并写入文件导出
+	 * @param activityId
+	 * @param response
+	 * @return
+	 */
+	@RequestMapping(value = "fileExportByActivityId", method = {RequestMethod.POST,RequestMethod.GET})
+	@ResponseBody
+	public ResultVO<Object> fileDownByActivityIdLike(@RequestParam("activityId") Integer activityId,HttpServletResponse response){
+		//定义的文件名
+		String fileName = "活动报名信息";
+		//第三个参数：需要导出的字段  
+		
+		//获取活动表头信息
+		HSSFWorkbook workbook = FileDown.fileDown(HDYXUtils.activityDownFile());
+		//查询数据
+		List<TbActivityApply> list = this.applyService.querryByActivityId(activityId);
+		//文件写入查询出来的数据
+		HDYXUtils.intoActivityMsgtoFile(workbook,list);
+		//提交到response
+		HDYXUtils.subResponse(fileName,workbook,response);
+		
+		return ResultVO.success("下载成功", null, null);
 	}
 	
 	/**
@@ -210,3 +240,4 @@ public class ApplyController {
 		return jo.toJSONString();
 	}
 }
+

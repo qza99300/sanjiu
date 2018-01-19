@@ -1,11 +1,12 @@
 package com.atwangsi.user.controller;
 
-import java.rmi.registry.Registry;
 import java.util.Date;
 import java.util.List;
 
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,8 +18,9 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.atwangsi.base.model.AppContant;
 import com.atwangsi.base.model.ResultVO;
+import com.atwangsi.base.utils.FileDown;
+import com.atwangsi.base.utils.HDYXUtils;
 import com.atwangsi.base.utils.StringUtil;
-import com.atwangsi.user.model.TbExchangeRecord;
 import com.atwangsi.user.model.TbRole;
 import com.atwangsi.user.model.TbUser;
 import com.atwangsi.user.service.RoleService;
@@ -44,6 +46,84 @@ public class UserController {
 	private RoleService roleService;
 	
 	/**
+	 * 根据省份进行模糊查询，写入文件，导出文件
+	 * @param province
+	 * @param response
+	 * @return
+	 */
+	@RequestMapping(value = "fileExportByProvince", method = {RequestMethod.POST,RequestMethod.GET})
+	@ResponseBody
+	public ResultVO<Object> fileDownByProvinceLike(@RequestParam("province")String province,HttpServletResponse response){
+		//定义的文件名
+		String fileName = "用户导出信息";
+		//第三个参数：需要导出的字段  
+		
+		//获取用户信息模板
+		HSSFWorkbook workbook = FileDown.fileDown(HDYXUtils.userDownFile());
+		
+		List<TbUser> users = this.userService.querryByLikeByProvince(province);
+		
+		HDYXUtils.intoUserMsgtoFile(workbook,users);
+		
+		//提交到response
+		HDYXUtils.subResponse(fileName,workbook,response);
+		
+		return ResultVO.success("下载完成", null, null);
+	}
+	
+	/**
+	 * 根据真实姓名进行模糊查询，写入文件，进行文件导出
+	 * @param idName
+	 * @param response
+	 * @return
+	 */
+	@RequestMapping(value = "fileExportByIdName", method = {RequestMethod.POST,RequestMethod.GET})
+	@ResponseBody
+	public ResultVO<Object> fileDownByIdNameLike(@RequestParam("idName")String idName,HttpServletResponse response){
+		//定义的文件名
+		String fileName = "用户导出信息";
+		//第三个参数：需要导出的字段  
+		
+		//获取用户信息模板
+		HSSFWorkbook workbook = FileDown.fileDown(HDYXUtils.userDownFile());
+		
+		List<TbUser> users = this.userService.querryByLikeByIdName(idName);
+		
+		HDYXUtils.intoUserMsgtoFile(workbook,users);
+		
+		//提交到response
+		HDYXUtils.subResponse(fileName,workbook,response);
+		
+		return ResultVO.success("下载完成", null, null);
+	}
+	
+	/**
+	 * 根据用户名进行模糊查询，写入文件，进行文件导出操作
+	 * @param userName
+	 * @param response
+	 * @return
+	 */
+	@RequestMapping(value = "fileExportByUserName", method = {RequestMethod.POST,RequestMethod.GET})
+	@ResponseBody
+	public ResultVO<Object> fileDownByUserNameLike(@RequestParam("userName")String userName,HttpServletResponse response){
+		//定义的文件名
+		String fileName = "用户导出信息";
+		//第三个参数：需要导出的字段  
+		
+		//获取用户信息模板
+		HSSFWorkbook workbook = FileDown.fileDown(HDYXUtils.userDownFile());
+		
+		List<TbUser> users = this.userService.querryByLike(userName);
+		
+		HDYXUtils.intoUserMsgtoFile(workbook,users);
+		
+		//提交到response
+		HDYXUtils.subResponse(fileName,workbook,response);
+		
+		return ResultVO.success("下载完成", null, null);
+	}
+	
+	/**
 	 * 读取文件的数据
 	 * 仅限于.xls文件
 	 * @param file
@@ -54,9 +134,27 @@ public class UserController {
 	public ResultVO<Object> importMsg(@RequestParam("file") MultipartFile file){
 		//执行操作
 		ResultVO<Object> result = this.userService.importMsg(file);
-		
 		return result;
+	}
+	
+	/**
+	 * 下载用户信息基本模板
+	 * @param response
+	 * @return
+	 */
+	@RequestMapping(value = "down", method = {RequestMethod.POST,RequestMethod.GET})
+	@ResponseBody
+	public ResultVO<Object> fileDown(HttpServletResponse response){
+		//定义的文件名
+		String fileName = "用户信息导入模板";
+		//第三个参数：需要导出的字段  
+		//获取用户信息模板
+		HSSFWorkbook workbook = FileDown.fileDown(HDYXUtils.userDownFile());
 		
+		//提交到response
+		HDYXUtils.subResponse(fileName,workbook,response);
+		
+		return ResultVO.success("下载完成", null, null);
 	}
 	
 	/**

@@ -13,6 +13,8 @@ public class TbTopicManage {
 
     private String userName;
 
+    private String topicType;
+
     private String picture;
 
     private String videoPath;
@@ -57,6 +59,14 @@ public class TbTopicManage {
 
     public void setUserName(String userName) {
         this.userName = userName == null ? null : userName.trim();
+    }
+
+    public String getTopicType() {
+        return topicType;
+    }
+
+    public void setTopicType(String topicType) {
+        this.topicType = topicType == null ? null : topicType.trim();
     }
 
     public String getPicture() {

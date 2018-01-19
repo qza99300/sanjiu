@@ -452,6 +452,76 @@ public class TbTopicManageExample {
             return (Criteria) this;
         }
 
+        public Criteria andTopicTypeIsNull() {
+            addCriterion("topic_type is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andTopicTypeIsNotNull() {
+            addCriterion("topic_type is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andTopicTypeEqualTo(String value) {
+            addCriterion("topic_type =", value, "topicType");
+            return (Criteria) this;
+        }
+
+        public Criteria andTopicTypeNotEqualTo(String value) {
+            addCriterion("topic_type <>", value, "topicType");
+            return (Criteria) this;
+        }
+
+        public Criteria andTopicTypeGreaterThan(String value) {
+            addCriterion("topic_type >", value, "topicType");
+            return (Criteria) this;
+        }
+
+        public Criteria andTopicTypeGreaterThanOrEqualTo(String value) {
+            addCriterion("topic_type >=", value, "topicType");
+            return (Criteria) this;
+        }
+
+        public Criteria andTopicTypeLessThan(String value) {
+            addCriterion("topic_type <", value, "topicType");
+            return (Criteria) this;
+        }
+
+        public Criteria andTopicTypeLessThanOrEqualTo(String value) {
+            addCriterion("topic_type <=", value, "topicType");
+            return (Criteria) this;
+        }
+
+        public Criteria andTopicTypeLike(String value) {
+            addCriterion("topic_type like", value, "topicType");
+            return (Criteria) this;
+        }
+
+        public Criteria andTopicTypeNotLike(String value) {
+            addCriterion("topic_type not like", value, "topicType");
+            return (Criteria) this;
+        }
+
+        public Criteria andTopicTypeIn(List<String> values) {
+            addCriterion("topic_type in", values, "topicType");
+            return (Criteria) this;
+        }
+
+        public Criteria andTopicTypeNotIn(List<String> values) {
+            addCriterion("topic_type not in", values, "topicType");
+            return (Criteria) this;
+        }
+
+        public Criteria andTopicTypeBetween(String value1, String value2) {
+            addCriterion("topic_type between", value1, value2, "topicType");
+            return (Criteria) this;
+        }
+
+        public Criteria andTopicTypeNotBetween(String value1, String value2) {
+            addCriterion("topic_type not between", value1, value2, "topicType");
+            return (Criteria) this;
+        }
+
         public Criteria andPictureIsNull() {
             addCriterion("picture is null");
             return (Criteria) this;

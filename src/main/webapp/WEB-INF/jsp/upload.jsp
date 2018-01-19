@@ -7,12 +7,16 @@
 <title>文件上传下载</title>  
 </head>  
 <body>  
-    <form action="${ctp }/file/upload" method="post" enctype="multipart/form-data">  
-        选择文件:<input type="file" name="file" width="120px">  
-        <input type="submit" value="上传">  
+    <form action="${ctp }/import/export" method="post" enctype="multipart/form-data">  
+        选择文件:<input type="file" name="file" width="120px">  <br/>
+        <input type="text" name="productName" value="商品名称"><br/>  
+        <input type="text" name="productCount" value="商品数量"><br/>  
+        <input type="text" name="productPresentation" value="商品介绍"><br/>  
+        <input type="text" name="productIntegral" value="所需积分"><br/>  
+        <input type="submit" value="上传"><br/>
     </form>  
     <hr>  
-    <form action="http://localhost:8080/uploadDemo/rest/file/down" method="get">  
+    <form action="${ctp }/import/down" method="post">  
         <input type="submit" value="下载">  
     </form>  
 </body>  

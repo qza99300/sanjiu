@@ -110,7 +110,7 @@
 
 			<tfoot>
 				<tr>
-					<td colspan="6"  >
+					<td colspan="8"  >
 						<ul class="pagination">
 
 						</ul>

@@ -2,7 +2,11 @@ package com.atwangsi.user.model;
 
 import java.util.Date;
 
+import javax.persistence.Id;
+
 public class TbIntegralProduct {
+	
+	@Id
     private Integer productId;
 
     private String productName;

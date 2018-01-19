@@ -3,22 +3,27 @@ package com.atwangsi.user.controller;
 import java.util.Date;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.alibaba.fastjson.JSONObject;
 import com.atwangsi.base.model.AppContant;
 import com.atwangsi.base.model.ResultVO;
+import com.atwangsi.base.utils.FileUpload;
 import com.atwangsi.user.model.TbActivityManage;
 import com.atwangsi.user.service.ActivityManageService;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+
 /**
- * 培训活动--活动管理
- * 基本crud，已经测试ok
+ * 培训活动--活动管理 基本crud，已经测试ok
+ * 
  * @author ou
  *
  */
@@ -31,6 +36,7 @@ public class ActivityManageController {
 
 	/**
 	 * 模糊查询-根据标题来进行模糊查询
+	 * 
 	 * @param pageNum
 	 * @param pageSize
 	 * @param activityTitle
@@ -38,21 +44,20 @@ public class ActivityManageController {
 	 */
 	@RequestMapping("querryByLike")
 	@ResponseBody
-	public PageInfo<TbActivityManage> querryByLike(
-			@RequestParam(value = "pn", defaultValue = "1") Integer pageNum,
+	public PageInfo<TbActivityManage> querryByLike(@RequestParam(value = "pn", defaultValue = "1") Integer pageNum,
 			@RequestParam(value = "ps", defaultValue = "7") Integer pageSize,
 			@RequestParam("activityTitle") String activityTitle) {
-		
+
 		PageHelper.startPage(pageNum, pageSize);
-		
-		List<TbActivityManage> list =this.activityManageService.querryByLike(activityTitle);
-		
-				return new PageInfo<>(list, AppContant.PAGE_SIZE);
+
+		List<TbActivityManage> list = this.activityManageService.querryByLike(activityTitle);
+
+		return new PageInfo<>(list, AppContant.PAGE_SIZE);
 	}
-	
-	
+
 	/**
 	 * 查看所有的活动
+	 * 
 	 * @param pageNum
 	 * @param pageSize
 	 * @return
@@ -62,16 +67,17 @@ public class ActivityManageController {
 	public PageInfo<TbActivityManage> querryAllActivity(@RequestParam(value = "pn", defaultValue = "1") Integer pageNum,
 			@RequestParam(value = "ps", defaultValue = "7") Integer pageSize) {
 		PageHelper.startPage(pageNum, pageSize);
-		
+
 		List<TbActivityManage> list = this.activityManageService.querryAll();
-		
+
 		PageInfo<TbActivityManage> pageInfo = new PageInfo<>(list, AppContant.PAGE_SIZE);
-		
+
 		return pageInfo;
 	}
-	
+
 	/**
 	 * 根据用户id查询
+	 * 
 	 * @param pageNum
 	 * @param pageSize
 	 * @param activityId
@@ -79,29 +85,29 @@ public class ActivityManageController {
 	 */
 	@RequestMapping("querryOne")
 	@ResponseBody
-	public PageInfo<TbActivityManage> querryOneActivity(
-			@RequestParam(value = "pn", defaultValue = "1") Integer pageNum,
+	public PageInfo<TbActivityManage> querryOneActivity(@RequestParam(value = "pn", defaultValue = "1") Integer pageNum,
 			@RequestParam(value = ("ps"), defaultValue = "7") Integer pageSize,
-			@RequestParam(value = "activityId" , required=false) Integer activityId){
-		
+			@RequestParam(value = "activityId", required = false) Integer activityId) {
+
 		PageHelper.startPage(pageNum, pageSize);
-		
+
 		List<TbActivityManage> activityManage = this.activityManageService.querryOne(activityId);
-		
+
 		PageInfo<TbActivityManage> pageInfo = new PageInfo<>(activityManage);
-		
+
 		return pageInfo;
 	}
-	
+
 	/**
 	 * 修改显示内容
+	 * 
 	 * @param activityId
 	 * @return
 	 */
-	@RequestMapping(value="displayActivity", produces = { "application/json; charset=utf-8" })
+	@RequestMapping(value = "displayActivity", produces = { "application/json; charset=utf-8" })
 	@ResponseBody
 	public String displayActivity(String activityId) {
-		TbActivityManage tm=activityManageService.selectByPrimaryKey(Integer.parseInt(activityId));
+		TbActivityManage tm = activityManageService.selectByPrimaryKey(Integer.parseInt(activityId));
 		JSONObject jo = new JSONObject();
 		jo.put("activityId", tm.getActivityId());
 		jo.put("activityTitle", tm.getActivityTitle());
@@ -120,13 +126,19 @@ public class ActivityManageController {
 	 * @param activityManage
 	 * @return
 	 */
-	@RequestMapping("update")
+	@RequestMapping(value="update",method=RequestMethod.POST)
 	@ResponseBody
-	public ResultVO<Object> updateActivity(TbActivityManage activityManage) {
+	public ResultVO<Object> updateActivity(TbActivityManage activityManage, HttpServletRequest request) {
 		// 预检测
 		if (activityManage == null) {
 			return ResultVO.fail("活动不能修改为空值", null, null);
 		}
+		// 执行文件上传
+		List<String> list = FileUpload.upLoad(request);
+		if (list.size() > 0) {
+			activityManage.setPicture(list.get(0).toLowerCase());
+		}
+
 		Boolean bool = this.activityManageService.updateActivity(activityManage);
 
 		if (bool) {
@@ -168,11 +180,17 @@ public class ActivityManageController {
 	 * @param activityManage
 	 * @return
 	 */
-	@RequestMapping("add")
+	@RequestMapping(value="add",method=RequestMethod.POST)
 	@ResponseBody
-	public ResultVO<Object> saveActivity(TbActivityManage activityManage) {
-		
+	public ResultVO<Object> saveActivity(TbActivityManage activityManage,HttpServletRequest request) {
+
 		activityManage.setCreateDate(new Date());
+
+		// 执行文件上传
+		List<String> list = FileUpload.upLoad(request);
+		if (list.size() > 0) {
+			activityManage.setPicture(list.get(0).toLowerCase());
+		}
 
 		Boolean bool = this.activityManageService.saveActivity(activityManage);
 

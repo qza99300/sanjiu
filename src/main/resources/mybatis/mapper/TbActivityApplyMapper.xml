@@ -5,6 +5,8 @@
     <id column="apply_id" jdbcType="INTEGER" property="applyId" />
     <result column="activity_id" jdbcType="INTEGER" property="activityId" />
     <result column="user_id" jdbcType="INTEGER" property="userId" />
+    <result column="apply_name" jdbcType="VARCHAR" property="applyName" />
+    <result column="apply_phone" jdbcType="VARCHAR" property="applyPhone" />
     <result column="activity_title" jdbcType="VARCHAR" property="activityTitle" />
     <result column="valid_date" jdbcType="DATE" property="validDate" />
     <result column="department" jdbcType="VARCHAR" property="department" />
@@ -12,7 +14,6 @@
     <result column="province" jdbcType="VARCHAR" property="province" />
     <result column="city" jdbcType="VARCHAR" property="city" />
     <result column="area1" jdbcType="VARCHAR" property="area1" />
-    <result column="collect_count" jdbcType="INTEGER" property="collectCount" />
     <result column="remark" jdbcType="VARCHAR" property="remark" />
     <result column="create_date" jdbcType="DATE" property="createDate" />
     <result column="create_by" jdbcType="VARCHAR" property="createBy" />
@@ -92,9 +93,9 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    apply_id, activity_id, user_id, activity_title, valid_date, department, area, province, 
-    city, area1, collect_count, remark, create_date, create_by, last_updated_by, last_update_date, 
-    record_version, deleted_flag, deleted_by, deletion_date
+    apply_id, activity_id, user_id, apply_name, apply_phone, activity_title, valid_date, 
+    department, area, province, city, area1, remark, create_date, create_by, last_updated_by, 
+    last_update_date, record_version, deleted_flag, deleted_by, deletion_date
   </sql>
   <select id="selectByExample" parameterType="com.atwangsi.user.model.TbActivityApplyExample" resultMap="BaseResultMap">
     select
@@ -128,19 +129,21 @@
   </delete>
   <insert id="insert" parameterType="com.atwangsi.user.model.TbActivityApply">
     insert into tb_activity_apply (apply_id, activity_id, user_id, 
-      activity_title, valid_date, department, 
-      area, province, city, 
-      area1, collect_count, remark, 
-      create_date, create_by, last_updated_by, 
-      last_update_date, record_version, deleted_flag, 
-      deleted_by, deletion_date)
+      apply_name, apply_phone, activity_title, 
+      valid_date, department, area, 
+      province, city, area1, 
+      remark, create_date, create_by, 
+      last_updated_by, last_update_date, record_version, 
+      deleted_flag, deleted_by, deletion_date
+      )
     values (#{applyId,jdbcType=INTEGER}, #{activityId,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, 
-      #{activityTitle,jdbcType=VARCHAR}, #{validDate,jdbcType=DATE}, #{department,jdbcType=VARCHAR}, 
-      #{area,jdbcType=VARCHAR}, #{province,jdbcType=VARCHAR}, #{city,jdbcType=VARCHAR}, 
-      #{area1,jdbcType=VARCHAR}, #{collectCount,jdbcType=INTEGER}, #{remark,jdbcType=VARCHAR}, 
-      #{createDate,jdbcType=DATE}, #{createBy,jdbcType=VARCHAR}, #{lastUpdatedBy,jdbcType=VARCHAR}, 
-      #{lastUpdateDate,jdbcType=DATE}, #{recordVersion,jdbcType=INTEGER}, #{deletedFlag,jdbcType=INTEGER}, 
-      #{deletedBy,jdbcType=VARCHAR}, #{deletionDate,jdbcType=DATE})
+      #{applyName,jdbcType=VARCHAR}, #{applyPhone,jdbcType=VARCHAR}, #{activityTitle,jdbcType=VARCHAR}, 
+      #{validDate,jdbcType=DATE}, #{department,jdbcType=VARCHAR}, #{area,jdbcType=VARCHAR}, 
+      #{province,jdbcType=VARCHAR}, #{city,jdbcType=VARCHAR}, #{area1,jdbcType=VARCHAR}, 
+      #{remark,jdbcType=VARCHAR}, #{createDate,jdbcType=DATE}, #{createBy,jdbcType=VARCHAR}, 
+      #{lastUpdatedBy,jdbcType=VARCHAR}, #{lastUpdateDate,jdbcType=DATE}, #{recordVersion,jdbcType=INTEGER}, 
+      #{deletedFlag,jdbcType=INTEGER}, #{deletedBy,jdbcType=VARCHAR}, #{deletionDate,jdbcType=DATE}
+      )
   </insert>
   <insert id="insertSelective" parameterType="com.atwangsi.user.model.TbActivityApply">
     insert into tb_activity_apply
@@ -153,6 +156,12 @@
       </if>
       <if test="userId != null">
         user_id,
+      </if>
+      <if test="applyName != null">
+        apply_name,
+      </if>
+      <if test="applyPhone != null">
+        apply_phone,
       </if>
       <if test="activityTitle != null">
         activity_title,
@@ -174,9 +183,6 @@
       </if>
       <if test="area1 != null">
         area1,
-      </if>
-      <if test="collectCount != null">
-        collect_count,
       </if>
       <if test="remark != null">
         remark,
@@ -216,6 +222,12 @@
       <if test="userId != null">
         #{userId,jdbcType=INTEGER},
       </if>
+      <if test="applyName != null">
+        #{applyName,jdbcType=VARCHAR},
+      </if>
+      <if test="applyPhone != null">
+        #{applyPhone,jdbcType=VARCHAR},
+      </if>
       <if test="activityTitle != null">
         #{activityTitle,jdbcType=VARCHAR},
       </if>
@@ -236,9 +248,6 @@
       </if>
       <if test="area1 != null">
         #{area1,jdbcType=VARCHAR},
-      </if>
-      <if test="collectCount != null">
-        #{collectCount,jdbcType=INTEGER},
       </if>
       <if test="remark != null">
         #{remark,jdbcType=VARCHAR},
@@ -287,6 +296,12 @@
       <if test="record.userId != null">
         user_id = #{record.userId,jdbcType=INTEGER},
       </if>
+      <if test="record.applyName != null">
+        apply_name = #{record.applyName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.applyPhone != null">
+        apply_phone = #{record.applyPhone,jdbcType=VARCHAR},
+      </if>
       <if test="record.activityTitle != null">
         activity_title = #{record.activityTitle,jdbcType=VARCHAR},
       </if>
@@ -307,9 +322,6 @@
       </if>
       <if test="record.area1 != null">
         area1 = #{record.area1,jdbcType=VARCHAR},
-      </if>
-      <if test="record.collectCount != null">
-        collect_count = #{record.collectCount,jdbcType=INTEGER},
       </if>
       <if test="record.remark != null">
         remark = #{record.remark,jdbcType=VARCHAR},
@@ -348,6 +360,8 @@
     set apply_id = #{record.applyId,jdbcType=INTEGER},
       activity_id = #{record.activityId,jdbcType=INTEGER},
       user_id = #{record.userId,jdbcType=INTEGER},
+      apply_name = #{record.applyName,jdbcType=VARCHAR},
+      apply_phone = #{record.applyPhone,jdbcType=VARCHAR},
       activity_title = #{record.activityTitle,jdbcType=VARCHAR},
       valid_date = #{record.validDate,jdbcType=DATE},
       department = #{record.department,jdbcType=VARCHAR},
@@ -355,7 +369,6 @@
       province = #{record.province,jdbcType=VARCHAR},
       city = #{record.city,jdbcType=VARCHAR},
       area1 = #{record.area1,jdbcType=VARCHAR},
-      collect_count = #{record.collectCount,jdbcType=INTEGER},
       remark = #{record.remark,jdbcType=VARCHAR},
       create_date = #{record.createDate,jdbcType=DATE},
       create_by = #{record.createBy,jdbcType=VARCHAR},
@@ -378,6 +391,12 @@
       <if test="userId != null">
         user_id = #{userId,jdbcType=INTEGER},
       </if>
+      <if test="applyName != null">
+        apply_name = #{applyName,jdbcType=VARCHAR},
+      </if>
+      <if test="applyPhone != null">
+        apply_phone = #{applyPhone,jdbcType=VARCHAR},
+      </if>
       <if test="activityTitle != null">
         activity_title = #{activityTitle,jdbcType=VARCHAR},
       </if>
@@ -398,9 +417,6 @@
       </if>
       <if test="area1 != null">
         area1 = #{area1,jdbcType=VARCHAR},
-      </if>
-      <if test="collectCount != null">
-        collect_count = #{collectCount,jdbcType=INTEGER},
       </if>
       <if test="remark != null">
         remark = #{remark,jdbcType=VARCHAR},
@@ -436,6 +452,8 @@
     update tb_activity_apply
     set activity_id = #{activityId,jdbcType=INTEGER},
       user_id = #{userId,jdbcType=INTEGER},
+      apply_name = #{applyName,jdbcType=VARCHAR},
+      apply_phone = #{applyPhone,jdbcType=VARCHAR},
       activity_title = #{activityTitle,jdbcType=VARCHAR},
       valid_date = #{validDate,jdbcType=DATE},
       department = #{department,jdbcType=VARCHAR},
@@ -443,7 +461,6 @@
       province = #{province,jdbcType=VARCHAR},
       city = #{city,jdbcType=VARCHAR},
       area1 = #{area1,jdbcType=VARCHAR},
-      collect_count = #{collectCount,jdbcType=INTEGER},
       remark = #{remark,jdbcType=VARCHAR},
       create_date = #{createDate,jdbcType=DATE},
       create_by = #{createBy,jdbcType=VARCHAR},

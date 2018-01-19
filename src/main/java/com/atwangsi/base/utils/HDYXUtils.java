@@ -4,12 +4,23 @@ import java.io.File;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.math.BigInteger;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
+import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.poi.hssf.usermodel.HSSFCellStyle;
+import org.apache.poi.hssf.usermodel.HSSFRow;
+import org.apache.poi.hssf.usermodel.HSSFSheet;
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.atwangsi.user.model.TbActivityApply;
+import com.atwangsi.user.model.TbUser;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class HDYXUtils {
@@ -22,15 +33,6 @@ public class HDYXUtils {
 	 * @param params
 	 * @param fileName
 	 */
-//	public static void exportExcel(HttpServletResponse response,Class<?> clazz, List<?> list,ExportParams params,String fileName)  {
-//        setResponseHeader(response, fileName);
-//        try{
-//            Workbook workbook = ExcelExportUtil.exportExcel(params,clazz, list);
-//            workbook.write(response.getOutputStream());
-//        }catch (IOException e){
-//            e.printStackTrace();
-//       }
-//	}
 	
 	//用户导入导出基本信息  
 	protected static void setResponseHeader(HttpServletResponse response, String fileName){
@@ -44,6 +46,7 @@ public class HDYXUtils {
         response.setHeader("Content-Type", cntentType);// 告诉浏览器用什么软件可以打开此文件
         response.setHeader("Content-Disposition", "attachment;filename="+fileName);// 下载文件的默认名称
     }
+	
 	
 	/**
 	 * 返回工程绝对路径
@@ -61,6 +64,19 @@ public class HDYXUtils {
 	 */
 	public static String realPath(HttpServletRequest request){
 		return request.getSession().getServletContext().getRealPath("");
+	}
+	
+	/**
+	 * 时间转化为string，并设置格式
+	 * @param date
+	 * @return
+	 */
+	public static String timeFormat(Date date){
+		if (HDYXUtils.isNull(date)) {
+			return "";
+		}
+		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+		return format.format(date);
 	}
 
 	/**
@@ -176,6 +192,176 @@ public class HDYXUtils {
 		// TODO Auto-generated method stub
 		return new ObjectMapper();
 	}
+//————————————————————————————用户信息导出模板和导出格式设置开始————————————————————————————————————————————————
+	/**
+	 * 导出用户信息模板
+	 * @return
+	 */
+	public static List<String> userDownFile() {
+		// TODO Auto-generated method stub
+		List<String> list = new ArrayList<>();
+		list.add("序号");
+		list.add("用户名");
+		list.add("联系电话");
+		list.add("真实姓名");
+		list.add("企业微信账号");
+		list.add("所在公司");
+		list.add("所在部门");
+		list.add("现任职务");
+		list.add("所属区域");
+		list.add("所在省");
+		list.add("所在市");
+		list.add("所在区");
+		list.add("邮箱地址");
+		list.add("详细地址");
+		list.add("创建时间");
+		return list;
+	}
+	/**
+	 * 设置导出数据
+	 * @param i
+	 * @param user
+	 * @return
+	 */
+	public static List<String> userDownFileByUser(Integer i ,TbUser user) {
+		// TODO Auto-generated method stub
+		List<String> list = new ArrayList<>();
+		list.add(i +"");
+		list.add(user.getUserName());//"用户名"
+		list.add(user.getPhone());//"联系电话"
+		list.add(user.getIdName());//"真实姓名"
+		list.add(user.getWechatName());//"企业微信账号"
+		list.add(user.getCompany());//"所在公司
+		list.add(user.getDepartment());//"所在部门"
+		list.add(user.getDuty());//"现任职务"
+		list.add(user.getArea1());//"所属区域"
+		list.add(user.getProvince());//省
+		list.add(user.getCity());//市
+		list.add(user.getArea2());//区
+		list.add(user.getEmail());//"邮箱地址"
+		list.add(user.getAddress());//"详细地址"
+		list.add(timeFormat(user.getCreateDate()));//"创建时间"
+		return list;
+	}
+//————————————————————————————用户信息导出模板和导出格式设置结束————————————————————————————————————————————————
+	/**
+	 * 遍历 显示每一行需要显示的数据
+	 */
+	public static void subResponse(String fileName ,HSSFWorkbook workbook, HttpServletResponse response) {
+		//缓冲到request中传入浏览器端弹出下载页面。
+		try {
+			//设置response参数，可以打开下载页面 
+			response.reset();
+			response.setContentType("application/vnd.ms-excel;charset=utf-8");
+			response.setHeader("Content-Disposition", "attachment;filename=" + new String((fileName + ".xls").getBytes("UTF-8"), "iso-8859-1"));
+			//获取response域对象中的输出流
+			ServletOutputStream outputStream = response.getOutputStream();
+			workbook.write(outputStream);
+		} catch (Exception e) {
+			e.getMessage();
+		}
+	}
+
+
+	/**
+	 * 文件写入查询到的用户信息数据
+	 * @param workbook
+	 * @param users
+	 * @return
+	 */
+	public static HSSFWorkbook intoUserMsgtoFile(HSSFWorkbook workbook, List<TbUser> users) {
+		//获取第一个sheet
+		HSSFSheet sheet = workbook.getSheetAt(0);
+		//设置居中
+		HSSFCellStyle style = workbook.createCellStyle();
+		style.setAlignment(HSSFCellStyle.ALIGN_CENTER);
+		
+		HSSFRow row =  null;
+		//每一个对象代表一行数据
+		for (int i = 1; i <= users.size(); i++) {
+			row = sheet.createRow(i);//创建新行
+			//获取模板输入的数据格式
+			TbUser user = users.get(i-1);//获取一条数据
+			List<String> list = userDownFileByUser(i-1, user);
+			for (int j = 0; j < list.size(); j++) {
+				row.createCell(j).setCellValue(list.get(j));//写入数据
+			}
+		}
+		return workbook;
+	}
+
+	/**
+	 * 报名信息第一行数据
+	 * @return
+	 */
+	public static List<String> activityDownFile() {
+		// TODO Auto-generated method stub
+		ArrayList<String> list = new ArrayList<>();
+		list.add("序号");
+		list.add("活动标题");
+		list.add("报名名称");
+		list.add("联系电话");
+		list.add("有效时间");
+		list.add("所在部门");
+		list.add("所属区域");
+		list.add("所在省");
+		list.add("所在市");
+		list.add("所在区");
+		list.add("报名时间");
+		return list;
+	}
+	
+	/**
+	 * 报名信息写入文件排版
+	 * @param i
+	 * @param apply
+	 * @return
+	 */
+	private static List<String> activityApplyDownFileByApply(int i, TbActivityApply apply) {
+		// TODO Auto-generated method stub
+		List<String> list = new ArrayList<>();
+		list.add(i+"");
+		list.add(apply.getActivityTitle());
+		list.add(apply.getApplyName());
+		list.add(apply.getApplyPhone());
+		list.add(timeFormat(apply.getValidDate()));
+		list.add(apply.getDepartment());
+		list.add(apply.getArea());
+		list.add(apply.getProvince());
+		list.add(apply.getCity());
+		list.add(apply.getArea1());
+		list.add(timeFormat(apply.getCreateDate()));
+		return list;
+	}
+
+	/**
+	 * 报名信息写入文件操作
+	 * @param workbook
+	 * @param list
+	 */
+	public static void intoActivityMsgtoFile(HSSFWorkbook workbook, List<TbActivityApply> list) {
+		// TODO Auto-generated method stub
+		//获取第一个sheet
+		HSSFSheet sheet = workbook.getSheetAt(0);
+		//设置居中
+		HSSFCellStyle style = workbook.createCellStyle();
+		style.setAlignment(HSSFCellStyle.ALIGN_CENTER);
+		
+		HSSFRow row =  null;
+		//每一个对象代表一行数据
+		for (int i = 1; i <= list.size(); i++) {
+			row = sheet.createRow(i);//创建新行
+			//获取模板输入的数据格式
+			TbActivityApply apply = list.get(i-1);//获取一条数据
+			List<String> applyList = activityApplyDownFileByApply(i, apply);
+			for (int j = 0; j < applyList.size(); j++) {
+				row.createCell(j).setCellValue(applyList.get(j));;//写入数据
+			}
+		}
+	}
+
+
+	
 
 	 
 }

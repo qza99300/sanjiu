@@ -17,21 +17,21 @@ public class TbUser {
 
     private String phone;
 
-    private String openId;
+    private String openId;//微信账号
 
-    private String wechatName;
+    private String wechatName;//微信昵称
 
-    private String company;
+    private String company;//所在公司
 
-    private String department;
+    private String department;//所在部门
 
-    private String duty;
+    private String duty;//职务
 
     private Integer operationId;
 
     private String handleBrand;  //操作品种
 
-    private String area1;
+    private String area1;//所在区域
 
     private String email;
 

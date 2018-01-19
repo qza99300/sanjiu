@@ -41,4 +41,8 @@ public interface UserService {
 
 	ResultVO<Object> importMsg(MultipartFile file);
 
+	List<TbUser> querryByLikeByIdName(String idName);
+
+	List<TbUser> querryByLikeByProvince(String province);
+
 }

@@ -89,6 +89,15 @@ select {
 			</section>
 		</div>
 	</div>
+	
+	<!-- 测试图片回显 -->
+<!-- 	<div> -->
+<!-- 		<table> -->
+<!-- 			<tr> -->
+<!-- 				<td><img alt="aabb" src="\sanjiu-manager\uploadfile\1516172205143.jpg"></td> -->
+<!-- 			</tr> -->
+<!-- 		</table> -->
+<!-- 	</div> -->
 
 	<!--筛选开始-->
 	<div class="layui-field-box" style="margin-top: 10px;">
@@ -215,7 +224,7 @@ select {
 						<div class="modal-footer">
 			                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
 			                <button type="submit" class="btn btn-primary">创建</button>
-		<!-- 	                <button type="submit" id="addActivityBtn" class="btn btn-primary">创建</button> -->
+<!-- 			                <button type="button" id="addActivityBtn" class="btn btn-primary">创建</button> -->
 			            </div>
 				</form>
 				<!-- 内容结束 -->

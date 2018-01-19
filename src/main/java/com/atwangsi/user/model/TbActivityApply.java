@@ -9,6 +9,10 @@ public class TbActivityApply {
 
     private Integer userId;
 
+    private String applyName;
+
+    private String applyPhone;
+
     private String activityTitle;
 
     private Date validDate;
@@ -22,8 +26,6 @@ public class TbActivityApply {
     private String city;
 
     private String area1;
-
-    private Integer collectCount;
 
     private String remark;
 
@@ -65,6 +67,22 @@ public class TbActivityApply {
 
     public void setUserId(Integer userId) {
         this.userId = userId;
+    }
+
+    public String getApplyName() {
+        return applyName;
+    }
+
+    public void setApplyName(String applyName) {
+        this.applyName = applyName == null ? null : applyName.trim();
+    }
+
+    public String getApplyPhone() {
+        return applyPhone;
+    }
+
+    public void setApplyPhone(String applyPhone) {
+        this.applyPhone = applyPhone == null ? null : applyPhone.trim();
     }
 
     public String getActivityTitle() {
@@ -121,14 +139,6 @@ public class TbActivityApply {
 
     public void setArea1(String area1) {
         this.area1 = area1 == null ? null : area1.trim();
-    }
-
-    public Integer getCollectCount() {
-        return collectCount;
-    }
-
-    public void setCollectCount(Integer collectCount) {
-        this.collectCount = collectCount;
     }
 
     public String getRemark() {
