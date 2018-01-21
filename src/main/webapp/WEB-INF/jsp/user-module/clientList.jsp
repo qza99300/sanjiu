@@ -9,13 +9,29 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="shortcut icon" href="favicon.ico">
-<title>用户管理页面</title>
+<title>客户管理页面</title>
 
 <!-- css样式抽取 -->
 <!-- 公共的css样式 -->
 <%@include file="/commons/common-css.jsp"%>
-
-<!-- 客户管理模块--用户管理页面 -->
+<style type="text/css">
+* { -ms-word-wrap: break-word; word-wrap: break-word; }
+html { -webkit-text-size-adjust: none; text-size-adjust: none; }
+html, body {height:100%;width:100%; }
+html, body, h1, h2, h3, h4, h5, h6, div, ul, ol, li, dl, dt, dd, iframe, textarea, input, button, p, strong, b, i, a, span, del, pre, table, tr, th, td, form, fieldset, .pr, .pc { margin: 0; padding: 0; word-wrap: break-word; font-family: verdana,Microsoft YaHei,Tahoma,sans-serif; *font-family: Microsoft YaHei,verdana,Tahoma,sans-serif; }
+body, ul, ol, li, dl, dd, p, h1, h2, h3, h4, h5, h6, form, fieldset, .pr, .pc, em, del { font-style: normal; font-size: 100%; }
+ul, ol, dl { list-style: none; }
+._citys {background-color:#FFF;width: 450px; display: inline-block; border: 2px solid #eee; padding: 5px; position: relative; }
+._citys span { color: #56b4f8; height: 15px; width: 15px; line-height: 15px; text-align: center; border-radius: 3px; position: absolute; right: 10px; top: 10px; border: 1px solid #56b4f8; cursor: pointer; }
+._citys0 { width: 100%; height: 34px; display: inline-block; border-bottom: 2px solid #56b4f8; padding: 0; margin: 0; }
+._citys0 li { display: inline-block; line-height: 34px; font-size: 15px; color: #888; width: 80px; text-align: center; cursor: pointer; }
+.citySel { background-color: #56b4f8; color: #fff !important; }
+._citys1 { width: 100%; display: inline-block; padding: 10px 0; }
+._citys1 a { width: 83px; height: 35px; display: inline-block; background-color: #f5f5f5; color: #666; margin-left: 6px; margin-top: 3px; line-height: 35px; text-align: center; cursor: pointer; font-size: 13px; overflow: hidden; }
+._citys1 a:hover { color: #fff; background-color: #56b4f8; }
+.AreaS { background-color: #56b4f8 !important; color: #fff !important; }
+</style>
+<!-- 业务管理模块--客户管理页面 -->
 
 </head>
 
@@ -28,9 +44,9 @@
 			<ul class="breadcrumb">
 				<li><a href="#"><i class="fa fa-home"></i>首页</a></li>
 				<li>»</li>
-				<li><a href="#">用户管理</a></li>
+				<li><a href="#">业务管理</a></li>
 				<li>»</li>
-				<li class="active">用户信息管理</li>
+				<li class="active">客户管理</li>
 			</ul>
 		</div>
 	</div>
@@ -39,13 +55,14 @@
 		<div class="col-sm-9">
 
 			<section> <!-- 按钮触发模态框 -->
-			<button class="btn btn-info btn-primary" style="margin-left: 5%;"
-				data-toggle="modal" data-target="#myModal111">新增用户</button>
-			</button>
-			<button type="button" class="btn  btn-info" style="margin-left: 5%;"
-				id="removeUserBtn">
-				<i class="fa fa-level-up"> </i> 删除用户
-			</button>
+				<button class="btn btn-info btn-primary" style="margin-left: 5%;" data-toggle="modal" data-target="#myModal111">新增客户</button>
+<!-- 			<button type="button" class="btn  btn-info" style="margin-left: 5%;" -->
+<!-- 				id="removeUserBtn"> -->
+<!-- 				<i class="fa fa-level-up"> </i> 删除用户 -->
+<!-- 			</button> -->
+				<button data-toggle="modal" data-target="#importUserFileModal"  class="btn btn-info btn-primary" style="margin-left: 5%;">导入客户信息</button>
+				<button class="btn btn-info btn-primary" style="margin-left: 5%;">导出客户信息</button>
+				<button onclick="userFiletemplate()" class="btn btn-info btn-primary" style="margin-left: 5%;">模板下载</button>
 			</section>
 		</div>
 	</div>
@@ -74,7 +91,7 @@
 <!-- 				<div class="layui-inline"> -->
 <!-- 					<label class="layui-form-label">查询条件</label> -->
 <!-- 					<div class="layui-input-block"> -->
-<!-- 						<input id="inputId" type="text" name="userId" placeholder="请输入用户id" -->
+<!-- 						<input id="inputId" type="text" name="userId" placeholder="请输入用户序号" -->
 <!-- 							class="layui-input"> -->
 <!-- 					</div> -->
 <!-- 				</div> -->
@@ -94,7 +111,6 @@
 			<thead>
 				<!-- 目录列表 -->
 				<tr>
-					<th width="30"><input id="allCheckBox" type="checkbox">全选</th>
 					<th>序号</th>
 					<th>用户名</th>
 					<th>微信昵称</th>
@@ -113,7 +129,7 @@
 
 			<tfoot>
 				<tr>
-					<td colspan="6"  >
+					<td colspan="8"  >
 						<ul class="pagination">
 
 						</ul>
@@ -136,8 +152,8 @@
 				</div>
 
 				<div class="modal-body">
-					<form class="layui-form" id="addUser-form" action=""
-						style="width: 95%; margin: 10 auto;">
+					<form class="layui-form" id="addUser-form" action="" style="width: 95%; margin: 10 auto;">
+						<input type="hidden" name="operationId" value="2">
 						<div class="layui-form-item2"  >
 							<div class="layui-inline">
 								<label class="layui-form-label2"><a style="color: red;">*</a>用户名</label>
@@ -185,7 +201,7 @@
 							<div class="layui-inline">
 								<label class="layui-form-label2">所在区域</label>
 								<div class="layui-input-block">
-									<input type="text" name="area1" class="layui-input">
+									<input type="text" name="area1" id="city" class="layui-input">
 								</div>
 							</div>
 							<div class="layui-inline" style="margin-left: 10%;">
@@ -232,6 +248,41 @@
 		<!-- /.modal-dialog -->
 	</div>
 	<!-- /.modal -->
+	
+	<!-- 导入信息模态框（Modal） -->
+	<div class="modal fade" id="importUserFileModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	    <div class="modal-dialog">
+	        <div class="modal-content">
+	            <div class="modal-header">
+	                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+	                <h4 class="modal-title" id="myModalLabel">导入客户信息</h4>
+	            </div>
+	            <div class="modal-body">
+				<!-- 内容开始 -->
+					<div class="layui-field-box" style="margin-top: 10px;">
+						<form id="importUserFileForm" class="layui-form" method="post" enctype="multipart/form-data" action="${ctp }/user/importFile" style="width: 100%; margin: 10 auto;">
+							<input type="hidden" name="operationId" value="2"/>
+							<div class="layui-form-item2">
+								<div class="layui-inline">
+									<label class="layui-form-label2">导入用户</label>
+										<div class="layui-input-block">
+											<input type="file" name="file" class="layui-input">
+										</div>
+								</div>
+							</div>
+							<button id="subImportFile" type="button" class="btn btn-primary" style="margin-left: 5%;">导入</button>
+<!-- 							<button type="submit" class="btn btn-primary" style="margin-left: 5%;">导入</button> -->
+						</form>
+					</div>
+				<!-- 内容结束 -->
+			    </div>
+	            <div class="modal-footer">
+	                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+<!-- 	                <button type="submit" class="btn btn-primary">提交更改</button> -->
+	            </div>
+	        </div><!-- /.modal-content -->
+	    </div><!-- /.modal -->
+	</div>
 	
 	<!-- 修改用户信息模态框 -->
 	<div class="modal fade" id="updateUserModalBtn" tabindex="-1" role="dialog"
@@ -441,7 +492,7 @@
 						<tr>
 							<div class="layui-form-item2" id="updateUserDiv">
 								<div class="layui-inline">
-									<label class="layui-form-label2">用户id</label>
+									<label class="layui-form-label2">用户序号</label>
 									<div class="layui-input-block">
 										<input id="userId1Key" value="" type="text" name="userId" disabled="disabled" class="layui-input">
 									</div>
@@ -601,7 +652,7 @@
 			    </div>
 	            <div class="modal-footer">
 	                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-	                <button type="button" class="updateUserModalBtn btn btn-primary">修改信息</button>
+<!-- 	                <button type="button" class="updateUserModalBtn btn btn-primary">修改信息</button> -->
 	            </div>
 	        </div><!-- /.modal-content -->
 	    </div><!-- /.modal -->
@@ -612,7 +663,16 @@
 	
 <!-- 公共的js样式 -->
 <%@include file="/commons/common-js.jsp"%>
-	
+<script type="text/javascript" src="${ctp }/static/js/Popt.js"></script> 
+<script type="text/javascript" src="${ctp }/static/js/cityJson.js"></script> 
+<script type="text/javascript" src="${ctp }/static/js/citySet.js"></script> 
+
+<script type="text/javascript">
+$("#city").click(function (e) {
+	SelCity(this,e);
+    console.log("inout",$(this).val(),new Date())
+});
+</script>
 <script type="text/javascript">
 		//要提交的param；临时存储用户id和角色id
 		var param = {};
@@ -908,11 +968,12 @@
 			getusers();
 		});
 
-		//ajax方式获取所有用户的数据
+		//ajax方式获取所有业务员的数据
 		function getusers() {
 			$.ajax({
-				url : "${ctp}/user/querry",
+				url : "${ctp}/user/querryByOperationId",
 				data : {
+					operationId : 2,
 					pn : page.pn,
 					ps : page.ps
 				},
@@ -981,6 +1042,7 @@
 		//表格显示
 		function buildTable(data) {
 			var userData = data.list;
+			var key = 1;
 
 			$.each(userData,function() {
 				//创建tr
@@ -990,14 +1052,13 @@
 				var btnTd = $("<td></td>")
 				//操作列
 
-				btnTd.append('<button userId = "'+ this.userId+ '" type = "button" class = "userModelShowBtn btn btn-sm btn-success" title="添加角色" ><i class="fa fa-qrcode"></i></button>')
-					 .append('&nbsp;<button userId = "'+ this.userId+ '" type = "button" class = "showMyUserModal btn btn-sm btn-info" title="查看信息" ><i class="fa fa-pencil"></i></button>')
-					 .append('&nbsp;<button userId = "'+ this.userId+ '" type = "button" class = "deleteUserBtn btn btn-sm btn-danger" title="删除用户" id="removeUserBtn"><i class="fa fa-trash"></i></button>');
+				btnTd.append('<button userId = "'+ this.userId+ '" type = "button" class = "userModelShowBtn btn btn-sm btn-success" title="添加角色" ><i class="fa fa-search"></i></button>')
+					 .append('&nbsp;<button userId = "'+ this.userId+ '" type = "button" class = "updateUserModalBtn btn btn-sm btn-info" title="修改信息" ><i class="fa fa-pencil"></i></button>')
+					 .append('&nbsp;<button userId = "'+ this.userId+ '" type = "button" class = "deleteUserBtn btn btn-sm btn-danger" title="删除信息" id="removeUserBtn"><i class="fa fa-trash"></i></button>');
 
-				tr.append("<td><input type='checkbox' userId="+ this.userId +" class='itemCheckBox'></td>")
-				  .append("<td>" + this.userId + "</td>")
-				  .append("<td>" + this.userName+ "</td>")
-				  .append("<td>" + this.wechatName+ "</td>")
+				tr.append("<td>" + (key++) + "</td>")
+				  .append("<td><a title='查看信息' onclick='toUserById("+ this.userId +")' >" + this.userName+ "</a></td>")
+				  .append("<td>" + isNull(this.wechatName) + "</td>")
 				  .append("<td>" + nullIsZero(this.integralCount) + "</td>")
 				  .append("<td>" + this.phone + "</td>")
 				  .append("<td>" + this.email + "</td>")
@@ -1053,12 +1114,36 @@
 					cyclePage).append(nextPage).append(lastPage).append(info)
 		}
 
+		function toUserById(data){
+// 			alert(data);
+			//回显
+			$.ajax({
+				url : "${ctp}/user/querryById",
+				data : {
+					userId : data
+				},
+				dataType: 'json',
+				success : function(data) {
+// 					alert(data);
+// 					console.log(data);
+					showReturnMsg(data);
+				}
+			});
+			
+			//显示模态框
+			$("#showMyUserModal").modal({
+	   			backdrop : 'static',
+	   			show : true
+	   		});
+		}
+		
+		
 		//--------------------------------------------------------------
 		
 		//回显方法
 		function showReturnMsg(data){
 			
-			var conData = data.list[0];
+			var conData = data.content;
 
 			
 			
@@ -1134,60 +1219,57 @@
 		};
 		
 		//------------------------------显示个人信息----------------------
-		$("body").on("click", ".showMyUserModal", function() {
+// 		$("body").on("click", ".showMyUserModal", function() {
+			
+// 			//后台清空模态框里面的内容
+// 			$("#showMyUserModal input").val("");
+			
+// 			param.userId = $(this).attr("userId");
+			
+// 			//回显
+// 			$.ajax({
+// 				url : "${ctp}/user/querryById",
+// 				data : {
+// 					userId : param.userId
+// 				},
+// 				dataType: 'json',
+// 				success : function(data) {
+// // 					console.log(data);
+// 					showReturnMsg(data);
+					
+// 				}
+// 			});
+			
+// 			//显示模态框
+// 			$("#showMyUserModal").modal({
+// 	   			backdrop : 'static',
+// 	   			show : true
+// 	   		});
+// 		});
+		
+		$("body").on("click", ".updateUserModalBtn", function() {
+			
+			var data = $(this).attr("userId");
 			
 			//后台清空模态框里面的内容
-			$("#showMyUserModal input").val("");
+			$("#updateUserModalBtn input").val("");
 			
-			param.userId = $(this).attr("userId");
-			
-			//回显
 			$.ajax({
-				url : "${ctp}/user/querry",
+				url : "${ctp}/user/querryById",
 				data : {
-					userId : param.userId
+					userId : data
 				},
 				dataType: 'json',
 				success : function(data) {
-// 					console.log(data);
 					showReturnMsg(data);
-					
 				}
 			});
 			
 			//显示模态框
-			$("#showMyUserModal").modal({
+			$("#updateUserModalBtn").modal({
 	   			backdrop : 'static',
 	   			show : true
 	   		});
-			
-			
-			$("body").on("click", ".updateUserModalBtn", function() {
-				
-				//关闭模态框
-				$("#showMyUserModal").modal('hide');
-				
-				//后台清空模态框里面的内容
-				$("#updateUserModalBtn input").val("");
-				
-				$.ajax({
-					url : "${ctp}/user/querry",
-					data : {
-						userId : param.userId
-					},
-					dataType: 'json',
-					success : function(data) {
-						showReturnMsg(data);
-					}
-				});
-				
-				//显示模态框
-				$("#updateUserModalBtn").modal({
-		   			backdrop : 'static',
-		   			show : true
-		   		});
-				
-			});
 			
 		});
 		
@@ -1224,17 +1306,41 @@
 				});
 			});
 		});
-		
+//----------------------------null值转化为0---------------------------------------	
 	function nullIsZero(data){
-		
 		if (data == null) {
 			return data = 0;
 		}
 		return data;
-		
-		
 	}	
 	
+//----------------------------下载导入信息模板模板-------------------------------------
+	function userFiletemplate(){
+		
+		location.href="${ctp}/user/down";
+	
+		return false;
+	}
+	
+//-----------------------------导入提交-------------------------------
+	$("#subImportFile").click(function(){
+		$("#importUserFileForm").ajaxSubmit(function(data){
+			//回显状态信息
+			layer.msg(data.msg);
+			//关闭模态框
+			$("#importUserFileModal").modal('hide');
+			return false;
+		});
+	});
+	
+	
+//-------------------------------null转化为空字符串-------------------------------
+	function isNull(data){
+		if (data == null) {
+			return "";
+		}
+		return data;
+	}	
 	
 	</script>
 </body>

@@ -27,7 +27,7 @@ public class TbUser {
 
     private String duty;//职务
 
-    private Integer operationId;
+    private Integer operationId;//用户性质  1、业务员。2、客户
 
     private String handleBrand;  //操作品种
 

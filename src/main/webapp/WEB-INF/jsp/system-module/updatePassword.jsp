@@ -37,8 +37,10 @@
 		
 			<fieldset class="layui-elem-field" style="width: 100%; float: left;">
 				<legend style="border-bottom: 1px solid #fff; width: auto;">修改密码</legend>
+				
 				<div class="layui-field-box">
-					<form id="updateUserForm" class="layui-form" action="">
+					<form id="updateUserForm" class="layui-form" action="${ctp }/user/updatePossword">
+						<span style="color: red;">${msg }</span>
 						<input type="hidden" name="userId" value=" ${loginUser.userId }">
 						<div class="layui-form-item"
 							style="width: 50%; float: left; margin-left: 6%;">
@@ -100,11 +102,17 @@
 				
 				$.post("${ctp }/user/updatePossword",params , function(data){
 					layer.msg(data.msg);
+					location.href="login.html";
 				});
 			},function(){
 				layer.msg(data.msg);
 			});
 		});
+
+// 	$("#updatePwdBtn").click(function(){
+//   		$("form:first").submit();
+//   		return false;
+//   	});
 		
 		//------------------修改密码----------------------------
 // 		function isValid(form)

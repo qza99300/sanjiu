@@ -152,7 +152,7 @@ public class ConsigneeController {
 	 */
 	@RequestMapping("querryall")
 	@ResponseBody
-	public ResultVO<Object> querryAllConsigneeText(@RequestParam(value = "pn", defaultValue = "1") Integer pageNum,
+	public PageInfo<TbConsignee> querryAllConsigneeText(@RequestParam(value = "pn", defaultValue = "1") Integer pageNum,
 			@RequestParam(value = "ps", defaultValue = "7") Integer pageSize,
 			@RequestParam(value="consigneeId", required = false) Integer consigneeId) {
 		
@@ -161,7 +161,7 @@ public class ConsigneeController {
 //		List<TbConsignee> consignee = this.consigneeService.querryAllConsignee();
 		PageInfo<TbConsignee> conInfo = new PageInfo<>(this.consigneeService.querryAllConsignee(), AppContant.PAGE_SIZE);
 		
-		return ResultVO.success("查询成功", conInfo, null);
+		return conInfo;
 		
 		
 	}

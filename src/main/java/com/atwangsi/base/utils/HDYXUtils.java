@@ -34,18 +34,18 @@ public class HDYXUtils {
 	 * @param fileName
 	 */
 	
-	//用户导入导出基本信息  
-	protected static void setResponseHeader(HttpServletResponse response, String fileName){
-        fileName += ".xls";
-        String cntentType = "application/vnd.ms-excel";
-        try {
-            fileName = new String(fileName.getBytes("UTF-8"), "ISO_8859_1");//解决文件中文名乱码
-        }catch (Throwable e){
-            e.printStackTrace();
-        }
-        response.setHeader("Content-Type", cntentType);// 告诉浏览器用什么软件可以打开此文件
-        response.setHeader("Content-Disposition", "attachment;filename="+fileName);// 下载文件的默认名称
-    }
+//	//用户导入导出基本信息  
+//	protected static void setResponseHeader(HttpServletResponse response, String fileName){
+//        fileName += ".xls";
+//        String cntentType = "application/vnd.ms-excel";
+//        try {
+//            fileName = new String(fileName.getBytes("UTF-8"), "ISO_8859_1");//解决文件中文名乱码
+//        }catch (Throwable e){
+//            e.printStackTrace();
+//        }
+//        response.setHeader("Content-Type", cntentType);// 告诉浏览器用什么软件可以打开此文件
+//        response.setHeader("Content-Disposition", "attachment;filename="+fileName);// 下载文件的默认名称
+//    }
 	
 	
 	/**
@@ -108,16 +108,16 @@ public class HDYXUtils {
         return Double.isNaN(n.doubleValue());
     }
 	
-	/**
-	 * 获取文件的存放目录
-	 * @param text
-	 * @param regex
-	 * @param replacement
-	 * @return
-	 */
-	public static String replaceLast(String text, String regex, String replacement) {
-	  	  return text.replaceFirst("(?s)"+regex+"(?!.*?"+regex+")", replacement);
-	  	}
+//	/**
+//	 * 获取文件的存放目录
+//	 * @param text
+//	 * @param regex
+//	 * @param replacement
+//	 * @return
+//	 */
+//	public static String replaceLast(String text, String regex, String replacement) {
+//	  	  return text.replaceFirst("(?s)"+regex+"(?!.*?"+regex+")", replacement);
+//	  	}
 	
 	/**
 	 * 文件上传
@@ -214,7 +214,7 @@ public class HDYXUtils {
 		list.add("所在区");
 		list.add("邮箱地址");
 		list.add("详细地址");
-		list.add("创建时间");
+		
 		return list;
 	}
 	/**
@@ -262,9 +262,8 @@ public class HDYXUtils {
 		}
 	}
 
-
 	/**
-	 * 文件写入查询到的用户信息数据
+	 * 文件写入，查询到的用户信息数据
 	 * @param workbook
 	 * @param users
 	 * @return
@@ -284,7 +283,7 @@ public class HDYXUtils {
 			TbUser user = users.get(i-1);//获取一条数据
 			List<String> list = userDownFileByUser(i-1, user);
 			for (int j = 0; j < list.size(); j++) {
-				row.createCell(j).setCellValue(list.get(j));//写入数据
+				row.createCell(j+1).setCellValue(list.get(j+1));//写入数据
 			}
 		}
 		return workbook;
@@ -359,9 +358,4 @@ public class HDYXUtils {
 			}
 		}
 	}
-
-
-	
-
-	 
 }

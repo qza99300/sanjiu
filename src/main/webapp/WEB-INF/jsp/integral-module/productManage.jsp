@@ -244,8 +244,7 @@ select {
 	            </div>
 	            <div class="modal-body">
 				<!-- 内容开始 -->
-				<form  class="layui-form" action=""
-						id="UpdateModelForm" style="width: 100%; margin: 10 auto;">
+				<form  class="layui-form" action="" id="UpdateModelForm" style="width: 100%; margin: 10 auto;">
 						<input type="hidden" name="productId" id="productId">
 					<div class="layui-form-item2">
 							<div class="layui-inline">

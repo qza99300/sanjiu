@@ -52,7 +52,7 @@
 				<div class="layui-inline">
 					<label class="layui-form-label">查询条件</label>
 					<div class="layui-input-block">
-						<input id="inputId" type="text" name="consigneeName" placeholder="请输入用户名称" class="layui-input">
+						<input id="inputId" type="text" name="consigneeName" placeholder="请输入收货人名称" class="layui-input">
 					</div>
 				</div>
 
@@ -72,8 +72,8 @@
 				<tr>
 					<th>序号</th>
 					<th>用户名</th>
-					<th>收货人电话</th><!-- js未改 -->
 					<th>收货人名称</th>
+					<th>收货人电话</th><!-- js未改 -->
 					<th>收货地址</th>
 					<th>创建时间</th>
 					<th>操作</th>
@@ -87,7 +87,7 @@
 			<!-- 分页部分 -->
 			<tfoot>
 				<tr>
-					<td colspan="6" align="center">
+					<td colspan="7" align="center">
 						<ul class="pagination">
 
 
@@ -119,7 +119,7 @@
 					<div class="layui-form-item2" id="updateOrderDiv">
 						<div class="layui-inline">
 							<label class="layui-form-label2"><a
-								style="color: red;">*</a>用户id</label>
+								style="color: red;">*</a>用户序号</label>
 							<div class="layui-input-block">
 								<input type="text" name="userId"  class="layui-input">
 							</div>
@@ -129,6 +129,17 @@
 								style="color: red;">*</a>收货人名称</label>
 							<div class="layui-input-block">
 								<input  type="text" name="consigneeName"  class="layui-input">
+							</div>
+						</div>
+					</div>
+				</tr>
+				<tr>
+					<div class="layui-form-item2">
+						<div class="layui-inline">
+							<label class="layui-form-label2"><a
+								style="color: red;">*</a>收货人电话</label>
+							<div class="layui-input-block">
+								<input type="text" name="phone"  class="layui-input">
 							</div>
 						</div>
 					</div>
@@ -177,22 +188,32 @@
 			<table>
 				<tr>
 					<div class="layui-form-item2" id="updateOrderDiv">
-						<div class="layui-inline">
-							<label class="layui-form-label2"><a
-								style="color: red;">*</a>用户id</label>
-							<div class="layui-input-block">
-								<input id="conIdKey" type="hidden" name="consigneeId" value="" >
-								<input id="userIdKey" type="hidden" name="userId" value=""  class="layui-input">
-								<input id="user1IdKey" type="text" name="userId" disabled="disabled"  class="layui-input">
-							</div>
-						</div>
+<!-- 						<div class="layui-inline"> -->
+<!-- 							<label class="layui-form-label2"><a -->
+<!-- 								style="color: red;">*</a>用户序号</label> -->
+<!-- 							<div class="layui-input-block"> -->
+<!-- 								<input id="user1IdKey" type="text" name="userId" disabled="disabled"  class="layui-input"> -->
+<!-- 							</div> -->
+<!-- 						</div> -->
+						
 						<div class="layui-inline">
 							<label class="layui-form-label2"><a
 								style="color: red;">*</a>收货人名称</label>
 							<div class="layui-input-block">
+								<input id="conIdKey" type="hidden" name="consigneeId" value="" >
+								<input id="userIdKey" type="hidden" name="userId" value=""  class="layui-input">
 								<input id="nameIdKey" type="text" name="consigneeName"  class="layui-input">
 							</div>
 						</div>
+						
+						<div class="layui-inline">
+							<label class="layui-form-label2"><a
+								style="color: red;">*</a>收货人电话</label>
+							<div class="layui-input-block">
+								<input id="phoneKey" type="text" name="phone"  class="layui-input">
+							</div>
+						</div>
+						
 					</div>
 				</tr>
 				<tr>
@@ -241,7 +262,7 @@
 							<div class="layui-form-item2" id="updateOrderDiv">
 								<div class="layui-inline">
 									<label class="layui-form-label2"><a
-										style="color: red;">*</a>序号id</label>
+										style="color: red;">*</a>地址序号</label>
 									<div class="layui-input-block">
 										<input id="selIdKey" type="text" name="consigneeId" disabled="disabled"
 											value="" class="layui-input">
@@ -249,7 +270,7 @@
 								</div>
 								<div class="layui-inline">
 									<label class="layui-form-label2"><a
-										style="color: red;">*</a>用户id</label>
+										style="color: red;">*</a>用户序号</label>
 									<div class="layui-input-block">
 										<input id="selUserIdKey" type="text" name="userId"
 											value="" disabled="disabled"
@@ -382,7 +403,7 @@
 		}
 
 		function buildTable(data) {
-			var consigneeData = data.content.list;
+			var consigneeData = data.list;
 			
 			$.each(consigneeData, function() {
 // 			console.log(consigneeData);
@@ -397,13 +418,12 @@
 	
 				tr.append("<td>" + this.consigneeId + "</td>")
 				  .append("<td><a onclick='showConsigneeById("+ this.consigneeId +")'>" + this.userName + "</a></td>")
-				  .append("<td>" + this.phone + "</td>")
 				  .append("<td>" + this.consigneeName + "</td>")
+				  .append("<td>" + this.phone + "</td>")
 				  .append("<td>" + this.consigneePath + "</td>")
 				  .append("<td>" + timeFormat(this.createDate))
 				  .append(btnTd).appendTo($("#consigneeTable"));
 			});
-			
 		}
 
 		//分页条显示
@@ -521,8 +541,8 @@
 // 				location.reload();
 
 				//跳转当前页
-				console.log();
-				alert(pageNum);
+// 				console.log();
+// 				alert(pageNum);
 				page.pn = page.pageNum;
 				getConsignees();
 			}, function() {
@@ -538,21 +558,25 @@
 			
 			//获取表单数据
 			var data = $("#Consignee-form").serialize();
-			alert(data);
+// 			alert(data);
 			var dataVal = document.getElementById("inputId").value;
-			
+// 			alert(dataVal);
 			page.pn = 1;//第一页数据
 			
 			if (dataVal) {
 				getConsigneeOne(data);
+// 				alert(dataVal+"11");
+				
 			}else{
 				getConsignees();
+// 				alert(dataVal+"22");
 			}
 		});
 		
 		function getConsigneeOne(data){
 
 			$.post("${ctp}/consignee/querryByLike",data,function(data){
+// 				console.log(data);
 				showconsignees(data);
 			});
 		}
@@ -623,6 +647,7 @@
 			document.getElementById("selUserIdKey").value = conData.userId;
 			document.getElementById("nameIdKey").value = conData.consigneeName;
 			document.getElementById("selNameKey").value = conData.consigneeName;
+			document.getElementById("phoneKey").value = conData.phone;
 			document.getElementById("pathIdKey").value = conData.consigneePath;
 			document.getElementById("selPathKey").value = conData.consigneePath;
 			document.getElementById("areaIdKey").value = conData.area;

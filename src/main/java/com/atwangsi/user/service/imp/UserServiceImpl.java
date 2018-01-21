@@ -256,7 +256,7 @@ public class UserServiceImpl implements UserService {
 		return this.userMapper.selectByExample(example).size() > 0;
 	}
 
-	// 添加每一行的数据
+	// 读取文件数据，添加每一行的数据
 	private static TbUser buildStudent(Row row) {
 		TbUser user = new TbUser();
 		user.setUserName(getStringCellValue(row.getCell(1)));//用户名
@@ -267,11 +267,11 @@ public class UserServiceImpl implements UserService {
 		user.setDepartment(getStringCellValue(row.getCell(6)));//所在部门
 		user.setDuty(getStringCellValue(row.getCell(7)));//现任职务
 		user.setArea1(getStringCellValue(row.getCell(8)));//所属区域
-		user.setProvince(getStringCellValue(row.getCell(9)));
-		user.setCity(getStringCellValue(row.getCell(10)));
-		user.setEmail(getStringCellValue(row.getCell(11)));//邮箱地址
-		user.setAddress(getStringCellValue(row.getCell(12)));//详细地址
-		
+		user.setProvince(getStringCellValue(row.getCell(9)));//所在省
+		user.setCity(getStringCellValue(row.getCell(10)));//所在市
+		user.setCity(getStringCellValue(row.getCell(11)));//所在区
+		user.setEmail(getStringCellValue(row.getCell(12)));//邮箱地址
+		user.setAddress(getStringCellValue(row.getCell(13)));//详细地址
 		return user;
 	}
 
@@ -312,7 +312,7 @@ public class UserServiceImpl implements UserService {
 
 	// 文件导入操作
 	@Override
-	public ResultVO<Object> importMsg(MultipartFile file) {
+	public ResultVO<Object> importMsg(MultipartFile file, Integer operationId) {
 		// TODO Auto-generated method stub
 		List<TbUser> list = new ArrayList<>();
 		Workbook workbook = null;
@@ -340,6 +340,7 @@ public class UserServiceImpl implements UserService {
 		// 遍历插入用户信息
 		for (TbUser user : list) {
 			user.setCreateDate(new Date());
+			user.setOperationId(operationId);
 			this.userMapper.insertSelective(user);
 		}
 		return ResultVO.success("数据导入成功", null, null);
@@ -360,6 +361,35 @@ public class UserServiceImpl implements UserService {
 		// TODO Auto-generated method stub
 		TbUserExample example = new TbUserExample();
 		example.createCriteria().andIdNameLike("%"+province	+"%");
+		return this.userMapper.selectByExample(example);
+	}
+
+	//修改密码，根据用户id查出用户
+	@Override
+	public Boolean updatePassword(String oldPassword, Integer userId) {
+		// TODO Auto-generated method stub
+		TbUser user = this.userMapper.selectByPrimaryKey(userId);
+		if (user.getPassword().equals(oldPassword)) {
+			return true;
+		}
+		return false;
+	}
+
+	//省份模糊查詢+operationId双条件查询用户
+	@Override
+	public List<TbUser> querryByLikeByProvince(String province, Integer operationId) {
+		// TODO Auto-generated method stub
+		TbUserExample example = new TbUserExample();
+		example.createCriteria().andIdNameLike("%"+province	+"%").andOperationIdEqualTo(operationId);
+		return this.userMapper.selectByExample(example);
+	}
+	
+	//用户名+operationId双条件查询用户
+	@Override
+	public List<TbUser> querryByLike(String userName, Integer operationId) {
+		// TODO Auto-generated method stub
+		TbUserExample example = new TbUserExample();
+		example.createCriteria().andIdNameLike("%"+userName	+"%").andOperationIdEqualTo(operationId);
 		return this.userMapper.selectByExample(example);
 	}
 }

@@ -131,18 +131,10 @@
 	            </div>
 	            <div class="modal-body">
 				<!-- 内容开始 -->
-					<form class="layui-form" action=""
-					id="addConsigneeForm" style="width: 100%; margin: 10 auto;">
+					<form enctype="multipart/form-data" class="layui-form" action="" id="addConsigneeForm" style="width: 100%; margin: 10 auto;">
 					<table>
 						<tr>
 							<div class="layui-form-item2" id="updateOrderDiv">
-								<div class="layui-inline">
-									<label class="layui-form-label2"><a
-										style="color: red;">*</a>活动人数</label>
-									<div class="layui-input-block">
-										<input type="text" name="activityNum"  class="layui-input">
-									</div>
-								</div>
 								<div class="layui-inline">
 									<label class="layui-form-label2"><a
 										style="color: red;">*</a>活动标题</label>
@@ -150,6 +142,14 @@
 										<input type="text" name="activityTitle"  class="layui-input">
 									</div>
 								</div>
+								<div class="layui-inline">
+									<label class="layui-form-label2"><a
+										style="color: red;">*</a>活动人数</label>
+									<div class="layui-input-block">
+										<input type="text" name="activityNum"  class="layui-input">
+									</div>
+								</div>
+								
 							</div>
 						</tr>
 						<tr>
@@ -161,9 +161,9 @@
 									</div>
 								</div>
 								<div class="layui-inline">
-									<label class="layui-form-label2">创建年度</label>
+									<label class="layui-form-label2"><a style="color: red;">*</a>有效时间</label>
 									<div class="layui-input-block">
-										<input type="text" name="createYear"  class="layui-input">
+										<input type="text" name="stopDates"  class="layui-input">
 									</div>
 								</div>
 							</div>
@@ -172,43 +172,41 @@
 							<div class="layui-form-item2" id="updateOrderDiv">
 								<div class="layui-inline">
 									<label class="layui-form-label2"><a
-										style="color: red;">*</a>所属部门</label>
-									<div class="layui-input-block">
-										<input type="text" name="department"  class="layui-input">
-									</div>
-								</div>
-								<div class="layui-inline">
-									<label class="layui-form-label2"><a
 										style="color: red;">*</a>所属区域</label>
 									<div class="layui-input-block">
 										<input type="text" name="area"  class="layui-input">
 									</div>
 								</div>
-							</div>
-						</tr>
-						<tr>
-							<div class="layui-form-item2">
 								<div class="layui-inline">
-									<label class="layui-form-label2"><a
-										style="color: red;">*</a>备注</label>
+									<label class="layui-form-label2">所属部门</label>
 									<div class="layui-input-block">
-										<input type="text" name="remark"  class="layui-input">
-									</div>
-								</div>
-								<div class="layui-inline">
-									<label class="layui-form-label2">附件路径</label>
-									<div class="layui-input-block">
-										<input type="text" name="accessoryPath"  class="layui-input">
+										<input type="text" name="department"  class="layui-input">
 									</div>
 								</div>
 							</div>
 						</tr>
+<!-- 						<tr> -->
+<!-- 							<div class="layui-form-item2"> -->
+<!-- 								<div class="layui-inline"> -->
+<!-- 									<label class="layui-form-label2">备注</label> -->
+<!-- 									<div class="layui-input-block"> -->
+<!-- 										<input type="text" name="remark"  class="layui-input"> -->
+<!-- 									</div> -->
+<!-- 								</div> -->
+<!-- 								<div class="layui-inline"> -->
+<!-- 									<label class="layui-form-label2">附件路径</label> -->
+<!-- 									<div class="layui-input-block"> -->
+<!-- 										<input type="text" name="accessoryPath"  class="layui-input"> -->
+<!-- 									</div> -->
+<!-- 								</div> -->
+<!-- 							</div> -->
+<!-- 						</tr> -->
 						<tr>
 							<div class="layui-form-item2">
 								<div class="layui-inline">
 									<label class="layui-form-label2">图片上传</label>
 									<div class="layui-input-block">
-										<input type="image" name="picture"  class="layui-input">
+										<input type="file" name="picture"  class="layui-input">
 									</div>
 								</div>
 							
@@ -216,7 +214,8 @@
 									<label class="layui-form-label2"><a
 										style="color: red;">*</a>活动内容</label>
 									<div class="layui-input-block">
-										<input type="text"  style="width:400px; height=200px"  maxlength="500" name="activityMatter"  class="layui-input">
+										<textarea name="activityMatter"  class="layui-input" style="width:300px;height:100px;"></textarea>
+<!-- 										<input type="text"  style="width:400px; height=200px"  maxlength="500" name="activityMatter"  class="layui-input"> -->
 									</div>
 								</div>
 								
@@ -228,7 +227,7 @@
 		    </div>
 	            <div class="modal-footer">
 	                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-	                <button type="button" id="addActivityBtn" class="btn btn-primary">提交更改</button>
+	                <button type="button" id="addActivityBtn" class="btn btn-primary">创建</button>
 	            </div>
 	        </div><!-- /.modal-content -->
 	    </div><!-- /.modal -->

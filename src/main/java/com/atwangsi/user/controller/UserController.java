@@ -53,7 +53,9 @@ public class UserController {
 	 */
 	@RequestMapping(value = "fileExportByProvince", method = {RequestMethod.POST,RequestMethod.GET})
 	@ResponseBody
-	public ResultVO<Object> fileDownByProvinceLike(@RequestParam("province")String province,HttpServletResponse response){
+	public ResultVO<Object> fileDownByProvinceLike(
+			@RequestParam("operationId") Integer operationId,
+			@RequestParam("province")String province,HttpServletResponse response){
 		//定义的文件名
 		String fileName = "用户导出信息";
 		//第三个参数：需要导出的字段  
@@ -61,7 +63,7 @@ public class UserController {
 		//获取用户信息模板
 		HSSFWorkbook workbook = FileDown.fileDown(HDYXUtils.userDownFile());
 		
-		List<TbUser> users = this.userService.querryByLikeByProvince(province);
+		List<TbUser> users = this.userService.querryByLikeByProvince(province,operationId);
 		
 		HDYXUtils.intoUserMsgtoFile(workbook,users);
 		
@@ -105,15 +107,16 @@ public class UserController {
 	 */
 	@RequestMapping(value = "fileExportByUserName", method = {RequestMethod.POST,RequestMethod.GET})
 	@ResponseBody
-	public ResultVO<Object> fileDownByUserNameLike(@RequestParam("userName")String userName,HttpServletResponse response){
+	public ResultVO<Object> fileDownByUserNameLike(@RequestParam("userName")String userName,@RequestParam("operationId") Integer operationId ,HttpServletResponse response){
 		//定义的文件名
 		String fileName = "用户导出信息";
 		//第三个参数：需要导出的字段  
-		
+		List<String> list = HDYXUtils.userDownFile();
+		list.add("创建时间");
 		//获取用户信息模板
-		HSSFWorkbook workbook = FileDown.fileDown(HDYXUtils.userDownFile());
+		HSSFWorkbook workbook = FileDown.fileDown(list);
 		
-		List<TbUser> users = this.userService.querryByLike(userName);
+		List<TbUser> users = this.userService.querryByLike(userName,operationId);
 		
 		HDYXUtils.intoUserMsgtoFile(workbook,users);
 		
@@ -131,9 +134,10 @@ public class UserController {
 	 */
 	@RequestMapping(value="importFile" ,method=RequestMethod.POST)
 	@ResponseBody
-	public ResultVO<Object> importMsg(@RequestParam("file") MultipartFile file){
+	public ResultVO<Object> importMsg(@RequestParam("file") MultipartFile file,
+						@RequestParam("operationId") Integer operationId){
 		//执行操作
-		ResultVO<Object> result = this.userService.importMsg(file);
+		ResultVO<Object> result = this.userService.importMsg(file,operationId);
 		return result;
 	}
 	
@@ -228,11 +232,11 @@ public class UserController {
 			@RequestParam(value = "ps", defaultValue = "7") Integer pageSize,
 			@RequestParam("userName") String userName) {
 		
-		PageHelper.startPage(pageNum, pageSize);
+//		PageHelper.startPage(pageNum, pageSize);
 		
 		List<TbUser> list =this.userService.querryByLike(userName);
 		
-		return new PageInfo<>(list, AppContant.PAGE_SIZE);
+		return new PageInfo<>(list, list.size());
 	}
 
 	/**
@@ -316,20 +320,19 @@ public class UserController {
 	 * 
 	 * @return
 	 */
-	@RequestMapping("querry")
-	@ResponseBody
-	public PageInfo<TbUser> userList(@RequestParam(value = "pn", defaultValue = "1") Integer pageNum,
-			@RequestParam(value = ("ps"), defaultValue = "7") Integer pageSize,
-			@RequestParam(value="userId", required = false) Integer userId) {
-
-		PageHelper.startPage(pageNum, pageSize);
-		if (userId == null) {
-			return new PageInfo<>(this.userService.getAllUser(), AppContant.PAGE_SIZE);
-		}
-		
-		return new PageInfo<>(this.userService.querryUserOne(userId),AppContant.PAGE_SIZE);
-	}
-	
+//	@RequestMapping("querryByOperationId")
+//	@ResponseBody
+//	public PageInfo<TbUser> userList(@RequestParam(value = "pn", defaultValue = "1") Integer pageNum,
+//			@RequestParam(value = ("ps"), defaultValue = "7") Integer pageSize,
+//			@RequestParam("operationId") Integer operationId) {
+//
+//		PageHelper.startPage(pageNum, pageSize);
+//		if (operationId != null) {
+//			return new PageInfo<>(this.userService.querryByOperationId(operationId), AppContant.PAGE_SIZE);
+//		}
+//		return null;
+//	}
+//	
 	/**
 	 * 根据用户id查询用户信息
 	 * json
@@ -461,6 +464,24 @@ public class UserController {
 			return ResultVO.fail("密码修改失败", null, null);
 		
 	}
+//	//页面跳转
+//	@RequestMapping("updatePossword")
+//	public String updatePassword(@RequestParam("oldPassword") String oldPassword, 
+//			@RequestParam("userId") Integer userId,RedirectAttributes attributes){
+//	
+//			if (HDYXUtils.isNull(userId)) {
+//				//冲定向到登录页面
+//				return "redirect:/updatePassword.html";
+//			}
+//			Boolean bool = this.userService.updatePassword(oldPassword,userId);
+//			if (bool) {
+//				attributes.addAttribute("msg", "修改成功");
+//				return "/login.html";
+//			}
+//			
+//			return "redirect:/updatePassword.html";
+//		
+//	}
 
 
 }

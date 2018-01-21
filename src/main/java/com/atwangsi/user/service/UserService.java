@@ -39,10 +39,16 @@ public interface UserService {
 
 	Boolean checkoutByPhone(String phone);
 
-	ResultVO<Object> importMsg(MultipartFile file);
+	ResultVO<Object> importMsg(MultipartFile file, Integer operationId);
 
 	List<TbUser> querryByLikeByIdName(String idName);
 
 	List<TbUser> querryByLikeByProvince(String province);
+
+	Boolean updatePassword(String oldPassword, Integer userId);
+
+	List<TbUser> querryByLikeByProvince(String province, Integer operationId);
+
+	List<TbUser> querryByLike(String userName, Integer operationId);
 
 }

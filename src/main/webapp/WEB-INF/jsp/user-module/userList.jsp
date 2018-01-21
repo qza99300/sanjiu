@@ -30,7 +30,7 @@
 				<li>»</li>
 				<li><a href="#">用户管理</a></li>
 				<li>»</li>
-				<li class="active">用户信息管理</li>
+				<li class="active">业务管理</li>
 			</ul>
 		</div>
 	</div>
@@ -38,37 +38,18 @@
 		<div class="col-sm-9">
 
 			<section> <!-- 按钮触发模态框 -->
-				
-				<button class="btn btn-info btn-primary" style="margin-left: 5%;"
-					data-toggle="modal" data-target="#myModal111">新增用户</button>
-				</button>
-				<button class="btn btn-info btn-primary" style="margin-left: 5%;">导入用户</button>
-				</button>
-				<button class="btn btn-info btn-primary" style="margin-left: 5%;">导出用户</button>
-				</button>
+				<button class="btn btn-info btn-primary" style="margin-left: 5%;" data-toggle="modal" data-target="#myModal111">新增业务员</button>
+				<button data-toggle="modal" data-target="#importUserFileModal"  class="btn btn-info btn-primary" style="margin-left: 5%;">导入业务员信息</button>
+				<button class="btn btn-info btn-primary" style="margin-left: 5%;">导出业务员</button>
+				<button onclick="userFiletemplate()" class="btn btn-info btn-primary" style="margin-left: 5%;">导入模板下载</button>
 			</section>
 		</div>
 	</div>
 
-	<div class="layui-field-box" style="margin-top: 10px;">
-		<form class="layui-form" method="post" enctype="multipart/form-data" action="${ctp }/user/importFile" style="width: 100%; margin: 10 auto;">
-			<div class="layui-form-item2">
-				<div class="layui-inline">
-					<label class="layui-form-label2">导入用户</label>
-						<div class="layui-input-block">
-							<input type="file" name="file" class="layui-input">
-						</div>
-				</div>
-			</div>
-<!-- 			<input type="submit" value="提交"/> -->
-			<button type="submit" class="btn btn-info btn-primary" style="margin-left: 5%;">导入</button>
-		</form>
-	</div>
-
-
 	<!--筛选开始-->
 	<div class="layui-field-box" style="margin-top: 10px;">
 		<form id="querryForm" class="layui-form" action="">
+<!-- 			<input type=""/> -->
 			<div class="layui-form-item">
 				<div class="layui-inline">
 					<label class="layui-form-label">查询条件</label>
@@ -84,6 +65,10 @@
 			</div>
 		</form>
 	</div>
+	
+	
+	<!-- 测试区域 -->
+	<!-- 测试区域 -->
 
 	<!--table开始-->
 	<div id="gundong">
@@ -93,7 +78,7 @@
 				<!-- 目录列表 -->
 				<tr>
 					<th>序号</th>
-					<th>用户名</th>
+					<th>姓名</th>
 					<th>微信昵称</th>
 					<th>积分总数</th>
 					<th>联系方式</th>
@@ -133,8 +118,8 @@
 				</div>
 
 				<div class="modal-body">
-					<form class="layui-form" id="addUser-form" action=""
-						style="width: 95%; margin: 10 auto;">
+					<form class="layui-form" id="addUser-form" action="" style="width: 95%; margin: 10 auto;">
+						<input type="hidden" name="operationId" value="1">
 						<div class="layui-form-item2"  >
 							<div class="layui-inline">
 								<label class="layui-form-label2">用户名</label>
@@ -421,6 +406,42 @@
 	</div>
 	<!-- 添加角色模态框结束 --> 
 	
+	
+	<!-- 导入信息模态框（Modal） -->
+	<div class="modal fade" id="importUserFileModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	    <div class="modal-dialog">
+	        <div class="modal-content">
+	            <div class="modal-header">
+	                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+	                <h4 class="modal-title" id="myModalLabel">导入用户信息</h4>
+	            </div>
+	            <div class="modal-body">
+				<!-- 内容开始 -->
+					<div class="layui-field-box" style="margin-top: 10px;">
+						<form id="importUserFileForm" class="layui-form" method="post" enctype="multipart/form-data" action="${ctp }/user/importFile" style="width: 100%; margin: 10 auto;">
+							<input type="hidden" name="operationId" value="1"/>
+							<div class="layui-form-item2">
+								<div class="layui-inline">
+									<label class="layui-form-label2">导入用户</label>
+										<div class="layui-input-block">
+											<input type="file" name="file" class="layui-input">
+										</div>
+								</div>
+							</div>
+							<button id="subImportFile" type="button" class="btn btn-primary" style="margin-left: 5%;">导入</button>
+<!-- 							<button type="submit" class="btn btn-primary" style="margin-left: 5%;">导入</button> -->
+						</form>
+					</div>
+				<!-- 内容结束 -->
+			    </div>
+	            <div class="modal-footer">
+	                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+<!-- 	                <button type="submit" class="btn btn-primary">提交更改</button> -->
+	            </div>
+	        </div><!-- /.modal-content -->
+	    </div><!-- /.modal -->
+	</div>
+	
 	<!-- 查看用户详细信息模态框 -->
 	<div class="modal fade" id="showMyUserModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 	    <div class="modal-dialog modal-lg">
@@ -468,7 +489,7 @@
 								<div class="layui-inline">
 									<label class="layui-form-label2">后台管理账号</label>
 									<div class="layui-input-block">
-										<input id="loginname3Key" type="text" name="loginname" disabled="disabled" class="layui-input">
+										<input id="loginname1Key" type="text" name="loginname" disabled="disabled" class="layui-input">
 									</div>
 								</div>
 								<div class="layui-inline">
@@ -576,7 +597,7 @@
 			    </div>
 	            <div class="modal-footer">
 	                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-	                <button type="button" class="updateUserModalBtn btn btn-primary">修改信息</button>
+<!-- 	                <button type="button" class="updateUserModalBtn btn btn-primary">修改信息</button> -->
 	            </div>
 	        </div><!-- /.modal-content -->
 	    </div><!-- /.modal -->
@@ -797,7 +818,6 @@
 
 		}
 
-
 		//删除一个用户
 		$("body").on("click", ".deleteUserBtn", function() {
 
@@ -808,10 +828,10 @@
 				$.get("${ctp}/user/delUser", param, function(data) {
 					layer.msg(data.msg);
 				});
-				location.reload();
+// 				location.reload();
 
 				//跳转当前页
-				page.pn = page.pageNum;
+				page.pn = 1;
 				getusers();
 			}, function() {
 				layer.msg("....");
@@ -819,33 +839,6 @@
 
 			return false;
 		})
-
-		//批量删除用户  
-		$("#removeUserBtn").click(function() {
-			//找到选中的员工的checkbox并获取到id
-			param.userIds = "";
-
-			$(".itemCheckBox:checked").each(function() {
-				param.userIds += $(this).attr("userId") + ",";
-			});
-
-
-			layer.confirm("确认删除这些员工吗？", {
-				btn : [ "确定删除", "取消删除" ]
-			}, function() {
-				//删除员工
-				$.post("${ctp }/user/delUser", param, function(data) {
-					//返回参数
-					layer.msg(data.msg);
-
-					//来到最后一页；
-					page.pn = page.lastPage + 10;
-					getusers();
-				});
-			}, function() {
-
-			});
-		});
 
 		//----------------获取所有用户列表操作,以及遍历所有用户角色和所有的角色-----------------------
 		//获取所有用户列表操作,以及遍历所有用户角色和所有的角色
@@ -883,11 +876,12 @@
 			getusers();
 		});
 
-		//ajax方式获取所有用户的数据
+		//ajax方式获取所有业务员的数据
 		function getusers() {
 			$.ajax({
-				url : "${ctp}/user/querry",
+				url : "${ctp}/user/querryByOperationId",
 				data : {
+					operationId : 1,
 					pn : page.pn,
 					ps : page.ps
 				},
@@ -902,9 +896,10 @@
 			$.post("${ctp}/user/querryByLike",data,function(data){
 // 				console.log(data);
 				showUsers(data);
+
 			});
 		}
-
+		
 		//---------------------添加用户--------------------------------------------
 		//保存添加用户按钮绑定单机事件
 		$("#addNewUserBtn").click(function() {
@@ -966,13 +961,13 @@
 				//操作列
 
 				btnTd.append('<button userId = "'+ this.userId+ '" type = "button" class = "userModelShowBtn btn btn-sm btn-success" title="添加角色" ><i class="fa fa-qrcode"></i></button>')
-					 .append('&nbsp;<button userId = "'+ this.userId+ '" type = "button" class = "showMyUserModal btn btn-sm btn-info" title="查看信息" ><i class="fa fa-pencil"></i></button>')
+					 .append('&nbsp;<button userId = "'+ this.userId+ '" type = "button" class = "updateUserModalBtn btn btn-sm btn-info" title="查看信息" ><i class="fa fa-pencil"></i></button>')
 					 .append('&nbsp;<button userId = "'+ this.userId+ '" type = "button" class = "deleteUserBtn btn btn-sm btn-danger" title="删除用户" id="removeUserBtn"><i class="fa fa-trash"></i></button>');
 
 				 tr.append("<td>" + ++id + "</td>")
 // 				 tr.append("<td>" + this.userId + "</td>")
 				   .append("<td><a onclick='toUserById("+ this.userId +")'>" + this.userName+ "</a></td>")
-				   .append("<td>" + this.wechatName+ "</td>")
+				   .append("<td>" + isNull(this.wechatName) + "</td>")
 				   .append("<td>" + nullIsZero(this.integralCount) + "</td>")
 				   .append("<td>" + this.phone + "</td>")
 				   .append("<td>" + this.email + "</td>")
@@ -982,7 +977,26 @@
 		}
 		
 		function toUserById(data){
-			alert("111");
+// 			alert(data);
+			//回显
+			$.ajax({
+				url : "${ctp}/user/querryById",
+				data : {
+					userId : data
+				},
+				dataType: 'json',
+				success : function(data) {
+// 					alert(data);
+// 					console.log(data);
+					showReturnMsg(data);
+				}
+			});
+			
+			//显示模态框
+			$("#showMyUserModal").modal({
+	   			backdrop : 'static',
+	   			show : true
+	   		});
 		}
 
 		//分页条显示
@@ -1037,13 +1051,10 @@
 		//回显方法
 		function showReturnMsg(data){
 			
-			var conData = data.list[0];
+			var conData = data.content;
+			console.log(conData);
 
-			
-			
-			document.getElementById("userId1Key").value = conData.userId;
-			document.getElementById("loginname3Key").value = conData.loginname;
-			document.getElementById("password1Key").value = conData.password;
+// 			document.getElementById("userId1Key").value = conData.userId;
 			document.getElementById("userName1Key").value = conData.userName;
 			document.getElementById("phone1Key").value = conData.phone;
 			document.getElementById("openId1Key").value = conData.openId;
@@ -1060,6 +1071,8 @@
 // 			document.getElementById("phoneremark1Key").value = conData.phoneremark;
 			document.getElementById("integralCount1Key").value = conData.integralCount;
 			document.getElementById("createDate1Key").value = timeFormat(conData.createDate);
+			document.getElementById("loginname1Key").value = conData.loginname;
+			document.getElementById("password1Key").value = conData.password;
 			
 			//input值
 			$("#userIdKey").attr("value",conData.userId);
@@ -1113,46 +1126,20 @@
 		};
 		
 		//------------------------------显示个人信息----------------------
-		$("body").on("click", ".showMyUserModal", function() {
-			
-			//后台清空模态框里面的内容
-			$("#showMyUserModal input").val("");
-			
-			param.userId = $(this).attr("userId");
-			
-			//回显
-			$.ajax({
-				url : "${ctp}/user/querry",
-				data : {
-					userId : param.userId
-				},
-				dataType: 'json',
-				success : function(data) {
-// 					console.log(data);
-					showReturnMsg(data);
-					
-				}
-			});
-			
-			//显示模态框
-			$("#showMyUserModal").modal({
-	   			backdrop : 'static',
-	   			show : true
-	   		});
-			
-			
-			$("body").on("click", ".updateUserModalBtn", function() {
+// 		$("body").on("click", ".showMyUserModal", function() {
+		
+		$("body").on("click", ".updateUserModalBtn", function() {
 				
-				//关闭模态框
-				$("#showMyUserModal").modal('hide');
-				
+			var data = $(this).attr("userId");
+// 			alert(data);
+			
 				//后台清空模态框里面的内容
 				$("#updateUserModalBtn input").val("");
 				
 				$.ajax({
-					url : "${ctp}/user/querry",
+					url : "${ctp}/user/querryById",
 					data : {
-						userId : param.userId
+						userId : data
 					},
 					dataType: 'json',
 					success : function(data) {
@@ -1167,8 +1154,6 @@
 		   		});
 				
 			});
-			
-		});
 		
 		
 		//-------------------------修改---------------------------------
@@ -1187,7 +1172,7 @@
 					$("#updateUserModalBtn input").val("");
 					
 					//来到最后一页；
-					page.pn = pageNum;
+					page.pn = 1;
 					getusers();
 
 					//失败返回的msg
@@ -1213,7 +1198,38 @@
 		
 		
 	}	
+//-----------------------------导入提交-------------------------------
+	$("#subImportFile").click(function(){
+		$("#importUserFileForm").ajaxSubmit(function(data){
+			//回显状态信息
+			layer.msg(data.msg);
+// 			alert(data.msg);
+			
+			//关闭模态框
+			$("#importUserFileModal").modal('hide');
+			
+			return false;
+			
+		});
+	});
+
+//-------------------------下载导入信息模板模板-------------------------------------
+	function userFiletemplate(){
+		
+		location.href="${ctp}/user/down";
 	
+		return false;
+	}
+	
+//-------------------------------null转化为空字符串-------------------------------
+	function isNull(data){
+		if (data == null) {
+			return "";
+		}
+		return data;
+	}
+
+
 	
 	</script>
 </body>

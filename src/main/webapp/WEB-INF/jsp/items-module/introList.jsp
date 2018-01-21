@@ -130,7 +130,7 @@ select {
 			<tr>
 				<th width="30px"><input type="checkbox" id="allCheckBox">全选</th>
 				<th>序号</th>
-				<th>用户</th>
+<!-- 				<th>用户</th> -->
 				<th>标题</th>
 				<th>创建时间</th>
 				<th>操作</th>
@@ -170,14 +170,39 @@ select {
 				<!-- 内容开始 -->
 					<form  lass="layui-form" action="" id="addIntroForm" style="width: 100%; margin: 10 auto;">
 						<table>
+<!-- 							<tr> -->
+<!-- 								<div class="layui-form-item2" id="updateOrderDiv"> -->
+<!-- 									<div class="layui-inline"> -->
+<!-- 										<label class="layui-form-label2"><a -->
+<!-- 											style="color: red;">*</a>用户id</label> -->
+<!-- 										<div class="layui-input-block"> -->
+<!-- 											<input type="text" name="userId"  class="layui-input"> -->
+<!-- 										</div> -->
+<!-- 									</div> -->
+<!-- 								</div> -->
+<!-- 							</tr> -->
+							
 							<tr>
 								<div class="layui-form-item2" id="updateOrderDiv">
 									<div class="layui-inline">
 										<label class="layui-form-label2"><a
-											style="color: red;">*</a>用户id</label>
+											style="color: red;">*</a>简介标题</label>
 										<div class="layui-input-block">
-											<input type="text" name="userId"  class="layui-input">
+											<input type="hidden" name="userId" value="${loginUser.userId }"  class="layui-input">
+											<input  type="text" name="titleCollege"  class="layui-input">
 										</div>
+									</div>
+								</div>
+							</tr>
+							
+							<tr>
+								<div class="layui-form-item2">
+									<div class="layui-inline">
+										<label class="layui-form-label2"><a style="color: red;">*</a>产品图片</label>
+											<div class="layui-input-block">
+		<!-- 										<span style="cursor: pointer;color: red;">建议尺寸：68*68像素 图片大小300k以内 支持JPG PNG</span> -->
+												<input type="file" name="file" class="layui-input">
+											</div>
 									</div>
 								</div>
 							</tr>
@@ -186,20 +211,10 @@ select {
 								<div class="layui-form-item2" id="updateOrderDiv">
 									<div class="layui-inline">
 										<label class="layui-form-label2"><a
-											style="color: red;">*</a>简介标题</label>
-										<div class="layui-input-block">
-											<input  type="text" name="titleCollege"  class="layui-input">
-										</div>
-									</div>
-								</div>
-							</tr>
-							<tr>
-								<div class="layui-form-item2" id="updateOrderDiv">
-									<div class="layui-inline">
-										<label class="layui-form-label2"><a
 											style="color: red;">*</a>简介内容</label>
 										<div class="layui-input-block">
-											<input  type="text" name="titleMaster"  class="layui-input">
+											<textarea name="titleMaster"  class="layui-input" style="width:300px;height:100px;"></textarea>
+<!-- 											<input  type="text" name="titleMaster"  class="layui-input"> -->
 										</div>
 									</div>
 								</div>
@@ -235,40 +250,31 @@ select {
 							<tr>
 								<div class="layui-form-item2" id="updateOrderDiv">
 									<div class="layui-inline">
-										<label class="layui-form-label2">简介Id</label>
+										<label class="layui-form-label2">简介序号</label>
 										<div class="layui-input-block">
 											<input type="text" id="collegeIdKey" disabled="disabled" name="collegeId"  class="layui-input">
 										</div>
 									</div>
 								</div>
 							</tr>
-							<tr>
-								<div class="layui-form-item2" id="updateOrderDiv">
-									<div class="layui-inline">
-										<label class="layui-form-label2">用户id</label>
-										<div class="layui-input-block">
-											<input type="text" id="userIdKey" disabled="disabled" name="userId"  class="layui-input">
-										</div>
-									</div>
-								</div>
-							</tr>
+<!-- 							<tr> -->
+<!-- 								<div class="layui-form-item2" id="updateOrderDiv"> -->
+<!-- 									<div class="layui-inline"> -->
+<!-- 										<label class="layui-form-label2">用户id</label> -->
+<!-- 										<div class="layui-input-block"> -->
+<!-- 											<input type="text" id="userIdKey" disabled="disabled" name="userId"  class="layui-input"> -->
+<!-- 										</div> -->
+<!-- 									</div> -->
+<!-- 								</div> -->
+<!-- 							</tr> -->
 							
 							<tr>
 								<div class="layui-form-item2" id="updateOrderDiv">
 									<div class="layui-inline">
 										<label class="layui-form-label2">简介标题</label>
 										<div class="layui-input-block">
+<!-- 											<textarea id="titleCollegeKey" disabled="disabled" name="titleMaster"  class="layui-input" style="width:300px;height:100px;"></textarea> -->
 											<input  type="text" id="titleCollegeKey" disabled="disabled" name="titleCollege"  class="layui-input">
-										</div>
-									</div>
-								</div>
-							</tr>
-							<tr>
-								<div class="layui-form-item2" id="updateOrderDiv">
-									<div class="layui-inline">
-										<label class="layui-form-label2">简介内容</label>
-										<div class="layui-input-block">
-											<input  type="text" id="titleMasterKey" disabled="disabled" name="titleMaster"  class="layui-input">
 										</div>
 									</div>
 								</div>
@@ -283,6 +289,18 @@ select {
 									</div>
 								</div>
 							</tr>
+							<tr>
+								<div class="layui-form-item2" id="updateOrderDiv">
+									<div class="layui-inline">
+										<label class="layui-form-label2">简介内容</label>
+										<div class="layui-input-block">
+											<textarea id="titleMasterKey" disabled="disabled" name="titleMaster"  class="layui-input" style="width:300px;height:100px;"></textarea>
+<!-- 											<input  type="text" id="titleMasterKey" disabled="disabled" name="titleMaster"  class="layui-input"> -->
+										</div>
+									</div>
+								</div>
+							</tr>
+							
 						</table>
 					</form>
 				<!-- 内容结束 -->
@@ -396,7 +414,7 @@ select {
 	
 				tr.append("<td><input type='checkbox' collegeId="+ this.collegeId +" class='itemCheckBox'></td>")
 				  .append("<td>" + this.collegeId + "</td>")
-				  .append("<td>" + this.userId + "</td>")
+// 				  .append("<td>" + this.userId + "</td>")
 				  .append("<td>" + this.titleCollege + "</td>")
 				  .append("<td>" + timeFormat(this.createDate) + "</td>")
 				  .append(btnTd)
@@ -559,13 +577,14 @@ select {
 	//回显信息
 	function showReturnMsg(data){
 		
+// 		console.log(data);
 		var conData = data.list[0];
+// 		console.log(conData);
 		//input值
-		$("#conIdKey").attr("value",conData.consigneeId);
+// 		$("#conIdKey").attr("value",conData.consigneeId);
 		$("#userIdKey").attr("value",conData.userId);
 		//回显操作
 		document.getElementById("collegeIdKey").value = conData.collegeId;
-		document.getElementById("userIdKey").value = conData.userId;
 		document.getElementById("titleCollegeKey").value = conData.titleCollege;
 		document.getElementById("titleMasterKey").value = conData.titleMaster;
 		document.getElementById("createDateKey").value = timeFormat(conData.createDate);
